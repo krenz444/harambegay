@@ -1176,6 +1176,13 @@ var candles = parseInt(localStorage.getItem('candles')||'0',10);
 function renderCandles(){
   document.getElementById('candlecount').textContent = (candles + 8916).toLocaleString();
   var wall = document.getElementById('candlewall');
+  /* at 111 (and 1111) the wall arranges itself. it has always been arranging itself. */
+  if (candles === 111 || candles === 1111){
+    wall.innerHTML = '<div style="font-size:26px;letter-spacing:6px;line-height:1.5;">' +
+      '🕯️ &nbsp; 🕯️🕯️<br>🕯️🕯️ &nbsp; 🕯️<span style="opacity:.25;">🕯️</span></div>' +
+      '<div class="tiny" style="margin-top:6px;">is this loss?<br>yes. it has always been loss. since may 28.</div>';
+    return;
+  }
   var shown = Math.min(candles, 60);
   wall.textContent = '🕯️'.repeat(shown) + (candles>60 ? ' +'+(candles-60)+' more' : '');
 }
