@@ -274,6 +274,37 @@ input, textarea {
   padding: 4px; font-family: "Courier New", monospace; font-size: 10px; color: #00ff66; line-height: 1.5;
 }
 
+/* JEFF.EXE — legally distinct from any purple desktop primate u may be thinking of */
+#jeffexe {
+  position: fixed; right: 12px; bottom: 12px; z-index: 10000;
+  display: none; align-items: flex-end; gap: 6px; max-width: min(340px, 92vw);
+  font-family: Tahoma, Verdana, sans-serif;
+}
+#jeffbubble {
+  position: relative; background: #ffffe1; border: 1px solid #000; color: #000;
+  font-size: 12px; padding: 8px 10px; border-radius: 4px; box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+  line-height: 1.35;
+}
+#jeffbubble::after {
+  content: ''; position: absolute; right: -9px; bottom: 14px;
+  border: 5px solid transparent; border-left-color: #ffffe1;
+}
+#jeffbubble b { color: #000080; }
+.jeff-acts { margin-top: 6px; text-align: right; }
+.jeff-acts button {
+  font-family: Tahoma, sans-serif; font-size: 11px; background: #c0c0c0;
+  border: 2px outset #fff; color: #000; padding: 1px 10px; margin-left: 4px;
+  cursor: pointer; text-shadow: none;
+}
+.jeff-acts button:active { border-style: inset; }
+#jeffguy { font-size: 46px; cursor: pointer; user-select: none; animation: bounce 2.4s ease-in-out infinite; }
+#jeffclose {
+  position: absolute; top: -8px; left: -8px; width: 18px; height: 18px; line-height: 14px;
+  font-size: 11px; font-weight: bold; text-align: center; background: #c0c0c0;
+  border: 2px outset #fff; color: #000; cursor: pointer; padding: 0; text-shadow: none;
+  transition: transform .12s;
+}
+
 .tiny { font-size: 10px; color: #cc99ff; }
 .beetext {
   background: #000; color: #ffd700; padding: 0 6px; border-radius: 6px;
@@ -482,7 +513,7 @@ input, textarea {
   <div class="box">
     <h3>◈ adopt a pixel gorilla ◈</h3>
     <center>
-      <div style="border:3px inset #888;background:#001a00;padding:8px;">
+      <div id="jeffbox" style="border:3px inset #888;background:#001a00;padding:8px;">
         <span class="bounce" style="font-size:34px;">🦍</span><br>
         <b style="font-size:12px;">his name is jeff</b><br>
         <span class="tiny">harambe's lil cousin.<br>he lives in ur sidebar now.<br>DO NOT perceive him directly.</span>
@@ -1028,6 +1059,16 @@ input, textarea {
 
 </div><!-- /site -->
 
+<!-- ~~~ JEFF.EXE ~~~ he escaped the sidebar. we knew this day would come. -->
+<div id="jeffexe">
+  <div id="jeffbubble">
+    <button id="jeffclose" onclick="jeffClose()" aria-label="close jeff">✕</button>
+    <div id="jefftext"></div>
+    <div class="jeff-acts" id="jeffacts"></div>
+  </div>
+  <span id="jeffguy" onclick="jeffPoke()" title="jeff">🦍</span>
+</div>
+
 
 
 <script>
@@ -1280,6 +1321,71 @@ function openScript(){
   document.getElementById('moviewindow').scrollIntoView({behavior:'smooth', block:'start'});
   burst('🐝🦍🌈');
 }
+
+/* --- JEFF.EXE — he was in the sidebar. he is not in the sidebar anymore. --- */
+var jeffTimer = null, jeffDodged = false, jeffFactIdx = 0;
+function jeffSay(html, actions){
+  document.getElementById('jefftext').innerHTML = html;
+  var acts = document.getElementById('jeffacts');
+  acts.innerHTML = '';
+  (actions || []).forEach(function(a){
+    var b = document.createElement('button');
+    b.textContent = a[0];
+    b.onclick = a[1];
+    acts.appendChild(b);
+  });
+}
+function jeffFacts(){
+  var facts = [
+    'FUN FACT: i am legally distinct from a certain purple desktop gorilla. he was spyware. i am <b>griefware</b>.',
+    'FUN FACT: every gorilla is my cousin. grief math.',
+    'FUN FACT: u have scrolled past me ' + (Math.floor(Math.random()*40)+12) + ' times today. i counted. i have nothing but time.',
+    'FUN FACT: the webmaster and i are not currently speaking. u can probably guess why. u would be wrong.',
+    'FUN FACT: i do not pay rent. i am a gorilla. this has never been raised as an issue and i intend 2 keep it that way.'
+  ];
+  if (parseInt(localStorage.getItem('bananas')||'0',10) === 0)
+    facts.push('FUN FACT: u have not fed harambe in heaven yet. he notices. he is not mad. <b>that is worse.</b>');
+  if (parseInt(localStorage.getItem('candles')||'0',10) > 5)
+    facts.push('FUN FACT: u have lit ' + localStorage.getItem('candles') + ' candles. i watched u do every single one. i thought it was nice.');
+  return facts[jeffFactIdx++ % facts.length];
+}
+function jeffNextFact(){
+  clearTimeout(jeffTimer);
+  jeffTimer = setTimeout(function(){
+    jeffSay(jeffFacts(), [['ok', jeffNextFact], ['tell me another', function(){ jeffSay(jeffFacts(), [['ok', jeffNextFact]]); }]]);
+  }, 45000);
+}
+function jeffPoke(){
+  jeffSay(jeffFacts(), [['ok', jeffNextFact]]);
+  burst('🦍💖');
+}
+function jeffClose(){
+  var el = document.getElementById('jeffexe');
+  if (!jeffDodged){
+    jeffDodged = true;
+    var x = document.getElementById('jeffclose');
+    x.style.transform = 'translate(26px, 22px)';
+    setTimeout(function(){ x.style.transform = ''; }, 500);
+    jeffSay('u cannot uninstall jeff.<br><b>jeff uninstalls U</b> (emotionally).', [['try again', jeffClose]]);
+    return;
+  }
+  jeffSay('...fine. i will go back 2 the sidebar.<br>i was never really gone. 🦍', []);
+  setTimeout(function(){ el.style.display = 'none'; clearTimeout(jeffTimer); }, 1800);
+}
+(function(){
+  if (CALM) return;                       /* he respects reduced motion. he is a gentleman. */
+  if (sessionStorage.getItem('jeffMet')) return;
+  setTimeout(function(){
+    sessionStorage.setItem('jeffMet', '1');
+    var box = document.getElementById('jeffbox');
+    if (box) box.innerHTML = '<span class="tiny">jeff has escaped.<br>do not panic.<br>do not perceive.</span>';
+    document.getElementById('jeffexe').style.display = 'flex';
+    jeffSay("hi!! i'm <b>JEFF</b>!!<br>it looks like ur experiencing <b>grief</b>!!<br>would u like assistance??", [
+      ['yes', function(){ jeffSay('me 2.<br>i will sit with u.', [['ok', jeffNextFact]]); burst('🦍💖'); }],
+      ['no',  function(){ jeffSay('ok!!<br>i will simply watch.', [['ok', jeffNextFact]]); }]
+    ]);
+  }, 60000);
+})();
 
 /* --- the gift shoppe --- */
 function soldOut(){
