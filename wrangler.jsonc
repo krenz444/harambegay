@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "harambe-gay",
+  "compatibility_date": "2026-07-30",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "harambe.gay", "custom_domain": true },
+    { "pattern": "www.harambe.gay", "custom_domain": true }
+  ]
+}
