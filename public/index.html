@@ -241,6 +241,39 @@ input, textarea {
 }
 .win-btn:active { border-style: inset; }
 
+/* GORILLAMP — a media player from a dead era */
+#gorillamp {
+  display: inline-block; width: min(420px, 96%); margin: 6px auto;
+  background: linear-gradient(180deg,#3b3b4f,#22222e);
+  border: 2px outset #6a6a80; padding: 4px; text-align: left;
+  font-family: Tahoma, Verdana, sans-serif; box-shadow: 3px 3px 0 #000;
+}
+.amp-title {
+  background: linear-gradient(90deg,#000080,#4a4a8a); color: #c8c8e0;
+  font-size: 10px; font-weight: bold; padding: 2px 4px; margin-bottom: 4px;
+}
+.amp-lcd {
+  background: #000; border: 2px inset #555; padding: 3px 4px; overflow: hidden;
+  font-family: "Courier New", monospace; font-size: 11px; color: #00ff66; white-space: nowrap;
+}
+#amp-marquee { display: inline-block; padding-left: 100%; animation: ampscroll 14s linear infinite; }
+@keyframes ampscroll { to { transform: translateX(-100%); } }
+.amp-viz {
+  display: flex; align-items: flex-end; gap: 2px; height: 28px;
+  background: #000; border: 2px inset #555; margin-top: 3px; padding: 2px;
+}
+.amp-viz span { flex: 1; background: linear-gradient(180deg,#00ff66,#006622); height: 10%; }
+.amp-controls { margin-top: 4px; text-align: center; }
+.amp-btn {
+  font-family: Tahoma, sans-serif; font-size: 12px; background: #4a4a5e;
+  border: 2px outset #7a7a90; color: #d0d0e0; padding: 2px 10px; cursor: pointer; text-shadow: none;
+}
+.amp-btn:active { border-style: inset; }
+.amp-playlist {
+  display: none; background: #000; border: 2px inset #555; margin-top: 4px;
+  padding: 4px; font-family: "Courier New", monospace; font-size: 10px; color: #00ff66; line-height: 1.5;
+}
+
 .tiny { font-size: 10px; color: #cc99ff; }
 .beetext {
   background: #000; color: #ffd700; padding: 0 6px; border-radius: 6px;
@@ -284,8 +317,28 @@ input, textarea {
 <div class="rainbowbar"></div>
 
 <center style="font-size:14px;">
-  <b>⚠️ TURN UP UR SPEAKERS ⚠️</b> &nbsp;
-  <button id="midibtn" onclick="toggleSong('grace')">▶️ PLAY: amazing_grace_8bit_FINAL(2).mid</button>
+  <b>⚠️ TURN UP UR SPEAKERS ⚠️</b><br>
+
+  <!-- GORILLAMP -->
+  <div id="gorillamp">
+    <div class="amp-title">GORILLAMP v2.91 <span style="float:right;">_ ▫ ✕</span></div>
+    <div class="amp-lcd">
+      <span id="amp-marquee">*** amazing_grace_8bit_FINAL(2).mid *** 4:20 *** 56kbps stereo(ish) ***</span>
+    </div>
+    <div class="amp-viz" id="amp-viz"></div>
+    <div class="amp-controls">
+      <button class="amp-btn" onclick="alert('there is only one song.\nthere has only ever been one song.')">⏮</button>
+      <button class="amp-btn" id="midibtn" onclick="toggleSong('grace')">▶</button>
+      <button class="amp-btn" onclick="alert('there is only one song.\nthere has only ever been one song.')">⏭</button>
+      <button class="amp-btn" onclick="var p=document.getElementById('amp-playlist');p.style.display=p.style.display==='block'?'none':'block';">☰ PL</button>
+    </div>
+    <div class="amp-playlist" id="amp-playlist">
+      1. amazing_grace_8bit_FINAL(2).mid <span style="color:#0f0;">✓</span><br>
+      2. darude_sandstorm.mid <span class="tiny">(corrupted by grief)</span><br>
+      3. mmmbop_but_sad.mid <span class="tiny">(kazaa gave me a virus instead)</span><br>
+      4. llama_whipping.wav <span class="tiny">(DO NOT PLAY — out of respect 4 ALL animals now)</span>
+    </div>
+  </div>
   <span class="tiny">(real .mid file* &nbsp;*not real)</span><br>
   <span class="tiny">best viewed in Netscape Navigator 4.0 at 800x600 resolution with ur heart open</span>
 </center>
@@ -308,6 +361,9 @@ input, textarea {
       <a href="#guestbook">📖 guestbook 📖</a><br>
       <a href="#webring">💍 webring 💍</a><br>
       <a href="#" onclick="openScript();return false;">🐝 the script 🐝</a><br>
+      <a href="#ledger">📜 meme ledger 📜</a><br>
+      <a href="#shoppe">🛒 gift shoppe 🛒</a><br>
+      <a href="#faq">❓ f.a.q. ❓</a><br>
       <a href="#" onclick="alert('u are already home. we all are. harambe IS home.');return false;">🏠 home 🏠</a>
     </center>
   </div>
@@ -323,6 +379,34 @@ input, textarea {
       fav animal: <b>take a WILD guess</b><br>
       weather in heaven: <b>72°</b> <span class="tiny">(full forecast below)</span><br>
       status: <b class="blink">dicks out (respectfully)</b>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>◈ updates!! ◈ (drama log)</h3>
+    <div style="font-size:11px;line-height:1.35;">
+      <b style="color:#ffff00;">7/31/2026</b> — added a new thing. u will know it when u see it. jeff is not speaking 2 me abt it.<br><br>
+      <b style="color:#ffff00;">5/28/2026</b> — 10 yr angelversary. lit all 8,916 candles at once. smoke alarm went off. worth it. mom was NOT mad she was just disappointed (worse).<br><br>
+      <b style="color:#ffff00;">4/12/2026</b> — mom found the site. she said its "very nice honey." new award added (see: site awards).<br><br>
+      <b style="color:#ffff00;">4/1/2026</b> — harambe.biz said he "wasn't even that gay." i have never been calmer in my entire life. added 3 blinkies about it.<br><br>
+      <b style="color:#ffff00;">2/14/2026</b> — spent valentines with the shrine. this is fine. this is FINE. added sparkles.<br><br>
+      <b style="color:#ffff00;">6/9/2019</b> — nice.<br><br>
+      <b style="color:#ffff00;">1/17/2018</b> — JESSICA signed the guestbook as "he was just a gorilla." banned. blocked. reported 2 jeeves. jeeves said he would handle it.<br><br>
+      <span class="tiny">· · · · · · · · · · · · ·</span><br><br>
+      <b style="color:#ff66ff;">5/28/2016</b> — last real update (emotionally). everything since is maintenance.
+    </div>
+  </div>
+
+  <div class="box" style="border-color:#ff3333;">
+    <h3 style="background:linear-gradient(90deg,#cc0000,#ff6600);">⚠️ rival shrine alert ⚠️</h3>
+    <div style="font-size:11px;line-height:1.35;">
+      <b class="blink" style="color:#ff5555;">do NOT visit harambe.biz</b><br><br>
+      they are a <b>FOR-PROFIT shrine</b>. they charge <b>$4.99 per candle</b>.
+      their harambe drawing has <b>FIVE FINGERS</b> (count them. i did. five.).
+      their hit counter counts DOWN. they got <b>EXPELLED</b> from the gay gorilla webring in 2009 and we ALL remember why (see: the war).<br><br>
+      they call it "monetizing grief." i call it a hate crime <span class="tiny">(legally distinct)</span>.<br><br>
+      [ <a href="#" onclick="alert('i am not giving them the traffic.\neven a fake click is a click.\n  — mgmt');return false;">visit them anyway</a> ]<br><br>
+      <span class="tiny">if u run harambe.biz and ur reading this: give back the midi file. u know the one. amazing_grace_8bit_FINAL(1).mid. thats why mine says (2).</span>
     </div>
   </div>
 
@@ -452,6 +536,83 @@ input, textarea {
         <tr><td>FRI</td><td>🌈</td><td>72°</td><td><b style="color:#ffff00;">gay</b></td></tr>
       </table>
       <span class="tiny">it has been 72° for 10 years straight.<br>he keeps it nice up there.</span>
+    </center>
+  </div>
+
+  <div class="box">
+    <h3>◈ in memoriam: 2016 ◈</h3>
+    <div style="font-size:11px;">
+      <span class="tiny">maintained in partnership with the dead meme preservation society</span><br><br>
+      <div style="border:2px outset #888;background:#1a1a1a;padding:4px;margin:4px 0;font-family:'Times New Roman',serif;text-align:center;">
+        <b>VINE</b><br>2013–2016<br><i>six seconds was enough</i>
+      </div>
+      <div style="border:2px outset #888;background:#1a1a1a;padding:4px;margin:4px 0;font-family:'Times New Roman',serif;text-align:center;">
+        <b>POKEMON GO FRIENDSHIPS</b><br>july 2016–august 2016<br><i>we were all valor once</i>
+      </div>
+      <div style="border:2px outset #888;background:#1a1a1a;padding:4px;margin:4px 0;font-family:'Times New Roman',serif;text-align:center;">
+        <b>THE DAB</b><br><i>cause of death: dads learned it</i>
+      </div>
+      <div style="border:2px outset #888;background:#1a1a1a;padding:4px;margin:4px 0;font-family:'Times New Roman',serif;text-align:center;">
+        <b>MY CHANCES OF LOGGING OFF</b><br>2016–2016<br><i>never stood a chance</i>
+      </div>
+      <div style="border:2px dashed #ffd700;background:#111;padding:4px;margin:4px 0;text-align:center;">
+        <b style="color:#ffd700;">RESERVED</b><br>
+        <span class="tiny">NOT harambe. he is not on this wall bc he is not LOST. he is IN ALL OF US. this wall is for stuff thats actually gone. like vine. 😔</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="border-color:#00ff00;">
+    <h3 style="background:linear-gradient(90deg,#003300,#006600);color:#00ff00;">◈ the TRUTH zone ◈</h3>
+    <div style="font-family:'Courier New',monospace;font-size:10px;color:#00ff00;background:#000;padding:6px;line-height:1.4;">
+      <b class="blink">&gt;&gt; WAKE UP (respectfully) &lt;&lt;</b><br><br>
+      <b>1.</b> harambe is ALIVE and living in monaco under the name "harold amber." rearrange the letters. i'm waiting.<br><br>
+      <b>2.</b> have u EVER seen harambe and the monaco royal family in the same room. exactly.<br><br>
+      <b>3.</b> "dicks out" contains 8 letters. harambe had 2 arms. 8 ÷ 2 = 4. FOUR. remember that number.<br><br>
+      <b>4.</b> [claim redacted — jeff said it was 2 much]<br><br>
+      [ <a href="#" style="color:#00ff00;" onclick="alert('EVIDENCE:\n\na large gentleman in a bathrobe\nmonte carlo, 2019\n\nu tell ME thats not him.');return false;">VIEW EVIDENCE</a> ]<br><br>
+      <span style="color:#888;">editor's note: he is not alive. i checked. i check every day. but wouldn't it be nice. — furphy</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>◈ ~ the archive ~ ◈</h3>
+    <div style="font-size:11px;line-height:1.4;">
+      <span class="tiny">fan fiction. every fic is a fix-it.</span><br><br>
+      <a href="#" onclick="alert('ch. 1 of ??\nlast updated 6/2016\nABANDONED');return false;">the silverback of notre dame</a><br>
+      <span class="tiny">ch. 1 of ?? · ABANDONED</span><br><br>
+      <a href="#" onclick="alert('rated T (2 tender)\ncomplete');return false;">harambe x the concept of justice</a><br>
+      <span class="tiny">rated T (2 tender) · complete</span><br><br>
+      <a href="#" onclick="alert('do not read.\ni mean it.\n666 reviews.');return false;">my immortal but every character is harambe</a><br>
+      <span class="tiny">666 reviews · do not read</span><br><br>
+      <a href="#" onclick="alert('(AN: sry i havent updated, grandma took my computer privileges. also harambe is ALIVE in this one bc i said so. he lives in monaco. dont like dont read.)');return false;">enclosure of the heart</a><br>
+      <span class="tiny">84 chapters · updates every may</span><br><br>
+      <b class="tiny">genre: fix-it. they are ALL fix-it.<br>what else would they possibly be.</b><br><br>
+      <span class="tiny">latest review — <b style="color:#00ffff;">xXsephiroth420Xx</b>: first</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>◈ house rules ◈</h3>
+    <div style="font-size:11px;line-height:1.5;">
+      <b>1.</b> dicks out. <span class="tiny">(non-negotiable)</span><br>
+      <b>2.</b> be nice 2 animals.<br>
+      <b>3.</b> be nice 2 each other.<br>
+      <b>4.</b> do not perceive jeff directly.<br>
+      <b>5.</b> no homophobia. harambe is watching and he has NO patience left, he used it all in 2016.<br>
+      <b>6.</b> sign the guestbook. <span class="tiny">(rule 6 is enforced spiritually)</span><br>
+      <b>7.</b> if u came here 2 be mean abt a dead gorilla, the door is behind u and it is also gay.<br><br>
+      <span class="tiny">rules last amended 5/28/2016. no amendments pending. the rules r perfect.</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>◈ email the webmaster ◈</h3>
+    <center style="font-size:11px;">
+      <span style="font-size:26px;">📬</span><br>
+      <a href="#" onclick="alert('my inbox has been full since 2016.\n\nliterally. i never cleared it.\nthere r 4,000 unread condolences in there\nand i am not emotionally equipped 2 open them.\n\nsay it 2 the guestbook instead. 📖');return false;"><b>furphy@harambe.gay</b></a><br>
+      <span class="tiny">(u will not get a reply)<br>(it is not personal)<br>(it is extremely personal)</span><br><br>
+      <span class="tiny">📧 join my mailing list!!<br>(there is no mailing list.<br>there is only this.)</span>
     </center>
   </div>
 
@@ -701,6 +862,91 @@ input, textarea {
     </div>
   </div>
 
+  <!-- THE LEDGER -->
+  <a id="ledger"></a>
+  <div class="box">
+    <h3>📜 the offical meme ledger 📜 (what he saw / what he was denied)</h3>
+    <table style="width:100%;font-size:12px;border-spacing:6px;">
+      <tr>
+        <td style="vertical-align:top;width:50%;border:3px inset #00ff99;padding:6px;">
+          <center><b style="color:#00ff99;">✅ WITNESSED</b></center><hr style="border-color:#066;">
+          <b>damn daniel</b> <span class="tiny">(feb 2016)</span><br>
+          saw it. loved it. had no vans. barefoot king.<br><br>
+          <b>dat boi</b> <span class="tiny">(spring 2016)</span><br>
+          he saw dat boi arrive. he never had 2 see dat boi leave. mercy.<br><br>
+          <b>chewbacca mom</b> <span class="tiny">(may 19, 2016)</span><br>
+          by NINE days.<br><br>
+          <b>the bottle flip</b> <span class="tiny">(may 24, 2016)</span><br>
+          his last meme. he saw it land. then he left us.
+        </td>
+        <td style="vertical-align:top;width:50%;border:3px inset #ff6666;padding:6px;">
+          <center><b style="color:#ff6666;">❌ DENIED</b></center><hr style="border-color:#600;">
+          <b>pokemon go</b> <span class="tiny">(july 6, 2016)</span><br>
+          by 39 days. the zoo became a gym without its gym leader.<br><br>
+          <b>arthur's fist</b> <span class="tiny">(july 27, 2016)</span><br>
+          this is how we felt ABOUT missing him.<br><br>
+          <b>evil kermit</b> <span class="tiny">(nov 2016)</span><br>
+          he never met his dark self. he didn't have one.<br><br>
+          <b>the death of vine</b> <span class="tiny">(announced oct 27, 2016)</span><br>
+          spared by exactly 152 days. god is occasionally kind.
+        </td>
+      </tr>
+    </table>
+    <p class="epitaph" style="text-align:center;font-size:15px;">
+      the greatest meme of 2016 never got 2 see<br>the greatest meme of 2016.<br>
+      it was him. he never knew.
+    </p>
+  </div>
+
+  <!-- GIFT SHOPPE -->
+  <a id="shoppe"></a>
+  <div class="box">
+    <h3>🛒 the offical gift shoppe 🛒</h3>
+    <table style="width:100%;font-size:12px;border-spacing:4px;">
+      <tr style="background:#220044;"><th style="text-align:left;">item</th><th>status</th><th></th></tr>
+      <tr><td>"dicks out" commemorative fanny pack</td><td><b style="color:#ff5555;">SOLD OUT</b><br><span class="tiny">5/29/2016 — one day. it took ONE day.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>amazing_grace_8bit_FINAL(2).mid<br><span class="tiny">on limited edition minidisc</span></td><td><b style="color:#ff5555;">SOLD OUT</b></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>webring member #69 enamel pin</td><td><b style="color:#ff5555;">SOLD OUT</b><br><span class="tiny">we know. nice. stop emailing.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>jeff plush</td><td><b style="color:#ffaa00;">NEVER FOR SALE</b><br><span class="tiny">jeff asked. i respect jeff.</span></td><td><button onclick="alert('jeff is not merchandise.\njeff is family.\n\n(jeff also does not pay rent. but thats between us.)')" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>harambe body pillow (respectful)</td><td><b style="color:#ffaa00;">RECALLED</b><br><span class="tiny">2 respectful</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr style="background:#003300;"><td><b style="color:#00ff99;">grief</b><br><span class="tiny">qty: ∞ · ships instantly</span></td><td><b style="color:#00ff99;">IN STOCK</b><br><span class="tiny">price: free</span></td><td><button onclick="buyGrief()" style="font-size:11px;padding:2px 8px;">ADD 2 CART</button></td></tr>
+    </table>
+  </div>
+
+  <!-- FAQ -->
+  <a id="faq"></a>
+  <div class="box">
+    <h3>❓ F.A.Q. ❓ (frequently asked questions)</h3>
+    <div style="font-size:13px;line-height:1.4;">
+      <p><b style="color:#ffff00;">Q: is this site serious?</b><br>
+      A: it is the most serious site on the internet. it is also the least. this is called RANGE.</p>
+
+      <p><b style="color:#ffff00;">Q: why .gay?</b><br>
+      A: the domain told me what it wanted 2 be. i just listened.</p>
+
+      <p><b style="color:#ffff00;">Q: can i put my dicks away yet?</b><br>
+      A: [question forwarded 2 the ancient rites tribunal (est. 2016). current ruling: no. next hearing: never.]</p>
+
+      <p><b style="color:#ffff00;">Q: who is jeff?</b><br>
+      A: DO NOT perceive him directly. next question.</p>
+
+      <p><b style="color:#ffff00;">Q: i perceived jeff directly, what now?</b><br>
+      A: ur braver than i thought. jeff will contact U.</p>
+
+      <p><b style="color:#ffff00;">Q: is harambe.biz better?</b><br>
+      A: [answer redacted by my therapist]</p>
+
+      <p><b style="color:#ffff00;">Q: how do u pronounce Xx_fuRPhY_xX?</b><br>
+      A: with respect.</p>
+
+      <p><b style="color:#ffff00;">Q: r u ok?</b><br>
+      A: next question.</p>
+
+      <p><b style="color:#ffff00;">Q: no seriously r u ok?</b><br>
+      A: dicks out means never having 2 answer that. 🦍</p>
+    </div>
+  </div>
+
   <!-- GUESTBOOK -->
   <a id="guestbook"></a>
   <div class="box">
@@ -726,10 +972,31 @@ input, textarea {
     <h3>💍 GAY GORILLA WEBRING 💍</h3>
     <center>
       <b>this site is proud member #69 of the gay gorilla webring</b><br>
+      <span class="tiny">(we know. nice. stop emailing.)</span><br>
       [ <a href="#" onclick="ringnav('prev');return false;">&lt;&lt; prev</a> |
       <a href="#" onclick="ringnav('random');return false;">random</a> |
       <a href="#" onclick="ringnav('next');return false;">next &gt;&gt;</a> ]
       <br><br>
+
+      <!-- the war -->
+      <div style="border:4px double #888;background:#0a0a0a;padding:10px;text-align:left;font-size:12px;">
+        <center><b style="color:#ccc;font-size:14px;">🖤 IN MEMORIAM 🖤<br>THE GAY GORILLA WEBRING (1999–2009)</b></center>
+        <hr style="border-color:#444;">
+        <b style="color:#ffff00;">roll call of the fallen:</b><br>
+        · gorillagrrl_jenny — geocities — deleted 10/26/2009 💔<br>
+        · silverback_city — banned (we dont talk about why)<br>
+        · koko_stan_69 — left on good terms (the only one)<br>
+        · harambe.biz — <b style="color:#ff5555;">EXPELLED</b>. u know what u did.<br>
+        · <b style="color:#00ffff;">harambe.gay — member #69 — LAST ONE STANDING.</b><br>
+        <hr style="border-color:#444;">
+        <b style="color:#ffff00;">the war, as i remember it:</b><br>
+        in 2009, harambe.biz moved that the ring go FOR-PROFIT. we voted. it got ugly.
+        words were said in the guestbooks. blinkies were made ABOUT people.
+        then geocities itself died — 10/26/2009 — taking half the ring down with it.
+        coincidence?? i've said 2 much.<br><br>
+        <center class="tiny">the ring is a circle of one now.<br>me, holding hands with myself, 4ever. 💍</center>
+      </div>
+      <br>
       <span class="badge" style="background:#000;color:#0f0;">HARAMBE<br><small>died 4 our memes</small></span>
       <span class="badge" style="background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);color:#fff;text-shadow:1px 1px 0 #000;">GAY OK<br><small>always has been</small></span>
       <span class="badge" style="background:#003;color:#ff0;">NETSCAPE<br><small>NOW!!</small></span>
@@ -1014,6 +1281,15 @@ function openScript(){
   burst('🐝🦍🌈');
 }
 
+/* --- the gift shoppe --- */
+function soldOut(){
+  alert('sold out since 2016.\n\neverything has been sold out since 2016.\nwe sold nothing BEFORE 2016.\n\nthink about that.');
+}
+function buyGrief(){
+  lightCandle();
+  alert('added 2 cart.\n\ncart is ur heart.\ncandle lit automatically. 🕯️');
+}
+
 /* --- webring + ad --- */
 function webring(){ alert('the webring died in 2009.\nlike my heart on may 28, 2016.\n\n(there is only this site. there was only ever this site.)'); }
 var RINGNAV = {
@@ -1064,8 +1340,21 @@ function playTune(){
   return total * BEAT + 0.8;
 }
 var SONGS = {
-  grace: {play: playTune, btn: 'midibtn', label: '▶️ PLAY: amazing_grace_8bit_FINAL(2).mid', stop: '⏹️ STOP THE FEELS'}
+  grace: {play: playTune, btn: 'midibtn', label: '▶', stop: '⏹'}
 };
+
+/* the spectrum analyzer is a liar but it is an ENTHUSIASTIC liar */
+(function(){
+  var viz = document.getElementById('amp-viz');
+  if (!viz) return;
+  for (var i = 0; i < 18; i++) viz.appendChild(document.createElement('span'));
+  var bars = viz.children;
+  setInterval(function(){
+    for (var i = 0; i < bars.length; i++){
+      bars[i].style.height = (playing ? 15 + Math.random()*85 : 6) + '%';
+    }
+  }, 110);
+})();
 function toggleSong(name){
   var wasPlaying = playingSong;
   if (playing){
