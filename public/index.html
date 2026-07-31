@@ -250,7 +250,10 @@ input, textarea {
 .stamp { display: inline-block; transform: rotate(-6deg); border: 3px double #ff4444; color: #ff4444; font-weight: bold; padding: 2px 8px; font-size: 13px; background: rgba(255,255,255,.08); }
 
 @media (max-width: 700px) {
-  table.layout, table.layout tbody, table.layout tr, table.layout td { display: block; width: 100% !important; }
+  table.layout, table.layout tbody, table.layout td { display: block; width: 100% !important; }
+  /* shrine first on phones — the sidebar is the encore, not the opening act */
+  table.layout tr { display: flex; flex-direction: column; }
+  td.main { order: -1; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01s !important; animation-iteration-count: 1 !important; }
@@ -290,7 +293,7 @@ input, textarea {
 <div class="rainbowbar"></div>
 
 <!-- ~~~~~~~~~ MAIN LAYOUT TABLE (yes a table, it was the LAW in 2004) ~~~~~~~~~ -->
-<table class="layout"><tr>
+<table class="layout" role="presentation"><tr>
 
 <!-- ~~~~ SIDEBAR ~~~~ -->
 <td class="sidebar">
@@ -318,7 +321,7 @@ input, textarea {
       mood: <img alt="mood" style="vertical-align:middle" width="16" src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>😭</text></svg>"> <b>mourning but make it fabulous</b><br>
       listening 2: <b>amazing grace (8-bit)</b><br>
       fav animal: <b>take a WILD guess</b><br>
-      weather in heaven: <b>☀️ 72° &amp; 100% chance of gorilla</b><br>
+      weather in heaven: <b>72°</b> <span class="tiny">(full forecast below)</span><br>
       status: <b class="blink">dicks out (respectfully)</b>
     </div>
   </div>
@@ -358,7 +361,7 @@ input, textarea {
         </tr>
         <tr>
           <td style="border:2px outset #ff66ff;text-align:center;"><img src="img/doge.png" alt="doge" style="height:44px;"><br><b>doge</b><br><span class="tiny">much grief</span></td>
-          <td style="border:2px outset #ff66ff;text-align:center;cursor:pointer;" onclick="openScript()" title="click 4 the full script"><img src="img/barry.png" alt="barry b. benson" style="height:44px;"><br><b>barry b. benson</b><br><span class="tiny">ya like jazz? (click me)</span></td>
+          <td style="border:2px outset #ff66ff;text-align:center;cursor:pointer;" onclick="openScript()" title="click 4 the full script"><img src="img/barry.png" alt="barry b. benson" style="height:44px;"><br><b>barry b. benson</b><br><span class="tiny">ya like jazz? (legally distinct) (click me)</span></td>
         </tr>
         <tr>
           <td style="border:2px outset #ff66ff;text-align:center;"><img src="img/shrek.png" alt="shrek" style="height:44px;"><br><b>shrek</b><br><span class="tiny">an ally 2 all</span></td>
@@ -378,7 +381,7 @@ input, textarea {
       <div style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
         <b>~which harambe r u?~</b><br>
         result: <b style="color:#ffff00;">HARAMBE (100%)</b><br>
-        <span class="tiny">we are all harambe</span>
+        <span class="tiny">every answer was harambe.<br>even question 4, which was about soup.</span>
       </div>
       <div style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
         <b>~what % gay is ur aura?~</b><br>
@@ -440,12 +443,15 @@ input, textarea {
 
   <div class="box">
     <h3>◈ weather in heaven ◈</h3>
-    <center style="font-size:12px;">
-      <span style="font-size:30px;">☀️</span><br>
-      <b>sunny, 72°F</b><br>
-      100% chance of gorilla 🦍<br>
-      banana showers expected 🍌🌧️<br>
-      <span class="tiny">forecast provided by my dreams</span>
+    <center style="font-size:11px;">
+      <table style="width:100%;font-size:11px;">
+        <tr><td>MON</td><td>☀️</td><td>72°</td><td>gorilla</td></tr>
+        <tr><td>TUE</td><td>☀️</td><td>72°</td><td>gorilla</td></tr>
+        <tr><td>WED</td><td>☀️</td><td>72°</td><td>gorilla</td></tr>
+        <tr><td>THU</td><td>☀️</td><td>72°</td><td>gorilla</td></tr>
+        <tr><td>FRI</td><td>🌈</td><td>72°</td><td><b style="color:#ffff00;">gay</b></td></tr>
+      </table>
+      <span class="tiny">it has been 72° for 10 years straight.<br>he keeps it nice up there.</span>
     </center>
   </div>
 
@@ -558,13 +564,13 @@ input, textarea {
     <div id="moviewindow" style="margin-top:10px;">
       <div class="win-titlebar">
         <span>📄 harambee_movie_script_FINAL_v2(1)_ACTUALFINAL.doc — WordPerfect 98</span>
-        <span>_ ▫ ✕</span>
+        <span><button class="win-x" onclick="closeMovie()" title="close">_</button><button class="win-x" onclick="closeMovie()" title="close">▫</button><button class="win-x" onclick="closeMovie()" aria-label="close">✕</button></span>
       </div>
       <div class="script-scroll">
         <center>
           <b style="color:#ffff00;font-size:18px;">THE HARAM<span class="beetext">BEE</span>🐝 MOVIE (2026)</b><br>
           <span class="dir">(colorized) (gay) (the entire script) (every word) (do not scroll if u have somewhere 2 be)</span><br>
-          <span class="dir">dir. Xx_fuRPhY_xX · runtime: 10 years · rated D (for dicks out)</span>
+          <span class="dir">dir. Xx_fuRPhY_xX · rated D (u already know what for)</span>
         </center>
 
         <span class="scene">— OPENING NARRATION —</span>
@@ -583,8 +589,9 @@ input, textarea {
 
         <span class="scene">— SCENE 3: THE JAZZ SCENE —</span>
         <p><span class="chr">VANESSGAY:</span> do u... like jazz? 🎷</p>
-        <p><span class="chr">HARAMBE:</span> i like GAY jazz.</p>
-        <p><span class="chr">VANESSGAY:</span> that is the only kind i play.</p>
+        <p><span class="chr">HARAMBE:</span> i exclusively listen 2 amazing_grace_8bit_FINAL(2).mid</p>
+        <p><span class="chr">VANESSGAY:</span> that is not jazz.</p>
+        <p><span class="chr">HARAMBE:</span> it is if u cry during it.</p>
         <p><span class="dir">(they do not kiss. they hold hands with enormous respect. a single bee plays the saxophone. nobody questions it. this is his movie 2. 🐝)</span></p>
 
         <span class="scene">— SCENES 4 THRU 33 —</span>
@@ -619,7 +626,7 @@ input, textarea {
       </div>
       <div class="win-btnrow">
         <button class="win-btn" onclick="document.querySelector('.script-scroll').scrollTop=0">⬆ back 2 top</button>
-        <button class="win-btn" onclick="alert('there is no sequel.\nhe said everything he needed 2 say. 🦍');">watch sequel</button>
+        <button class="win-btn" onclick="alert('there is no sequel.\n\nlegal says ONE legally distinct bee film was already \'pushing it.\'\nalso, he said everything he needed 2 say. 🦍');">watch sequel</button>
         <button class="win-btn" onclick="burst('🏆🦍🐝');alert('THE HARAMBEE 🐝 MOVIE has won:\n\n🏆 best picture (my heart)\n🏆 best gorilla (unopposed)\n🏆 most dicks out (record breaking)\n🏆 palme d\'gay\n🏆 best BEE (sorry barry)');">awards</button>
       </div>
     </div>
@@ -637,7 +644,6 @@ input, textarea {
         🍆 DICKS OUT 🍆 TITS OUT 🍒 HEARTS OUT 💖 WHATEVER U GOT: <b>OUT!!</b> (4 harambe)<br>
         🍌🍌🍌 DICKS OUT 🍌🍌🍌 DICKS OUT 🍌🍌🍌 DICKS OUT 🍌🍌🍌<br>
         a moment of silence: dicks out. a moment of remembrance: dicks <b>OUT.</b><br>
-        🍆🍌🍆🍌🍆🍌🍆🍌🍆🍌🍆🍌🍆🍌🍆🍌<br>
         per the ancient rites (est. 2016), all dicks must remain out until further notice.<br>
         they have been out for 10 years. they are staying out. <b class="blink">this is his law.</b> 🦍<br>
         🍌 D I C K S 🍌 O U T 🍌 4 🍌 H A R A M B E 🍌<br>
@@ -690,7 +696,8 @@ input, textarea {
       yes 🌈 — 33%<div class="pollbar"><div class="pollfill" style="width:33%"></div></div>
       obviously yes 🦍🌈 — 33%<div class="pollbar"><div class="pollfill" style="width:33%"></div></div>
       he was an ALLY and an ICON 😤🌈 — 34%<div class="pollbar"><div class="pollfill" style="width:34%"></div></div>
-      <p><b class="blink">conclusion: 100% gay icon. the people have spoken.</b></p>
+      <p id="pollyours" style="color:#00ffff;"></p>
+      <p><b class="blink">conclusion: 100% gay icon. margin of error: ±0% (he simply was).</b></p>
     </div>
   </div>
 
@@ -700,8 +707,8 @@ input, textarea {
     <h3>📖 ~*~ GUESTBOOK ~*~ 📖 sign it or harambe will haunt u (affectionately)</h3>
     <div id="gbentries"></div>
     <form onsubmit="signGuestbook(event)">
-      <input id="gbname" maxlength="30" placeholder="ur name (or ur xanga username)" required>
-      <textarea id="gbmsg" maxlength="280" rows="2" placeholder="leave a msg 4 harambe..." required></textarea>
+      <input id="gbname" maxlength="30" placeholder="ur name (or ur xanga username)" aria-label="ur name" required>
+      <textarea id="gbmsg" maxlength="280" rows="2" placeholder="leave a msg 4 harambe..." aria-label="ur message 4 harambe" required></textarea>
       <center><button type="submit">✍️ SIGN GUESTBOOK ✍️</button></center>
     </form>
     <center class="tiny">entries are stored on UR computer only. just like the old internet, nothing here actually works 💖</center>
@@ -711,6 +718,7 @@ input, textarea {
   <div class="ad" onclick="adClick()">
     🎯 PET THE GORILLA AND WIN $500!!! 🦍 👈 CLICK NOW!! (100% not a scam) 🎯
   </div>
+  <center class="tiny" style="margin-bottom:12px;">(u will notice we ask u 2 PET him. this is a punch-free website.<br>we are not like the other banners. we grew.)</center>
 
   <!-- WEBRING + BADGES -->
   <a id="webring"></a>
@@ -718,9 +726,9 @@ input, textarea {
     <h3>💍 GAY GORILLA WEBRING 💍</h3>
     <center>
       <b>this site is proud member #69 of the gay gorilla webring</b><br>
-      [ <a href="#" onclick="webring();return false;">&lt;&lt; prev</a> |
-      <a href="#" onclick="webring();return false;">random</a> |
-      <a href="#" onclick="webring();return false;">next &gt;&gt;</a> ]
+      [ <a href="#" onclick="ringnav('prev');return false;">&lt;&lt; prev</a> |
+      <a href="#" onclick="ringnav('random');return false;">random</a> |
+      <a href="#" onclick="ringnav('next');return false;">next &gt;&gt;</a> ]
       <br><br>
       <span class="badge" style="background:#000;color:#0f0;">HARAMBE<br><small>died 4 our memes</small></span>
       <span class="badge" style="background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);color:#fff;text-shadow:1px 1px 0 #000;">GAY OK<br><small>always has been</small></span>
@@ -740,9 +748,9 @@ input, textarea {
 
 <!-- FOOTER -->
 <center style="font-size:12px;">
-  <marquee direction="right" scrollamount="5" style="color:#ff99ff;">thank u 4 visiting my shrine... tell ur friends... tell ur enemies... tell ur zoo... 🦍💖 harambe.gay est. 2026 💖🦍</marquee>
+  <marquee direction="right" scrollamount="5" style="color:#ff99ff;">thank u 4 visiting my shrine... tell ur friends... tell ur enemies... tell ur zoo... 🦍💖 harambe.gay 💖🦍</marquee>
   <p>
-    ⭐ est. 2026 • <b>harambe.gay</b> • hosted on "the cloud" (heaven) ⭐<br>
+    ⭐ est. 2026 (emotionally est. 2016) • <b>harambe.gay</b> • hosted on "the cloud" (heaven) ⭐<br>
     no gorillas were harmed in the making of this website.<br>
     one was harmed in 2016 and we are STILL not over it.<br>
     <span class="tiny">be nice 2 animals and 2 each other.<br>
@@ -779,8 +787,14 @@ window.addEventListener('load', function(){
   document.getElementById('hitcounter').textContent = n;
 })();
 
+/* --- how much chaos can this device take --- */
+var CALM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var SMALL = (window.matchMedia && matchMedia('(max-width:700px)').matches) || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+var CHAOS = CALM ? 0 : (SMALL ? 0.25 : 1);   /* the joke reads the same at 80 gorillas */
+
 /* --- ambient spinning background gorillas (they live among the stars now) --- */
 (function(){
+  if (!CHAOS) return;
   function spawn(chr, left, top, size, opacity, z){
     var g = document.createElement('span');
     g.className = 'bg-gorilla';
@@ -799,19 +813,20 @@ window.addEventListener('load', function(){
     document.body.appendChild(g);
   }
   function marginLeft(){ return Math.random() < 0.5 ? Math.random()*16 : 84 + Math.random()*14; }
+  var n = function(x){ return Math.round(x * CHAOS); };
   /* star-margin dwellers: spin among the stars beside the site */
-  for (var i = 0; i < 140; i++){
+  for (var i = 0; i < n(140); i++){
     spawn('🦍', marginLeft(), Math.random()*96, 14+Math.random()*44, 0.15+Math.random()*0.4, -1);
   }
   /* gay rainbows: the stars are also gay now */
-  for (var r = 0; r < 110; r++){
+  for (var r = 0; r < n(110); r++){
     spawn(Math.random()<0.2 ? '🏳️‍🌈' : '🌈', marginLeft(), Math.random()*96, 14+Math.random()*40, 0.2+Math.random()*0.4, -1);
   }
   /* giant ghost gorillas + ghost rainbows: his spirit (gay) drifts across the whole page */
-  for (var j = 0; j < 50; j++){
+  for (var j = 0; j < n(50); j++){
     spawn('🦍', 2+Math.random()*88, Math.random()*90, 50+Math.random()*90, 0.04+Math.random()*0.06, 2);
   }
-  for (var k = 0; k < 30; k++){
+  for (var k = 0; k < n(30); k++){
     spawn('🌈', 2+Math.random()*88, Math.random()*90, 40+Math.random()*80, 0.05+Math.random()*0.07, 2);
   }
 })();
@@ -820,6 +835,7 @@ window.addEventListener('load', function(){
 var TRAILCHARS = ['✨','💖','🌈','⭐','💫','🦍'];
 var lastTrail = 0;
 document.addEventListener('mousemove', function(e){
+  if (!CHAOS) return;
   var now = Date.now();
   if (now - lastTrail < 40) return;
   lastTrail = now;
@@ -835,7 +851,7 @@ document.addEventListener('mousemove', function(e){
 
 /* --- gentle falling sparkle "snow" --- */
 setInterval(function(){
-  if (document.hidden) return;
+  if (document.hidden || !CHAOS) return;
   var s = document.createElement('span');
   s.className = 'sparkle';
   s.textContent = ['✨','🌈','💖','⭐'][Math.floor(Math.random()*4)];
@@ -865,7 +881,7 @@ renderCandles();
 
 /* --- bananas --- */
 var bananas = parseInt(localStorage.getItem('bananas')||'0',10);
-var MILESTONES = {10:'harambe smiles down upon u 😇',25:'the angels are sharing them rn',50:'HALF A HUNDRED BANANAS. legend.',69:'nice.',100:'💯 BANANA CENTENNIAL!! ur going 2 heaven 4 this',250:'heaven has declared a banana surplus',420:'blaze it (harambe was straight edge but he supported u)',1000:'ONE THOUSAND?? ok calm down petco'};
+var MILESTONES = {10:'harambe smiles down upon u 😇',25:'the angels are sharing them rn',50:'HALF A HUNDRED BANANAS. legend.',69:'nice.',100:'💯 BANANA CENTENNIAL!! ur going 2 heaven 4 this',250:'heaven has declared a banana surplus',420:'blaze it (harambe was straight edge but he supported u)',666:'the beast has been fed. he sez thanks.',1000:"ONE THOUSAND. heaven's produce dept has filed a complaint. (he framed it.)",2016:'2,016 bananas... he noticed. he wants u 2 know he noticed. 😭'};
 function renderBananas(){ document.getElementById('bananacount').textContent = bananas; }
 function feedBanana(){
   bananas++;
@@ -882,10 +898,12 @@ renderBananas();
 
 /* --- emoji burst --- */
 function burst(chars){
+  /* Array.from keeps emoji whole — indexing a string gives lone surrogates */
+  var pool = Array.from(chars);
   for (var i=0;i<14;i++){
     var s = document.createElement('span');
     s.className = 'sparkle';
-    s.textContent = chars[Math.floor(Math.random()*chars.length)] || '✨';
+    s.textContent = pool[Math.floor(Math.random()*pool.length)] || '✨';
     s.style.left = (35+Math.random()*30) + 'vw';
     s.style.top = (20+Math.random()*30) + 'vh';
     s.style.fontSize = (14+Math.random()*22)+'px';
@@ -897,8 +915,8 @@ function burst(chars){
 
 /* --- oracle --- */
 var WISDOM = [
-  '"be urself. unless u can be a gorilla. then also be urself, but bigger." — harambe',
-  '"protect ur troop." — harambe',
+  '"every silverback was once a twink with a dream." — harambe',
+  '"protect ur troop. yes, even ur weird friend from the forums. ESPECIALLY him." — harambe',
   '"the vest was a CHOICE and i respected it." — harambe, about ur outfit',
   '"eat leaves. drink water. mind ur business." — harambe',
   '"gay rights." — harambe (verified quote, trust me)',
@@ -914,17 +932,32 @@ function askOracle(){
   var el = document.getElementById('oracleout');
   el.textContent = '🔮 communing...';
   setTimeout(function(){
-    el.textContent = WISDOM[Math.floor(Math.random()*WISDOM.length)];
+    /* 1-in-20: jeff finally pays off outside his box */
+    el.textContent = Math.random() < 0.05
+      ? 'the spirit is unavailable rn (jeff needed advice) (about privacy). pls try again.'
+      : WISDOM[Math.floor(Math.random()*WISDOM.length)];
     burst('🔮✨🦍');
   }, 700);
 }
 
 /* --- poll --- */
-function vote(i){
+var POLLOPTS = ['yes 🌈','obviously yes 🦍🌈','he was an ALLY and an ICON 😤🌈'];
+function showPoll(i, returning){
   document.getElementById('pollzone').style.display='none';
   document.getElementById('pollresults').style.display='block';
+  document.getElementById('pollyours').innerHTML =
+    'u voted: <b>' + POLLOPTS[i] + '</b><br>this changed nothing. it was always 100%.' +
+    (returning ? '<br><span class="tiny">u already voted. democracy is eternal here.</span>' : '');
+}
+function vote(i){
+  localStorage.setItem('vote', i);
+  showPoll(i, false);
   burst('🌈🗳️');
 }
+(function(){
+  var v = localStorage.getItem('vote');
+  if (v !== null) showPoll(parseInt(v,10), true);
+})();
 
 /* --- guestbook --- */
 var DEFAULT_GB = [
@@ -932,7 +965,7 @@ var DEFAULT_GB = [
   {n:'Xx_fuRPhY_xX', m:'omg thanks 4 visiting my shrine!! sign the guestbook or else xD'},
   {n:'ur mom', m:'nice site sweetie. dinner at 6.'},
   {n:'dolphinluvr88', m:'crying in the club rn (the club is my bedroom) (the song is amazing grace 8 bit) 😭😭'},
-  {n:'agent_smith_fan', m:'harambe would have loved the matrix (2003 was better)'},
+  {n:'jeff', m:'[jeff was here but asks that u respect his privacy]'},
   {n:'glitterghost', m:'~*~ he came to me in a dream and said gay rights ~*~'}
 ];
 function getGB(){
@@ -973,6 +1006,9 @@ function prideMode(){
 }
 
 /* --- the script popup --- */
+function closeMovie(){
+  alert('u cannot close the movie.\nthe movie lives in ur heart now.\n\n(the _ button is also decorative. grief cannot be minimized.)');
+}
 function openScript(){
   document.getElementById('moviewindow').scrollIntoView({behavior:'smooth', block:'start'});
   burst('🐝🦍🌈');
@@ -980,6 +1016,12 @@ function openScript(){
 
 /* --- webring + ad --- */
 function webring(){ alert('the webring died in 2009.\nlike my heart on may 28, 2016.\n\n(there is only this site. there was only ever this site.)'); }
+var RINGNAV = {
+  prev: 'u cannot go back.\nnone of us can.\n\n(it is also just this site)',
+  random: 'rolling the sacred dice...\n\nit landed on this site.\nit always lands on this site.',
+  next: 'loading next site...\n\nfound: harambe.gay\nthere was only ever this site.'
+};
+function ringnav(dir){ alert(RINGNAV[dir]); }
 function adClick(){ alert('CONGRATULATION!!! u won 500 harambe hugs 🦍💖\n(redeemable in heaven) (no cash value) (infinite emotional value)'); burst('💰🦍💖'); }
 
 /* --- konami code: ↑↑↓↓←→←→BA --- */
@@ -991,7 +1033,10 @@ document.addEventListener('keydown', function(e){
     for (var i=0;i<40;i++){
       (function(i){ setTimeout(function(){ burst('🦍🌈🍌'); }, i*100); })(i);
     }
-    alert('🦍 GOD MODE UNLOCKED 🦍\nHARAMBE LIVES\nHE IS IN ALL OF US\nGAY RIGHTS FOREVER');
+    /* let the sky fill with gorillas BEFORE the modal freezes every timer */
+    setTimeout(function(){
+      alert('🦍 GOD MODE UNLOCKED 🦍\nHARAMBE LIVES\nHE IS IN ALL OF US\nGAY RIGHTS FOREVER');
+    }, 1000);
   }
 });
 
