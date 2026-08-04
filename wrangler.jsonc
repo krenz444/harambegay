@@ -1,11 +1,21 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "harambe-gay",
+  "main": "src/index.js",
   "compatibility_date": "2026-07-30",
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
   },
+  "d1_databases": [
+    {
+      "binding": "GUESTBOOK",
+      "database_name": "harambe-guestbook",
+      "database_id": "d7bca7b2-3a1c-4173-8669-de7703eed3d2"
+    }
+  ],
+  "observability": { "enabled": true },
   "routes": [
     { "pattern": "harambe.gay", "custom_domain": true },
     { "pattern": "www.harambe.gay", "custom_domain": true }

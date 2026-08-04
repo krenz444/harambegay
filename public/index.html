@@ -647,8 +647,14 @@ input, textarea {
     <h3>◈ email the webmaster ◈</h3>
     <center style="font-size:11px;">
       <span style="font-size:26px;">📬</span><br>
-      <a href="#" onclick="alert('my inbox has been full since 2016.\n\nliterally. i never cleared it.\nthere r 4,000 unread condolences in there\nand i am not emotionally equipped 2 open them.\n\nsay it 2 the guestbook instead. 📖');return false;"><b>furphy@harambe.gay</b></a><br>
-      <span class="tiny">(u will not get a reply)<br>(it is not personal)<br>(it is extremely personal)</span><br><br>
+      <a href="mailto:furphy@harambe.gay?subject=re:%20harambe"><b>furphy@harambe.gay</b></a><br>
+      <span class="tiny">this address is REAL and it WORKS.<br>
+      i set it up in 2026 after 10 years of<br>
+      people asking. the inbox is open.<br>
+      (u may not get a reply)<br>(it is not personal)<br>(it is extremely personal)</span><br><br>
+      <span class="tiny">also accepting mail at:<br>
+      <b>rip@harambe.gay</b> · <b>hi@harambe.gay</b><br>
+      (and honestly anything@harambe.gay,<br>it all ends up in the same place)</span><br><br>
       <span class="tiny">📧 join my mailing list!!<br>(there is no mailing list.<br>there is only this.)</span>
     </center>
   </div>
@@ -961,9 +967,13 @@ input, textarea {
     <form onsubmit="signGuestbook(event)">
       <input id="gbname" maxlength="30" placeholder="ur name (or ur xanga username)" aria-label="ur name" required>
       <textarea id="gbmsg" maxlength="280" rows="2" placeholder="leave a msg 4 harambe..." aria-label="ur message 4 harambe" required></textarea>
-      <center><button type="submit">✍️ SIGN GUESTBOOK ✍️</button></center>
+      <input id="gbwebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+      <center>
+        <button type="submit" id="gbsubmit">✍️ SIGN GUESTBOOK ✍️</button>
+        <div id="gbnote" style="font-size:12px;font-weight:bold;margin-top:4px;"></div>
+      </center>
     </form>
-    <center class="tiny">entries are stored on UR computer only. just like the old internet, nothing here actually works 💖</center>
+    <center class="tiny">this guestbook is REAL. everyone sees what u write. it is 2004 in here but the database is 4 real 💖<br>(be nice. see house rules. harambe is watching.)</center>
   </div>
 
   <!-- FAKE AD -->
@@ -1250,40 +1260,93 @@ function vote(i){
 })();
 
 /* --- guestbook --- */
+/* the entries that were here before the guestbook was real — shown if the api is unreachable */
 var DEFAULT_GB = [
-  {n:'xXsephiroth420Xx', m:'first!!!! also rip king 😔🌈'},
+  {n:'xXsephiroth420Xx', m:'first!!!! also rip king \u{1F614}\u{1F308}'},
   {n:'Xx_fuRPhY_xX', m:'omg thanks 4 visiting my shrine!! sign the guestbook or else xD'},
   {n:'ur mom', m:'nice site sweetie. dinner at 6.'},
-  {n:'dolphinluvr88', m:'crying in the club rn (the club is my bedroom) (the song is amazing grace 8 bit) 😭😭'},
+  {n:'dolphinluvr88', m:'crying in the club rn (the club is my bedroom) (the song is amazing grace 8 bit) \u{1F62D}\u{1F62D}'},
   {n:'jeff', m:'[jeff was here but asks that u respect his privacy]'},
   {n:'glitterghost', m:'~*~ he came to me in a dream and said gay rights ~*~'}
 ];
-function getGB(){
-  try { return JSON.parse(localStorage.getItem('gb')) || DEFAULT_GB; }
-  catch(e){ return DEFAULT_GB; }
+var GB = DEFAULT_GB.slice();
+var gbLive = false;
+
+function gbStamp(t){
+  if (!t) return '';
+  var d = new Date(t * 1000);
+  return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear();
 }
 function renderGB(){
   var el = document.getElementById('gbentries');
   el.innerHTML = '';
-  getGB().slice(-12).reverse().forEach(function(e){
+  GB.slice(-12).reverse().forEach(function(e){
     var d = document.createElement('div');
     d.className = 'gb-entry';
     var b = document.createElement('b'); b.textContent = e.n;
     d.appendChild(b);
+    /* textContent, never innerHTML — these come from strangers now */
     d.appendChild(document.createTextNode(' sez: ' + e.m));
+    if (e.t){
+      var s = document.createElement('span');
+      s.className = 'tiny';
+      s.textContent = '  ' + gbStamp(e.t);
+      d.appendChild(s);
+    }
     el.appendChild(d);
   });
 }
+function gbNote(msg, bad){
+  var el = document.getElementById('gbnote');
+  if (!el) return;
+  el.textContent = msg || '';
+  el.style.color = bad ? '#ff6666' : '#00ff99';
+}
+function loadGB(){
+  fetch('/api/guestbook', {headers:{'accept':'application/json'}})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(data){
+      if (data && data.entries && data.entries.length){
+        GB = data.entries; gbLive = true; renderGB();
+      }
+    })
+    .catch(function(){ /* shrine works offline. the ghosts stay either way. */ });
+}
 function signGuestbook(ev){
   ev.preventDefault();
-  var gb = getGB();
-  gb.push({n: document.getElementById('gbname').value, m: document.getElementById('gbmsg').value});
-  localStorage.setItem('gb', JSON.stringify(gb));
-  document.getElementById('gbname').value=''; document.getElementById('gbmsg').value='';
-  renderGB();
-  burst('✍️💖✨');
+  var nameEl = document.getElementById('gbname'), msgEl = document.getElementById('gbmsg');
+  var btn = document.getElementById('gbsubmit');
+  var payload = {n: nameEl.value, m: msgEl.value, website: (document.getElementById('gbwebsite')||{}).value || ''};
+  if (btn) { btn.disabled = true; btn.textContent = 'signing...'; }
+  gbNote('');
+  fetch('/api/guestbook', {
+    method: 'POST',
+    headers: {'content-type':'application/json'},
+    body: JSON.stringify(payload)
+  })
+    .then(function(r){ return r.json().then(function(d){ return {ok: r.ok, d: d}; }); })
+    .then(function(res){
+      if (!res.ok) { gbNote(res.d.error || 'the guestbook said no.', true); return; }
+      if (res.d.entry) GB.push(res.d.entry);
+      gbLive = true;
+      nameEl.value = ''; msgEl.value = '';
+      renderGB();
+      gbNote('signed!! carved into the shrine 4ever. \u{1F98D}');
+      burst('\u{270D}\u{FE0F}\u{1F496}\u{2728}');
+    })
+    .catch(function(){
+      /* api down: keep the 2004 behaviour so the form still does something */
+      GB.push({n: payload.n, m: payload.m});
+      nameEl.value = ''; msgEl.value = '';
+      renderGB();
+      gbNote('saved locally (the server is having feelings)', true);
+    })
+    .then(function(){
+      if (btn) { btn.disabled = false; btn.textContent = '\u{270D}\u{FE0F} SIGN GUESTBOOK \u{270D}\u{FE0F}'; }
+    });
 }
 renderGB();
+loadGB();
 
 /* --- pride mode (click the portrait) --- */
 var pride = false;
