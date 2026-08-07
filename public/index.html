@@ -324,6 +324,75 @@ input, textarea {
   transition: transform .12s;
 }
 
+/* ~*~ ANIMATION WAVE 2 ~*~ */
+
+/* the real photo does a slow ken burns, like a documentary about him */
+.shrine img.portrait { animation: portraitfloat 6s ease-in-out infinite, kenburns 22s ease-in-out infinite alternate; }
+@keyframes kenburns { to { transform: scale(1.06); } }
+
+/* every top-8 friend idles on his own clock, nobody is synchronised, it is chaos */
+td[style*="outset #ff66ff"] img { animation: friendidle 3.4s ease-in-out infinite; }
+td[style*="outset #ff66ff"]:nth-child(1) img { animation-duration: 3.1s; }
+td[style*="outset #ff66ff"]:nth-child(2) img { animation-duration: 4.3s; animation-delay: -1.1s; }
+tr:nth-child(2) td img { animation-duration: 3.8s; animation-delay: -.6s; }
+tr:nth-child(3) td img { animation-duration: 4.7s; animation-delay: -2.2s; }
+tr:nth-child(4) td img { animation-duration: 3.3s; animation-delay: -1.7s; }
+@keyframes friendidle {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%     { transform: translateY(-4px) rotate(2deg); }
+}
+
+/* numbers pop when they go up */
+.numpop { animation: numpop .35s ease-out; }
+@keyframes numpop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35); filter: brightness(1.6); }
+  100% { transform: scale(1); }
+}
+#candlecount, #bananacount, .counter { display: inline-block; }
+
+/* SOLD OUT throbs with regret */
+.gift-sold { animation: soldpulse 1.8s ease-in-out infinite; }
+@keyframes soldpulse {
+  0%,100% { opacity: 1; text-shadow: none; }
+  50%     { opacity: .72; text-shadow: 0 0 8px #ff3333; }
+}
+
+/* boxes slide in as u scroll to them */
+.reveal { opacity: 0; transform: translateY(24px); }
+/* .seen restores visibility DECLARATIVELY — the animation is decoration on top.
+   if animations never run (hidden tab, odd browser), content is still visible. */
+.reveal.seen { opacity: 1; transform: none; animation: revealin .6s cubic-bezier(.2,.9,.3,1); }
+@keyframes revealin { to { opacity: 1; transform: translateY(0); } }
+
+/* per-letter pride wave — each letter cycles the flag on a delay */
+.wave span { display: inline-block; animation: letterwave 2.2s ease-in-out infinite, letterhue 3.6s linear infinite; }
+@keyframes letterwave { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-7px); } }
+@keyframes letterhue {
+  0%   { color: #e40303; } 16% { color: #ff8c00; } 33% { color: #ffed00; }
+  50%  { color: #008026; } 66% { color: #24408e; } 83% { color: #732982; }
+  100% { color: #e40303; }
+}
+
+/* the movie window leans toward u */
+#moviewindow { transition: transform .3s ease; }
+#moviewindow:hover { transform: perspective(900px) rotateX(1.2deg) scale(1.005); }
+
+/* the cross keeps time */
+.heartbeat { display: inline-block; animation: heartbeat 1.9s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%,100%   { transform: scale(1); }
+  14%,42%   { transform: scale(1.18); }
+  28%       { transform: scale(1); }
+}
+
+/* the oracle's cursor blinks while he thinks */
+.typing::after { content: '\258C'; animation: blinker .6s steps(2) infinite; color: #00ffff; }
+
+/* headings grow when u look at them */
+.box h3 { transition: letter-spacing .2s ease, transform .2s ease; }
+.box h3:hover { letter-spacing: 2px; transform: scale(1.02); }
+
 /* ==========================================================
    ~*~ THE ANIMATION LAYER ~*~
    everything that can move, moves. everything that can be
@@ -884,7 +953,7 @@ even a fake click is a click.
   <a id="shrine"></a>
   <div class="shrine">
     <div><span class="candle">🕯️</span><span class="candle" style="animation-delay:.2s">🕯️</span>
-    <span class="wordart2" style="font-size:26px;">⚜️ THE SHRINE ⚜️</span>
+    <span class="wordart2" style="font-size:26px;" data-wave>THE SHRINE</span>
     <span class="candle" style="animation-delay:.1s">🕯️</span><span class="candle" style="animation-delay:.3s">🕯️</span></div>
 
     <!-- the actual king. a real photo of the real harambe. -->
@@ -897,6 +966,7 @@ even a fake click is a click.
     <svg class="portrait pixel" viewBox="0 0 32 32" shape-rendering="crispEdges" onclick="prideMode()" style="width:min(190px,55%);" role="img" aria-label="a lovingly bad pixel drawing of harambe. click him for a surprise">
       <title>click 2 unleash his final form</title>
       <g id="pxbase"><rect x="13" y="0" width="6" height="1" fill="#181412"/><rect x="10" y="1" width="3" height="1" fill="#181412"/><rect x="13" y="1" width="6" height="1" fill="#302926"/><rect x="19" y="1" width="3" height="1" fill="#181412"/><rect x="8" y="2" width="2" height="1" fill="#181412"/><rect x="10" y="2" width="12" height="1" fill="#302926"/><rect x="22" y="2" width="2" height="1" fill="#181412"/><rect x="6" y="3" width="2" height="1" fill="#181412"/><rect x="8" y="3" width="16" height="1" fill="#302926"/><rect x="24" y="3" width="2" height="1" fill="#181412"/><rect x="5" y="4" width="1" height="1" fill="#181412"/><rect x="6" y="4" width="20" height="1" fill="#302926"/><rect x="26" y="4" width="1" height="1" fill="#181412"/><rect x="4" y="5" width="1" height="1" fill="#181412"/><rect x="5" y="5" width="22" height="1" fill="#302926"/><rect x="27" y="5" width="1" height="1" fill="#181412"/><rect x="3" y="6" width="1" height="1" fill="#181412"/><rect x="4" y="6" width="24" height="1" fill="#302926"/><rect x="28" y="6" width="1" height="1" fill="#181412"/><rect x="2" y="7" width="1" height="1" fill="#181412"/><rect x="3" y="7" width="26" height="1" fill="#302926"/><rect x="29" y="7" width="1" height="1" fill="#181412"/><rect x="2" y="8" width="1" height="1" fill="#181412"/><rect x="3" y="8" width="3" height="1" fill="#302926"/><rect x="6" y="8" width="20" height="1" fill="#4c423b"/><rect x="26" y="8" width="3" height="1" fill="#302926"/><rect x="29" y="8" width="1" height="1" fill="#181412"/><rect x="1" y="9" width="1" height="1" fill="#181412"/><rect x="2" y="9" width="3" height="1" fill="#302926"/><rect x="5" y="9" width="22" height="1" fill="#4c423b"/><rect x="27" y="9" width="3" height="1" fill="#302926"/><rect x="30" y="9" width="1" height="1" fill="#181412"/><rect x="1" y="10" width="1" height="1" fill="#181412"/><rect x="2" y="10" width="2" height="1" fill="#302926"/><rect x="4" y="10" width="24" height="1" fill="#4c423b"/><rect x="28" y="10" width="2" height="1" fill="#302926"/><rect x="30" y="10" width="1" height="1" fill="#181412"/><rect x="1" y="11" width="1" height="1" fill="#181412"/><rect x="2" y="11" width="2" height="1" fill="#302926"/><rect x="4" y="11" width="2" height="1" fill="#4c423b"/><rect x="6" y="11" width="20" height="1" fill="#25201d"/><rect x="26" y="11" width="2" height="1" fill="#4c423b"/><rect x="28" y="11" width="2" height="1" fill="#302926"/><rect x="30" y="11" width="1" height="1" fill="#181412"/><rect x="1" y="12" width="1" height="1" fill="#181412"/><rect x="2" y="12" width="2" height="1" fill="#302926"/><rect x="4" y="12" width="1" height="1" fill="#4c423b"/><rect x="5" y="12" width="22" height="1" fill="#25201d"/><rect x="27" y="12" width="1" height="1" fill="#4c423b"/><rect x="28" y="12" width="2" height="1" fill="#302926"/><rect x="30" y="12" width="1" height="1" fill="#181412"/><rect x="0" y="13" width="2" height="1" fill="#181412"/><rect x="2" y="13" width="3" height="1" fill="#302926"/><rect x="5" y="13" width="1" height="1" fill="#4c423b"/><rect x="6" y="13" width="2" height="1" fill="#25201d"/><rect x="8" y="13" width="5" height="1" fill="#f2eee6"/><rect x="13" y="13" width="6" height="1" fill="#25201d"/><rect x="19" y="13" width="5" height="1" fill="#f2eee6"/><rect x="24" y="13" width="2" height="1" fill="#25201d"/><rect x="26" y="13" width="1" height="1" fill="#4c423b"/><rect x="27" y="13" width="3" height="1" fill="#302926"/><rect x="30" y="13" width="2" height="1" fill="#181412"/><rect x="0" y="14" width="1" height="1" fill="#181412"/><rect x="1" y="14" width="4" height="1" fill="#302926"/><rect x="5" y="14" width="1" height="1" fill="#4c423b"/><rect x="6" y="14" width="2" height="1" fill="#25201d"/><rect x="8" y="14" width="1" height="1" fill="#f2eee6"/><rect x="9" y="14" width="3" height="1" fill="#382210"/><rect x="12" y="14" width="1" height="1" fill="#f2eee6"/><rect x="13" y="14" width="6" height="1" fill="#25201d"/><rect x="19" y="14" width="1" height="1" fill="#f2eee6"/><rect x="20" y="14" width="3" height="1" fill="#382210"/><rect x="23" y="14" width="1" height="1" fill="#f2eee6"/><rect x="24" y="14" width="2" height="1" fill="#25201d"/><rect x="26" y="14" width="1" height="1" fill="#4c423b"/><rect x="27" y="14" width="4" height="1" fill="#302926"/><rect x="31" y="14" width="1" height="1" fill="#181412"/><rect x="0" y="15" width="1" height="1" fill="#181412"/><rect x="1" y="15" width="4" height="1" fill="#302926"/><rect x="5" y="15" width="1" height="1" fill="#4c423b"/><rect x="6" y="15" width="2" height="1" fill="#25201d"/><rect x="8" y="15" width="5" height="1" fill="#f2eee6"/><rect x="13" y="15" width="6" height="1" fill="#25201d"/><rect x="19" y="15" width="5" height="1" fill="#f2eee6"/><rect x="24" y="15" width="2" height="1" fill="#25201d"/><rect x="26" y="15" width="1" height="1" fill="#4c423b"/><rect x="27" y="15" width="4" height="1" fill="#302926"/><rect x="31" y="15" width="1" height="1" fill="#181412"/><rect x="0" y="16" width="2" height="1" fill="#181412"/><rect x="2" y="16" width="3" height="1" fill="#302926"/><rect x="5" y="16" width="2" height="1" fill="#4c423b"/><rect x="7" y="16" width="18" height="1" fill="#25201d"/><rect x="25" y="16" width="2" height="1" fill="#4c423b"/><rect x="27" y="16" width="3" height="1" fill="#302926"/><rect x="30" y="16" width="2" height="1" fill="#181412"/><rect x="1" y="17" width="1" height="1" fill="#181412"/><rect x="2" y="17" width="2" height="1" fill="#302926"/><rect x="4" y="17" width="24" height="1" fill="#4c423b"/><rect x="28" y="17" width="2" height="1" fill="#302926"/><rect x="30" y="17" width="1" height="1" fill="#181412"/><rect x="1" y="18" width="1" height="1" fill="#181412"/><rect x="2" y="18" width="2" height="1" fill="#302926"/><rect x="4" y="18" width="4" height="1" fill="#4c423b"/><rect x="8" y="18" width="16" height="1" fill="#68584c"/><rect x="24" y="18" width="4" height="1" fill="#4c423b"/><rect x="28" y="18" width="2" height="1" fill="#302926"/><rect x="30" y="18" width="1" height="1" fill="#181412"/><rect x="1" y="19" width="1" height="1" fill="#181412"/><rect x="2" y="19" width="2" height="1" fill="#302926"/><rect x="4" y="19" width="3" height="1" fill="#4c423b"/><rect x="7" y="19" width="18" height="1" fill="#68584c"/><rect x="25" y="19" width="3" height="1" fill="#4c423b"/><rect x="28" y="19" width="2" height="1" fill="#302926"/><rect x="30" y="19" width="1" height="1" fill="#181412"/><rect x="1" y="20" width="1" height="1" fill="#181412"/><rect x="2" y="20" width="2" height="1" fill="#302926"/><rect x="4" y="20" width="3" height="1" fill="#4c423b"/><rect x="7" y="20" width="4" height="1" fill="#68584c"/><rect x="11" y="20" width="3" height="1" fill="#1a1411"/><rect x="14" y="20" width="4" height="1" fill="#68584c"/><rect x="18" y="20" width="3" height="1" fill="#1a1411"/><rect x="21" y="20" width="4" height="1" fill="#68584c"/><rect x="25" y="20" width="3" height="1" fill="#4c423b"/><rect x="28" y="20" width="2" height="1" fill="#302926"/><rect x="30" y="20" width="1" height="1" fill="#181412"/><rect x="1" y="21" width="1" height="1" fill="#181412"/><rect x="2" y="21" width="2" height="1" fill="#302926"/><rect x="4" y="21" width="3" height="1" fill="#4c423b"/><rect x="7" y="21" width="4" height="1" fill="#68584c"/><rect x="11" y="21" width="3" height="1" fill="#1a1411"/><rect x="14" y="21" width="4" height="1" fill="#68584c"/><rect x="18" y="21" width="3" height="1" fill="#1a1411"/><rect x="21" y="21" width="4" height="1" fill="#68584c"/><rect x="25" y="21" width="3" height="1" fill="#4c423b"/><rect x="28" y="21" width="2" height="1" fill="#302926"/><rect x="30" y="21" width="1" height="1" fill="#181412"/><rect x="1" y="22" width="1" height="1" fill="#181412"/><rect x="2" y="22" width="2" height="1" fill="#302926"/><rect x="4" y="22" width="3" height="1" fill="#4c423b"/><rect x="7" y="22" width="18" height="1" fill="#68584c"/><rect x="25" y="22" width="3" height="1" fill="#4c423b"/><rect x="28" y="22" width="2" height="1" fill="#302926"/><rect x="30" y="22" width="1" height="1" fill="#181412"/><rect x="1" y="23" width="1" height="1" fill="#181412"/><rect x="2" y="23" width="2" height="1" fill="#302926"/><rect x="4" y="23" width="3" height="1" fill="#4c423b"/><rect x="7" y="23" width="2" height="1" fill="#68584c"/><rect x="9" y="23" width="14" height="1" fill="#181412"/><rect x="23" y="23" width="2" height="1" fill="#68584c"/><rect x="25" y="23" width="3" height="1" fill="#4c423b"/><rect x="28" y="23" width="2" height="1" fill="#302926"/><rect x="30" y="23" width="1" height="1" fill="#181412"/><rect x="1" y="24" width="1" height="1" fill="#181412"/><rect x="2" y="24" width="2" height="1" fill="#302926"/><rect x="4" y="24" width="3" height="1" fill="#4c423b"/><rect x="7" y="24" width="18" height="1" fill="#68584c"/><rect x="25" y="24" width="3" height="1" fill="#4c423b"/><rect x="28" y="24" width="2" height="1" fill="#302926"/><rect x="30" y="24" width="1" height="1" fill="#181412"/><rect x="2" y="25" width="1" height="1" fill="#181412"/><rect x="3" y="25" width="2" height="1" fill="#302926"/><rect x="5" y="25" width="4" height="1" fill="#4c423b"/><rect x="9" y="25" width="14" height="1" fill="#68584c"/><rect x="23" y="25" width="4" height="1" fill="#4c423b"/><rect x="27" y="25" width="2" height="1" fill="#302926"/><rect x="29" y="25" width="1" height="1" fill="#181412"/><rect x="2" y="26" width="2" height="1" fill="#181412"/><rect x="4" y="26" width="3" height="1" fill="#302926"/><rect x="7" y="26" width="18" height="1" fill="#4c423b"/><rect x="25" y="26" width="3" height="1" fill="#302926"/><rect x="28" y="26" width="2" height="1" fill="#181412"/><rect x="4" y="27" width="2" height="1" fill="#181412"/><rect x="6" y="27" width="20" height="1" fill="#302926"/><rect x="26" y="27" width="2" height="1" fill="#181412"/><rect x="2" y="28" width="3" height="1" fill="#181412"/><rect x="5" y="28" width="22" height="1" fill="#302926"/><rect x="27" y="28" width="3" height="1" fill="#181412"/><rect x="1" y="29" width="2" height="1" fill="#181412"/><rect x="3" y="29" width="4" height="1" fill="#302926"/><rect x="7" y="29" width="18" height="1" fill="#968a80"/><rect x="25" y="29" width="4" height="1" fill="#302926"/><rect x="29" y="29" width="2" height="1" fill="#181412"/><rect x="0" y="30" width="2" height="1" fill="#181412"/><rect x="2" y="30" width="2" height="1" fill="#302926"/><rect x="4" y="30" width="24" height="1" fill="#968a80"/><rect x="28" y="30" width="2" height="1" fill="#302926"/><rect x="30" y="30" width="2" height="1" fill="#181412"/><rect x="0" y="31" width="1" height="1" fill="#181412"/><rect x="1" y="31" width="2" height="1" fill="#302926"/><rect x="3" y="31" width="26" height="1" fill="#968a80"/><rect x="29" y="31" width="2" height="1" fill="#302926"/><rect x="31" y="31" width="1" height="1" fill="#181412"/></g>
+      <g id="pxblink" style="display:none"><rect x="8" y="13" width="5" height="3" fill="#25201d"/><rect x="19" y="13" width="5" height="3" fill="#25201d"/><rect x="8" y="15" width="5" height="1" fill="#1c1815"/><rect x="19" y="15" width="5" height="1" fill="#1c1815"/></g>
       <g id="pxbandana" style="display:none"><rect x="4" y="26" width="24" height="1" fill="#e40303"/><rect x="6" y="27" width="20" height="1" fill="#ff8c00"/><rect x="5" y="28" width="22" height="1" fill="#ffed00"/><rect x="3" y="29" width="26" height="1" fill="#008026"/></g>
       <g id="pxshades" style="display:none"><rect x="5" y="12" width="22" height="1" fill="#101010"/><rect x="5" y="13" width="1" height="1" fill="#101010"/><rect x="6" y="13" width="2" height="1" fill="#e40303"/><rect x="8" y="13" width="2" height="1" fill="#ff8c00"/><rect x="10" y="13" width="2" height="1" fill="#ffed00"/><rect x="12" y="13" width="2" height="1" fill="#008026"/><rect x="14" y="13" width="4" height="1" fill="#101010"/><rect x="18" y="13" width="2" height="1" fill="#e40303"/><rect x="20" y="13" width="2" height="1" fill="#ff8c00"/><rect x="22" y="13" width="2" height="1" fill="#ffed00"/><rect x="24" y="13" width="2" height="1" fill="#008026"/><rect x="26" y="13" width="1" height="1" fill="#101010"/><rect x="5" y="14" width="1" height="1" fill="#101010"/><rect x="6" y="14" width="2" height="1" fill="#ff8c00"/><rect x="8" y="14" width="2" height="1" fill="#ffed00"/><rect x="10" y="14" width="2" height="1" fill="#008026"/><rect x="12" y="14" width="2" height="1" fill="#24408e"/><rect x="14" y="14" width="4" height="1" fill="#101010"/><rect x="18" y="14" width="2" height="1" fill="#ff8c00"/><rect x="20" y="14" width="2" height="1" fill="#ffed00"/><rect x="22" y="14" width="2" height="1" fill="#008026"/><rect x="24" y="14" width="2" height="1" fill="#24408e"/><rect x="26" y="14" width="1" height="1" fill="#101010"/><rect x="5" y="15" width="1" height="1" fill="#101010"/><rect x="6" y="15" width="2" height="1" fill="#ffed00"/><rect x="8" y="15" width="2" height="1" fill="#008026"/><rect x="10" y="15" width="2" height="1" fill="#24408e"/><rect x="12" y="15" width="2" height="1" fill="#732982"/><rect x="14" y="15" width="4" height="1" fill="#101010"/><rect x="18" y="15" width="2" height="1" fill="#ffed00"/><rect x="20" y="15" width="2" height="1" fill="#008026"/><rect x="22" y="15" width="2" height="1" fill="#24408e"/><rect x="24" y="15" width="2" height="1" fill="#732982"/><rect x="26" y="15" width="1" height="1" fill="#101010"/><rect x="5" y="16" width="22" height="1" fill="#101010"/></g>
     </svg>
@@ -904,7 +974,7 @@ even a fake click is a click.
     <div class="tiny">^ artist's rendering. i drew this myself in ms paint. it took 4 hours. click him.</div>
 
     <p class="epitaph">
-      ✝️ Here lies HARAMBE ✝️<br>
+      <span class="heartbeat">✝️</span> Here lies HARAMBE <span class="heartbeat">✝️</span><br>
       May 27, 1999 — May 28, 2016<br>
       beloved gorilla, meme, martyr, ally<br>
       "he protec, he attac,<br>but most of all, heaven took him bac"<br>
@@ -987,7 +1057,7 @@ even a fake click is a click.
         <p><span class="dir">(they knew. everything was out. it was beautiful. roll credits. the credits are just the word "gay" 4,000 times and then the word "BEE" once, 4 him.)</span></p>
 
         <center>
-          <b style="color:#ffff00;">THE END</b><br>
+          <b style="color:#ffff00;" data-wave>THE END</b><br>
           <span class="dir">no post-credits scene. he is already in all of us.</span><br>
           🦍🌈🍌🐝<br>
           <span class="dir">© nobody. steal this script. he would have wanted it 2 be free.</span>
@@ -1110,12 +1180,12 @@ even a fake click is a click.
     <h3>🛒 the offical gift shoppe 🛒</h3>
     <table style="width:100%;font-size:12px;border-spacing:4px;">
       <tr style="background:#220044;"><th style="text-align:left;">item</th><th>status</th><th></th></tr>
-      <tr><td>"dicks out" commemorative fanny pack</td><td><b style="color:#ff5555;">SOLD OUT</b><br><span class="tiny">5/29/2016 — one day. it took ONE day.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
-      <tr><td>amazing_grace_8bit_FINAL(2).mid<br><span class="tiny">on limited edition minidisc</span></td><td><b style="color:#ff5555;">SOLD OUT</b></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
-      <tr><td>webring member #69 enamel pin</td><td><b style="color:#ff5555;">SOLD OUT</b><br><span class="tiny">we know. nice. stop emailing.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>"dicks out" commemorative fanny pack</td><td><b style="color:#ff5555;" class="gift-sold">SOLD OUT</b><br><span class="tiny">5/29/2016 — one day. it took ONE day.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>amazing_grace_8bit_FINAL(2).mid<br><span class="tiny">on limited edition minidisc</span></td><td><b style="color:#ff5555;" class="gift-sold">SOLD OUT</b></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>webring member #69 enamel pin</td><td><b style="color:#ff5555;" class="gift-sold">SOLD OUT</b><br><span class="tiny">we know. nice. stop emailing.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
       <tr><td>jeff plush</td><td><b style="color:#ffaa00;">NEVER FOR SALE</b><br><span class="tiny">jeff asked. i respect jeff.</span></td><td><button onclick="alert('jeff is not merchandise.\njeff is family.\n\n(jeff also does not pay rent. but thats between us.)')" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
       <tr><td>harambe body pillow (respectful)</td><td><b style="color:#ffaa00;">RECALLED</b><br><span class="tiny">2 respectful. it just held u. it asked how ur day was. customers were not ready.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
-      <tr><td>HARAMGAY snapback</td><td><b style="color:#ff5555;">SOLD OUT</b><br><span class="tiny">sold out before it was manufactured. before the word existed, even.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
+      <tr><td>HARAMGAY snapback</td><td><b style="color:#ff5555;" class="gift-sold">SOLD OUT</b><br><span class="tiny">sold out before it was manufactured. before the word existed, even.</span></td><td><button onclick="soldOut()" style="font-size:11px;padding:2px 8px;">buy</button></td></tr>
       <tr style="background:#003300;"><td><b style="color:#00ff99;">grief</b><br><span class="tiny">qty: ∞ · ships instantly</span></td><td><b style="color:#00ff99;">IN STOCK</b><br><span class="tiny">price: free</span></td><td><button onclick="buyGrief()" style="font-size:11px;padding:2px 8px;">ADD 2 CART</button></td></tr>
     </table>
   </div>
@@ -1355,7 +1425,9 @@ setInterval(function(){
 /* --- candles --- */
 var candles = parseInt(localStorage.getItem('candles')||'0',10);
 function renderCandles(){
-  document.getElementById('candlecount').textContent = (candles + 8916).toLocaleString();
+  var ccEl = document.getElementById('candlecount');
+  ccEl.textContent = (candles + 8916).toLocaleString();
+  popNum(ccEl);
   var wall = document.getElementById('candlewall');
   /* at 111 (and 1111) the wall arranges itself. it has always been arranging itself. */
   if (candles === 111 || candles === 1111){
@@ -1378,7 +1450,7 @@ renderCandles();
 /* --- bananas --- */
 var bananas = parseInt(localStorage.getItem('bananas')||'0',10);
 var MILESTONES = {10:'harambe smiles down upon u 😇',25:'the angels are sharing them rn',50:'HALF A HUNDRED BANANAS. legend.',69:'nice.',100:'💯 BANANA CENTENNIAL!! ur going 2 heaven 4 this',250:'heaven has declared a banana surplus',420:'blaze it (harambe was straight edge but he supported u)',666:'the beast has been fed. he sez thanks.',1000:"ONE THOUSAND. heaven's produce dept has filed a complaint. (he framed it.)",2016:'2,016 bananas... he noticed. he wants u 2 know he noticed. 😭'};
-function renderBananas(){ document.getElementById('bananacount').textContent = bananas; }
+function renderBananas(){ var el = document.getElementById('bananacount'); el.textContent = bananas; popNum(el); }
 function feedBanana(){
   bananas++;
   localStorage.setItem('bananas', bananas);
@@ -1430,10 +1502,10 @@ function askOracle(){
   el.textContent = '🔮 communing...';
   setTimeout(function(){
     /* 1-in-20: jeff finally pays off outside his box */
-    el.textContent = Math.random() < 0.05
+    var line = Math.random() < 0.05
       ? 'the spirit is unavailable rn (jeff needed advice) (about privacy). pls try again.'
       : WISDOM[Math.floor(Math.random()*WISDOM.length)];
-    burst('🔮✨🦍');
+    typeOut(el, line, function(){ burst('🔮✨🦍'); });
   }, 700);
 }
 
@@ -1562,6 +1634,103 @@ function openScript(){
   document.getElementById('moviewindow').scrollIntoView({behavior:'smooth', block:'start'});
   burst('🐝🦍🌈');
 }
+
+
+/* ================= ANIMATION WAVE 2 (behaviour) ================= */
+
+/* --- he blinks. he has always blinked. u were just not watching. --- */
+(function(){
+  var lid = document.getElementById('pxblink');
+  if (!lid || CALM) return;
+  function blink(){
+    lid.style.display = 'block';
+    setTimeout(function(){ lid.style.display = 'none'; }, 110 + Math.random()*70);
+    /* occasional double-blink, because a single rhythm reads as a machine */
+    if (Math.random() < 0.25){
+      setTimeout(function(){
+        lid.style.display = 'block';
+        setTimeout(function(){ lid.style.display = 'none'; }, 100);
+      }, 300);
+    }
+    setTimeout(blink, 2200 + Math.random()*4500);
+  }
+  setTimeout(blink, 1500);
+})();
+
+/* --- per-letter pride wave on the biggest words --- */
+(function(){
+  function wave(el){
+    if (!el) return;
+    var txt = el.textContent, frag = document.createDocumentFragment();
+    Array.from(txt).forEach(function(ch, i){
+      var sp = document.createElement('span');
+      sp.textContent = ch;
+      sp.style.animationDelay = (i * 0.07) + 's, ' + (i * 0.09) + 's';
+      frag.appendChild(sp);
+    });
+    el.textContent = '';
+    el.className += ' wave';
+    el.appendChild(frag);
+  }
+  document.querySelectorAll('[data-wave]').forEach(wave);
+})();
+
+/* --- numbers pop when they climb --- */
+function popNum(el){
+  if (!el) return;
+  el.classList.remove('numpop');
+  void el.offsetWidth;              /* reflow so the animation can retrigger */
+  el.classList.add('numpop');
+}
+
+/* --- the oracle types instead of appearing --- */
+function typeOut(el, text, done){
+  el.textContent = '';
+  el.classList.add('typing');
+  var i = 0;
+  (function step(){
+    if (i >= text.length){
+      el.classList.remove('typing');
+      if (done) done();
+      return;
+    }
+    el.textContent += text[i++];
+    setTimeout(step, 14 + Math.random()*22);
+  })();
+}
+
+/* --- boxes arrive as u scroll to them --- */
+(function(){
+  if (CALM || !('IntersectionObserver' in window)) return;
+  var targets = document.querySelectorAll('td.main .box, td.sidebar .box, #moviewindow');
+  var hidden = [];
+
+  /* only hide what is BELOW the fold — anything already on screen stays visible,
+     so a browser that never fires the observer still shows a complete page */
+  targets.forEach(function(t){
+    if (t.getBoundingClientRect().top > window.innerHeight){
+      t.classList.add('reveal');
+      hidden.push(t);
+    }
+  });
+  if (!hidden.length) return;
+
+  function show(el){ el.classList.add('seen'); }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ show(e.target); io.unobserve(e.target); }
+    });
+  }, {rootMargin: '0px 0px -40px 0px'});
+  hidden.forEach(function(t){ io.observe(t); });
+
+  /* dead-man's switch: whatever happens, nothing stays invisible */
+  setTimeout(function(){
+    hidden.forEach(function(t){
+      if (!t.classList.contains('seen')) show(t);
+    });
+    io.disconnect();
+  }, 4000);
+})();
 
 /* --- JEFF.EXE — he was in the sidebar. he is not in the sidebar anymore. --- */
 var jeffTimer = null, jeffDodged = false, jeffFactIdx = 0;
