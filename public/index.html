@@ -208,14 +208,31 @@ input, textarea {
 }
 
 /* sparkle + gorilla rain particles */
-.bg-gorilla {
-  position: fixed; z-index: -1; pointer-events: none; user-select: none;
-  animation: gorilladrift ease-in-out infinite alternate;
-}
-.bg-gorilla > span {
+/* three independent transform layers per sprite:
+   outer = path through space · middle = pulse/twinkle · inner = spin.
+   fewer sprites than before, but each one actually performs. */
+.bg-gorilla { position: fixed; z-index: -1; pointer-events: none; user-select: none; }
+.bg-mid { display: block; }
+.bg-sprite {
   display: block; background-repeat: no-repeat; background-size: 100% 100%;
   image-rendering: pixelated; animation: spin linear infinite;
 }
+
+/* --- paths (outer layer) --- */
+@keyframes bgDriftY { from { transform: translateY(-46px); } to { transform: translateY(46px); } }
+@keyframes bgOrbitX { from { transform: translateX(-40px); } to { transform: translateX(40px); } }
+@keyframes bgCross  { from { transform: translateX(-14vw); } to { transform: translateX(114vw); } }
+.bg-drift { animation: bgDriftY ease-in-out infinite alternate; }
+.bg-orbit { animation: bgOrbitX ease-in-out infinite alternate; }
+.bg-cross { animation: bgCross linear infinite; }
+
+/* --- personality (middle layer) --- */
+@keyframes bgOrbitY  { from { transform: translateY(-36px); } to { transform: translateY(36px); } }
+@keyframes bgPulse   { 0%,100% { transform: scale(.78); } 50% { transform: scale(1.3); } }
+@keyframes bgTwinkle { 0%,100% { opacity: .22; } 50% { opacity: 1; } }
+.bg-oy    { animation: bgOrbitY ease-in-out infinite alternate; }
+.bg-pulse { animation: bgPulse ease-in-out infinite; }
+.bg-tw    { animation: bgTwinkle ease-in-out infinite; }
 .px-ape { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'><rect x='4' y='0' width='4' height='1' fill='%23181412'/><rect x='2' y='1' width='2' height='1' fill='%23181412'/><rect x='4' y='1' width='4' height='1' fill='%23302926'/><rect x='8' y='1' width='2' height='1' fill='%23181412'/><rect x='1' y='2' width='1' height='1' fill='%23181412'/><rect x='2' y='2' width='8' height='1' fill='%23302926'/><rect x='10' y='2' width='1' height='1' fill='%23181412'/><rect x='1' y='3' width='1' height='1' fill='%23181412'/><rect x='2' y='3' width='1' height='1' fill='%23302926'/><rect x='3' y='3' width='6' height='1' fill='%234c423b'/><rect x='9' y='3' width='1' height='1' fill='%23302926'/><rect x='10' y='3' width='1' height='1' fill='%23181412'/><rect x='0' y='4' width='1' height='1' fill='%23181412'/><rect x='1' y='4' width='2' height='1' fill='%23302926'/><rect x='3' y='4' width='6' height='1' fill='%2325201d'/><rect x='9' y='4' width='2' height='1' fill='%23302926'/><rect x='11' y='4' width='1' height='1' fill='%23181412'/><rect x='0' y='5' width='1' height='1' fill='%23181412'/><rect x='1' y='5' width='2' height='1' fill='%23302926'/><rect x='3' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='4' y='5' width='1' height='1' fill='%23382210'/><rect x='5' y='5' width='2' height='1' fill='%2325201d'/><rect x='7' y='5' width='1' height='1' fill='%23382210'/><rect x='8' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='9' y='5' width='2' height='1' fill='%23302926'/><rect x='11' y='5' width='1' height='1' fill='%23181412'/><rect x='0' y='6' width='1' height='1' fill='%23181412'/><rect x='1' y='6' width='2' height='1' fill='%23302926'/><rect x='3' y='6' width='6' height='1' fill='%234c423b'/><rect x='9' y='6' width='2' height='1' fill='%23302926'/><rect x='11' y='6' width='1' height='1' fill='%23181412'/><rect x='1' y='7' width='1' height='1' fill='%23181412'/><rect x='2' y='7' width='1' height='1' fill='%23302926'/><rect x='3' y='7' width='6' height='1' fill='%2368584c'/><rect x='9' y='7' width='1' height='1' fill='%23302926'/><rect x='10' y='7' width='1' height='1' fill='%23181412'/><rect x='1' y='8' width='1' height='1' fill='%23181412'/><rect x='2' y='8' width='1' height='1' fill='%23302926'/><rect x='3' y='8' width='1' height='1' fill='%2368584c'/><rect x='4' y='8' width='1' height='1' fill='%231a1411'/><rect x='5' y='8' width='2' height='1' fill='%2368584c'/><rect x='7' y='8' width='1' height='1' fill='%231a1411'/><rect x='8' y='8' width='1' height='1' fill='%2368584c'/><rect x='9' y='8' width='1' height='1' fill='%23302926'/><rect x='10' y='8' width='1' height='1' fill='%23181412'/><rect x='1' y='9' width='1' height='1' fill='%23181412'/><rect x='2' y='9' width='1' height='1' fill='%23302926'/><rect x='3' y='9' width='6' height='1' fill='%2368584c'/><rect x='9' y='9' width='1' height='1' fill='%23302926'/><rect x='10' y='9' width='1' height='1' fill='%23181412'/><rect x='2' y='10' width='1' height='1' fill='%23181412'/><rect x='3' y='10' width='2' height='1' fill='%23302926'/><rect x='5' y='10' width='2' height='1' fill='%234c423b'/><rect x='7' y='10' width='2' height='1' fill='%23302926'/><rect x='9' y='10' width='1' height='1' fill='%23181412'/><rect x='3' y='11' width='1' height='1' fill='%23181412'/><rect x='4' y='11' width='4' height='1' fill='%23968a80'/><rect x='8' y='11' width='1' height='1' fill='%23181412'/></svg>"); aspect-ratio: 1/1; }
 .px-arc { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9' shape-rendering='crispEdges'><rect x='4' y='1' width='8' height='1' fill='%23e40303'/><rect x='3' y='2' width='2' height='1' fill='%23e40303'/><rect x='5' y='2' width='6' height='1' fill='%23ff8c00'/><rect x='11' y='2' width='2' height='1' fill='%23e40303'/><rect x='2' y='3' width='2' height='1' fill='%23e40303'/><rect x='4' y='3' width='3' height='1' fill='%23ff8c00'/><rect x='7' y='3' width='2' height='1' fill='%23ffed00'/><rect x='9' y='3' width='3' height='1' fill='%23ff8c00'/><rect x='12' y='3' width='2' height='1' fill='%23e40303'/><rect x='1' y='4' width='2' height='1' fill='%23e40303'/><rect x='3' y='4' width='2' height='1' fill='%23ff8c00'/><rect x='5' y='4' width='6' height='1' fill='%23ffed00'/><rect x='11' y='4' width='2' height='1' fill='%23ff8c00'/><rect x='13' y='4' width='2' height='1' fill='%23e40303'/><rect x='0' y='5' width='2' height='1' fill='%23e40303'/><rect x='2' y='5' width='2' height='1' fill='%23ff8c00'/><rect x='4' y='5' width='2' height='1' fill='%23ffed00'/><rect x='6' y='5' width='4' height='1' fill='%23008026'/><rect x='10' y='5' width='2' height='1' fill='%23ffed00'/><rect x='12' y='5' width='2' height='1' fill='%23ff8c00'/><rect x='14' y='5' width='2' height='1' fill='%23e40303'/><rect x='0' y='6' width='1' height='1' fill='%23e40303'/><rect x='1' y='6' width='2' height='1' fill='%23ff8c00'/><rect x='3' y='6' width='2' height='1' fill='%23ffed00'/><rect x='5' y='6' width='2' height='1' fill='%23008026'/><rect x='7' y='6' width='2' height='1' fill='%2324408e'/><rect x='9' y='6' width='2' height='1' fill='%23008026'/><rect x='11' y='6' width='2' height='1' fill='%23ffed00'/><rect x='13' y='6' width='2' height='1' fill='%23ff8c00'/><rect x='15' y='6' width='1' height='1' fill='%23e40303'/><rect x='0' y='7' width='1' height='1' fill='%23e40303'/><rect x='1' y='7' width='2' height='1' fill='%23ff8c00'/><rect x='3' y='7' width='1' height='1' fill='%23ffed00'/><rect x='4' y='7' width='2' height='1' fill='%23008026'/><rect x='6' y='7' width='4' height='1' fill='%2324408e'/><rect x='10' y='7' width='2' height='1' fill='%23008026'/><rect x='12' y='7' width='1' height='1' fill='%23ffed00'/><rect x='13' y='7' width='2' height='1' fill='%23ff8c00'/><rect x='15' y='7' width='1' height='1' fill='%23e40303'/><rect x='0' y='8' width='1' height='1' fill='%23e40303'/><rect x='1' y='8' width='1' height='1' fill='%23ff8c00'/><rect x='2' y='8' width='2' height='1' fill='%23ffed00'/><rect x='4' y='8' width='1' height='1' fill='%23008026'/><rect x='5' y='8' width='2' height='1' fill='%2324408e'/><rect x='7' y='8' width='2' height='1' fill='%23732982'/><rect x='9' y='8' width='2' height='1' fill='%2324408e'/><rect x='11' y='8' width='1' height='1' fill='%23008026'/><rect x='12' y='8' width='2' height='1' fill='%23ffed00'/><rect x='14' y='8' width='1' height='1' fill='%23ff8c00'/><rect x='15' y='8' width='1' height='1' fill='%23e40303'/></svg>"); aspect-ratio: 16/9; }
 .px-flag { background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 6' shape-rendering='crispEdges'><rect x='0' y='0' width='14' height='1' fill='%23e40303'/><rect x='0' y='1' width='14' height='1' fill='%23ff8c00'/><rect x='0' y='2' width='14' height='1' fill='%23ffed00'/><rect x='0' y='3' width='14' height='1' fill='%23008026'/><rect x='0' y='4' width='14' height='1' fill='%2324408e'/><rect x='0' y='5' width='14' height='1' fill='%23732982'/></svg>"); aspect-ratio: 14/6; }
@@ -2293,43 +2310,70 @@ var CALM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').m
 var SMALL = (window.matchMedia && matchMedia('(max-width:700px)').matches) || (navigator.deviceMemory && navigator.deviceMemory <= 4);
 var CHAOS = CALM ? 0 : (SMALL ? 0.25 : 1);   /* the joke reads the same at 80 gorillas */
 
-/* --- ambient spinning background gorillas (they live among the stars now) --- */
+/* --- the sky: fewer sprites, each with somewhere to be --- */
 (function(){
   if (!CHAOS) return;
-  function spawn(kind, left, top, size, opacity, z){
-    var g = document.createElement('span');
-    g.className = 'bg-gorilla';
-    g.setAttribute('aria-hidden','true');
-    g.style.left = left + 'vw';
-    g.style.top = top + 'vh';
-    g.style.opacity = opacity;
-    g.style.zIndex = z;
-    g.style.animationDuration = (4+Math.random()*6)+'s';
-    var inner = document.createElement('span');
-    inner.className = kind;
-    inner.style.width = size + 'px';
-    inner.style.animationDuration = (5+Math.random()*14)+'s';
-    if (Math.random()<0.5) inner.style.animationDirection = 'reverse';
-    g.appendChild(inner);
-    document.body.appendChild(g);
+  var GLOWS = ['rgba(255,0,255,.45)','rgba(0,255,255,.45)','rgba(255,237,0,.4)','rgba(0,255,102,.4)'];
+
+  /* personality = [outer path class, middle class, path secs, mid secs] */
+  function personality(){
+    var r = Math.random();
+    if (r < 0.42) return ['bg-drift', '',         7 + Math.random()*7,  0];
+    if (r < 0.66) return ['bg-orbit', 'bg-oy',    6 + Math.random()*6,  4 + Math.random()*5];
+    if (r < 0.86) return ['bg-drift', 'bg-pulse', 8 + Math.random()*6,  3 + Math.random()*4];
+    return             ['bg-drift', 'bg-tw',     9 + Math.random()*6,  2.5 + Math.random()*3.5];
   }
-  function marginLeft(){ return Math.random() < 0.5 ? Math.random()*16 : 84 + Math.random()*14; }
-  var n = function(x){ return Math.round(x * CHAOS); };
-  /* star-margin dwellers: spin among the stars beside the site */
-  for (var i = 0; i < n(140); i++){
-    spawn('px-ape', marginLeft(), Math.random()*96, 14+Math.random()*44, 0.15+Math.random()*0.4, -1);
+
+  function spawn(kind, left, top, size, opacity, z, forcePath){
+    var pers = personality();
+    var path = forcePath || pers[0];
+
+    var outer = document.createElement('span');
+    outer.className = 'bg-gorilla ' + path;
+    outer.setAttribute('aria-hidden','true');
+    outer.style.left = left + 'vw';
+    outer.style.top = top + 'vh';
+    outer.style.opacity = opacity;
+    outer.style.zIndex = z;
+    outer.style.animationDuration = (forcePath ? 55 + Math.random()*70 : pers[2]) + 's';
+    if (!forcePath && Math.random() < 0.5) outer.style.animationDirection = 'alternate-reverse';
+
+    var mid = document.createElement('span');
+    mid.className = 'bg-mid ' + (pers[1] || '');
+    if (pers[1]) mid.style.animationDuration = pers[3] + 's';
+
+    var sprite = document.createElement('span');
+    sprite.className = 'bg-sprite ' + kind;
+    sprite.style.width = size + 'px';
+    sprite.style.animationDuration = (6 + Math.random()*16) + 's';
+    if (Math.random() < 0.5) sprite.style.animationDirection = 'reverse';
+    /* a little bloom so a smaller cast still reads at a glance */
+    sprite.style.filter = 'drop-shadow(0 0 ' + (3 + Math.random()*7).toFixed(1) + 'px '
+                        + GLOWS[Math.floor(Math.random()*GLOWS.length)] + ')';
+
+    mid.appendChild(sprite);
+    outer.appendChild(mid);
+    document.body.appendChild(outer);
   }
-  /* gay rainbows: the stars are also gay now */
-  for (var r = 0; r < n(110); r++){
-    spawn(Math.random()<0.2 ? 'px-flag' : 'px-arc', marginLeft(), Math.random()*96, 16+Math.random()*40, 0.2+Math.random()*0.4, -1);
-  }
-  /* giant ghost gorillas + ghost rainbows: his spirit (gay) drifts across the whole page */
-  for (var j = 0; j < n(50); j++){
-    spawn('px-ape', 2+Math.random()*88, Math.random()*90, 50+Math.random()*90, 0.04+Math.random()*0.06, 2);
-  }
-  for (var k = 0; k < n(30); k++){
-    spawn('px-arc', 2+Math.random()*88, Math.random()*90, 40+Math.random()*80, 0.05+Math.random()*0.07, 2);
-  }
+
+  function marginLeft(){ return Math.random() < 0.5 ? Math.random()*15 : 85 + Math.random()*13; }
+  var n = function(x){ return Math.max(1, Math.round(x * CHAOS)); };
+
+  /* margin dwellers — bigger and bolder than before, and there are far fewer of them */
+  for (var i = 0; i < n(34); i++)
+    spawn('px-ape', marginLeft(), Math.random()*94, 18 + Math.random()*54, 0.22 + Math.random()*0.45, -1);
+  for (var r = 0; r < n(22); r++)
+    spawn(Math.random() < 0.25 ? 'px-flag' : 'px-arc', marginLeft(), Math.random()*94, 22 + Math.random()*48, 0.28 + Math.random()*0.45, -1);
+
+  /* the giants: his spirit, now rarer and more present */
+  for (var j = 0; j < n(8); j++)
+    spawn('px-ape', 4 + Math.random()*84, Math.random()*86, 90 + Math.random()*130, 0.06 + Math.random()*0.09, 2);
+  for (var k = 0; k < n(5); k++)
+    spawn('px-arc', 4 + Math.random()*84, Math.random()*86, 80 + Math.random()*120, 0.07 + Math.random()*0.09, 2);
+
+  /* travellers: a few that slowly cross the entire sky, right to left of ur life */
+  for (var c = 0; c < n(4); c++)
+    spawn(Math.random() < 0.5 ? 'px-ape' : 'px-arc', -10, 6 + Math.random()*80, 30 + Math.random()*60, 0.18 + Math.random()*0.3, -1, 'bg-cross');
 })();
 
 /* --- sparkle cursor trail --- */
