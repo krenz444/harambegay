@@ -324,6 +324,62 @@ input, textarea {
   transition: transform .12s;
 }
 
+/* ~*~ ANIMATION WAVE 4 ~*~ */
+
+/* a rainbow scroll bar across the top, so u always know how much grief remains */
+#scrollprog {
+  position: fixed; top: 0; left: 0; height: 5px; width: 0; z-index: 10002;
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  background-size: 200% 100%;
+  animation: rainbowslide 2.5s linear infinite;
+  box-shadow: 0 0 8px rgba(255,0,255,.7);
+  transition: width .1s linear;
+}
+
+/* he walks past sometimes. he is just checking on things. */
+#walker {
+  position: fixed; bottom: 4px; left: -90px; width: 64px; height: 64px; z-index: 9998;
+  pointer-events: none; image-rendering: pixelated;
+  background-repeat: no-repeat; background-size: 100% 100%;
+  display: none;
+}
+#walker.walking { display: block; animation: walkacross 14s linear forwards, walkbob .42s ease-in-out infinite; }
+@keyframes walkacross { to { left: 105vw; } }
+@keyframes walkbob {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%     { transform: translateY(-6px) rotate(2deg); }
+}
+
+/* selecting text on a shrine should also be gay */
+::selection { background: #ff00ff; color: #ffff00; }
+::-moz-selection { background: #ff00ff; color: #ffff00; }
+
+/* DISCO MODE: the whole shrine goes to the club */
+body.disco { animation: discohue 4s linear infinite; }
+@keyframes discohue {
+  0%   { filter: hue-rotate(0deg)   saturate(1.6); }
+  100% { filter: hue-rotate(360deg) saturate(1.6); }
+}
+body.disco #site { animation: siteoutline 1.2s linear infinite, discoshake .5s ease-in-out infinite; }
+@keyframes discoshake { 50% { transform: translateX(2px) rotate(.15deg); } }
+
+/* the end-of-page reward */
+#endprize {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) scale(.7);
+  z-index: 10003; opacity: 0; pointer-events: none;
+  background: rgba(0,0,40,.94); border: 4px ridge #ffd700; color: #ffd700;
+  padding: 10px 18px; font-weight: bold; text-align: center;
+  box-shadow: 0 0 30px #ffd700;
+}
+#endprize.show { animation: prizein 4.5s ease-out forwards; }
+@keyframes prizein {
+  0%   { opacity: 0; transform: translateX(-50%) scale(.7); }
+  12%  { opacity: 1; transform: translateX(-50%) scale(1.05); }
+  20%  { transform: translateX(-50%) scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) scale(.95); }
+}
+
 /* ~*~ ANIMATION WAVE 3 ~*~ */
 
 /* the TRUTH zone is on a dying CRT, obviously */
@@ -1398,6 +1454,10 @@ even a fake click is a click.
 
 </div><!-- /site -->
 
+<div id="scrollprog"></div>
+<div id="walker" aria-hidden="true"></div>
+<div id="endprize"></div>
+
 <!-- ~~~ JEFF.EXE ~~~ he escaped the sidebar. we knew this day would come. -->
 <div id="jeffexe">
   <div id="jeffbubble">
@@ -1724,6 +1784,106 @@ function openScript(){
 }
 
 
+
+
+/* ================= ANIMATION WAVE 4 (behaviour) ================= */
+/* pixel sprite data URIs — double-quoted because the SVG uses single quotes inside */
+var PXAPE = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'><rect x='4' y='0' width='4' height='1' fill='%23181412'/><rect x='2' y='1' width='2' height='1' fill='%23181412'/><rect x='4' y='1' width='4' height='1' fill='%23302926'/><rect x='8' y='1' width='2' height='1' fill='%23181412'/><rect x='1' y='2' width='1' height='1' fill='%23181412'/><rect x='2' y='2' width='8' height='1' fill='%23302926'/><rect x='10' y='2' width='1' height='1' fill='%23181412'/><rect x='1' y='3' width='1' height='1' fill='%23181412'/><rect x='2' y='3' width='1' height='1' fill='%23302926'/><rect x='3' y='3' width='6' height='1' fill='%234c423b'/><rect x='9' y='3' width='1' height='1' fill='%23302926'/><rect x='10' y='3' width='1' height='1' fill='%23181412'/><rect x='0' y='4' width='1' height='1' fill='%23181412'/><rect x='1' y='4' width='2' height='1' fill='%23302926'/><rect x='3' y='4' width='6' height='1' fill='%2325201d'/><rect x='9' y='4' width='2' height='1' fill='%23302926'/><rect x='11' y='4' width='1' height='1' fill='%23181412'/><rect x='0' y='5' width='1' height='1' fill='%23181412'/><rect x='1' y='5' width='2' height='1' fill='%23302926'/><rect x='3' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='4' y='5' width='1' height='1' fill='%23382210'/><rect x='5' y='5' width='2' height='1' fill='%2325201d'/><rect x='7' y='5' width='1' height='1' fill='%23382210'/><rect x='8' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='9' y='5' width='2' height='1' fill='%23302926'/><rect x='11' y='5' width='1' height='1' fill='%23181412'/><rect x='0' y='6' width='1' height='1' fill='%23181412'/><rect x='1' y='6' width='2' height='1' fill='%23302926'/><rect x='3' y='6' width='6' height='1' fill='%234c423b'/><rect x='9' y='6' width='2' height='1' fill='%23302926'/><rect x='11' y='6' width='1' height='1' fill='%23181412'/><rect x='1' y='7' width='1' height='1' fill='%23181412'/><rect x='2' y='7' width='1' height='1' fill='%23302926'/><rect x='3' y='7' width='6' height='1' fill='%2368584c'/><rect x='9' y='7' width='1' height='1' fill='%23302926'/><rect x='10' y='7' width='1' height='1' fill='%23181412'/><rect x='1' y='8' width='1' height='1' fill='%23181412'/><rect x='2' y='8' width='1' height='1' fill='%23302926'/><rect x='3' y='8' width='1' height='1' fill='%2368584c'/><rect x='4' y='8' width='1' height='1' fill='%231a1411'/><rect x='5' y='8' width='2' height='1' fill='%2368584c'/><rect x='7' y='8' width='1' height='1' fill='%231a1411'/><rect x='8' y='8' width='1' height='1' fill='%2368584c'/><rect x='9' y='8' width='1' height='1' fill='%23302926'/><rect x='10' y='8' width='1' height='1' fill='%23181412'/><rect x='1' y='9' width='1' height='1' fill='%23181412'/><rect x='2' y='9' width='1' height='1' fill='%23302926'/><rect x='3' y='9' width='6' height='1' fill='%2368584c'/><rect x='9' y='9' width='1' height='1' fill='%23302926'/><rect x='10' y='9' width='1' height='1' fill='%23181412'/><rect x='2' y='10' width='1' height='1' fill='%23181412'/><rect x='3' y='10' width='2' height='1' fill='%23302926'/><rect x='5' y='10' width='2' height='1' fill='%234c423b'/><rect x='7' y='10' width='2' height='1' fill='%23302926'/><rect x='9' y='10' width='1' height='1' fill='%23181412'/><rect x='3' y='11' width='1' height='1' fill='%23181412'/><rect x='4' y='11' width='4' height='1' fill='%23968a80'/><rect x='8' y='11' width='1' height='1' fill='%23181412'/></svg>";
+var PXFLAG = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 6' shape-rendering='crispEdges'><rect x='0' y='0' width='14' height='1' fill='%23e40303'/><rect x='0' y='1' width='14' height='1' fill='%23ff8c00'/><rect x='0' y='2' width='14' height='1' fill='%23ffed00'/><rect x='0' y='3' width='14' height='1' fill='%23008026'/><rect x='0' y='4' width='14' height='1' fill='%2324408e'/><rect x='0' y='5' width='14' height='1' fill='%23732982'/></svg>";
+
+
+/* --- how far through the grief are u --- */
+(function(){
+  var bar = document.getElementById('scrollprog');
+  if (!bar) return;
+  /* max scroll is cached so update() is a single style write — no layout read per
+     scroll, and no rAF to get starved (a dropped frame used to freeze the bar
+     forever, because the "queued" flag only cleared inside the callback) */
+  var max = 0;
+  function measure(){ max = document.documentElement.scrollHeight - window.innerHeight; }
+  function update(){
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + 'vw';
+  }
+  addEventListener('scroll', update, {passive: true});
+  addEventListener('resize', function(){ measure(); update(); }, {passive: true});
+  addEventListener('load', function(){ measure(); update(); });
+  measure(); update();
+})();
+
+/* --- he walks past every so often. he is just checking on things. --- */
+(function(){
+  var w = document.getElementById('walker');
+  if (!w || CALM) return;
+  w.style.backgroundImage = 'url("' + PXAPE + '")';
+  function stroll(){
+    w.classList.remove('walking');
+    void w.offsetWidth;
+    w.classList.add('walking');
+    setTimeout(stroll, 38000 + Math.random()*40000);
+  }
+  setTimeout(stroll, 12000);
+})();
+
+/* --- the favicon has two frames now. this is what tabs are for. --- */
+(function(){
+  if (CALM) return;
+  var link = document.querySelector('link[rel="icon"]');
+  if (!link) return;
+  var frames = [PXAPE, PXFLAG];
+  var i = 0;
+  setInterval(function(){
+    if (document.hidden) return;
+    i = (i + 1) % frames.length;
+    link.href = frames[i];
+  }, 1500);
+})();
+
+/* --- DISCO MODE: triple-click the big wordart --- */
+(function(){
+  var art = document.querySelector('.wordart');
+  if (!art) return;
+  var hits = 0, timer = null;
+  art.style.cursor = 'pointer';
+  art.title = 'do not click this three times';
+  art.addEventListener('click', function(){
+    hits++;
+    clearTimeout(timer);
+    timer = setTimeout(function(){ hits = 0; }, 700);
+    if (hits >= 3){
+      hits = 0;
+      document.body.classList.toggle('disco');
+      var on = document.body.classList.contains('disco');
+      burst(on ? '\u{1F576}\u{1F308}\u{1F57A}' : '\u{1F62E}');
+      showPrize(on ? '\u{1F57A} DISCO MODE \u{1F57A}<br><span style="font-size:11px;">he would have LOVED this<br>(triple-click again to stop)</span>'
+                   : 'disco mode off.<br><span style="font-size:11px;">he understands. it was a lot.</span>');
+    }
+  });
+})();
+
+/* --- the little gold plaque used by disco + the end-of-page reward --- */
+function showPrize(html){
+  var p = document.getElementById('endprize');
+  if (!p) return;
+  p.innerHTML = html;
+  p.classList.remove('show');
+  void p.offsetWidth;
+  p.classList.add('show');
+}
+
+/* --- u reached the bottom. that took commitment. --- */
+(function(){
+  if (CALM) return;
+  var claimed = false;
+  addEventListener('scroll', function(){
+    if (claimed) return;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h > 0 && window.scrollY >= h - 12){
+      claimed = true;
+      burst('\u{1F98D}\u{1F308}\u{1F34C}\u{1F56F}\u{FE0F}');
+      showPrize('\u{1F3C6} U REACHED THE BOTTOM \u{1F3C6}<br><span style="font-size:11px;">nobody scrolls this far. nobody.<br>he saw u do it. tell no one.</span>');
+    }
+  }, {passive: true});
+})();
 
 /* ================= ANIMATION WAVE 3 (behaviour) ================= */
 
