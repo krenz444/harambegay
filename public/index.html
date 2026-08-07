@@ -81,16 +81,29 @@ center { display: block; text-align: center; }
 .shake { display: inline-block; animation: shake .3s linear infinite; }
 @keyframes shake { 25% { transform: translate(1px,-1px) rotate(1deg); } 75% { transform: translate(-1px,1px) rotate(-1deg); } }
 
-/* under construction */
+/* the haramgay banner — hazard stripes but every stripe came out */
 .constructn {
-  background: repeating-linear-gradient(45deg,#ffff00 0 20px,#000 20px 40px);
+  background: repeating-linear-gradient(45deg,
+    #e40303 0 14px, #ff8c00 14px 28px, #ffed00 28px 42px,
+    #008026 42px 56px, #24408e 56px 70px, #732982 70px 84px);
   color: #000; font-weight: bold; text-align: center;
-  padding: 6px; border: 4px outset #ffcc00;
-  animation: constructionscroll 1s linear infinite;
-  font-size: 18px; text-shadow: 0 0 4px #ffff00, 0 0 4px #ffff00;
+  padding: 6px; border: 4px outset #ff66ff;
+  animation: constructionscroll 2.4s linear infinite;
+  font-size: 18px;
 }
-@keyframes constructionscroll { to { background-position: 56.5px 0; } }
-.constructn span { background: #ffff00; padding: 0 8px; border-radius: 4px; }
+@keyframes constructionscroll { to { background-position: 118.8px 0; } }
+.constructn span {
+  background: #fff; padding: 2px 10px; border-radius: 4px;
+  box-shadow: 0 0 10px #fff, 0 0 24px #ff00ff;
+  display: inline-block;
+}
+.constructn .haramgay {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982,#e40303);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: rainbowslide 2.5s linear infinite;
+  font-size: 24px; font-style: italic; letter-spacing: 1px;
+}
 
 /* marquee dressing (yes <marquee> still works and no i will not apologize) */
 marquee { display: block; }
@@ -335,7 +348,7 @@ input, textarea {
 <div id="site">
 
 <!-- ~~~~~~~~~ TOP BANNER ZONE ~~~~~~~~~ -->
-<div class="constructn"><span>🚧 UNDER CONSTRUCTION SINCE 2016 🚧 (the grief is also under construction) 🚧</span></div>
+<div class="constructn"><span>🏳️‍🌈 WELCOME 2 <span class="haramgay">HARAMGAY</span> 🏳️‍🌈 <span class="tiny" style="color:#666;">(he was gay the whole time. we simply built him a website)</span></span></div>
 
 <marquee behavior="scroll" direction="left" scrollamount="8" style="color:#00ffff;font-weight:bold;font-size:17px;">
 🦍💖 R.I.P. HARAMBE ~ MAY 27 1999 – MAY 28 2016 ~ GONE BUT NEVER 4GOTTEN 💖🦍 ✨ 10 YEAR ANGELVERSARY ✨ HE PROTEC 🛡️ HE ATTAC 🗡️ BUT MOST OF ALL HEAVEN TOOK HIM BAC 🕊️ ~ GAY RIGHTS 🌈 GORILLA RIGHTS 🦍 ALL RIGHTS RESERVED (and also gay) ~
