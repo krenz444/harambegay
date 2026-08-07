@@ -100,9 +100,34 @@ async function sign(request, env) {
   return json({ ok: true, entry: { n: name, m: msg, t: now } });
 }
 
+/**
+ * The hit counter. Seeded from Cloudflare's own pageView analytics so the number
+ * on the page is a continuation of reality, not a fresh zero.
+ * POST bumps it (the page calls that once per browser session), GET just reads.
+ */
+async function hits(request, env) {
+  if (request.method === 'POST') {
+    await env.GUESTBOOK.prepare(
+      `INSERT INTO counters (name, n) VALUES ('hits', 1)
+       ON CONFLICT(name) DO UPDATE SET n = n + 1`
+    ).run();
+  }
+  const row = await env.GUESTBOOK.prepare(`SELECT n FROM counters WHERE name = 'hits'`).first();
+  return json({ hits: (row && row.n) || 0 });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname === '/api/hits') {
+      try {
+        return await hits(request, env);
+      } catch {
+        /* the shrine does not care how many people saw it */
+        return json({ hits: null }, 200);
+      }
+    }
 
     if (url.pathname === '/api/guestbook') {
       try {

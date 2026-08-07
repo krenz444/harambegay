@@ -1506,6 +1506,41 @@ td.sidebar a { display: inline-block; }
 td.sidebar a:hover { animation: rainbowslide 1s linear infinite, navjig .35s ease-in-out infinite; }
 @keyframes navjig { 50% { transform: translateX(3px); } }
 
+/* ~*~ THE TOP 8 GET PERSONALITIES ~*~
+   they used to share one bob. now each one moves like himself.
+   double-class selectors (.t8.t8-x) so these outrank the older
+   `td[...] img { animation: friendidle }` rule, which is (0,1,2). */
+.t8 { display: inline-block; transform-origin: 50% 90%; }
+.t8.t8-harambe   { animation: t8reign    5.2s ease-in-out infinite; }
+.t8.t8-datboi    { animation: t8roll     2.4s linear      infinite; }
+.t8.t8-doge      { animation: t8tilt     3.6s ease-in-out infinite; }
+.t8.t8-barry     { animation: t8buzz      .28s linear      infinite; }
+.t8.t8-shrek     { animation: t8lumber   4.4s ease-in-out infinite; }
+.t8.t8-spongegar { animation: t8lurch    1.9s steps(2)    infinite; }
+.t8.t8-moonmoon  { animation: t8confused 4.8s ease-in-out infinite; }
+.t8.t8-urmom     { animation: t8sigh     6.2s ease-in-out infinite; }
+
+/* he does not bob. he presides. */
+@keyframes t8reign { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.05); } }
+/* the wheel never stops. he has somewhere to be. */
+@keyframes t8roll { 0% { transform: translateX(-5px) rotate(-10deg); } 50% { transform: translateX(5px) rotate(10deg); } 100% { transform: translateX(-5px) rotate(-10deg); } }
+/* head tilt. the universal dog question. */
+@keyframes t8tilt { 0%,100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(10deg) translateY(-3px); } }
+/* wings. very fast. barely visible. correct. */
+@keyframes t8buzz { 0%,100% { transform: translate(0,0); } 25% { transform: translate(1px,-1.4px); } 75% { transform: translate(-1px,1.2px); } }
+/* heavy. every step costs something. */
+@keyframes t8lumber { 0%,100% { transform: translateX(-4px) rotate(-3deg) scaleY(1); } 45% { transform: translateX(4px) rotate(3deg) scaleY(.95); } }
+/* primal. steps only. there is no easing in the stone age. */
+@keyframes t8lurch { 0%,100% { transform: translate(-4px,0) rotate(-6deg); } 50% { transform: translate(4px,-5px) rotate(6deg); } }
+/* looks left. looks right. still does not get it. */
+@keyframes t8confused { 0%,100% { transform: rotate(0) translateX(0); } 20% { transform: rotate(-14deg) translateX(-4px); } 55% { transform: rotate(14deg) translateX(4px); } 80% { transform: rotate(-5deg) translateX(0); } }
+/* a long, loving, exhausted breath. */
+@keyframes t8sigh { 0%,100% { transform: scale(1) translateY(0); } 40% { transform: scale(1.06) translateY(-2px); } 70% { transform: scale(.99) translateY(1px); } }
+
+/* hover a friend and they do their signature move, harder */
+td[style*="outset #ff66ff"]:hover .t8 { animation-duration: .5s; }
+td[style*="outset #ff66ff"]:hover .t8.t8-barry { animation-duration: .1s; }
+
 .tiny { font-size: 10px; color: #cc99ff; }
 .beetext {
   background: #000; color: #ffd700; padding: 0 6px; border-radius: 6px;
@@ -1677,7 +1712,7 @@ even a fake click is a click.
     <center style="font-size:12px;">
       u are visitor #<br>
       <span class="counter" id="hitcounter">0000000</span><br>
-      <span class="tiny">(counter is 100% real do not fact check)</span><br><br>
+      <span class="tiny">(this counter is REAL. u may fact check it.<br>it was seeded from the actual server logs.<br>10 years and this many of u came.)</span><br><br>
       last updated:<br><b>5/28/2016 (emotionally)</b><br><br>
       <span class="stamp">CERTIFIED GAY</span><br><br>
       <span class="stamp" style="color:#44ff44;border-color:#44ff44;transform:rotate(4deg);">HARAMBE APPROVED</span>
@@ -2296,13 +2331,31 @@ window.addEventListener('load', function(){
   setInterval(function(){ t = t.slice(1) + t[0]; document.title = t; }, 300);
 })();
 
-/* --- hit counter (100% real do not fact check) --- */
+/* --- hit counter. it is real now. it was seeded from cloudflare's own
+       pageView analytics, so the number is a continuation of reality. --- */
 (function(){
-  var base = 1337420;
-  var mine = parseInt(localStorage.getItem('hits')||'0',10)+1;
-  localStorage.setItem('hits', mine);
-  var n = (base + mine + Math.floor(Date.now()/86400000)%1000).toString().padStart(7,'0');
-  document.getElementById('hitcounter').textContent = n;
+  var el = document.getElementById('hitcounter');
+  if (!el) return;
+  var show = function(n){ el.textContent = String(n).padStart(7,'0'); };
+
+  /* one bump per browser session — refreshing does not inflate the shrine */
+  var counted = sessionStorage.getItem('hg_counted');
+  fetch('/api/hits', {method: counted ? 'GET' : 'POST', headers:{'accept':'application/json'}})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(0); })
+    .then(function(d){
+      if (d && typeof d.hits === 'number'){
+        sessionStorage.setItem('hg_counted','1');
+        /* roll up to the real number so it feels mechanical */
+        var target = d.hits, from = Math.max(0, target - 40), cur = from;
+        show(from);
+        var tick = setInterval(function(){
+          cur += Math.max(1, Math.ceil((target - cur) / 6));
+          if (cur >= target){ cur = target; clearInterval(tick); }
+          show(cur);
+        }, 45);
+      } else { show(0); }
+    })
+    .catch(function(){ el.textContent = '???????'; });
 })();
 
 /* --- how much chaos can this device take --- */
@@ -2624,6 +2677,35 @@ function openScript(){
 
 
 
+
+
+/* --- the top 8 stop sharing one animation and become individuals --- */
+(function(){
+  if (CALM) return;
+  var CAST = {
+    'harambe': 't8-harambe', 'dat boi': 't8-datboi', 'doge': 't8-doge',
+    'barry b. benson': 't8-barry', 'shrek': 't8-shrek', 'spongegar': 't8-spongegar',
+    'moon moon': 't8-moonmoon', 'ur mom': 't8-urmom'
+  };
+  var cells = document.querySelectorAll('td[style*="outset #ff66ff"]');
+  Array.prototype.forEach.call(cells, function(cell){
+    var b = cell.querySelector('b');
+    if (!b) return;
+    var cls = CAST[b.textContent.trim().toLowerCase()];
+    if (!cls) return;
+    /* wrap whatever the portrait is — <img> for most, emoji text for harambe + ur mom */
+    var face = cell.querySelector('img');
+    if (face){
+      face.classList.add('t8', cls);
+    } else {
+      var first = cell.firstElementChild;
+      if (first && first.tagName === 'SPAN'){ first.classList.add('t8', cls); }
+    }
+    /* stagger so the grid never pulses in unison */
+    var target = face || cell.firstElementChild;
+    if (target) target.style.animationDelay = (-Math.random() * 4).toFixed(2) + 's';
+  });
+})();
 
 /* ================= ANIMATION WAVE 5 (behaviour) ================= */
 
