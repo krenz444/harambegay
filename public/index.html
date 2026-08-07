@@ -324,6 +324,166 @@ input, textarea {
   transition: transform .12s;
 }
 
+/* ==========================================================
+   ~*~ THE ANIMATION LAYER ~*~
+   everything that can move, moves. everything that can be
+   gay while moving, is. (all of this dies under
+   prefers-reduced-motion via the media query at the bottom)
+   ========================================================== */
+
+/* every box heading is now a rainbow on rails */
+.box h3 {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982,#e40303) !important;
+  background-size: 400% 100% !important;
+  animation: rainbowslide 6s linear infinite;
+}
+
+/* boxes breathe a rainbow glow */
+.box {
+  animation: boxglow 7s ease-in-out infinite;
+}
+@keyframes boxglow {
+  0%,100% { box-shadow: 3px 3px 0 #000, 0 0 8px rgba(255,0,255,.35); }
+  33%     { box-shadow: 3px 3px 0 #000, 0 0 16px rgba(0,255,255,.45); }
+  66%     { box-shadow: 3px 3px 0 #000, 0 0 16px rgba(255,237,0,.4); }
+}
+
+/* the whole site's outline cycles pride colors */
+#site { animation: siteoutline 8s linear infinite; }
+@keyframes siteoutline {
+  0%   { outline-color: #e40303; border-color: #e40303; }
+  16%  { outline-color: #ff8c00; border-color: #ff8c00; }
+  33%  { outline-color: #ffed00; border-color: #ffed00; }
+  50%  { outline-color: #008026; border-color: #008026; }
+  66%  { outline-color: #24408e; border-color: #24408e; }
+  83%  { outline-color: #732982; border-color: #732982; }
+  100% { outline-color: #e40303; border-color: #e40303; }
+}
+
+/* links shimmer, and go full rainbow when u touch them */
+a { transition: letter-spacing .15s ease; }
+a:hover {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982) !important;
+  background-size: 300% 100% !important;
+  color: #fff !important;
+  animation: rainbowslide 1.2s linear infinite;
+  letter-spacing: 1px;
+}
+
+/* buttons: idle pulse, rainbow sweep on hover, squish on click */
+button, .win-btn, .amp-btn {
+  transition: transform .08s ease, filter .15s ease;
+}
+button:hover {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982) !important;
+  background-size: 300% 100%;
+  animation: rainbowslide 1s linear infinite;
+}
+button:active, .win-btn:active, .amp-btn:active { transform: scale(.94); }
+
+/* the 88x31 badges wiggle forever and flare on hover */
+.badge { animation: badgebob 3.2s ease-in-out infinite; transition: transform .15s ease; }
+.badge:nth-child(2n) { animation-delay: -.7s; }
+.badge:nth-child(3n) { animation-delay: -1.4s; }
+@keyframes badgebob { 50% { transform: translateY(-3px) rotate(-1.5deg); } }
+.badge:hover { transform: scale(1.15) rotate(3deg); filter: saturate(2) brightness(1.2); }
+
+/* stamps swing like they were slapped on crooked */
+.stamp { animation: stampswing 4s ease-in-out infinite; }
+.stamp:nth-of-type(2n) { animation-delay: -1.3s; }
+@keyframes stampswing {
+  0%,100% { transform: rotate(-6deg); }
+  50%     { transform: rotate(-2deg) scale(1.04); }
+}
+
+/* the hit counter glows like a crt */
+.counter { animation: counterglow 2.4s ease-in-out infinite; }
+@keyframes counterglow {
+  0%,100% { text-shadow: 0 0 4px #00ff00; }
+  50%     { text-shadow: 0 0 12px #00ff00, 0 0 22px #00ff66; }
+}
+
+/* the epitaph shimmers gold, gently, because he deserves gentle */
+.epitaph {
+  background: linear-gradient(90deg,#ffd700,#fff6b0,#ffd700,#ffb700,#ffd700);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: rainbowslide 8s linear infinite;
+}
+
+/* guestbook entries slide a pride bar in on hover */
+.gb-entry { position: relative; transition: padding-left .18s ease, background .18s ease; }
+.gb-entry::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+  background: linear-gradient(180deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  transition: width .18s ease;
+}
+.gb-entry:hover { padding-left: 10px; background: rgba(255,0,255,.07); }
+.gb-entry:hover::before { width: 5px; }
+
+/* the poll bar marches */
+.pollfill { background-size: 200% 100%; animation: rainbowslide 3s linear infinite; }
+
+/* top 8 friends lift + glow when u hover ur friends */
+td[style*="outset #ff66ff"] { transition: transform .16s ease, box-shadow .16s ease, filter .16s ease; }
+td[style*="outset #ff66ff"]:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 14px #ff00ff, 0 0 26px #00ffff;
+  filter: saturate(1.5);
+  z-index: 5; position: relative;
+}
+
+/* the shrine's gold frame pulses */
+.shrine { animation: shrinepulse 5s ease-in-out infinite; }
+@keyframes shrinepulse {
+  0%,100% { box-shadow: 0 0 40px #ffd700; }
+  50%     { box-shadow: 0 0 70px #ffd700, 0 0 100px rgba(255,102,255,.5); }
+}
+
+/* the real photo breathes */
+img.portrait { animation: portraitfloat 6s ease-in-out infinite; }
+@keyframes portraitfloat { 50% { transform: translateY(-6px); } }
+
+/* the pixel gorilla bobs on his own clock */
+svg.portrait.pixel { animation: portraitfloat 4.5s ease-in-out infinite; animation-delay: -2s; }
+
+/* win98 title bars get a slow sheen */
+.win-titlebar, .amp-title {
+  background-size: 250% 100% !important;
+  animation: rainbowslide 9s linear infinite;
+}
+
+/* shoppe + ledger rows tint on hover */
+table tr { transition: background .15s ease; }
+table tr:hover { background: rgba(255,0,255,.10); }
+
+/* form fields glow gay when focused */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #ff00ff !important;
+  animation: fieldglow 1.6s ease-in-out infinite;
+}
+@keyframes fieldglow {
+  0%,100% { box-shadow: 0 0 6px #ff00ff; }
+  50%     { box-shadow: 0 0 14px #00ffff, 0 0 20px #ffed00; }
+}
+
+/* pride scrollbar, because why would it not be */
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-track { background: #12002e; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  background-size: 100% 200%;
+  border: 2px outset #ff66ff;
+  animation: scrollslide 4s linear infinite;
+}
+@keyframes scrollslide { to { background-position: 0 200%; } }
+
+/* nav links march in place */
+td.sidebar a { display: inline-block; }
+td.sidebar a:hover { animation: rainbowslide 1s linear infinite, navjig .35s ease-in-out infinite; }
+@keyframes navjig { 50% { transform: translateX(3px); } }
+
 .tiny { font-size: 10px; color: #cc99ff; }
 .beetext {
   background: #000; color: #ffd700; padding: 0 6px; border-radius: 6px;
@@ -337,6 +497,11 @@ input, textarea {
   /* shrine first on phones — the sidebar is the encore, not the opening act */
   table.layout tr { display: flex; flex-direction: column; }
   td.main { order: -1; }
+}
+/* box-shadow animations repaint every frame — desktop only, phones stay smooth.
+   (the rainbow gradient + transform ones are cheap and run everywhere) */
+@media (max-width: 700px) {
+  .box, .shrine, .counter { animation: none !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01s !important; animation-iteration-count: 1 !important; }
@@ -439,7 +604,7 @@ input, textarea {
       <b style="color:#ffff00;">7/31/2026</b> — added a new thing. u will know it when u see it. jeff is not speaking 2 me abt it.<br><br>
       <b style="color:#ffff00;">5/28/2026</b> — 10 yr angelversary. lit all 8,916 candles at once. smoke alarm went off. worth it. mom was NOT mad she was just disappointed (worse).<br><br>
       <b style="color:#ffff00;">4/12/2026</b> — mom found the site. she said its "very nice honey." new award added (see: site awards).<br><br>
-      <b style="color:#ffff00;">4/1/2026</b> — THE OTHER SHRINE said he "wasn't even that gay." i have never been calmer in my entire life. added 3 blinkies about it.<br><br>
+      <b style="color:#ffff00;">4/1/2026</b> — a FAKE shrine said he "wasn't even that gay." i have never been calmer in my entire life. added 3 blinkies about it.<br><br>
       <b style="color:#ffff00;">2/14/2026</b> — spent valentines with the shrine. this is fine. this is FINE. added sparkles.<br><br>
       <b style="color:#ffff00;">6/9/2019</b> — nice.<br><br>
       <b style="color:#ffff00;">1/17/2018</b> — JESSICA signed the guestbook as "he was just a gorilla." banned. blocked. reported 2 jeeves. jeeves said he would handle it.<br><br>
@@ -449,16 +614,26 @@ input, textarea {
   </div>
 
   <div class="box" style="border-color:#ff3333;">
-    <h3 style="background:linear-gradient(90deg,#cc0000,#ff6600);">⚠️ rival shrine alert ⚠️</h3>
+    <h3 style="background:linear-gradient(90deg,#cc0000,#ff6600);">⚠️ impostor warning ⚠️</h3>
     <div style="font-size:11px;line-height:1.35;">
-      <b class="blink" style="color:#ff5555;">do NOT visit THE OTHER SHRINE</b><br><br>
-      they are a <b>FOR-PROFIT shrine</b>. they charge <b>$4.99 per candle</b>.
-      their harambe drawing has <b>FIVE FINGERS</b> (count them. i did. five.).
-      their hit counter counts DOWN. they got <b>EXPELLED</b> from the gay gorilla webring in 2009 and we ALL remember why (see: the war).<br><br>
-      they call it "monetizing grief." i call it what it is: a business. disgusting.<br><br>
-      [ <a href="#" onclick="alert('i am not giving them the traffic.\neven a fake click is a click.\n  — mgmt');return false;">visit them anyway</a> ]<br><br>
-      <span class="tiny">if u run THE OTHER SHRINE and ur reading this: u know what u took. amazing_grace_8bit_FINAL(1).mid. thats why mine says (2). i will not name u. u do not get the traffic. u do not even get the letters.</span>
+      <b class="blink" style="color:#ff5555;">there r FAKE shrines out there</b><br><br>
+      i will not link them. i will not name them. but u will know them, because they get it WRONG.
+      here is how 2 spot a fake:<br><br>
+      <b>1.</b> their gorilla has FIVE FINGERS. count them. i did. five. on a GORILLA.<br>
+      <b>2.</b> they spell it "Harambe" with a capital H like it's a LinkedIn post.<br>
+      <b>3.</b> their candle button costs $4.99. mine is free and always will be. grief is not a subscription.<br>
+      <b>4.</b> their hit counter counts DOWN. i have thought about this every day since i saw it.<br>
+      <b>5.</b> no guestbook. cowards. u cannot run a shrine and be afraid of what ppl might write in it.<br>
+      <b>6.</b> they have never once said dicks out. not ONCE. in TEN YEARS.<br><br>
+      i am not mad. i am simply the only one doing this correctly.<br><br>
+      [ <a href="#" onclick="alert('nice try.
+i am not linking them.
+even a fake click is a click.
+
+  — mgmt');return false;">show me a fake one</a> ]<br><br>
+      <span class="tiny">if u run one of these and ur reading this: u know what u took. amazing_grace_8bit_FINAL(1).mid. thats why mine says (2). u do not get the traffic. u do not even get the letters.</span>
     </div>
+  </div>
   </div>
 
   <div class="box">
@@ -968,9 +1143,6 @@ input, textarea {
       <p><b style="color:#ffff00;">Q: i perceived jeff directly, what now?</b><br>
       A: ur braver than i thought. jeff will contact U.</p>
 
-      <p><b style="color:#ffff00;">Q: is THE OTHER SHRINE better?</b><br>
-      A: [answer redacted by my therapist]</p>
-
       <p><b style="color:#ffff00;">Q: how do u pronounce Xx_fuRPhY_xX?</b><br>
       A: with respect.</p>
 
@@ -1020,7 +1192,7 @@ input, textarea {
       <!-- the war -->
       <div style="border:4px double #888;background:#0a0a0a;padding:10px;text-align:left;font-size:12px;">
         <center><b style="color:#ccc;font-size:14px;">🖤 IN MEMORIAM 🖤<br>THE GAY GORILLA WEBRING (1999–2009)</b><br>
-        <span class="tiny">renamed THE HARAMGAY WEBRING in 2026.<br>THE OTHER SHRINE formally objected. they were<br>expelled in 2009 and have no standing. denied.</span></center>
+        <span class="tiny">renamed THE HARAMGAY WEBRING in 2026.<br>an expelled member formally objected. they were<br>expelled in 2009 and have no standing. denied.</span></center>
         <hr style="border-color:#444;">
         <b style="color:#ffff00;">roll call of the fallen:</b><br>
         · gorillagrrl_jenny — geocities — deleted 10/26/2009 💔<br>
@@ -1030,7 +1202,7 @@ input, textarea {
         · <b style="color:#00ffff;">harambe.gay — member #69 — LAST ONE STANDING.</b><br>
         <hr style="border-color:#444;">
         <b style="color:#ffff00;">the war, as i remember it:</b><br>
-        in 2009, THE OTHER SHRINE moved that the ring go FOR-PROFIT. we voted. it got ugly.
+        in 2009, one member moved that the ring go FOR-PROFIT. we voted. it got ugly.
         words were said in the guestbooks. blinkies were made ABOUT people.
         then geocities itself died — 10/26/2009 — taking half the ring down with it.
         coincidence?? i've said 2 much.<br><br>
