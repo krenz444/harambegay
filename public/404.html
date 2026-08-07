@@ -6,29 +6,116 @@
 <title>404 ~ harambe not found</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕊️</text></svg>">
 <style>
+html { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">🍌</text></svg>') 4 4, auto; }
 body {
   margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
-  background:#000033; color:#fff; font-family:"Comic Sans MS", cursive; text-align:center;
+  color:#fff; font-family:"Comic Sans MS", cursive; text-align:center;
+  overflow:hidden;
+  background-color:#000033;
+  background-image:
+    radial-gradient(1.5px 1.5px at 23px 47px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 77px 13px, #ffccff 50%, transparent 51%),
+    radial-gradient(2px 2px at 131px 89px, #99ffff 50%, transparent 51%),
+    radial-gradient(1px 1px at 173px 37px, #ffff99 50%, transparent 51%);
+  background-size:200px 200px;
+  animation:twinkle 4s steps(2) infinite;
 }
-.box { border:8px ridge #ff00ff; padding:30px 40px; background:rgba(0,0,40,.7); box-shadow:0 0 30px #ff00ff; }
+@keyframes twinkle { 50% { background-color:#000028; } }
+
+.box {
+  border:8px ridge #ff00ff; padding:30px 40px; background:rgba(0,0,40,.72);
+  position:relative; z-index:2;
+  animation:boxglow 6s ease-in-out infinite, boxin .6s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes boxin { from { opacity:0; transform:translateY(20px) scale(.96); } }
+@keyframes boxglow {
+  0%,100% { box-shadow:0 0 30px #ff00ff; border-color:#ff00ff; }
+  33%     { box-shadow:0 0 44px #00ffff; border-color:#00ffff; }
+  66%     { box-shadow:0 0 44px #ffed00; border-color:#ffed00; }
+}
+
 h1 {
-  font-size:60px; margin:0;
-  background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  font-size:72px; margin:0; font-style:italic;
+  background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982,#e40303);
+  background-size:400% 100%;
   -webkit-background-clip:text; background-clip:text; color:transparent;
   filter:drop-shadow(2px 2px 0 #000);
+  animation:rainbowslide 3s linear infinite, wobble 2.4s ease-in-out infinite;
 }
-.blink { animation: b .7s steps(2) infinite; }
+@keyframes rainbowslide { to { background-position:400% 0; } }
+@keyframes wobble { 0%,100% { transform:rotate(-2deg) scale(1); } 50% { transform:rotate(2deg) scale(1.04); } }
+
+.gorilla { font-size:40px; display:inline-block; animation:float 3s ease-in-out infinite; }
+@keyframes float { 50% { transform:translateY(-10px) rotate(-6deg); } }
+.dove { font-size:34px; display:inline-block; animation:flyaway 7s linear infinite; }
+@keyframes flyaway {
+  0%   { transform:translate(0,0) rotate(0); opacity:1; }
+  70%  { transform:translate(60px,-40px) rotate(12deg); opacity:.5; }
+  100% { transform:translate(90px,-70px) rotate(18deg); opacity:0; }
+}
+
+.blink { animation:b .7s steps(2) infinite; }
 @keyframes b { 50% { opacity:0; } }
-a { color:#00ffff; }
+
+a {
+  color:#00ffff; display:inline-block; font-weight:bold;
+  transition:letter-spacing .15s ease;
+}
+a:hover {
+  background:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  background-size:300% 100%; color:#fff; text-decoration:none;
+  letter-spacing:1px; animation:rainbowslide 1s linear infinite;
+}
+
+.wave span { display:inline-block; animation:letterwave 2.2s ease-in-out infinite; }
+@keyframes letterwave { 0%,100% { transform:translateY(0); } 40% { transform:translateY(-6px); } }
+
+.sparkle { position:fixed; pointer-events:none; z-index:1; user-select:none; animation:fall linear forwards; }
+@keyframes fall { to { transform:translateY(110vh) rotate(720deg); opacity:0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:.01s !important; animation-iteration-count:1 !important; }
+}
 </style>
 </head>
 <body>
 <div class="box">
   <h1>404</h1>
-  <p style="font-size:24px;">🦍 harambe not found 🕊️</p>
+  <p style="font-size:24px;"><span class="gorilla">🦍</span> <span class="wave" data-wave>harambe not found</span> <span class="dove">🕊️</span></p>
   <p>(he is in heaven. this page is just missing.)</p>
   <p class="blink">⚠️ u took a wrong turn on the information superhighway ⚠️</p>
   <p><a href="/">🏠 return 2 the shrine 🏠</a></p>
+  <p style="font-size:10px;color:#cc99ff;">error 404 · he protec, he attac, but this url does not exis</p>
 </div>
+<script>
+var CALM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* per-letter wave */
+document.querySelectorAll('[data-wave]').forEach(function(el){
+  var t = el.textContent, f = document.createDocumentFragment();
+  Array.from(t).forEach(function(ch, i){
+    var sp = document.createElement('span');
+    sp.textContent = ch === ' ' ? ' ' : ch;
+    sp.style.animationDelay = (i * 0.06) + 's';
+    f.appendChild(sp);
+  });
+  el.textContent = '';
+  el.appendChild(f);
+});
+
+/* even the void has sparkles */
+if (!CALM) setInterval(function(){
+  if (document.hidden) return;
+  var s = document.createElement('span');
+  s.className = 'sparkle';
+  s.textContent = ['✨','🌈','💖','⭐','🍌'][Math.floor(Math.random()*5)];
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.top = '-30px';
+  s.style.fontSize = (10+Math.random()*16)+'px';
+  s.style.animationDuration = (4+Math.random()*5)+'s';
+  document.body.appendChild(s);
+  setTimeout(function(){ s.remove(); }, 10000);
+}, 700);
+</script>
 </body>
 </html>

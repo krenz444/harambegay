@@ -324,6 +324,92 @@ input, textarea {
   transition: transform .12s;
 }
 
+/* ~*~ ANIMATION WAVE 3 ~*~ */
+
+/* the TRUTH zone is on a dying CRT, obviously */
+.crt { position: relative; overflow: hidden; animation: crtflicker 4.2s steps(1) infinite; }
+.crt::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,.28) 0 1px, transparent 1px 3px);
+  animation: scanroll 7s linear infinite;
+}
+.crt::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 40px; pointer-events: none; z-index: 4;
+  background: linear-gradient(180deg, transparent, rgba(0,255,102,.10), transparent);
+  animation: scansweep 5.5s linear infinite;
+}
+@keyframes scanroll  { to { background-position: 0 24px; } }
+@keyframes scansweep { 0% { top: -40px; } 100% { top: 100%; } }
+@keyframes crtflicker {
+  0%,97%,100% { opacity: 1; }
+  97.5%       { opacity: .82; }
+  98.5%       { opacity: 1; }
+  99%         { opacity: .9; }
+}
+
+/* the impostor warning glitches, because it is UPSET */
+.glitchy { position: relative; }
+/* .box h3 already claims `animation`, so the glitch has to ride along with it */
+.box h3.glitchy { animation: rainbowslide 6s linear infinite, glitchshift 6s steps(1) infinite; }
+@keyframes glitchshift {
+  0%,92%,100% { transform: none; }
+  93%  { transform: translate(-2px, 1px) skewX(-3deg); }
+  94%  { transform: translate(2px, -1px) skewX(3deg); }
+  95%  { transform: translate(-1px, 0) skewX(-1deg); }
+  96%  { transform: none; }
+}
+
+/* every candle burns on its own clock. no two griefs are synchronised. */
+#candlewall span { display: inline-block; animation: flicker 1.1s ease-in-out infinite alternate; }
+
+/* the tombstones drift, ghostly */
+#memoriam-wall > div { animation: ghostfloat 6s ease-in-out infinite; }
+#memoriam-wall > div:nth-child(2n) { animation-duration: 7.4s; animation-delay: -1.8s; }
+#memoriam-wall > div:nth-child(3n) { animation-duration: 8.1s; animation-delay: -3.2s; }
+@keyframes ghostfloat {
+  0%,100% { transform: translateY(0); opacity: .9; }
+  50%     { transform: translateY(-5px); opacity: 1; }
+}
+
+/* the playlist scans like something is looking for a track that isn't there */
+.amp-playlist { position: relative; overflow: hidden; }
+.amp-playlist::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 16px; pointer-events: none;
+  background: rgba(0,255,102,.13);
+  animation: plscan 3.4s linear infinite;
+}
+@keyframes plscan { 0% { top: -16px; } 100% { top: 100%; } }
+
+/* quiz results pulse like they are still calculating */
+.quizbox { animation: quizpulse 3.6s ease-in-out infinite; }
+.quizbox:nth-child(2n) { animation-delay: -1.2s; }
+@keyframes quizpulse {
+  0%,100% { border-color: #999; }
+  50%     { border-color: #ff66ff; box-shadow: inset 0 0 12px rgba(255,102,255,.25); }
+}
+
+/* top-8 names go rainbow when u hover ur friend */
+td[style*="outset #ff66ff"]:hover b {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: rainbowslide 1.2s linear infinite;
+}
+
+/* click ripples, in pride */
+.ripple {
+  position: fixed; pointer-events: none; z-index: 10001;
+  width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%;
+  border: 3px solid #ff00ff;
+  animation: rippleout .55s ease-out forwards;
+}
+@keyframes rippleout {
+  0%   { transform: scale(1);  opacity: .9; border-color: #e40303; }
+  40%  {                        border-color: #ffed00; }
+  70%  {                        border-color: #008026; }
+  100% { transform: scale(11); opacity: 0; border-color: #732982; }
+}
+
 /* ~*~ ANIMATION WAVE 2 ~*~ */
 
 /* the real photo does a slow ken burns, like a documentary about him */
@@ -683,7 +769,7 @@ td.sidebar a:hover { animation: rainbowslide 1s linear infinite, navjig .35s eas
   </div>
 
   <div class="box" style="border-color:#ff3333;">
-    <h3 style="background:linear-gradient(90deg,#cc0000,#ff6600);">⚠️ impostor warning ⚠️</h3>
+    <h3 class="glitchy" style="background:linear-gradient(90deg,#cc0000,#ff6600);">⚠️ impostor warning ⚠️</h3>
     <div style="font-size:11px;line-height:1.35;">
       <b class="blink" style="color:#ff5555;">there r FAKE shrines out there</b><br><br>
       i will not link them. i will not name them. but u will know them, because they get it WRONG.
@@ -758,17 +844,17 @@ even a fake click is a click.
   <div class="box">
     <h3>◈ quiz resultz ◈</h3>
     <div style="font-size:11px;">
-      <div style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
+      <div class="quizbox" style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
         <b>~which harambe r u?~</b><br>
         result: <b style="color:#ffff00;">HARAMBE (100%)</b><br>
         <span class="tiny">every answer was harambe.<br>even question 4, which was about soup.</span>
       </div>
-      <div style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
+      <div class="quizbox" style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
         <b>~what % gay is ur aura?~</b><br>
         result: <b style="color:#00ff99;">420% 🌈</b><br>
         <span class="tiny">off the charts. seek pride.</span>
       </div>
-      <div style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
+      <div class="quizbox" style="border:2px inset #999;background:#220044;padding:4px;margin:4px 0;">
         <b>~which 2016 meme r u?~</b><br>
         result: <b style="color:#ff99ff;">the good one (harambe)</b>
       </div>
@@ -841,6 +927,7 @@ even a fake click is a click.
     <h3>◈ in memoriam: 2016 ◈</h3>
     <div style="font-size:11px;">
       <span class="tiny">maintained in partnership with the dead meme preservation society</span><br><br>
+      <div id="memoriam-wall">
       <div style="border:2px outset #888;background:#1a1a1a;padding:4px;margin:4px 0;font-family:'Times New Roman',serif;text-align:center;">
         <b>VINE</b><br>2013–2016<br><i>six seconds was enough</i>
       </div>
@@ -857,12 +944,13 @@ even a fake click is a click.
         <b style="color:#ffd700;">RESERVED</b><br>
         <span class="tiny">NOT harambe. he is not on this wall bc he is not LOST. he is IN ALL OF US. this wall is for stuff thats actually gone. like vine. 😔</span>
       </div>
+      </div><!-- /memoriam-wall -->
     </div>
   </div>
 
   <div class="box" style="border-color:#00ff00;">
     <h3 style="background:linear-gradient(90deg,#003300,#006600);color:#00ff00;">◈ the TRUTH zone ◈</h3>
-    <div style="font-family:'Courier New',monospace;font-size:10px;color:#00ff00;background:#000;padding:6px;line-height:1.4;">
+    <div class="crt" style="font-family:'Courier New',monospace;font-size:10px;color:#00ff00;background:#000;padding:6px;line-height:1.4;">
       <b class="blink">&gt;&gt; WAKE UP (respectfully) &lt;&lt;</b><br><br>
       <b>1.</b> harambe is ALIVE and living in monaco under the name "harold amber." rearrange the letters. i'm waiting.<br><br>
       <b>2.</b> have u EVER seen harambe and the monaco royal family in the same room. exactly.<br><br>
@@ -1413,7 +1501,7 @@ setInterval(function(){
   if (document.hidden || !CHAOS) return;
   var s = document.createElement('span');
   s.className = 'sparkle';
-  s.textContent = ['✨','🌈','💖','⭐'][Math.floor(Math.random()*4)];
+  s.textContent = SNOWCHARS[Math.floor(Math.random()*SNOWCHARS.length)];
   s.style.left = Math.random()*100 + 'vw';
   s.style.top = '-30px';
   s.style.fontSize = (10+Math.random()*16)+'px';
@@ -1635,6 +1723,43 @@ function openScript(){
   burst('🐝🦍🌈');
 }
 
+
+
+/* ================= ANIMATION WAVE 3 (behaviour) ================= */
+
+/* --- every click leaves a pride ripple --- */
+(function(){
+  if (CALM) return;
+  document.addEventListener('pointerdown', function(e){
+    var r = document.createElement('span');
+    r.className = 'ripple';
+    r.style.left = e.clientX + 'px';
+    r.style.top  = e.clientY + 'px';
+    document.body.appendChild(r);
+    setTimeout(function(){ r.remove(); }, 600);
+  }, {passive: true});
+})();
+
+/* --- the ambient snow now drops the occasional banana + gorilla --- */
+var SNOWCHARS = ['\u2728','\u{1F308}','\u{1F496}','\u2B50','\u{1F34C}','\u{1F98D}','\u{1F3F3}\u{FE0F}\u200D\u{1F308}'];
+
+/* --- the GORILLAMP marquee retitles itself now and then --- */
+(function(){
+  var el = document.getElementById('amp-marquee');
+  if (!el || CALM) return;
+  var lines = [
+    '*** amazing_grace_8bit_FINAL(2).mid *** 4:20 *** 56kbps stereo(ish) ***',
+    '*** NOW PLAYING: the only song *** there has only ever been one song ***',
+    '*** buffering feelings... 97% *** please do not close the window ***',
+    '*** this .mid was recovered from a floppy labelled DO NOT LOSE ***'
+  ];
+  var i = 0;
+  setInterval(function(){
+    if (document.hidden) return;
+    i = (i + 1) % lines.length;
+    el.textContent = lines[i];
+  }, 14000);
+})();
 
 /* ================= ANIMATION WAVE 2 (behaviour) ================= */
 
