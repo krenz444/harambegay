@@ -324,6 +324,800 @@ input, textarea {
   transition: transform .12s;
 }
 
+/* ==========================================================
+   ~*~ ANIMATION WAVE 5 — the fleet ~*~
+   authored by six parallel designers, each in its own namespace
+   ========================================================== */
+
+/* ~*~ tx: JEFF REDACTS THINGS ~*~
+   claim 5 was already "redacted — jeff said it was 2 much". jeff did not stop
+   there. he comes back for three more words, on a loop, forever.
+   the bar is a rainbow because even the censorship here is gay.
+   NOTE: default state is scaleX(0) — if animations never run, the words
+   are simply readable. nothing is ever hidden without a way back. */
+.tx-redact { position: relative; display: inline-block; }
+.tx-redact::after {
+  content: '';
+  position: absolute; left: -2px; right: -2px; top: -1px; bottom: -1px;
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982);
+  transform: scaleX(0); transform-origin: left center;
+  pointer-events: none;
+}
+.tx-redact.tx-redacting::after { animation: tx-redactwipe 11s ease-in-out infinite; }
+@keyframes tx-redactwipe {
+  0%, 6%    { transform: scaleX(0); transform-origin: left center; }
+  15%, 52%  { transform: scaleX(1); transform-origin: left center; }
+  53%       { transform: scaleX(1); transform-origin: right center; }
+  64%, 100% { transform: scaleX(0); transform-origin: right center; }
+}
+/* if u perceive it directly, jeff backs off. (house rule 4, inverted) */
+.tx-redact:hover::after { animation: none; transform: scaleX(0); }
+
+/* ~*~ tx: the guestbook has a typing indicator now ~*~
+   it is the webmaster. he has not sent it. it has been ten years. */
+.tx-typingbox {
+  font-size: 12px; color: #cc99ff; text-align: left;
+  padding: 6px 2px 2px 2px; border-top: 1px dashed #ff66ff;
+}
+.tx-typingbox b { color: #00ffff; }
+.tx-dots { display: inline-block; letter-spacing: 2px; }
+.tx-dot { display: inline-block; animation: tx-dotbounce 1.25s ease-in-out infinite; }
+@keyframes tx-dotbounce {
+  0%, 60%, 100% { transform: translateY(0);    opacity: .5; }
+  30%           { transform: translateY(-4px); opacity: 1; }
+}
+/* when he is NOT typing the dots stop being dots and become one full stop */
+.tx-dotsoff .tx-dot { animation: none; transform: none; opacity: 1; }
+.tx-dotsoff .tx-dot + .tx-dot { display: none; }
+.tx-typingnote { font-size: 10px; color: #8a68ad; margin-top: 3px; font-style: italic; }
+
+/* ~*~ tx: the chant gains volume as it proceeds ~*~
+   a liturgy is supposed to get louder as the congregation joins in.
+   the first DICKS OUT is reverent. the last one is not. */
+.tx-hype { display: inline-block; font-weight: bold; }
+.tx-hype1 { animation: tx-hype1 2.6s ease-in-out infinite; }
+.tx-hype2 { animation: tx-hype2 1.6s ease-in-out infinite; text-shadow: 0 0 6px #ff00ff; }
+.tx-hype3 { animation: tx-hype3 .9s  ease-in-out infinite; text-shadow: 0 0 8px #ff00ff, 1px 1px 0 #000; letter-spacing: .5px; }
+.tx-hype4 { animation: tx-hype4 .5s  ease-in-out infinite; text-shadow: 0 0 10px #ffed00, 2px 2px 0 #e40303; letter-spacing: 1px; }
+.tx-hype5 { animation: tx-hype5 .34s ease-in-out infinite; text-shadow: 0 0 14px #ffed00, 2px 2px 0 #e40303, -2px -2px 0 #24408e; letter-spacing: 1px; }
+@keyframes tx-hype1 { 50% { transform: scale(1.03); } }
+@keyframes tx-hype2 { 50% { transform: scale(1.07) rotate(-1deg); } }
+@keyframes tx-hype3 { 30% { transform: scale(1.12) rotate(1.5deg); } 70% { transform: scale(1.12) rotate(-1.5deg); } }
+@keyframes tx-hype4 { 25% { transform: scale(1.18) rotate(-2.5deg) translateY(-1px); } 75% { transform: scale(1.18) rotate(2.5deg) translateY(1px); } }
+@keyframes tx-hype5 { 20% { transform: scale(1.30) rotate(-3deg) translateY(-2px); } 60% { transform: scale(1.34) rotate(3deg) translateY(2px); } }
+
+/* ~*~ tx: the script autosaves. it has never once finished. ~*~
+   the filename is the emotional log of the last ten years. */
+.tx-namesave { display: inline-block; animation: tx-namesave .7s ease-in-out 1; }
+@keyframes tx-namesave {
+  0%   { opacity: 1;   transform: translateX(0);    filter: blur(0); }
+  25%  { opacity: .25; transform: translateX(-3px); filter: blur(1px); }
+  55%  { opacity: .25; transform: translateX(2px);  filter: blur(1px); }
+  100% { opacity: 1;   transform: translateX(0);    filter: blur(0); }
+}
+
+/* ~*~ tx: HARAMGAY is four days old. it does not have a font yet. ~*~
+   these rules set font-family and NOTHING else, so the word keeps its
+   rainbowslide, its italic, its size — it just cannot pick a typeface.
+   (no `animation` property here: the existing gradient must keep running) */
+.tx-font0 { font-family: "Comic Sans MS", "Comic Neue", cursive; }
+.tx-font1 { font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; }
+.tx-font2 { font-family: "Courier New", Courier, monospace; }
+.tx-font3 { font-family: "Times New Roman", Times, serif; }
+.tx-font4 { font-family: Papyrus, "Brush Script MT", "Segoe Script", cursive; }
+.tx-font5 { font-family: Verdana, Geneva, Tahoma, sans-serif; }
+
+/* ~*~ tx: the only item still in stock ~*~
+   qty: ∞. ships instantly. it restocks itself while u read.
+   5 minutes up, 5 minutes down — u will not catch it moving.
+   u will just look twice and find it bigger. it comes in waves. */
+.tx-grief {
+  display: inline-block;
+  transform-origin: left center;
+  animation: tx-griefgrow 300s ease-in-out infinite alternate;
+}
+@keyframes tx-griefgrow {
+  from { transform: scale(1); }
+  to   { transform: scale(1.6); }
+}
+
+/* ~*~ cu: the fake-shrine link will not be clicked. it dodges exactly 4 times. ~*~ */
+.cuflee {
+  display: inline-block;
+  will-change: transform;
+  transition: transform .16s cubic-bezier(.34,1.56,.64,1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cuflee { transition: none !important; transform: none !important; }
+}
+
+/* ~*~ cu: rule #4 — do not perceive jeff directly. now enforced optically. ~*~ */
+.cujeffshy {
+  transition: transform .28s ease-out, filter .28s ease-out;
+  will-change: transform, filter;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cujeffshy { transition: none !important; filter: none !important; transform: none !important; }
+}
+
+/* ~*~ cu: sold out since 2016. the buy buttons have not been told. ~*~ */
+.cumagnet { will-change: transform; }
+.cumagnetpull { filter: brightness(1.15) saturate(1.4); }
+@media (prefers-reduced-motion: reduce) {
+  .cumagnet { transform: none !important; }
+  .cumagnetpull { filter: none !important; }
+}
+
+/* ~*~ cu: ur pointer is on 56k. this is where u WERE. it is still coming. ~*~ */
+#cudialup {
+  position: fixed; left: 0; top: 0; z-index: 9997;
+  pointer-events: none; user-select: none;
+  font-size: 20px; line-height: 1; margin: -10px 0 0 -10px;
+  opacity: 0; transition: opacity .35s ease;
+  filter: grayscale(.35) drop-shadow(0 0 5px #ff00ff);
+  will-change: transform;
+}
+#cudialup.cuawake { opacity: .55; }
+.cudialuptag {
+  position: absolute; left: 22px; top: 1px;
+  font: bold 9px "Courier New", monospace; font-style: normal;
+  color: #00ff66; background: #000; border: 1px solid #00ff66;
+  padding: 0 3px; white-space: nowrap;
+  opacity: 0; transition: opacity .18s ease;
+}
+#cudialup.cubuffering .cudialuptag { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { #cudialup { display: none; } }
+
+/* ~*~ cu: the shrine is a diorama. u lean over it. it leans back. respectfully. ~*~ */
+.cutilt {
+  transition: transform .28s ease-out;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cutilt { transition: none !important; transform: none !important; }
+}
+
+/* ~*~ cu: a spare banana. u may fling it. it returns. everything returns. ~*~ */
+.cuflingrow { text-align: center; margin-top: 10px; }
+#cufling {
+  display: inline-block; font-size: 36px; line-height: 1;
+  cursor: grab; touch-action: none; user-select: none;
+  will-change: transform;
+  filter: drop-shadow(0 0 5px rgba(255,237,0,.55));
+  transition: filter .2s ease;
+}
+#cufling:hover { filter: drop-shadow(0 0 14px #ffed00) saturate(1.35); }
+#cufling.cugrabbed { cursor: grabbing; filter: drop-shadow(0 0 18px #ff00ff) saturate(1.5); }
+.cuflingcap { font-size: 10px; color: #cc99ff; margin-top: 2px; line-height: 1.3; }
+@media (prefers-reduced-motion: reduce) { .cuflingrow { display: none; } }
+
+/* ~*~ am: THE SKY OVER THE SHRINE ~*~ */
+/* it runs on UR clock. his is stuck at 72° and has been since 2016. */
+#am-sky{
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1; pointer-events: none;
+  transition: background 4s linear;
+}
+
+/* the live forecast line that gets appended into the weather box */
+#am-forecast{
+  margin-top: 8px; padding-top: 5px; border-top: 1px dashed #ff66ff;
+  font-size: 10px; line-height: 1.4; color: #cc99ff; text-align: center;
+}
+#am-forecast b{ color: #ffff00; }
+#am-forecast .am-heavenline{ color: #00ff99; }
+#am-forecast .am-polite{ color: #ff99ff; }
+
+/* ~*~ am: THE AMBIENT BULLETIN ~*~
+   the sky occasionally files a report. bottom-left, tiny, brief, removed by js.
+   (shared by the star / fog / bee / storm effects) */
+#am-note{
+  position: fixed; left: 10px; bottom: 14px; z-index: 9997;
+  max-width: 232px; pointer-events: none;
+  font-family: "Courier New", monospace; font-size: 10px; line-height: 1.45;
+  color: #ffe680; background: rgba(0,0,25,.88);
+  border: 1px solid #ffd700; padding: 6px 8px; text-align: left;
+  text-shadow: 1px 1px 0 #000; opacity: 0;
+  animation: amnoteIn 9s ease-in-out forwards;
+}
+#am-note b{ color: #fff; }
+@keyframes amnoteIn{
+  0%   { opacity: 0; transform: translateY(8px); }
+  6%   { opacity: 1; transform: none; }
+  88%  { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(4px); }
+}
+
+/* ~*~ am: AURORA HARAMGAYALIS ~*~ */
+/* the northern lights except the north is heaven and heaven is gay.
+   width is 200% + translateX only, so the blur rasterizes ONCE and the
+   drift is pure compositor. one element. cheap as hell. */
+#am-aurora{
+  position: fixed; top: 0; left: -50%; width: 200%; height: 200px;
+  z-index: -1; pointer-events: none;
+  background: repeating-linear-gradient(100deg,
+    rgba(228,3,3,0)      0px,   rgba(228,3,3,.20)    46px,
+    rgba(255,140,0,.22)  96px,  rgba(255,237,0,.20)  146px,
+    rgba(0,128,38,.20)   196px, rgba(36,64,142,.22)  246px,
+    rgba(115,41,130,.20) 296px, rgba(228,3,3,0)      340px);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 48%, rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 48%, rgba(0,0,0,0) 100%);
+  filter: blur(12px);
+  animation: amauroraDrift 44s linear infinite, amauroraBreathe 14s ease-in-out infinite;
+}
+/* 340px = exactly one gradient period, so the loop is seamless */
+@keyframes amauroraDrift{ from { transform: translateX(0); } to { transform: translateX(340px); } }
+@keyframes amauroraBreathe{ 0%,100% { opacity: .30; } 50% { opacity: .58; } }
+#am-aurora.am-aurora-lite{ filter: blur(6px); height: 150px; }
+
+/* ~*~ am: SHOOTING STARS ~*~ */
+/* rare. 1 in 5 comes out gay. no explanation is offered or required. */
+.am-star{
+  position: fixed; z-index: -1; pointer-events: none;
+  width: 120px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.35) 55%, #fff);
+  box-shadow: 0 0 7px #fff, 0 0 15px rgba(255,255,255,.55);
+  opacity: 0;
+  animation: amstarFly 1.6s cubic-bezier(.3,0,.9,.6) forwards;
+}
+.am-star-gay{
+  background: linear-gradient(90deg, rgba(255,255,255,0), #ffed00 45%, #ff00ff 72%, #00ffff);
+  box-shadow: 0 0 7px #ff66ff, 0 0 16px rgba(0,255,255,.55);
+}
+@keyframes amstarFly{
+  0%   { opacity: 0; transform: rotate(30deg) translateX(0)    scaleX(.15); }
+  10%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; transform: rotate(30deg) translateX(72vw) scaleX(1); }
+}
+
+/* ~*~ am: GROUND FOG ~*~ */
+/* not weather. an unreturned rental. see bulletin. */
+.am-fog{
+  position: fixed; left: -50%; bottom: -24px; width: 200%; height: 150px;
+  z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60% 100% at 18% 100%, rgba(200,180,255,.16), rgba(0,0,0,0) 70%),
+    radial-gradient(52% 100% at 52% 100%, rgba(255,255,255,.13), rgba(0,0,0,0) 70%),
+    radial-gradient(70% 100% at 86% 100%, rgba(180,220,255,.14), rgba(0,0,0,0) 70%);
+  filter: blur(7px);
+  animation: amfogDrift 74s ease-in-out infinite alternate;
+}
+.am-fog-b{
+  height: 96px; opacity: .7;
+  animation-duration: 47s;
+  animation-direction: alternate-reverse;
+}
+.am-fog-flat{ filter: none; }
+@keyframes amfogDrift{ from { transform: translateX(-95px); } to { transform: translateX(95px); } }
+
+/* ~*~ am: THE LEGALLY DISTINCT SWARM ~*~ */
+/* they cross the sky every so often. we have an understanding. */
+#am-bees{
+  position: fixed; top: 20vh; left: -240px;
+  width: 200px; height: 92px;
+  z-index: -1; pointer-events: none; display: none;
+}
+#am-bees.am-flying{ display: block; animation: ambeeCross 22s linear forwards; }
+#am-bees span{
+  position: absolute; font-size: 15px; opacity: .55; line-height: 1;
+  animation: ambeeBob 1.1s ease-in-out infinite;
+}
+@keyframes ambeeCross{ from { transform: translateX(0); } to { transform: translateX(125vw); } }
+@keyframes ambeeBob{ 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* ~*~ am: HEAVEN LIGHTNING ~*~ */
+/* z-index -1 on purpose: it flashes the page THROUGH the site's translucent
+   background instead of ever covering text. steps(1) = hard cuts = lightning. */
+.am-flash{
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1; pointer-events: none; opacity: 0;
+  background: radial-gradient(125% 85% at 50% -12%,
+              rgba(255,255,255,.9), rgba(190,210,255,.38) 40%, rgba(0,0,0,0) 76%);
+  animation: amflashStrike 1.2s steps(1) forwards;
+}
+@keyframes amflashStrike{
+  0%   { opacity: 0; }
+  3%   { opacity: .95; }
+  7%   { opacity: .15; }
+  11%  { opacity: .8; }
+  16%  { opacity: 0; }
+  23%  { opacity: .5; }
+  28%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* the thing that is briefly in the sky during the flash. u did not see it. */
+.am-ghost{
+  position: fixed; z-index: -1; pointer-events: none; opacity: 0;
+  background-repeat: no-repeat; background-size: 100% 100%;
+  image-rendering: pixelated;
+  animation: amghostSeen 1.2s steps(1) forwards;
+}
+@keyframes amghostSeen{
+  0%   { opacity: 0; }
+  3%   { opacity: .24; }
+  16%  { opacity: 0; }
+  23%  { opacity: .15; }
+  28%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ================= THE SHRINE & THE SPRITE (sh-) ================= */
+
+/* the shrine murmurs. a 10px gold whisper under the pixel king.
+   it is always in the layout (min-height) so nothing ever jumps. */
+#shMurmur {
+  min-height: 13px; line-height: 13px;
+  font-family: Tahoma, Verdana, sans-serif; font-size: 10px;
+  letter-spacing: .3px; color: #ffe680;
+  text-shadow: 0 0 6px rgba(255,215,0,.55);
+  opacity: 0; transition: opacity .45s ease;
+}
+#shMurmur.shMurmurOn { opacity: 1; }
+
+/* every flame has 2 go somewhere. this is the part mom noticed. */
+.shSmoky { position: relative; }
+.shSmoky::after {
+  content: ''; position: absolute; left: 50%; top: -4px;
+  width: 7px; height: 12px; margin-left: -3px;
+  border-radius: 60% 60% 45% 45%;
+  background: radial-gradient(ellipse at 50% 85%,
+              rgba(255,255,255,.50), rgba(208,204,224,.18) 55%, rgba(208,204,224,0) 75%);
+  pointer-events: none; opacity: 0;
+  animation: shsmoke 3.4s ease-out infinite;
+}
+.shSmokyB::after { animation-duration: 4.1s; animation-delay: -1.3s; }
+.shSmokyC::after { animation-duration: 3.7s; animation-delay: -2.4s; }
+.shSmokyD::after { animation-duration: 4.6s; animation-delay: -.7s;  }
+@keyframes shsmoke {
+  0%   { transform: translate(0,0)      scale(.35); opacity: 0;   }
+  12%  {                                            opacity: .55; }
+  55%  { transform: translate(-5px,-20px) scale(1.15); opacity: .30; }
+  100% { transform: translate(3px,-40px)  scale(2.10); opacity: 0;   }
+}
+
+/* the halo lives above y=0, which is outside the 32x32 viewBox.
+   so we let the little guy overflow. he earned the overflow. */
+.shHaloable { overflow: visible; }
+#shHaloG { opacity: 0; }
+#shHaloG.shHaloOn { animation: shhalodrop 4.2s ease-out forwards; }
+@keyframes shhalodrop {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  20%  { opacity: 1; transform: translateY(1px);  }
+  30%  {             transform: translateY(0);    }
+  76%  { opacity: 1; transform: translateY(0);    }
+  100% { opacity: 0; transform: translateY(-7px); }
+}
+
+/* the raking light of a museum that does not know it is a museum */
+.shGild { position: relative; }
+.shGild::before {
+  content: ''; position: absolute;
+  top: -10px; left: -10px; right: -10px; bottom: -10px;
+  pointer-events: none; z-index: 2;
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0)   42%,
+    rgba(255,246,176,.26) 48%,
+    rgba(255,255,255,.13) 52%,
+    rgba(255,255,255,0)   58%);
+  background-size: 300% 100%;
+  animation: shgild 10s ease-in-out infinite;
+}
+@keyframes shgild {
+  0%       { background-position:  150% 0; }
+  48%,100% { background-position:  -70% 0; }
+}
+
+/* one (1) dove. legally distinct. */
+#shDove {
+  position: fixed; left: 0; top: 0; z-index: 9990;
+  font-size: 26px; line-height: 1; opacity: 0;
+  pointer-events: none; will-change: transform;
+}
+#shDove.shDoveFly { animation: shdoveflight 6.5s ease-in forwards; }
+@keyframes shdoveflight {
+  0%   { opacity: 0; transform: translate(0,0)         rotate(0deg)   scale(.70); }
+  8%   { opacity: 1; transform: translate(10px,-26px)  rotate(-12deg) scale(1);   }
+  16%  {             transform: translate(24px,-44px)  rotate(6deg)   scale(.95); }
+  26%  {             transform: translate(42px,-78px)  rotate(-10deg) scale(1);   }
+  38%  {             transform: translate(56px,-118px) rotate(5deg)   scale(.95); }
+  52%  {             transform: translate(84px,-172px) rotate(-9deg)  scale(1);   }
+  68%  {             transform: translate(104px,-238px) rotate(4deg)  scale(.92); }
+  84%  { opacity: 1; transform: translate(140px,-320px) rotate(-8deg) scale(.85); }
+  100% { opacity: 0; transform: translate(172px,-400px) rotate(0deg)  scale(.70); }
+}
+
+/* ~*~ wd: THE MOUTHFUL METER — he is chewing as fast as he can ~*~ */
+/* the jaw is a wrapper so the one-shot chomp and the held mouthful can run at once */
+#wd-jaw { display: inline-block; transform-origin: 50% 78%; }
+#wd-jaw.wd-chomp { animation: wd-chomp .3s ease-out; }
+@keyframes wd-chomp {
+  0%   { transform: scale(1,1)     translateY(0); }
+  28%  { transform: scale(1.2,.78) translateY(4px); }
+  55%  { transform: scale(.9,1.16) translateY(-5px); }
+  80%  { transform: scale(1.05,.96) translateY(1px); }
+  100% { transform: scale(1,1)     translateY(0); }
+}
+
+/* doubled class = specificity (0,2,0), so the held chew beats .bounce without
+   ever touching the .bounce rule. remove the class and he bounces again. */
+.wd-mouth1.wd-mouth1 { animation: wd-mouthchew1 1.1s ease-in-out infinite; }
+.wd-mouth2.wd-mouth2 { animation: wd-mouthchew2 .52s ease-in-out infinite; }
+.wd-mouth3.wd-mouth3 { animation: wd-mouthchew3 .26s linear infinite; }
+@keyframes wd-mouthchew1 {
+  0%,100% { transform: scale(1,1); }
+  50%     { transform: scale(1.06,.95); }
+}
+@keyframes wd-mouthchew2 {
+  0%,100% { transform: scale(1.16,1.04) rotate(-3deg); }
+  50%     { transform: scale(1.22,.98) rotate(3deg); }
+}
+@keyframes wd-mouthchew3 {
+  0%   { transform: scale(1.34,1.1)  rotate(-5deg); }
+  25%  { transform: scale(1.28,1.18) rotate(4deg); }
+  50%  { transform: scale(1.38,1.06) rotate(-4deg); }
+  75%  { transform: scale(1.3,1.16)  rotate(5deg); }
+  100% { transform: scale(1.34,1.1)  rotate(-5deg); }
+}
+
+/* the halo would like it on the record that it is not part of this */
+.wd-halobacksoff {
+  display: inline-block;
+  animation: wd-halobacksoff .6s ease-out forwards;
+}
+@keyframes wd-halobacksoff {
+  to { transform: translate(12px,-14px) rotate(18deg) scale(.85); opacity: .75; }
+}
+
+/* the banana takes the long way to heaven */
+.wd-banana {
+  position: fixed; z-index: 10001; pointer-events: none; user-select: none;
+  font-size: 26px; margin: -13px 0 0 -13px; line-height: 1;
+  --wd-dx: 0px; --wd-dy: -80px;
+  animation: wd-arc .8s cubic-bezier(.35,0,.7,1) forwards;
+}
+@keyframes wd-arc {
+  0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+  50%  { transform: translate(calc(var(--wd-dx) * .5), calc(var(--wd-dy) * .5 - 62px)) rotate(280deg) scale(1.12); opacity: 1; }
+  100% { transform: translate(var(--wd-dx), var(--wd-dy)) rotate(560deg) scale(.35); opacity: 0; }
+}
+
+#wd-chewnote {
+  min-height: 15px; font-size: 12px; font-weight: bold; color: #ffaa00;
+  text-shadow: 1px 1px 0 #000; line-height: 1.2;
+}
+#wd-chewnote:not(:empty) { animation: wd-chewpop .45s ease-out; }
+@keyframes wd-chewpop {
+  0%   { transform: scale(.7); opacity: .3; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ~*~ wd: CANDLE FLARE + the incident of 5/28/2026 ~*~ */
+.wd-bloom {
+  position: fixed; z-index: 10001; pointer-events: none;
+  width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,220,140,.95), rgba(255,140,0,.5) 45%, rgba(255,80,0,0) 70%);
+  animation: wd-bloom .6s ease-out forwards;
+}
+@keyframes wd-bloom {
+  0%   { transform: scale(.4); opacity: .95; }
+  100% { transform: scale(9);  opacity: 0; }
+}
+
+.wd-ember {
+  position: fixed; z-index: 10001; pointer-events: none;
+  width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%;
+  background: #ffcc33; box-shadow: 0 0 6px #ff8800;
+  --wd-ex: 0px;
+  animation: wd-ember .95s ease-out forwards;
+}
+@keyframes wd-ember {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--wd-ex), -72px) scale(.2); opacity: 0; }
+}
+
+/* the shrine's own candles catch when u light one. doubled class beats .candle. */
+.wd-catch.wd-catch { animation: wd-catch .6s ease-out; }
+@keyframes wd-catch {
+  0%   { transform: scale(1);                filter: brightness(1); }
+  25%  { transform: scale(1.45) translateY(-4px); filter: brightness(2.4) drop-shadow(0 0 10px #ffb300); }
+  60%  { transform: scale(1.1);              filter: brightness(1.5); }
+  100% { transform: scale(1);                filter: brightness(1); }
+}
+
+#wd-alarm {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 10004; pointer-events: none;
+  display: flex; align-items: flex-start; justify-content: center;
+  box-shadow: inset 0 0 0 10px rgba(255,0,0,.85), inset 0 0 90px rgba(255,0,0,.5);
+  animation: wd-alarmflash .45s steps(1) 7, wd-alarmfade 3.2s ease-out forwards;
+}
+@keyframes wd-alarmflash {
+  50% { box-shadow: inset 0 0 0 10px rgba(255,237,0,.55), inset 0 0 90px rgba(255,120,0,.4); }
+}
+@keyframes wd-alarmfade { 0%,78% { opacity: 1; } 100% { opacity: 0; } }
+#wd-alarm b {
+  margin-top: 14vh; max-width: 90vw; text-align: center;
+  background: #000; color: #ff3b3b; border: 4px ridge #ff3b3b;
+  padding: 8px 14px; font-size: 15px; line-height: 1.4;
+  box-shadow: 0 0 26px rgba(255,0,0,.6);
+}
+#wd-alarm small { color: #ffaaaa; font-size: 11px; font-weight: normal; }
+
+/* ~*~ wd: PRESS PHYSICS — these buttons have travel, and dust ~*~ */
+/* button.wd-thunk.wd-thunk outranks button:hover's animation so the thunk always
+   plays on desktop; rainbowslide rides along so the hover sweep never stalls. */
+button.wd-thunk.wd-thunk {
+  animation: wd-thunk .26s cubic-bezier(.3,1.5,.5,1), rainbowslide 1s linear infinite;
+}
+@keyframes wd-thunk {
+  0%   { transform: scale(1,1)     translateY(0); }
+  22%  { transform: scale(1.09,.8) translateY(3px); }
+  50%  { transform: scale(.95,1.08) translateY(-2px); }
+  74%  { transform: scale(1.03,.97) translateY(1px); }
+  100% { transform: scale(1,1)     translateY(0); }
+}
+
+.wd-dust {
+  position: fixed; z-index: 10001; pointer-events: none; user-select: none;
+  color: #d6cec0; font-size: 12px; line-height: 1; text-shadow: 0 0 3px #000;
+  --wd-dx: 0px;
+  animation: wd-dust 1.1s ease-out forwards;
+}
+@keyframes wd-dust {
+  0%   { transform: translate(0,0) scale(.6) rotate(0deg); opacity: .95; }
+  100% { transform: translate(var(--wd-dx), -36px) scale(1.5) rotate(80deg); opacity: 0; }
+}
+
+/* ~*~ wd: SINCERITY METER — the guestbook reads over ur shoulder ~*~ */
+#wd-meter { margin: 4px 0 2px; font-size: 11px; text-align: left; }
+#wd-meterbar {
+  height: 10px; border: 2px inset #ff99ff; background: #1a0033; overflow: hidden;
+}
+#wd-meterfill {
+  height: 100%; width: 100%;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .25s ease;
+  background: linear-gradient(90deg,#ff00ff,#00ffff);
+}
+#wd-meterfill.wd-rites {
+  background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982,#e40303);
+  background-size: 300% 100%;
+  animation: wd-ritesmarch 1.1s linear infinite;
+}
+@keyframes wd-ritesmarch { to { background-position: 300% 0; } }
+#wd-meterlabel {
+  color: #ffff00; font-weight: bold; margin-top: 2px; min-height: 14px;
+  text-shadow: 1px 1px 0 #000;
+}
+#wd-meterlabel.wd-alarmed { color: #ff6666; }
+
+/* doubled class (0,2,0) outranks input:focus (0,1,1), so she shakes even mid-type */
+.wd-shudder.wd-shudder { animation: wd-shudder .34s linear 3; }
+@keyframes wd-shudder {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-5px) rotate(-.4deg); }
+  50%     { transform: translateX(4px)  rotate(.4deg); }
+  80%     { transform: translateX(-2px); }
+}
+
+/* the sign button gets eager. transform only — it rides the existing transition
+   and never claims `animation`, so the press thunk still wins when u click it. */
+button.wd-eager { transform: scale(1.07); filter: brightness(1.15) saturate(1.4); }
+
+/* ~*~ wd: the counter is awake, and it is not always going up ~*~ */
+/* doubled class (0,2,0) beats .counter's glow for the length of one roll */
+.wd-roll.wd-roll { animation: wd-roll .3s ease-out; }
+@keyframes wd-roll {
+  0%   { transform: translateY(-.55em); opacity: .25; filter: blur(1px); }
+  60%  { transform: translateY(.06em);  opacity: 1;   filter: blur(0); }
+  100% { transform: translateY(0);      opacity: 1;   filter: blur(0); }
+}
+.wd-rollback.wd-rollback { animation: wd-rollback .34s ease-out; }
+@keyframes wd-rollback {
+  0%   { transform: translateY(.5em); opacity: .3; filter: hue-rotate(255deg) brightness(1.4) blur(1px); }
+  60%  { transform: translateY(-.05em); opacity: 1; filter: hue-rotate(255deg) brightness(1.4); }
+  100% { transform: translateY(0); opacity: 1; filter: none; }
+}
+#wd-odonote {
+  display: inline-block; margin-left: 6px; vertical-align: middle;
+  font-size: 10px; font-weight: bold; color: #ff6666; text-shadow: 1px 1px 0 #000;
+}
+#wd-odonote:not(:empty) { animation: wd-odonote .4s ease-out; }
+@keyframes wd-odonote {
+  0%   { opacity: .2; transform: translateX(-6px); }
+  100% { opacity: 1;  transform: translateX(0); }
+}
+
+/* ~*~ rv — TIME, AND WHAT IT DOES TO A SHRINE ~*~ */
+
+/* SHARED rv DIALOG BLOCK — identical in the dial-up / session-timer / scheduled-task
+   effects. paste it once or paste it three times, css does not mind. */
+.rv-win {
+  position: fixed; z-index: 10004;
+  width: min(300px, 88vw);
+  background: #c0c0c0; color: #000;
+  border: 3px outset #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.55);
+  font-family: Tahoma, Verdana, sans-serif; font-size: 11px;
+  text-align: left;
+}
+.rv-bl { left: 12px; bottom: 12px; }   /* far from jeff. jeff owns bottom-right. */
+.rv-tl { left: 12px; top: 14px; }
+.rv-win-bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  background: linear-gradient(90deg,#000080,#1084d0);
+  color: #fff; font-weight: bold; font-size: 11px; padding: 3px 4px;
+}
+.rv-win-body { padding: 7px 8px; line-height: 1.4; }
+.rv-x {
+  background: #c0c0c0; border: 2px outset #fff; color: #000;
+  font: bold 10px Tahoma, sans-serif; width: 18px; height: 16px; line-height: 12px;
+  text-align: center; cursor: pointer; padding: 0; text-shadow: none; flex: none;
+}
+.rv-x:active { border-style: inset; }
+.rv-in  { animation: rvArrive .42s cubic-bezier(.2,.9,.3,1); }
+.rv-out { animation: rvLeave .35s ease-in forwards; }
+@keyframes rvArrive { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+@keyframes rvLeave  { to   { opacity: 0; transform: translateY(14px) scale(.97); } }
+.rv-mono { font-family: "Courier New", monospace; font-size: 10px; color: #000080; }
+.rv-cur::after { content: '\258C'; animation: rvBlip .8s steps(2) infinite; }
+@keyframes rvBlip { 50% { opacity: 0; } }
+.rv-sub { display: block; margin-top: 5px; font-size: 10px; color: #3a3a3a; line-height: 1.35; }
+/* END SHARED BLOCK */
+
+/* the modem's honest little progress bar */
+.rv-bar {
+  height: 14px; border: 2px inset #808080; background: #fff;
+  padding: 1px; margin: 5px 0 3px;
+}
+.rv-fill {
+  height: 100%; width: 0;
+  background: repeating-linear-gradient(90deg,#000080 0 8px, transparent 8px 10px);
+  transition: width .45s linear;
+}
+
+/* the angelversary clock. it is 1 Hz. it does not stop. */
+.rv-clock {
+  margin-top: 8px; border: 3px inset #888; background: #000;
+  padding: 5px 3px; text-align: center; font-family: "Courier New", monospace;
+}
+.rv-clock-top { font-size: 10px; color: #ff99ff; letter-spacing: 1px; }
+.rv-digits { font-size: 15px; font-weight: bold; color: #ffd700; text-shadow: 0 0 6px #ffb700; }
+.rv-unit { display: inline-block; margin: 0 3px; }
+.rv-tick { animation: rvTock .5s ease-out; }
+@keyframes rvTock {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-3px) scale(1.18); color: #fff6b0; }
+  100% { transform: translateY(0); }
+}
+.rv-today {
+  display: none; font-size: 14px; font-weight: bold; color: #ffd700;
+  animation: rvTock 1.4s ease-in-out infinite;
+}
+.rv-clock-lbl { font-size: 9px; color: #cc99ff; line-height: 1.35; margin-top: 3px; }
+
+/* 00:00–04:59 only. moonlight, and a plaque about it. */
+#rvMoonlight {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 3; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(150,180,255,.16), rgba(0,0,32,0) 45%),
+    radial-gradient(ellipse at center, rgba(0,0,32,0) 55%, rgba(0,0,32,.42));
+  animation: rvMoonDrift 16s ease-in-out infinite alternate;
+}
+@keyframes rvMoonDrift { from { opacity: .6; } to { opacity: 1; } }
+.rv-night {
+  margin: 12px auto 2px; max-width: 440px;
+  border: 3px ridge #4a5fa0; background: rgba(4,8,32,.85);
+  color: #bcd0ff; font-size: 12px; padding: 8px 10px; line-height: 1.45;
+  animation: rvMoonEdge 6s ease-in-out infinite;
+}
+@keyframes rvMoonEdge { 0%,100% { border-color: #3d5090; } 50% { border-color: #9db4ff; } }
+.rv-night-sub { display: block; margin-top: 5px; font-size: 10px; color: #7f93cf; }
+
+/* harambe_screensaver.scr — the DVD logo, but grieving */
+#rvSaver {
+  position: fixed; left: 0; top: 0; right: 0; bottom: 0;
+  z-index: 9997; pointer-events: none; overflow: hidden; display: none;
+}
+#rvSaver.rv-on { display: block; }
+#rvSaverY { animation: rvDvdY 9.5s linear infinite alternate; }
+#rvSaverX { display: inline-block; animation: rvDvdX 13s linear infinite alternate; }
+/* the 100% in the calc is the SPRITE's own width/height, so it bounces off the real edges */
+@keyframes rvDvdX { from { transform: translateX(12px); } to { transform: translateX(calc(100vw - 100% - 26px)); } }
+@keyframes rvDvdY { from { transform: translateY(10px); } to { transform: translateY(calc(100vh - 100% - 18px)); } }
+.rv-saver-txt {
+  display: inline-block; white-space: nowrap; text-align: center; max-width: 88vw;
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: clamp(24px, 6vw, 52px); font-weight: bold; font-style: italic;
+  color: #ffd700;
+  text-shadow: 1px 1px 0 #b8860b, 2px 2px 0 #a0750a, 3px 3px 0 #8b6508,
+               4px 4px 0 #6b4f06, 5px 5px 10px rgba(0,0,0,.85);
+  animation: rvSaverHue 12s linear infinite;
+}
+@keyframes rvSaverHue { to { filter: hue-rotate(360deg); } }
+.rv-saver-sub {
+  display: block; font-family: Tahoma, Verdana, sans-serif; font-style: normal;
+  font-size: 10px; font-weight: normal; letter-spacing: 1px;
+  color: #99ffdd; text-shadow: 1px 1px 0 #000; white-space: normal;
+}
+
+/* SHARED rv DIALOG BLOCK — byte-identical to the dial-up effect's block.
+   if the dial-up effect is already pasted, this whole block is a no-op duplicate. */
+.rv-win {
+  position: fixed; z-index: 10004;
+  width: min(300px, 88vw);
+  background: #c0c0c0; color: #000;
+  border: 3px outset #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.55);
+  font-family: Tahoma, Verdana, sans-serif; font-size: 11px;
+  text-align: left;
+}
+.rv-bl { left: 12px; bottom: 12px; }
+.rv-tl { left: 12px; top: 14px; }
+.rv-win-bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  background: linear-gradient(90deg,#000080,#1084d0);
+  color: #fff; font-weight: bold; font-size: 11px; padding: 3px 4px;
+}
+.rv-win-body { padding: 7px 8px; line-height: 1.4; }
+.rv-x {
+  background: #c0c0c0; border: 2px outset #fff; color: #000;
+  font: bold 10px Tahoma, sans-serif; width: 18px; height: 16px; line-height: 12px;
+  text-align: center; cursor: pointer; padding: 0; text-shadow: none; flex: none;
+}
+.rv-x:active { border-style: inset; }
+.rv-in  { animation: rvArrive .42s cubic-bezier(.2,.9,.3,1); }
+.rv-out { animation: rvLeave .35s ease-in forwards; }
+@keyframes rvArrive { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+@keyframes rvLeave  { to   { opacity: 0; transform: translateY(14px) scale(.97); } }
+.rv-mono { font-family: "Courier New", monospace; font-size: 10px; color: #000080; }
+.rv-cur::after { content: '\258C'; animation: rvBlip .8s steps(2) infinite; }
+@keyframes rvBlip { 50% { opacity: 0; } }
+.rv-sub { display: block; margin-top: 5px; font-size: 10px; color: #3a3a3a; line-height: 1.35; }
+/* END SHARED BLOCK */
+
+/* SHARED rv DIALOG BLOCK — byte-identical to the dial-up effect's block.
+   if that effect is already pasted, this whole block is a no-op duplicate. */
+.rv-win {
+  position: fixed; z-index: 10004;
+  width: min(300px, 88vw);
+  background: #c0c0c0; color: #000;
+  border: 3px outset #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.55);
+  font-family: Tahoma, Verdana, sans-serif; font-size: 11px;
+  text-align: left;
+}
+.rv-bl { left: 12px; bottom: 12px; }
+.rv-tl { left: 12px; top: 14px; }
+.rv-win-bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 6px;
+  background: linear-gradient(90deg,#000080,#1084d0);
+  color: #fff; font-weight: bold; font-size: 11px; padding: 3px 4px;
+}
+.rv-win-body { padding: 7px 8px; line-height: 1.4; }
+.rv-x {
+  background: #c0c0c0; border: 2px outset #fff; color: #000;
+  font: bold 10px Tahoma, sans-serif; width: 18px; height: 16px; line-height: 12px;
+  text-align: center; cursor: pointer; padding: 0; text-shadow: none; flex: none;
+}
+.rv-x:active { border-style: inset; }
+.rv-in  { animation: rvArrive .42s cubic-bezier(.2,.9,.3,1); }
+.rv-out { animation: rvLeave .35s ease-in forwards; }
+@keyframes rvArrive { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+@keyframes rvLeave  { to   { opacity: 0; transform: translateY(14px) scale(.97); } }
+.rv-mono { font-family: "Courier New", monospace; font-size: 10px; color: #000080; }
+.rv-cur::after { content: '\258C'; animation: rvBlip .8s steps(2) infinite; }
+@keyframes rvBlip { 50% { opacity: 0; } }
+.rv-sub { display: block; margin-top: 5px; font-size: 10px; color: #3a3a3a; line-height: 1.35; }
+/* END SHARED BLOCK */
+
+/* the verdict */
+.rv-no { color: #a00000; }
+
 /* ~*~ ANIMATION WAVE 4 ~*~ */
 
 /* a rainbow scroll bar across the top, so u always know how much grief remains */
@@ -1785,6 +2579,2053 @@ function openScript(){
 
 
 
+
+
+/* ================= ANIMATION WAVE 5 (behaviour) ================= */
+
+/* tx-redact — jeff comes back for three more words */
+/* --- tx: jeff redacts three more words in the TRUTH zone, forever --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* shared text-node wrapper — defined once, reused by the other tx effects */
+  var txWrapPhrase = window.txWrapPhrase || (window.txWrapPhrase = function(root, phrase, cls){
+    if (!root || !phrase) return null;
+    var walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while ((node = walk.nextNode())){
+      var p = node.parentNode;
+      /* never re-wrap something a tx effect already claimed */
+      if (!p || (p.className && String(p.className).indexOf('tx-') !== -1)) continue;
+      var at = node.nodeValue.indexOf(phrase);
+      if (at < 0) continue;
+      var mid = node.splitText(at);
+      mid.splitText(phrase.length);
+      var span = document.createElement('span');
+      span.className = cls;
+      span.appendChild(document.createTextNode(phrase));
+      mid.parentNode.replaceChild(span, mid);
+      return span;
+    }
+    return null;
+  });
+
+  var txZone = document.querySelector('.crt');
+  if (!txZone) return;
+  /* the three words furphy should not have typed. jeff disagrees on a timer. */
+  var txSecrets = [['monaco', '0s'], ['harold amber', '3.7s'], ['brenda', '7.4s']];
+  for (var i = 0; i < txSecrets.length; i++){
+    var el = txWrapPhrase(txZone, txSecrets[i][0], 'tx-redact');
+    if (el){
+      el.style.animationDelay = txSecrets[i][1];
+      el.className += ' tx-redacting';
+      el.title = 'jeff has concerns';
+    }
+  }
+})();
+
+/* tx-typingbox — Xx_fuRPhY_xX is typing… */
+/* --- tx: the webmaster is typing. he has been typing since 2016. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var txAnchor = document.getElementById('gbentries');
+  if (!txAnchor || document.getElementById('txtypingbox')) return;
+
+  var txBox = document.createElement('div');
+  txBox.id = 'txtypingbox';
+  txBox.className = 'tx-typingbox';
+  txBox.setAttribute('aria-hidden', 'true');
+
+  var txWho = document.createElement('b');
+  txWho.textContent = 'Xx_fuRPhY_xX';
+  var txVerb = document.createElement('span');
+  txVerb.textContent = ' is typing';
+  var txDots = document.createElement('span');
+  txDots.className = 'tx-dots';
+  for (var d = 0; d < 3; d++){
+    var txDot = document.createElement('span');
+    txDot.className = 'tx-dot';
+    txDot.style.animationDelay = (d * 0.16) + 's';
+    txDot.textContent = '.';
+    txDots.appendChild(txDot);
+  }
+  var txNote = document.createElement('div');
+  txNote.className = 'tx-typingnote';
+  txNote.textContent = '(he has been typing since 5/28/2016. it is a long message.)';
+
+  txBox.appendChild(txWho);
+  txBox.appendChild(txVerb);
+  txBox.appendChild(txDots);
+  txBox.appendChild(txNote);
+  /* sibling AFTER #gbentries — renderGB() rewrites that div's innerHTML,
+     so living outside it means the indicator survives every guestbook refresh */
+  txAnchor.parentNode.insertBefore(txBox, txAnchor.nextSibling);
+
+  var txStates = [
+    [' is typing',                     true,  14000],
+    [' stopped typing',                false,  5000],
+    [' is typing',                     true,  11000],
+    [' deleted a draft',               false,  4500],
+    [' is typing',                     true,  16000],
+    [' is typing (still)',             true,   9000],
+    [' is rewriting the whole thing',  true,   8000],
+    [' stopped typing',                false,  6000]
+  ];
+  var txI = 0;
+  function txTypeTick(){
+    var s = txStates[txI % txStates.length];
+    txI++;
+    txVerb.textContent = s[0];
+    txDots.className = s[1] ? 'tx-dots' : 'tx-dots tx-dotsoff';
+    setTimeout(txTypeTick, s[2]);
+  }
+  setTimeout(txTypeTick, 6000);
+})();
+
+/* tx-hype — the chant gets louder as it goes */
+/* --- tx: each DICKS OUT is louder than the last one --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var txWrapPhrase = window.txWrapPhrase || (window.txWrapPhrase = function(root, phrase, cls){
+    if (!root || !phrase) return null;
+    var walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while ((node = walk.nextNode())){
+      var p = node.parentNode;
+      if (!p || (p.className && String(p.className).indexOf('tx-') !== -1)) continue;
+      var at = node.nodeValue.indexOf(phrase);
+      if (at < 0) continue;
+      var mid = node.splitText(at);
+      mid.splitText(phrase.length);
+      var span = document.createElement('span');
+      span.className = cls;
+      span.appendChild(document.createTextNode(phrase));
+      mid.parentNode.replaceChild(span, mid);
+      return span;
+    }
+    return null;
+  });
+
+  var txZone = null, txHeads = document.querySelectorAll('.box h3');
+  for (var h = 0; h < txHeads.length; h++){
+    if (txHeads[h].textContent.indexOf('PROPAGANDA') !== -1){ txZone = txHeads[h].parentNode; break; }
+  }
+  if (!txZone) return;
+
+  /* four plain chants, in reading order, each one more worked up than the last */
+  for (var lvl = 1; lvl <= 4; lvl++){
+    if (!txWrapPhrase(txZone, 'DICKS OUT', 'tx-hype tx-hype' + lvl)) break;
+  }
+  /* and then the ceremonial spaced-out one, which has completely lost it */
+  txWrapPhrase(txZone, 'D I C K S 🍌 O U T', 'tx-hype tx-hype5');
+})();
+
+/* tx-namesave — the .doc autosaves itself into a worse filename */
+/* --- tx: harambee_movie_script_FINAL_v2(1)_ACTUALFINAL.doc keeps saving --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var txBar = document.querySelector('.win-titlebar');
+  if (!txBar) return;
+  var txName = txBar.querySelector('span');   /* first span = the filename */
+  if (!txName) return;
+
+  var DOC = '📄 ', WP = ' — WordPerfect 98';
+  var txNames = [
+    DOC + 'harambee_movie_script_FINAL_v2(1)_ACTUALFINAL.doc' + WP,
+    DOC + 'harambee_movie_script_FINAL_v2(1)_ACTUALFINAL(2).doc' + WP,
+    DOC + 'harambee_script_ACTUALFINAL_use_THIS_one.doc' + WP,
+    DOC + 'Copy of harambee_script_ACTUALFINAL_use_THIS_one.doc' + WP,
+    DOC + 'harambee_script_FINAL_v3_jeff_had_notes.doc' + WP,
+    DOC + 'harambee_script_FINALFINAL_no_really_this_time.doc' + WP,
+    DOC + 'harambee_script_backup_DO_NOT_DELETE_ever.doc' + WP,
+    DOC + 'harambee_script_FINAL_v4_i_cried_writing_this.doc' + WP,
+    DOC + 'harambee_script_FINAL_v4_i_cried_writing_this(1).doc' + WP
+  ];
+  var txIdx = 0;
+  function txBlip(){
+    txName.className = txName.className.replace(/\s*tx-namesave/, '');
+    void txName.offsetWidth;                 /* reflow so it can retrigger */
+    txName.className += (txName.className ? ' ' : '') + 'tx-namesave';
+  }
+  function txSave(){
+    if (!document.hidden){
+      txBlip();
+      txName.textContent = '💾 saving…' + WP;
+      setTimeout(function(){
+        txIdx = (txIdx + 1) % txNames.length;
+        txName.textContent = txNames[txIdx];
+        txBlip();
+      }, 700);
+    }
+    setTimeout(txSave, 15000 + Math.random() * 9000);
+  }
+  setTimeout(txSave, 11000);
+})();
+
+/* tx-font — HARAMGAY cannot decide what font it is */
+/* --- tx: the new word auditions typefaces. it always comes home to comic sans. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var txWord = document.querySelector('.constructn .haramgay');
+  if (!txWord) return;
+  if (!txWord.title) txWord.title = 'it is a new word. it does not have a font yet.';
+
+  var txFonts = ['tx-font0','tx-font1','tx-font2','tx-font3','tx-font4','tx-font5'];
+  var txF = 0;
+  function txSwapFont(){
+    var old = txFonts[txF % txFonts.length];
+    txWord.className = txWord.className.replace(new RegExp('\\s*' + old + '\\b'), '');
+    txF++;
+    var next = txFonts[txF % txFonts.length];
+    txWord.className += ' ' + next;
+    /* every lap it lands back on comic sans and rests there, longer,
+       because that is where the word actually lives */
+    setTimeout(txSwapFont, (txF % txFonts.length === 0) ? 6000 : 1800 + Math.random() * 900);
+  }
+  setTimeout(txSwapFont, 3000);
+})();
+
+/* tx-grief — the word grows over minutes */
+/* --- tx: grief is in stock. qty: infinity. it is restocking right now. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var txShoppe = null, txHeads = document.querySelectorAll('.box h3');
+  for (var h = 0; h < txHeads.length; h++){
+    if (txHeads[h].textContent.indexOf('gift shoppe') !== -1){ txShoppe = txHeads[h].parentNode; break; }
+  }
+  if (!txShoppe) return;
+
+  var txBolds = txShoppe.getElementsByTagName('b'), txTarget = null;
+  for (var i = 0; i < txBolds.length; i++){
+    if (txBolds[i].textContent.replace(/\s+/g, '') === 'grief'){ txTarget = txBolds[i]; break; }
+  }
+  if (!txTarget) return;
+  txTarget.className += (txTarget.className ? ' ' : '') + 'tx-grief';
+  if (!txTarget.title) txTarget.title = 'restocking';
+})();
+
+/* cuflee — the fake-shrine link dodges exactly FOUR times */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;   /* one throttled bus, not five listeners */
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    /* pointer leaves the window or the tab blurs: everybody relaxes back home */
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 1. "even a fake click is a click." so the anchor does not permit one. ---- */
+(function(){
+  if (cuBus.calm || !cuBus.fine) return;
+  var cuLink = null, cuAll = document.getElementsByTagName('a');
+  for (var cuI = 0; cuI < cuAll.length; cuI++){
+    if (cuAll[cuI].textContent.replace(/\s+/g,' ').trim() === 'show me a fake one'){ cuLink = cuAll[cuI]; break; }
+  }
+  if (!cuLink) return;
+  cuLink.classList.add('cuflee');
+  cuLink.title = 'no.';
+  var cuHits = 0, cuHome = null;
+  var cuTaunts = ['no.', 'still no.', 'stop.', 'FOUR dodges. remember that number.'];
+  cuBus.on(function(cuPx, cuPy){
+    if (cuHits >= 4) return;                 /* he only had four in him */
+    var cuR = cuLink.getBoundingClientRect();
+    if (!cuR.width) return;
+    var cuDx = (cuR.left + cuR.width/2) - cuPx;
+    var cuDy = (cuR.top + cuR.height/2) - cuPy;
+    var cuD = Math.sqrt(cuDx*cuDx + cuDy*cuDy);
+    if (cuD > 76 || cuD < 0.001) return;
+    cuHits++;
+    cuLink.title = cuTaunts[cuHits - 1];
+    var cuPush = (76 - cuD) + 30;
+    var cuNx = Math.max(-58, Math.min(58, (cuDx/cuD) * cuPush));
+    var cuNy = Math.max(-18, Math.min(18, (cuDy/cuD) * cuPush));
+    cuLink.style.transform = 'translate(' + cuNx.toFixed(1) + 'px,' + cuNy.toFixed(1) + 'px)';
+    clearTimeout(cuHome);
+    cuHome = setTimeout(function(){
+      cuLink.style.transform = '';           /* it ALWAYS comes home */
+      if (cuHits >= 4){
+        cuLink.classList.remove('cuflee');
+        cuLink.title = 'fine. u caught it. it is still not a link 2 them.';
+      }
+    }, 950);
+  });
+})();
+
+/* cujeffshy — jeff cannot be perceived directly */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 2. jeff defocuses as u approach. he is not hiding. he is simply not FOR u. ---- */
+(function(){
+  if (cuBus.calm || !cuBus.fine) return;
+  var cuJeff = document.getElementById('jeffbox');
+  if (!cuJeff) return;
+  cuJeff.classList.add('cujeffshy');
+  var cuShy = false;
+  cuBus.on(function(cuPx, cuPy){
+    var cuR = cuJeff.getBoundingClientRect();
+    if (!cuR.width) return;
+    var cuDx = (cuR.left + cuR.width/2) - cuPx;
+    var cuDy = (cuR.top + cuR.height/2) - cuPy;
+    var cuD = Math.sqrt(cuDx*cuDx + cuDy*cuDy);
+    var cuReach = Math.max(cuR.width, cuR.height)/2 + 130;
+    if (cuD > cuReach){
+      if (cuShy){ cuShy = false; cuJeff.style.transform = ''; cuJeff.style.filter = ''; }
+      return;                                  /* declaratively sharp again. always. */
+    }
+    cuShy = true;
+    var cuK = 1 - (cuD / cuReach);              /* 0 = far away, 1 = right on top of him */
+    var cuU = cuD || 1;
+    var cuNx = (cuDx/cuU) * 12 * cuK, cuNy = (cuDy/cuU) * 7 * cuK;
+    cuJeff.style.transform = 'translate(' + cuNx.toFixed(1) + 'px,' + cuNy.toFixed(1) + 'px) rotate(' + (cuNx*0.12).toFixed(2) + 'deg)';
+    cuJeff.style.filter = 'blur(' + (cuK*cuK*2.1).toFixed(2) + 'px)';
+  });
+})();
+
+/* cumagnet — the SOLD OUT buy buttons still lunge at you */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 3. the gift shoppe lunges. it has been sold out for a decade. it is hopeful anyway. ---- */
+(function(){
+  if (cuBus.calm || !cuBus.fine) return;
+  var cuBuys = [], cuBtns = document.querySelectorAll('button[onclick]');
+  for (var cuI = 0; cuI < cuBtns.length; cuI++){
+    var cuOc = cuBtns[cuI].getAttribute('onclick') || '';
+    if (cuOc.indexOf('soldOut') > -1)      cuBuys.push({el: cuBtns[cuI], pull: 13, on: false, hold: 0});
+    else if (cuOc.indexOf('buyGrief') > -1) cuBuys.push({el: cuBtns[cuI], pull: 22, on: false, hold: 0});  /* grief pulls harder */
+  }
+  if (!cuBuys.length) return;
+  cuBuys.forEach(function(cuB){
+    cuB.el.classList.add('cumagnet');
+    /* an actual click should still squish — let the native :active through for a beat */
+    cuB.el.addEventListener('pointerdown', function(){
+      cuB.hold = Date.now() + 220;
+      cuB.on = false;
+      cuB.el.style.transform = '';
+      cuB.el.classList.remove('cumagnetpull');
+    });
+  });
+  cuBus.on(function(cuPx, cuPy){
+    for (var cuJ = 0; cuJ < cuBuys.length; cuJ++){
+      var cuB = cuBuys[cuJ];
+      if (Date.now() < cuB.hold) continue;
+      var cuR = cuB.el.getBoundingClientRect();
+      if (!cuR.width) continue;
+      var cuDx = cuPx - (cuR.left + cuR.width/2);
+      var cuDy = cuPy - (cuR.top + cuR.height/2);
+      var cuD = Math.sqrt(cuDx*cuDx + cuDy*cuDy);
+      if (cuD > 120){
+        if (cuB.on){ cuB.on = false; cuB.el.style.transform = ''; cuB.el.classList.remove('cumagnetpull'); }
+        continue;
+      }
+      cuB.on = true;
+      cuB.el.classList.add('cumagnetpull');
+      var cuK = 1 - cuD/120, cuU = cuD || 1;
+      cuB.el.style.transform = 'translate(' + (cuDx/cuU*cuB.pull*cuK).toFixed(1) + 'px,' +
+                                              (cuDy/cuU*cuB.pull*cuK).toFixed(1) + 'px) scale(' + (1 + 0.10*cuK).toFixed(3) + ')';
+    }
+  });
+})();
+
+/* cudialup — ur cursor is on 56k (a ghost banana, always behind) */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 4. the ghost banana. it is doing its best. it is on dial-up. ---- */
+(function(){
+  if (cuBus.calm || !cuBus.fine) return;
+  var cuGhost = document.createElement('span');
+  cuGhost.id = 'cudialup';
+  cuGhost.setAttribute('aria-hidden', 'true');
+  cuGhost.textContent = '\u{1F34C}';
+  var cuTag = document.createElement('i');
+  cuTag.className = 'cudialuptag';
+  cuTag.textContent = '56k';
+  cuGhost.appendChild(cuTag);
+  document.body.appendChild(cuGhost);
+
+  var cuGX = -200, cuGY = -200, cuAwake = false, cuTagState = '';
+  cuBus.on(function(cuPx, cuPy){
+    if (cuPx < -9000) return;
+    if (!cuAwake){ cuAwake = true; cuGX = cuPx; cuGY = cuPy; }
+    cuGhost.classList.add('cuawake');
+  });
+
+  /* setInterval, not rAF — it is decoration only, and it must survive a starved frame loop */
+  setInterval(function(){
+    if (document.hidden || !cuAwake) return;
+    var cuP = cuBus.at();
+    if (cuP[0] < -9000){ cuGhost.classList.remove('cuawake'); return; }  /* pointer left: freeze + fade */
+    var cuDx = cuP[0] - cuGX, cuDy = cuP[1] - cuGY;
+    var cuD = Math.sqrt(cuDx*cuDx + cuDy*cuDy);
+    if (cuD > 0.6){
+      cuGX += cuDx * 0.11;
+      cuGY += cuDy * 0.11;
+      cuGhost.style.transform = 'translate3d(' + cuGX.toFixed(1) + 'px,' + cuGY.toFixed(1) + 'px,0) rotate(' +
+        Math.max(-25, Math.min(25, cuDx * 0.35)).toFixed(1) + 'deg)';
+    }
+    var cuWant = cuD > 260 ? 'BUFFERING' : (cuD > 110 ? '56k' : '');
+    if (cuWant !== cuTagState){
+      cuTagState = cuWant;
+      if (cuWant) cuTag.textContent = cuWant;
+      if (cuWant) cuGhost.classList.add('cubuffering'); else cuGhost.classList.remove('cubuffering');
+    }
+  }, 33);
+})();
+
+/* cutilt — the shrine is a diorama and u are leaning over it */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 5. one transform on one container. the cheapest parallax in the shrine. ---- */
+(function(){
+  if (cuBus.calm || !cuBus.fine) return;
+  var cuShrine = document.querySelector('.shrine');
+  if (!cuShrine) return;
+  cuShrine.classList.add('cutilt');
+  var cuTilted = false;
+  cuBus.on(function(cuPx, cuPy){
+    var cuR = cuShrine.getBoundingClientRect();
+    if (!cuR.width) return;
+    var cuPad = 90;
+    if (cuPx < cuR.left - cuPad || cuPx > cuR.right + cuPad ||
+        cuPy < cuR.top  - cuPad || cuPy > cuR.bottom + cuPad){
+      if (cuTilted){ cuTilted = false; cuShrine.style.transform = ''; }
+      return;
+    }
+    cuTilted = true;
+    var cuRx = Math.max(-1, Math.min(1, (cuPy - (cuR.top  + cuR.height/2)) / (cuR.height/2)));
+    var cuRy = Math.max(-1, Math.min(1, (cuPx - (cuR.left + cuR.width /2)) / (cuR.width /2)));
+    cuShrine.style.transform = 'perspective(1400px) rotateX(' + (-cuRx * 2.2).toFixed(2) + 'deg) rotateY(' + (cuRy * 2.6).toFixed(2) + 'deg)';
+  });
+})();
+
+/* cufling — the spare banana on a grief rubber band */
+/* ---- cu bootstrap (idempotent — identical copy sits atop every cu effect, safe to paste twice) ---- */
+var cuBus = window.cuBus || (window.cuBus = (function(){
+  var cuSubs = [], cuLast = 0, cuAtX = -99999, cuAtY = -99999;
+  var cuCalm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var cuFine = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  function cuFire(cuPx, cuPy){ for (var cuI = 0; cuI < cuSubs.length; cuI++) cuSubs[cuI](cuPx, cuPy); }
+  if (!cuCalm){
+    document.addEventListener('pointermove', function(cuE){
+      cuAtX = cuE.clientX; cuAtY = cuE.clientY;
+      var cuNow = Date.now();
+      if (cuNow - cuLast < 32) return;
+      cuLast = cuNow;
+      cuFire(cuAtX, cuAtY);
+    }, {passive:true});
+    document.addEventListener('mouseleave', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+    window.addEventListener('blur', function(){ cuAtX = -99999; cuAtY = -99999; cuFire(-99999, -99999); });
+  }
+  return {
+    calm: cuCalm,
+    fine: cuFine,
+    at: function(){ return [cuAtX, cuAtY]; },
+    on: function(cuFn){ if (!cuCalm) cuSubs.push(cuFn); }
+  };
+})());
+
+/* ---- 6. a spare banana on a rubber band. u cannot fling it into heaven. he has tried. ---- */
+(function(){
+  if (cuBus.calm) return;
+  var cuAnchor = document.getElementById('feed');
+  var cuBox = cuAnchor && cuAnchor.nextElementSibling;
+  var cuHost = cuBox && cuBox.querySelector('center');
+  if (!cuHost) return;
+
+  var cuRow = document.createElement('div');
+  cuRow.className = 'cuflingrow';
+  var cuNana = document.createElement('span');
+  cuNana.id = 'cufling';
+  cuNana.textContent = '\u{1F34C}';
+  cuNana.title = 'this one is spare. drag it.';
+  var cuCap = document.createElement('div');
+  cuCap.className = 'cuflingcap';
+  var cuCapHome = 'spare banana — drag it. fling it. it comes back.\neverything comes back.';
+  cuCap.textContent = cuCapHome;
+  cuRow.appendChild(cuNana); cuRow.appendChild(cuCap);
+  cuHost.appendChild(cuRow);
+
+  var cuX = 0, cuY = 0, cuVX = 0, cuVY = 0;
+  var cuDrag = false, cuOX = 0, cuOY = 0, cuLX = 0, cuLY = 0;
+  var cuTick = null, cuPeak = 0, cuCapTimer = null;
+
+  function cuApply(){
+    cuNana.style.transform = 'translate(' + cuX.toFixed(1) + 'px,' + cuY.toFixed(1) + 'px) rotate(' + (cuX * 0.5).toFixed(1) + 'deg)';
+  }
+  function cuLoop(){
+    cuVX += -cuX * 0.055; cuVY += -cuY * 0.055;   /* the rubber band */
+    cuVX *= 0.90; cuVY *= 0.90;                    /* the air */
+    cuX += cuVX; cuY += cuVY;
+    if (cuX >  260){ cuX =  260; cuVX *= -0.5; }
+    if (cuX < -260){ cuX = -260; cuVX *= -0.5; }
+    if (cuY >  200){ cuY =  200; cuVY *= -0.5; }
+    if (cuY < -200){ cuY = -200; cuVY *= -0.5; }
+    cuApply();
+    if (Math.abs(cuX) < 0.5 && Math.abs(cuY) < 0.5 && Math.abs(cuVX) < 0.4 && Math.abs(cuVY) < 0.4){
+      clearInterval(cuTick); cuTick = null;
+      cuX = cuY = cuVX = cuVY = 0;
+      cuNana.style.transform = '';                 /* home. always home. */
+      if (cuPeak > 26){
+        cuPeak = 0;
+        if (typeof burst === 'function') burst('\u{1F34C}\u{1F98D}');
+        cuCap.textContent = 'he waved.\n(u cannot fling a banana into heaven. i have tested this.)';
+        clearTimeout(cuCapTimer);
+        cuCapTimer = setTimeout(function(){ cuCap.textContent = cuCapHome; }, 3500);
+      }
+      cuPeak = 0;
+    }
+  }
+  function cuRelease(){
+    if (!cuDrag) return;
+    cuDrag = false;
+    cuNana.classList.remove('cugrabbed');
+    if (!cuTick) cuTick = setInterval(cuLoop, 16);
+  }
+
+  cuNana.addEventListener('pointerdown', function(cuE){
+    cuE.preventDefault();
+    cuDrag = true; cuPeak = 0;
+    cuNana.classList.add('cugrabbed');
+    cuOX = cuE.clientX - cuX; cuOY = cuE.clientY - cuY;
+    cuLX = cuE.clientX; cuLY = cuE.clientY;
+    if (cuTick){ clearInterval(cuTick); cuTick = null; }
+    if (cuNana.setPointerCapture){ try { cuNana.setPointerCapture(cuE.pointerId); } catch (cuErr) {} }
+  });
+  cuNana.addEventListener('pointermove', function(cuE){
+    if (!cuDrag) return;
+    cuX = Math.max(-260, Math.min(260, cuE.clientX - cuOX));
+    cuY = Math.max(-200, Math.min(200, cuE.clientY - cuOY));
+    cuVX = Math.max(-40, Math.min(40, cuE.clientX - cuLX));
+    cuVY = Math.max(-40, Math.min(40, cuE.clientY - cuLY));
+    var cuSp = Math.sqrt(cuVX*cuVX + cuVY*cuVY);
+    if (cuSp > cuPeak) cuPeak = cuSp;
+    cuLX = cuE.clientX; cuLY = cuE.clientY;
+    cuApply();
+  });
+  cuNana.addEventListener('pointerup', cuRelease);
+  cuNana.addEventListener('pointercancel', cuRelease);
+  window.addEventListener('blur', cuRelease);
+})();
+
+/* am-sky — the day/night cycle that runs on UR clock (and the live heaven forecast sync) */
+/* ================= am: AMBIENT / WEATHER LAYER ================= */
+/* the sky over the shrine has moods now. all of it lives behind the content
+   at z-index:-1, so nothing here can ever sit on top of a word. */
+(function(){
+  /* shared am bootstrap — idempotent, every am effect creates it if missing */
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;   /* reduced motion: the sky simply does not happen */
+
+  var amSkyEl = document.createElement('div');
+  amSkyEl.id = 'am-sky';
+  amSkyEl.setAttribute('aria-hidden','true');
+  document.body.appendChild(amSkyEl);
+
+  var amSKIES = {
+    night: { bg: 'linear-gradient(180deg, rgba(4,6,44,.55) 0%, rgba(4,6,44,.26) 45%, rgba(0,0,0,0) 100%)',
+             label: 'the dead of night \u{1F311}' },
+    dawn:  { bg: 'linear-gradient(180deg, rgba(255,120,90,.22) 0%, rgba(255,190,120,.11) 42%, rgba(0,0,0,0) 100%)',
+             label: 'sunrise \u{1F305}' },
+    day:   { bg: 'linear-gradient(180deg, rgba(150,200,255,.15) 0%, rgba(255,255,215,.07) 45%, rgba(0,0,0,0) 100%)',
+             label: 'broad daylight ☀️' },
+    dusk:  { bg: 'linear-gradient(180deg, rgba(255,110,60,.20) 0%, rgba(120,40,140,.17) 45%, rgba(0,0,0,0) 100%)',
+             label: 'sunset \u{1F307}' }
+  };
+  function amWhichSky(h){
+    if (h < 5)  return amSKIES.night;
+    if (h < 8)  return amSKIES.dawn;
+    if (h < 17) return amSKIES.day;
+    if (h < 20) return amSKIES.dusk;
+    return amSKIES.night;
+  }
+  function amClock(d){
+    var h = d.getHours(), m = d.getMinutes();
+    var suffix = h < 12 ? 'am' : 'pm';
+    var hh = h % 12; if (hh === 0) hh = 12;
+    return hh + ':' + (m < 10 ? '0' : '') + m + suffix;
+  }
+
+  /* find the weather box by its heading text and APPEND a new line to it.
+     nothing existing is touched. if the box is gone, the tint still works. */
+  var amForecastEl = null;
+  (function(){
+    var amHeads = document.querySelectorAll('.box h3');
+    for (var i = 0; i < amHeads.length; i++){
+      if (amHeads[i].textContent.toLowerCase().indexOf('weather in heaven') > -1){
+        amForecastEl = document.createElement('div');
+        amForecastEl.id = 'am-forecast';
+        amHeads[i].parentNode.appendChild(amForecastEl);
+        break;
+      }
+    }
+  })();
+
+  function amTick(){
+    var d = new Date();
+    var s = amWhichSky(d.getHours());
+    amSkyEl.style.background = s.bg;
+    if (amForecastEl){
+      amForecastEl.innerHTML =
+        '<b>▲ LIVE SYNC W/ UR LOCAL SKY ▲</b><br>' +
+        amClock(d) + ' — ' + s.label + '<br>' +
+        '<span class="am-heavenline">heaven is unaffected by ur night.<br>it is 72° there. it is always 72° there.</span><br>' +
+        '<span class="am-polite">the shrine dims 2 match u anyway.<br>out of politeness. he was raised right.</span>';
+    }
+  }
+  amTick();
+  setInterval(function(){ if (!document.hidden) amTick(); }, 60000);
+})();
+
+/* am-aurora — the pride aurora over the top of the sky */
+/* --- am: the aurora haramgayalis. it is over the header. of course it is. --- */
+(function(){
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;
+
+  var amAur = document.createElement('div');
+  amAur.id = 'am-aurora';
+  amAur.setAttribute('aria-hidden','true');
+  if (amWX.small) amAur.className = 'am-aurora-lite';   /* phones get less blur */
+  document.body.appendChild(amAur);
+
+  /* it files exactly one report about itself, ~4 min in, and then never again */
+  setTimeout(function(){
+    amWX.bulletin('\u{1F308} <b>AURORA HARAMGAYALIS</b> — visible tonight.<br>' +
+                  'scientists call it “solar particles.”<br>' +
+                  'i call it him, showing off, from directly above my website.<br>' +
+                  '— <b>Xx_fuRPhY_xX</b>');
+  }, 240000);
+})();
+
+/* am-star — the rare shooting star, and the FOUR incident */
+/* --- am: shooting stars. he is up there flinging them. --- */
+(function(){
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;
+
+  var amStarCount = 0;
+  function amShoot(){
+    if (document.hidden){ setTimeout(amShoot, 15000); return; }
+    var s = document.createElement('div');
+    s.className = 'am-star' + (Math.random() < 0.2 ? ' am-star-gay' : '');
+    s.setAttribute('aria-hidden','true');
+    s.style.left = amWX.rand(-8, 55) + 'vw';
+    s.style.top  = amWX.rand(1, 42)  + 'vh';
+    document.body.appendChild(s);
+    setTimeout(function(){ if (s.parentNode) s.parentNode.removeChild(s); }, 2300);
+
+    amStarCount++;
+    if (amStarCount === 4){
+      amWX.bulletin('★ that is <b>FOUR</b> shooting stars since u arrived.<br>' +
+                    'four. u read the TRUTH zone. u know what four means.<br>' +
+                    'i am not saying anything. i am simply counting.<br>' +
+                    '— <b>furphy</b>');
+    }
+    setTimeout(amShoot, amWX.rand(26000, 74000));
+  }
+  setTimeout(amShoot, amWX.rand(9000, 20000));
+})();
+
+/* am-fog — the fog machine i rented for the angelversary and never returned */
+/* --- am: the fog. it has been running since may. --- */
+(function(){
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;
+
+  function amBank(extra){
+    var f = document.createElement('div');
+    f.className = 'am-fog' + (extra ? ' ' + extra : '') + (amWX.small ? ' am-fog-flat' : '');
+    f.setAttribute('aria-hidden','true');
+    document.body.appendChild(f);
+  }
+  amBank('');
+  if (!amWX.small) amBank('am-fog-b');   /* phones get one layer, no blur */
+
+  setTimeout(function(){
+    amWX.bulletin('\u{1F32B}️ this is not fog. it is dry ice.<br>' +
+                  'i rented a fog machine 4 the 10 yr angelversary<br>' +
+                  'and i did not return it. it has been running<br>' +
+                  'since may. this is the climate now. — <b>mgmt</b>');
+  }, 186000);
+})();
+
+/* am-bees — a legally distinct swarm crosses the sky */
+/* --- am: a legally distinct flock. they migrate. we do not ask where. --- */
+(function(){
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;
+
+  var amBeeBox = document.createElement('div');
+  amBeeBox.id = 'am-bees';
+  amBeeBox.setAttribute('aria-hidden','true');
+  document.body.appendChild(amBeeBox);
+
+  /* V formation, leader on the right because they travel left -> right */
+  var amVEE = [[150,42],[118,26],[118,58],[86,12],[86,72],[54,-2],[54,86]];
+  var amFlockCount = 0;
+
+  function amFlock(){
+    if (document.hidden){ setTimeout(amFlock, 25000); return; }
+    var amLone = Math.random() < 0.25;
+    var pts = amLone ? [[150,42]] : amVEE;
+
+    amBeeBox.innerHTML = '';
+    amBeeBox.style.top = amWX.rand(7, 64) + 'vh';
+    for (var i = 0; i < pts.length; i++){
+      var b = document.createElement('span');
+      b.textContent = '\u{1F41D}';
+      b.style.left = pts[i][0] + 'px';
+      b.style.top  = pts[i][1] + 'px';
+      b.style.animationDelay = (-Math.random() * 1.1) + 's';
+      amBeeBox.appendChild(b);
+    }
+
+    amBeeBox.classList.remove('am-flying');
+    void amBeeBox.offsetWidth;                       /* reflow so it retriggers */
+    amBeeBox.style.animationDuration = (amLone ? 36 : 22) + 's';
+    amBeeBox.classList.add('am-flying');
+
+    amFlockCount++;
+    if (amLone){
+      amWX.bulletin('\u{1F41D} one bee. no formation. he lost the others.<br>' +
+                    'he is doing his best. do not perceive him directly.<br>' +
+                    '<span style="color:#cc99ff;">(that is jeff’s rule but i am applying it 2 the bee.)</span>');
+    } else if (amFlockCount === 1){
+      amWX.bulletin('\u{1F41D} a <b>LEGALLY DISTINCT</b> swarm just crossed the shrine.<br>' +
+                    'they migrate thru here. paperwork is filed.<br>' +
+                    'we have an understanding. do not contact them.');
+    }
+    setTimeout(amFlock, amWX.rand(75000, 170000));
+  }
+  setTimeout(amFlock, amWX.rand(38000, 70000));
+})();
+
+/* am-storm — heaven lightning, and the thing in the flash */
+/* --- am: heaven lightning. the forecast does not acknowledge this. --- */
+(function(){
+  if (!window.amWX){
+    window.amWX = (function(){
+      var calm  = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var small = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+      var noteEl = null, noteTimer = null;
+      function rand(a,b){ return a + Math.random()*(b-a); }
+      function bulletin(html){
+        if (document.hidden) return;
+        if (noteEl && noteEl.parentNode) noteEl.parentNode.removeChild(noteEl);
+        clearTimeout(noteTimer);
+        var n = document.createElement('div');
+        n.id = 'am-note';
+        n.setAttribute('aria-hidden','true');
+        n.innerHTML = html;
+        document.body.appendChild(n);
+        noteEl = n;
+        noteTimer = setTimeout(function(){
+          if (n.parentNode) n.parentNode.removeChild(n);
+          if (noteEl === n) noteEl = null;
+        }, 9200);
+      }
+      return { calm: calm, small: small, rand: rand, bulletin: bulletin };
+    })();
+  }
+  var amWX = window.amWX;
+  if (amWX.calm) return;
+
+  /* reuse the sprite already inlined on this page. no new assets, no requests. */
+  var amApeSrc = (typeof PXAPE === 'string') ? PXAPE : '';
+
+  function amStrike(){
+    var f = document.createElement('div');
+    f.className = 'am-flash';
+    f.setAttribute('aria-hidden','true');
+    document.body.appendChild(f);
+
+    var g = null;
+    if (amApeSrc){
+      g = document.createElement('div');
+      g.className = 'am-ghost';
+      g.setAttribute('aria-hidden','true');
+      g.style.backgroundImage = 'url("' + amApeSrc + '")';
+      var amW = amWX.rand(170, 330);
+      g.style.width  = amW + 'px';
+      g.style.height = amW + 'px';
+      /* he stands in the margins. never over the column. */
+      g.style.left = (Math.random() < 0.5 ? amWX.rand(0, 9) : amWX.rand(74, 88)) + 'vw';
+      g.style.top  = amWX.rand(4, 55) + 'vh';
+      document.body.appendChild(g);
+    }
+    setTimeout(function(){
+      if (f.parentNode) f.parentNode.removeChild(f);
+      if (g && g.parentNode) g.parentNode.removeChild(g);
+    }, 1500);
+  }
+
+  var amStormCount = 0;
+  function amStorm(){
+    if (document.hidden){ setTimeout(amStorm, 30000); return; }
+    var amHits = 1 + Math.floor(Math.random() * 3);
+    for (var i = 0; i < amHits; i++){
+      (function(i){ setTimeout(amStrike, i * amWX.rand(650, 1900)); })(i);
+    }
+    amStormCount++;
+    if (amStormCount === 1){
+      setTimeout(function(){
+        amWX.bulletin('⚡ <b>heaven does not have storms.</b><br>' +
+                      'the forecast says 72° and it has said 72° for<br>' +
+                      'ten years and the forecast is CORRECT.<br>' +
+                      'that was him clapping. probably at u.');
+      }, 1600);
+    } else if (amStormCount === 3){
+      setTimeout(function(){
+        amWX.bulletin('⚡ if u saw something in that flash: u did not.<br>' +
+                      'the sky is empty. it has been empty since 2016.<br>' +
+                      '<span style="color:#cc99ff;">(it is not empty.)</span>');
+      }, 1600);
+    }
+    setTimeout(amStorm, amWX.rand(95000, 230000));
+  }
+  setTimeout(amStorm, amWX.rand(60000, 140000));
+})();
+
+/* shGaze — he looks at u, but he will not look at jeff */
+/* --- he is looking at u. he has been looking at u. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var shShrine = document.querySelector('.shrine');
+  var shSprite = shShrine && shShrine.querySelector('svg.portrait.pixel');
+  if (!shShrine || !shSprite || !document.getElementById('pxbase')) return;
+
+  /* the murmur line. idempotent — every sh- effect calls this same builder. */
+  window.shSay = window.shSay || (function(){
+    var el = document.getElementById('shMurmur');
+    if (!el){
+      el = document.createElement('div'); el.id = 'shMurmur';
+      shSprite.parentNode.insertBefore(el, shSprite.nextSibling);
+    }
+    var t = null;
+    return function(txt, ms){
+      el.textContent = txt; el.className = 'shMurmurOn';
+      clearTimeout(t);
+      t = setTimeout(function(){ el.className = ''; }, ms || 4600);
+    };
+  })();
+
+  var shNS = 'http://www.w3.org/2000/svg';
+  function shRect(x,y,w,h,f){
+    var r = document.createElementNS(shNS,'rect');
+    r.setAttribute('x',x); r.setAttribute('y',y);
+    r.setAttribute('width',w); r.setAttribute('height',h);
+    r.setAttribute('fill',f); return r;
+  }
+
+  /* the eye whites here are byte-for-byte what pxbase already drew (5x3 blocks
+     at 8,13 and 19,13) — we just repaint them so the pupil can move on top. */
+  var shEyeG = document.createElementNS(shNS,'g');
+  shEyeG.setAttribute('id','shEyeG');
+  shEyeG.appendChild(shRect(8,13,5,3,'#f2eee6'));
+  shEyeG.appendChild(shRect(19,13,5,3,'#f2eee6'));
+  var shPupL = shRect(9,14,3,1,'#382210');
+  var shPupR = shRect(20,14,3,1,'#382210');
+  shEyeG.appendChild(shPupL); shEyeG.appendChild(shPupR);
+
+  /* BEFORE the eyelids, so blinking still shuts over him. */
+  shSprite.insertBefore(shEyeG, document.getElementById('pxblink'));
+
+  /* gx/gy are 0..2, and 1,1 is exactly where his pupils started. */
+  var shGX = 1, shGY = 1, shKey = '';
+  window.shGold = false;
+  window.shPaint = function(){
+    var k = shGX + ':' + shGY + ':' + (window.shGold ? 1 : 0);
+    if (k === shKey) return;
+    shKey = k;
+    shPupL.setAttribute('x', 8 + shGX);  shPupL.setAttribute('y', 13 + shGY);
+    shPupR.setAttribute('x', 19 + shGX); shPupR.setAttribute('y', 13 + shGY);
+    var c = window.shGold ? '#ffd700' : '#382210';
+    shPupL.setAttribute('fill', c); shPupR.setAttribute('fill', c);
+  };
+
+  var shPointerAt = 0, shNopeAt = 0;
+  var shJeff = document.getElementById('jeffbox');
+
+  document.addEventListener('mousemove', function(e){
+    shPointerAt = Date.now();
+
+    /* RULE 4. DO NOT PERCEIVE JEFF DIRECTLY. he takes this seriously. */
+    if (shJeff){
+      var j = shJeff.getBoundingClientRect();
+      if (j.width && e.clientX >= j.left - 26 && e.clientX <= j.right + 26 &&
+                     e.clientY >= j.top  - 26 && e.clientY <= j.bottom + 26){
+        shGX = 1; shGY = 1; window.shPaint();
+        if (Date.now() - shNopeAt > 14000){
+          shNopeAt = Date.now();
+          window.shSay('he will not look over there. rule 4. he is VERY strict abt rule 4.');
+        }
+        return;
+      }
+    }
+
+    var r = shSprite.getBoundingClientRect();
+    if (!r.width) return;
+    var dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  * 1.15);
+    var dy = (e.clientY - (r.top  + r.height / 2)) / (r.height * 1.15);
+    shGX = 1 + (dx >  .14 ? 1 : dx < -.14 ? -1 : 0);
+    shGY = 1 + (dy >  .22 ? 1 : dy < -.22 ? -1 : 0);
+    window.shPaint();
+  });
+
+  /* no mouse? he still glances around. a timer, not rAF — he must live regardless. */
+  setInterval(function(){
+    if (document.hidden) return;
+    if (Date.now() - shPointerAt < 2600) return;
+    if (Math.random() < .45){ shGX = 1; shGY = 1; }
+    else {
+      shGX = Math.floor(Math.random() * 3);
+      shGY = (Math.random() < .72) ? 1 : Math.floor(Math.random() * 3);
+    }
+    window.shPaint();
+  }, 1700);
+})();
+
+/* shSmoky — the candles actually smoke, and the smoke alarm remembers */
+/* --- candle smoke. 4 candles only. the wall stays cheap. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var shShrine = document.querySelector('.shrine');
+  var shSprite = shShrine && shShrine.querySelector('svg.portrait.pixel');
+  if (!shShrine || !shSprite) return;
+
+  window.shSay = window.shSay || (function(){
+    var el = document.getElementById('shMurmur');
+    if (!el){
+      el = document.createElement('div'); el.id = 'shMurmur';
+      shSprite.parentNode.insertBefore(el, shSprite.nextSibling);
+    }
+    var t = null;
+    return function(txt, ms){
+      el.textContent = txt; el.className = 'shMurmurOn';
+      clearTimeout(t);
+      t = setTimeout(function(){ el.className = ''; }, ms || 4600);
+    };
+  })();
+
+  var shSmokeAt = 0;
+  var shSmokeLines = [
+    'the smoke alarm remembers 5/28. the smoke alarm has not forgiven me.',
+    '8,916 candles at once. one alarm. one mom. zero regrets (some regrets).',
+    'the smoke goes up. thats where he went. i think abt this a normal amount.'
+  ];
+  var shSmokeI = 0;
+  function shSmokeJoke(){
+    if (Date.now() - shSmokeAt < 18000) return;
+    shSmokeAt = Date.now();
+    window.shSay(shSmokeLines[shSmokeI++ % shSmokeLines.length]);
+  }
+
+  var shMods = ['', 'shSmokyB', 'shSmokyC', 'shSmokyD'];
+  var shC = shShrine.querySelectorAll('.candle');
+  for (var i = 0; i < shC.length; i++){
+    shC[i].className += ' shSmoky ' + shMods[i % 4];
+    shC[i].addEventListener('mouseenter', shSmokeJoke);
+  }
+})();
+
+/* shHalo — light a candle, a pixel halo is issued (legally distinct from sainthood) */
+/* --- u light a candle, he gets a halo. thats the deal. thats always been the deal. --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var shShrine = document.querySelector('.shrine');
+  var shSprite = shShrine && shShrine.querySelector('svg.portrait.pixel');
+  if (!shShrine || !shSprite) return;
+
+  window.shSay = window.shSay || (function(){
+    var el = document.getElementById('shMurmur');
+    if (!el){
+      el = document.createElement('div'); el.id = 'shMurmur';
+      shSprite.parentNode.insertBefore(el, shSprite.nextSibling);
+    }
+    var t = null;
+    return function(txt, ms){
+      el.textContent = txt; el.className = 'shMurmurOn';
+      clearTimeout(t);
+      t = setTimeout(function(){ el.className = ''; }, ms || 4600);
+    };
+  })();
+
+  var shNS = 'http://www.w3.org/2000/svg';
+  function shHRect(x,y,w,h,f){
+    var r = document.createElementNS(shNS,'rect');
+    r.setAttribute('x',x); r.setAttribute('y',y);
+    r.setAttribute('width',w); r.setAttribute('height',h);
+    r.setAttribute('fill',f); return r;
+  }
+
+  /* a 14x3 pixel ellipse ring, centred over his head (head centre = x16) */
+  var shHaloG = document.createElementNS(shNS,'g');
+  shHaloG.setAttribute('id','shHaloG');
+  var shHaloPx = [
+    [11,-4,10,1,'#ffd700'], [13,-4,4,1,'#fff6b0'],
+    [ 9,-3, 2,1,'#ffd700'], [21,-3,2,1,'#e8b800'],
+    [11,-2,10,1,'#e8b800']
+  ];
+  for (var i = 0; i < shHaloPx.length; i++){
+    var p = shHaloPx[i];
+    shHaloG.appendChild(shHRect(p[0],p[1],p[2],p[3],p[4]));
+  }
+  shSprite.appendChild(shHaloG);
+  shSprite.setAttribute('class', (shSprite.getAttribute('class')||'') + ' shHaloable');
+
+  var shHaloLines = [
+    'halo issued. legally distinct from sainthood. do not @ me.',
+    'he does not wear it every day. he says it is a lot.',
+    'candle received ✓ halo dispatched ✓ paperwork: pending 4ever',
+    'the halo is on loan from an institution that does not know yet.'
+  ];
+  var shHaloI = 0, shHaloT = null;
+
+  function shBless(){
+    /* yank + reflow + reapply, otherwise a 2nd candle wont restart the drop */
+    shHaloG.setAttribute('class','');
+    void shHaloG.getBoundingClientRect();
+    shHaloG.setAttribute('class','shHaloOn');
+
+    if (window.shPaint){ window.shGold = true; window.shPaint(); }
+    window.shSay(shHaloLines[shHaloI++ % shHaloLines.length]);
+
+    clearTimeout(shHaloT);
+    shHaloT = setTimeout(function(){
+      shHaloG.setAttribute('class','');
+      if (window.shPaint){ window.shGold = false; window.shPaint(); }
+    }, 4200);
+  }
+
+  /* we never touch lightCandle(). we simply listen 4 the deed. */
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    if (!t || t.tagName !== 'BUTTON') return;
+    if (/LIGHT A CANDLE/i.test(t.textContent || '')) shBless();
+  });
+})();
+
+/* shGild — museum lighting crawls across the gold frame */
+/* --- lighting design by Xx_fuRPhY_xX (self taught) --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var shShrine = document.querySelector('.shrine');
+  if (!shShrine) return;
+  shShrine.className += ' shGild';
+})();
+
+/* shDove — the dove gets out */
+/* --- 🕊 fly high sweet prince 🕊 (the dove took this literally) --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var shShrine = document.querySelector('.shrine');
+  var shSprite = shShrine && shShrine.querySelector('svg.portrait.pixel');
+  if (!shShrine || !shSprite) return;
+
+  window.shSay = window.shSay || (function(){
+    var el = document.getElementById('shMurmur');
+    if (!el){
+      el = document.createElement('div'); el.id = 'shMurmur';
+      shSprite.parentNode.insertBefore(el, shSprite.nextSibling);
+    }
+    var t = null;
+    return function(txt, ms){
+      el.textContent = txt; el.className = 'shMurmurOn';
+      clearTimeout(t);
+      t = setTimeout(function(){ el.className = ''; }, ms || 4600);
+    };
+  })();
+
+  var shDove = document.createElement('span');
+  shDove.id = 'shDove';
+  shDove.setAttribute('aria-hidden','true');
+  shDove.textContent = '🕊️';
+  document.body.appendChild(shDove);
+
+  var shDoveLines = [
+    'that dove is stock footage. legally distinct from any holy bird u may be picturing.',
+    'the dove does the flying. he is busy. he has a website 2 haunt.',
+    'dove released 4 the 8,917th time. it always comes back. i do not ask it 2.'
+  ];
+  var shDoveI = 0, shDoveGoing = false;
+
+  function shDoveLaunch(){
+    if (shDoveGoing || document.hidden) return;
+    var ep = shShrine.querySelector('.epitaph');
+    if (!ep) return;
+    var r = ep.getBoundingClientRect();
+    if (!r.width) return;
+    /* he only leaves when somebody is there 2 watch him leave */
+    if (r.bottom < 40 || r.top > window.innerHeight - 40) return;
+
+    shDoveGoing = true;
+    shDove.style.left = (r.left + r.width / 2 - 13) + 'px';
+    shDove.style.top  = (r.bottom - 26) + 'px';
+    shDove.setAttribute('class','shDoveFly');
+    window.shSay(shDoveLines[shDoveI++ % shDoveLines.length]);
+
+    setTimeout(function(){
+      shDove.setAttribute('class','');
+      shDoveGoing = false;
+    }, 6800);
+  }
+
+  setTimeout(shDoveLaunch, 9000);
+  setInterval(shDoveLaunch, 41000);
+})();
+
+/* wdChew — the mouthful meter */
+/* ~*~ wd: THE MOUTHFUL METER — he actually chews now ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wdGuy = document.getElementById('heavenrambe');
+  if (!wdGuy || typeof window.feedBanana !== 'function') return;
+
+  /* give him a jaw. the jaw chomps, HE holds the mouthful. two animations, no fighting. */
+  var wdJaw = document.createElement('span');
+  wdJaw.id = 'wd-jaw';
+  wdGuy.parentNode.insertBefore(wdJaw, wdGuy);
+  wdJaw.appendChild(wdGuy);
+
+  var wdHalo = wdJaw.nextElementSibling;            /* the 😇 . it is about to have opinions */
+  var wdMsgEl = document.getElementById('bananamsg');
+  var wdNote = document.createElement('div');
+  wdNote.id = 'wd-chewnote';
+  if (wdMsgEl && wdMsgEl.parentNode) wdMsgEl.parentNode.insertBefore(wdNote, wdMsgEl.nextSibling);
+
+  /* find the give-banana button without touching its markup */
+  var wdBtn = null, wdAll = document.querySelectorAll('button'), wdI;
+  for (wdI = 0; wdI < wdAll.length; wdI++){
+    if ((wdAll[wdI].getAttribute('onclick') || '').indexOf('feedBanana') > -1){ wdBtn = wdAll[wdI]; break; }
+  }
+
+  var wdMouth = 0, wdDecay = null;
+  var wdNotes = {
+    1: '',
+    2: 'he is chewing as fast as he can',
+    3: 'STOP. he cannot swallow that fast. the halo has backed away.'
+  };
+
+  function wdLevel(){ return wdMouth >= 8 ? 3 : (wdMouth >= 4 ? 2 : (wdMouth >= 1 ? 1 : 0)); }
+
+  function wdPaint(){
+    var wdLv = wdLevel();
+    wdGuy.classList.remove('wd-mouth1','wd-mouth2','wd-mouth3');
+    if (wdLv) wdGuy.classList.add('wd-mouth' + wdLv);
+    if (wdHalo){
+      if (wdLv === 3) wdHalo.classList.add('wd-halobacksoff');
+      else wdHalo.classList.remove('wd-halobacksoff');
+    }
+    wdNote.textContent = wdNotes[wdLv] || '';
+  }
+
+  function wdToss(){
+    if (!wdBtn) return;
+    var wdA = wdBtn.getBoundingClientRect(), wdB = wdGuy.getBoundingClientRect();
+    var wdX = wdA.left + wdA.width / 2, wdY = wdA.top + wdA.height / 2;
+    var wdNana = document.createElement('span');
+    wdNana.className = 'wd-banana';
+    wdNana.setAttribute('aria-hidden','true');
+    wdNana.textContent = '\u{1F34C}';
+    wdNana.style.left = wdX + 'px';
+    wdNana.style.top  = wdY + 'px';
+    wdNana.style.setProperty('--wd-dx', ((wdB.left + wdB.width / 2) - wdX) + 'px');
+    wdNana.style.setProperty('--wd-dy', ((wdB.top + wdB.height * 0.62) - wdY) + 'px');
+    document.body.appendChild(wdNana);
+    setTimeout(function(){ if (wdNana.parentNode) wdNana.parentNode.removeChild(wdNana); }, 950);
+  }
+
+  function wdTick(){
+    if (wdMouth > 0) wdMouth--;
+    wdPaint();
+    if (wdMouth === 0 && wdDecay){ clearInterval(wdDecay); wdDecay = null; }
+  }
+
+  var wdOldFeed = window.feedBanana;
+  window.feedBanana = function(){
+    wdOldFeed.apply(this, arguments);
+    wdMouth = Math.min(wdMouth + 1, 14);
+    wdPaint();
+    wdJaw.classList.remove('wd-chomp');
+    void wdJaw.offsetWidth;                 /* reflow so a fast clicker gets every chomp */
+    wdJaw.classList.add('wd-chomp');
+    wdToss();
+    if (!wdDecay) wdDecay = setInterval(wdTick, 1500);
+  };
+})();
+
+/* wdCandleFlare — the smoke alarm incident */
+/* ~*~ wd: CANDLE FLARE — grief past a certain rate is a fire code violation ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof window.lightCandle !== 'function') return;
+
+  var wdBtn = null, wdAll = document.querySelectorAll('button'), wdI;
+  for (wdI = 0; wdI < wdAll.length; wdI++){
+    if ((wdAll[wdI].getAttribute('onclick') || '').indexOf('lightCandle') > -1){ wdBtn = wdAll[wdI]; break; }
+  }
+  var wdWicks = document.querySelectorAll('.shrine .candle');
+  var wdHistory = [], wdAlarmLock = 0;
+
+  function wdSpawn(wdCls, wdX, wdY, wdLife){
+    var wdEl = document.createElement('span');
+    wdEl.className = wdCls;
+    wdEl.setAttribute('aria-hidden','true');
+    wdEl.style.left = wdX + 'px';
+    wdEl.style.top  = wdY + 'px';
+    document.body.appendChild(wdEl);
+    setTimeout(function(){ if (wdEl.parentNode) wdEl.parentNode.removeChild(wdEl); }, wdLife);
+    return wdEl;
+  }
+
+  function wdHeat(){
+    if (wdBtn){
+      var wdR = wdBtn.getBoundingClientRect();
+      var wdX = wdR.left + wdR.width / 2, wdY = wdR.top + wdR.height / 2;
+      wdSpawn('wd-bloom', wdX, wdY, 700);
+      for (var wdE = 0; wdE < 3; wdE++){
+        var wdEm = wdSpawn('wd-ember', wdX + (Math.random() * 40 - 20), wdY, 1000);
+        wdEm.style.setProperty('--wd-ex', (Math.random() * 34 - 17) + 'px');
+        wdEm.style.animationDelay = (wdE * 0.08) + 's';
+      }
+    }
+    /* the shrine's four candles catch, one after another */
+    for (var wdW = 0; wdW < wdWicks.length; wdW++){
+      (function(wdOne, wdIdx){
+        wdOne.classList.remove('wd-catch');
+        void wdOne.offsetWidth;
+        wdOne.style.animationDelay = (wdIdx * 0.06) + 's';
+        wdOne.classList.add('wd-catch');
+        setTimeout(function(){ wdOne.classList.remove('wd-catch'); wdOne.style.animationDelay = ''; }, 700 + wdIdx * 60);
+      })(wdWicks[wdW], wdW);
+    }
+  }
+
+  function wdAlarm(){
+    if (document.getElementById('wd-alarm')) return;
+    var wdBox = document.createElement('div');
+    wdBox.id = 'wd-alarm';
+    wdBox.setAttribute('aria-hidden','true');
+    wdBox.innerHTML = '<b>\u{1F6A8} SMOKE ALARM \u{1F6A8}<br>u lit 8 candles in 4 seconds<br>' +
+      '<small>this is EXACTLY what happened on the 10 yr angelversary.<br>' +
+      'mom was NOT mad. she was disappointed. (worse)</small></b>';
+    document.body.appendChild(wdBox);
+    setTimeout(function(){ if (wdBox.parentNode) wdBox.parentNode.removeChild(wdBox); }, 3400);
+  }
+
+  var wdOldCandle = window.lightCandle;
+  window.lightCandle = function(){
+    wdOldCandle.apply(this, arguments);
+    wdHeat();
+    var wdNow = Date.now();
+    wdHistory.push(wdNow);
+    while (wdHistory.length && wdNow - wdHistory[0] > 4000) wdHistory.shift();
+    if (wdHistory.length >= 8 && wdNow - wdAlarmLock > 20000){
+      wdAlarmLock = wdNow;
+      wdHistory.length = 0;
+      wdAlarm();
+    }
+  };
+})();
+
+/* wdThunk — 22 years of dust on every button */
+/* ~*~ wd: PRESS PHYSICS — nobody has pressed these since 2016 ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wdMOTES = ['˙', '·', '˙', '｡'];
+
+  function wdPuff(wdBtn){
+    var wdR = wdBtn.getBoundingClientRect();
+    for (var wdD = 0; wdD < 3; wdD++){
+      (function(wdIdx){
+        var wdEl = document.createElement('span');
+        wdEl.className = 'wd-dust';
+        wdEl.setAttribute('aria-hidden','true');
+        wdEl.textContent = wdMOTES[Math.floor(Math.random() * wdMOTES.length)];
+        wdEl.style.left = (wdR.left + 6 + Math.random() * Math.max(wdR.width - 12, 4)) + 'px';
+        wdEl.style.top  = (wdR.top + 2) + 'px';
+        wdEl.style.setProperty('--wd-dx', (Math.random() * 30 - 15) + 'px');
+        wdEl.style.animationDelay = (wdIdx * 0.07) + 's';
+        wdEl.style.fontSize = (9 + Math.random() * 6) + 'px';
+        document.body.appendChild(wdEl);
+        setTimeout(function(){ if (wdEl.parentNode) wdEl.parentNode.removeChild(wdEl); }, 1400);
+      })(wdD);
+    }
+  }
+
+  document.addEventListener('pointerdown', function(wdEv){
+    var wdBtn = wdEv.target && wdEv.target.closest ? wdEv.target.closest('button') : null;
+    if (!wdBtn) return;
+    wdBtn.classList.remove('wd-thunk');
+    void wdBtn.offsetWidth;
+    wdBtn.classList.add('wd-thunk');
+    setTimeout(function(){ wdBtn.classList.remove('wd-thunk'); }, 320);
+    if (!wdBtn.wdDusted){        /* first press since the last real update. it shows. */
+      wdBtn.wdDusted = true;
+      wdPuff(wdBtn);
+    }
+  }, {passive: true});
+})();
+
+/* wdSincerity — the guestbook sincerity meter */
+/* ~*~ wd: SINCERITY METER — he is reading it as u write it ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wdMsg = document.getElementById('gbmsg');
+  var wdName = document.getElementById('gbname');
+  var wdSubmit = document.getElementById('gbsubmit');
+  if (!wdMsg || !wdName) return;
+
+  var wdMeter = document.createElement('div');
+  wdMeter.id = 'wd-meter';
+  wdMeter.innerHTML = '<div id="wd-meterbar"><div id="wd-meterfill"></div></div>' +
+                      '<div id="wd-meterlabel">sincerity meter: [awaiting input]</div>';
+  wdMsg.parentNode.insertBefore(wdMeter, wdMsg.nextSibling);
+  var wdFill = document.getElementById('wd-meterfill');
+  var wdLabel = document.getElementById('wd-meterlabel');
+
+  var wdSTEPS = [
+    [0.80, 'he is crying. respectfully. \u{1F62D}'],
+    [0.50, 'he is leaning in'],
+    [0.25, 'ok. keep going.'],
+    [0.05, 'he can tell ur not trying'],
+    [0.00, 'sincerity meter: [awaiting input]']
+  ];
+  var wdRITES = /d[i1]cks?\s*out/i;
+  var wdJESS  = /jessica/i;
+  var wdSLUR  = /(just|only)\s+a\s+gorilla/i;
+  var wdShook = 0;
+
+  function wdShake(wdEl){
+    if (Date.now() - wdShook < 1200) return;      /* she has been shaken enough */
+    wdShook = Date.now();
+    wdEl.classList.remove('wd-shudder');
+    void wdEl.offsetWidth;
+    wdEl.classList.add('wd-shudder');
+    setTimeout(function(){ wdEl.classList.remove('wd-shudder'); }, 1100);
+  }
+
+  function wdSet(wdVal, wdText, wdBad, wdRainbow){
+    wdFill.style.transform = 'scaleX(' + Math.max(0, Math.min(1, wdVal)) + ')';
+    if (wdRainbow) wdFill.classList.add('wd-rites'); else wdFill.classList.remove('wd-rites');
+    wdLabel.textContent = wdText;
+    if (wdBad) wdLabel.classList.add('wd-alarmed'); else wdLabel.classList.remove('wd-alarmed');
+    if (wdSubmit){
+      if (wdVal >= 0.8) wdSubmit.classList.add('wd-eager');
+      else wdSubmit.classList.remove('wd-eager');
+    }
+  }
+
+  function wdRead(){
+    var wdM = wdMsg.value || '', wdN = wdName.value || '';
+    if (wdJESS.test(wdN)){
+      wdShake(wdName);
+      wdSet(0, 'jessica. u were banned in 2018. jeeves said he would handle it.', true, false);
+      return;
+    }
+    if (wdSLUR.test(wdM)){
+      wdShake(wdMsg);
+      wdSet(0, '...jessica?? is that u. i know ur typing style.', true, false);
+      return;
+    }
+    if (wdRITES.test(wdM)){
+      wdSet(1, 'ANCIENT RITES: SATISFIED ✅ (est. 2016)', false, true);
+      return;
+    }
+    var wdScore = Math.min(1, wdM.trim().length / 90) + (/harambe|haramgay/i.test(wdM) ? 0.2 : 0);
+    for (var wdI = 0; wdI < wdSTEPS.length; wdI++){
+      if (wdScore >= wdSTEPS[wdI][0]){ wdSet(wdScore, wdSTEPS[wdI][1], false, false); return; }
+    }
+  }
+
+  wdMsg.addEventListener('input', wdRead);
+  wdName.addEventListener('input', wdRead);
+
+  if (typeof window.signGuestbook === 'function'){
+    var wdOldSign = window.signGuestbook;
+    window.signGuestbook = function(){
+      var wdOut = wdOldSign.apply(this, arguments);
+      wdSet(1, 'delivered. he read it. \u{1F98D}', false, false);
+      setTimeout(function(){ wdRead(); }, 3000);
+      return wdOut;
+    };
+  }
+})();
+
+/* wdOdometer — the counter that must never count down */
+/* ~*~ wd: THE ODOMETER — it counts down sometimes. we do not discuss it. ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wdHit = document.getElementById('hitcounter');
+  if (!wdHit) return;
+
+  var wdNote = document.createElement('span');
+  wdNote.id = 'wd-odonote';
+  wdHit.parentNode.insertBefore(wdNote, wdHit.nextSibling);
+
+  var wdDENIALS = [
+    '(it did not do that.)',
+    '(u did not see that.)',
+    '(i have thought about this every day.)',
+    '(we do not count down here. we are not THEM.)'
+  ];
+  var wdDenial = 0, wdWidth = (wdHit.textContent || '').replace(/\D/g,'').length || 7;
+
+  function wdPad(wdN){
+    var wdS = String(Math.max(0, wdN));
+    while (wdS.length < wdWidth) wdS = '0' + wdS;
+    return wdS;
+  }
+  function wdShow(wdN, wdBack){
+    wdHit.textContent = wdPad(wdN);          /* content is set declaratively. always. */
+    var wdCls = wdBack ? 'wd-rollback' : 'wd-roll';
+    wdHit.classList.remove('wd-roll','wd-rollback');
+    void wdHit.offsetWidth;
+    wdHit.classList.add(wdCls);
+    setTimeout(function(){ wdHit.classList.remove(wdCls); }, 400);
+  }
+  function wdValue(){ return parseInt((wdHit.textContent || '0').replace(/\D/g,''), 10) || 0; }
+
+  function wdTick(){
+    if (document.hidden) { wdQueue(); return; }
+    var wdN = wdValue();
+    if (Math.random() < 1/11){
+      /* the thing that happens on fake shrines. it is happening here. */
+      wdShow(wdN - 1, true);
+      wdNote.textContent = wdDENIALS[wdDenial++ % wdDENIALS.length];
+      setTimeout(function(){ wdShow(wdValue() + 2, false); }, 800);
+      setTimeout(function(){ wdNote.textContent = ''; }, 3800);
+    } else {
+      wdShow(wdN + 1 + Math.floor(Math.random() * 3), false);
+    }
+    wdQueue();
+  }
+  function wdQueue(){ setTimeout(wdTick, 7000 + Math.random() * 6000); }
+
+  wdQueue();
+})();
+
+/* rv-dialup — THE CONNECTION (first pageview per tab) */
+/* ================= rv — THINGS THAT HAPPEN BECAUSE OF *WHEN* ================= */
+
+/* SHARED rv HELPER — identical in the dial-up / session-timer / scheduled-task
+   effects. duplicate declarations are harmless; paste once or thrice. */
+function rvWin(rvTitle, rvHtml, rvPos, rvLife){
+  var rvPosCls = rvPos || 'rv-bl';
+  var rvOldOnes = document.querySelectorAll('.rv-win.' + rvPosCls);   /* one dialog per corner */
+  for (var rvO = 0; rvO < rvOldOnes.length; rvO++){
+    if (rvOldOnes[rvO].parentNode) rvOldOnes[rvO].parentNode.removeChild(rvOldOnes[rvO]);
+  }
+  var rvBox = document.createElement('div');
+  rvBox.className = 'rv-win rv-in ' + rvPosCls;
+  var rvBar = document.createElement('div');
+  rvBar.className = 'rv-win-bar';
+  var rvCap = document.createElement('span');
+  rvCap.textContent = rvTitle;
+  var rvXb = document.createElement('button');
+  rvXb.className = 'rv-x';
+  rvXb.textContent = '✕';
+  rvXb.setAttribute('aria-label', 'close');
+  rvBar.appendChild(rvCap); rvBar.appendChild(rvXb);
+  var rvBody = document.createElement('div');
+  rvBody.className = 'rv-win-body';
+  rvBody.innerHTML = rvHtml;
+  rvBox.appendChild(rvBar); rvBox.appendChild(rvBody);
+  document.body.appendChild(rvBox);
+  var rvDead = false, rvLifeT = null;
+  function rvBye(){
+    if (rvDead) return;
+    rvDead = true;
+    clearTimeout(rvLifeT);
+    rvBox.className += ' rv-out';
+    setTimeout(function(){ if (rvBox.parentNode) rvBox.parentNode.removeChild(rvBox); }, 380);
+  }
+  rvXb.onclick = rvBye;
+  if (rvLife) rvLifeT = setTimeout(rvBye, rvLife);
+  return { el: rvBox, body: rvBody, close: rvBye };
+}
+/* END SHARED HELPER */
+
+/* --- the connection. u are already connected. connect anyway. --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvSS = null;
+  try { rvSS = window.sessionStorage; } catch(e){}
+  try { if (rvSS && rvSS.getItem('rv_dialed')) return; if (rvSS) rvSS.setItem('rv_dialed','1'); } catch(e){}
+  var rvDials = 1;
+  try {
+    rvDials = parseInt(localStorage.getItem('rv_dials') || '0', 10) + 1;
+    localStorage.setItem('rv_dials', rvDials);
+  } catch(e){}
+
+  var rvSteps = [
+    [4,   'dialing 1-800-HARAMBE ...',                   900],
+    [9,   'no dial tone. redialing ...',                  900],
+    [17,  'handshaking (respectfully) ...',               800],
+    [26,  'negotiating protocol: GAY RIGHTS ... accepted',900],
+    [35,  'authenticating: Xx_fuRPhY_xX',                 700],
+    [48,  'recieving amazing_grace_8bit_FINAL(2).mid',    900],
+    [59,  'recieving 8,916 candles',                      800],
+    [71,  'recieving grief (large file)',                1000],
+    [83,  'grief is taking longer than expected',        1100],
+    [99,  'almost. almost. hold on.',                    2600],
+    [100, 'CONNECTED AT 28.8 kbps',                       900]
+  ];
+
+  setTimeout(function(){
+    var rvDlg = rvWin('📞 Dial-Up Networking — harambe.gay',
+      '<div class="rv-mono rv-cur" id="rvModem">initialising modem ...</div>' +
+      '<div class="rv-bar"><div class="rv-fill" id="rvFill"></div></div>' +
+      '<div class="rv-sub">u do not have 2 wait. the site already loaded.<br>this is purely 4 the vibe.</div>',
+      'rv-bl', 0);
+    var rvLine = document.getElementById('rvModem');
+    var rvFill = document.getElementById('rvFill');
+    var rvI = 0;
+    function rvNext(){
+      if (!rvLine || !rvLine.parentNode) return;      /* they closed it. fair. */
+      if (rvI >= rvSteps.length){
+        rvDlg.body.innerHTML =
+          '<div class="rv-mono rv-cur"><b>CONNECTED. 28.8 kbps.</b></div>' +
+          '<div class="rv-sub">if anybody in ur house picks up the phone, this shrine ends and we start over.<br>' +
+          'connection #' + rvDials + ' from this computer. the modem remembers u.</div>';
+        setTimeout(rvDlg.close, 4200);
+        return;
+      }
+      var rvStep = rvSteps[rvI++];
+      rvFill.style.width = rvStep[0] + '%';
+      rvLine.textContent = rvStep[1];
+      setTimeout(rvNext, rvStep[2]);
+    }
+    rvNext();
+  }, 900);
+})();
+
+/* rv-angelversary — the countdown clock in the site stats box */
+/* --- how long until the next may 28. he is not counting. i am. --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvHome = null, rvBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var rvB = 0; rvB < rvBoxes.length; rvB++){
+    var rvH3 = rvBoxes[rvB].querySelector('h3');
+    if (rvH3 && rvH3.textContent.indexOf('site stats') > -1){ rvHome = rvBoxes[rvB]; break; }
+  }
+  if (!rvHome) rvHome = rvBoxes[0] || document.getElementById('site');
+  if (!rvHome) return;
+
+  var rvClock = document.createElement('div');
+  rvClock.className = 'rv-clock';
+  rvClock.innerHTML =
+    '<div class="rv-clock-top">⏳ NEXT ANGELVERSARY ⏳</div>' +
+    '<div class="rv-digits" id="rvDigits"></div>' +
+    '<div class="rv-today" id="rvToday">🕯️ IT IS THE 28TH 🕯️</div>' +
+    '<div class="rv-clock-lbl" id="rvLbl"></div>';
+  rvHome.appendChild(rvClock);
+
+  var rvDigits = document.getElementById('rvDigits');
+  var rvToday  = document.getElementById('rvToday');
+  var rvLbl    = document.getElementById('rvLbl');
+  var rvUnits  = ['d','h','m','s'], rvCells = [], rvWas = ['','','',''];
+  for (var rvU = 0; rvU < 4; rvU++){
+    var rvCell = document.createElement('span');
+    rvCell.className = 'rv-unit';
+    rvDigits.appendChild(rvCell);
+    rvCells.push(rvCell);
+  }
+  function rvPad(rvN){ return (rvN < 10 ? '0' : '') + rvN; }
+  function rvOrd(rvN){
+    var rvS = ['th','st','nd','rd'], rvV = rvN % 100;
+    return rvN + (rvS[(rvV - 20) % 10] || rvS[rvV] || rvS[0]);
+  }
+  var rvBORN = new Date(2016, 4, 28, 0, 0, 0, 0);   /* may 28 2016. local time. his time. */
+  function rvTick(){
+    var rvNow = new Date();
+    var rvYr = rvNow.getFullYear();
+    var rvAim = new Date(rvYr, 4, 28, 0, 0, 0, 0);
+    if (rvNow.getTime() >= rvAim.getTime() + 86400000) rvAim = new Date(rvYr + 1, 4, 28, 0, 0, 0, 0);
+    var rvGone = Math.floor((rvNow.getTime() - rvBORN.getTime()) / 86400000);
+    var rvLeft = rvAim.getTime() - rvNow.getTime();
+    if (rvLeft <= 0){                                /* it is the day. it is the actual day. */
+      rvDigits.style.display = 'none';
+      rvToday.style.display = 'block';
+      rvLbl.innerHTML = 'the ' + rvOrd(rvYr - 2016) + ' angelversary.<br>dicks out. all of them. right now.';
+      return;
+    }
+    rvToday.style.display = 'none';
+    rvDigits.style.display = 'block';
+    var rvSec = Math.floor(rvLeft / 1000);
+    var rvVals = [
+      Math.floor(rvSec / 86400),
+      Math.floor(rvSec / 3600) % 24,
+      Math.floor(rvSec / 60) % 60,
+      rvSec % 60
+    ];
+    for (var rvK = 0; rvK < 4; rvK++){
+      var rvTxt = (rvK === 0 ? rvVals[rvK] : rvPad(rvVals[rvK])) + rvUnits[rvK];
+      if (rvTxt !== rvWas[rvK]){                     /* only the digit that changed gets to pop */
+        rvWas[rvK] = rvTxt;
+        rvCells[rvK].textContent = rvTxt;
+        rvCells[rvK].className = 'rv-unit';
+        void rvCells[rvK].offsetWidth;
+        rvCells[rvK].className = 'rv-unit rv-tick';
+      }
+    }
+    rvLbl.innerHTML = 'until the ' + rvOrd(rvAim.getFullYear() - 2016) + ' angelversary<br>' +
+      'he has been gone <b>' + rvGone.toLocaleString() + '</b> days<br>' +
+      '<i>he is not counting. i am.</i>';
+  }
+  rvTick();
+  setInterval(rvTick, 1000);
+})();
+
+/* rv-nightwatch — NIGHT VISITING HOURS (00:00–04:59 local only) */
+/* --- night visiting hours. he does not close. --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvNow = new Date(), rvHr = rvNow.getHours();
+  if (rvHr >= 5) return;                       /* 00:00 – 04:59 local. that is the whole joke. */
+  var rvShrine = document.querySelector('.shrine');
+  if (!rvShrine) return;
+  var rvH12 = rvHr % 12; if (rvH12 === 0) rvH12 = 12;
+  var rvMn = rvNow.getMinutes();
+  var rvStamp = rvH12 + ':' + (rvMn < 10 ? '0' : '') + rvMn + ' am';
+
+  var rvMoon = document.createElement('div');
+  rvMoon.id = 'rvMoonlight';
+  rvMoon.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(rvMoon);
+
+  var rvPlaque = document.createElement('div');
+  rvPlaque.className = 'rv-night';
+  rvPlaque.innerHTML =
+    '🌙 <b>NIGHT VISITING HOURS</b> 🌙<br>' +
+    'it is <b>' + rvStamp + '</b> and u are on a gorilla memorial website.<br>' +
+    'this is not a criticism. i built most of this between 2 and 5 am. hi. 👋<br>' +
+    '<span class="rv-night-sub">the shrine never closes. the candles r on a timer. jeff is asleep — do NOT perceive him while he is asleep, he gets extremely weird about it. see u at sunrise. — Xx_fuRPhY_xX</span>';
+  rvShrine.appendChild(rvPlaque);
+})();
+
+/* rv-screensaver — harambe_screensaver.scr (100s idle) */
+/* --- u stopped moving. the screensaver kicks in. it is 1998 in here. --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvIDLE = 100000;      /* 100 seconds of stillness */
+  var rvSaver = document.createElement('div');
+  rvSaver.id = 'rvSaver';
+  rvSaver.setAttribute('aria-hidden', 'true');
+  rvSaver.innerHTML =
+    '<div id="rvSaverY"><div id="rvSaverX">' +
+    '<span class="rv-saver-txt">HARAMBE 🦍' +
+    '<span class="rv-saver-sub" id="rvSaverSub">harambe_screensaver.scr · do not turn off ur computer</span>' +
+    '</span></div></div>';
+  document.body.appendChild(rvSaver);
+  var rvSub = document.getElementById('rvSaverSub');
+  var rvSubs = [
+    'harambe_screensaver.scr · do not turn off ur computer',
+    'harambe_screensaver.scr · still here. still gay. still gone.',
+    'u keep wandering off. thats ok. i have had 10 years of practice waiting.',
+    'press any key. or dont. no pressure. · (do not perceive jeff)'
+  ];
+  var rvOn = false, rvTimes = 0, rvShownAt = 0, rvLast = Date.now();
+  function rvSleep(){
+    rvOn = true; rvShownAt = Date.now();
+    rvSub.textContent = rvSubs[Math.min(rvTimes, rvSubs.length - 1)];
+    rvTimes++;
+    rvSaver.className = 'rv-on';
+  }
+  function rvWake(){
+    rvLast = Date.now();
+    if (rvOn){ rvOn = false; rvSaver.className = ''; }
+  }
+  var rvEvents = ['mousemove','mousedown','keydown','wheel','touchstart','scroll'];
+  for (var rvE = 0; rvE < rvEvents.length; rvE++){
+    addEventListener(rvEvents[rvE], rvWake, {passive: true});
+  }
+  /* a 2s poll, not rAF and not a timer per mousemove */
+  setInterval(function(){
+    if (document.hidden){ rvLast = Date.now(); return; }          /* another tab is not idleness, it is betrayal */
+    if (!rvOn && Date.now() - rvLast > rvIDLE) rvSleep();
+    else if (rvOn && Date.now() - rvShownAt > 300000) rvWake();    /* even the screensaver got bored */
+  }, 2000);
+})();
+
+/* rv-session-timer — "u have been here N minutes" */
+/* SHARED rv HELPER — byte-identical to the dial-up effect's helper.
+   if that effect is already pasted, delete this copy (or don't; a duplicate
+   function declaration is legal and identical). */
+function rvWin(rvTitle, rvHtml, rvPos, rvLife){
+  var rvPosCls = rvPos || 'rv-bl';
+  var rvOldOnes = document.querySelectorAll('.rv-win.' + rvPosCls);
+  for (var rvO = 0; rvO < rvOldOnes.length; rvO++){
+    if (rvOldOnes[rvO].parentNode) rvOldOnes[rvO].parentNode.removeChild(rvOldOnes[rvO]);
+  }
+  var rvBox = document.createElement('div');
+  rvBox.className = 'rv-win rv-in ' + rvPosCls;
+  var rvBar = document.createElement('div');
+  rvBar.className = 'rv-win-bar';
+  var rvCap = document.createElement('span');
+  rvCap.textContent = rvTitle;
+  var rvXb = document.createElement('button');
+  rvXb.className = 'rv-x';
+  rvXb.textContent = '✕';
+  rvXb.setAttribute('aria-label', 'close');
+  rvBar.appendChild(rvCap); rvBar.appendChild(rvXb);
+  var rvBody = document.createElement('div');
+  rvBody.className = 'rv-win-body';
+  rvBody.innerHTML = rvHtml;
+  rvBox.appendChild(rvBar); rvBox.appendChild(rvBody);
+  document.body.appendChild(rvBox);
+  var rvDead = false, rvLifeT = null;
+  function rvBye(){
+    if (rvDead) return;
+    rvDead = true;
+    clearTimeout(rvLifeT);
+    rvBox.className += ' rv-out';
+    setTimeout(function(){ if (rvBox.parentNode) rvBox.parentNode.removeChild(rvBox); }, 380);
+  }
+  rvXb.onclick = rvBye;
+  if (rvLife) rvLifeT = setTimeout(rvBye, rvLife);
+  return { el: rvBox, body: rvBody, close: rvBye };
+}
+/* END SHARED HELPER */
+
+/* --- the session timer. it keeps records. it said it would. --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvMin = 0, rvTotal = 0;
+  try { rvTotal = parseInt(localStorage.getItem('rv_mins') || '0', 10); } catch(e){}
+  function rvNag(rvN){
+    if (rvN === 2) return '<b>2 minutes.</b> the average visitor lasts 11 seconds.<br>u have lapped them ten times.' +
+      '<span class="rv-sub">this is not a nag. it is a compliment with a timestamp.</span>';
+    if (rvN === 5) return '<b>5 minutes.</b> thats fifty vines.<br>he only ever got six seconds at a time and he MADE IT WORK.';
+    if (rvN === 11) return '<b>11 minutes.</b><br>lifetime total on this shrine: <b>' + rvTotal + ' min</b>, across every visit.' +
+      '<span class="rv-sub">yes i keep records. no i will not stop. it is the one thing i am good at.</span>';
+    if (rvN === 20) return '<b>20 minutes.</b> the f.a.q. asks if ur ok.<br>u scrolled past it. i saw.' +
+      '<span class="rv-sub">dicks out means never having 2 answer that. 🦍</span>';
+    if (rvN === 35) return '<b>35 minutes.</b> ok. we r just two guys hanging out now.<br>i\'ll get bananas, u pick the music.' +
+      '<span class="rv-sub">(there is only one song. there has only ever been one song.)</span>';
+    if (rvN === 60) return '<b>ONE (1) HOUR.</b><br>u have now out-sat the entire 2016 news cycle. it lasted four days.<br>emotionally, u win.';
+    return null;
+  }
+  setInterval(function(){
+    if (document.hidden) return;              /* time spent in another tab is not time spent with him */
+    rvMin++;
+    rvTotal++;
+    try { localStorage.setItem('rv_mins', rvTotal); } catch(e){}
+    var rvMsg = rvNag(rvMin);
+    if (rvMsg) rvWin('⏱ harambe.gay — session timer', rvMsg, 'rv-tl', 15000);
+  }, 60000);
+})();
+
+/* rv-schedtask — HARAMBE_CHECK.BAT (rare: ~1 pageview in 20, guaranteed on the 28th) */
+/* SHARED rv HELPER \u2014 byte-identical to the dial-up effect's helper.
+   duplicate declarations are legal and identical; keep one or keep all. */
+function rvWin(rvTitle, rvHtml, rvPos, rvLife){
+  var rvPosCls = rvPos || 'rv-bl';
+  var rvOldOnes = document.querySelectorAll('.rv-win.' + rvPosCls);
+  for (var rvO = 0; rvO < rvOldOnes.length; rvO++){
+    if (rvOldOnes[rvO].parentNode) rvOldOnes[rvO].parentNode.removeChild(rvOldOnes[rvO]);
+  }
+  var rvBox = document.createElement('div');
+  rvBox.className = 'rv-win rv-in ' + rvPosCls;
+  var rvBar = document.createElement('div');
+  rvBar.className = 'rv-win-bar';
+  var rvCap = document.createElement('span');
+  rvCap.textContent = rvTitle;
+  var rvXb = document.createElement('button');
+  rvXb.className = 'rv-x';
+  rvXb.textContent = '\u2715';
+  rvXb.setAttribute('aria-label', 'close');
+  rvBar.appendChild(rvCap); rvBar.appendChild(rvXb);
+  var rvBody = document.createElement('div');
+  rvBody.className = 'rv-win-body';
+  rvBody.innerHTML = rvHtml;
+  rvBox.appendChild(rvBar); rvBox.appendChild(rvBody);
+  document.body.appendChild(rvBox);
+  var rvDead = false, rvLifeT = null;
+  function rvBye(){
+    if (rvDead) return;
+    rvDead = true;
+    clearTimeout(rvLifeT);
+    rvBox.className += ' rv-out';
+    setTimeout(function(){ if (rvBox.parentNode) rvBox.parentNode.removeChild(rvBox); }, 380);
+  }
+  rvXb.onclick = rvBye;
+  if (rvLife) rvLifeT = setTimeout(rvBye, rvLife);
+  return { el: rvBox, body: rvBody, close: rvBye };
+}
+/* END SHARED HELPER */
+
+/* --- the scheduled task nobody asked him 2 write --- */
+(function(){
+  var rvCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (rvCalm) return;
+  var rvNow = new Date();
+  /* roughly 1 pageview in 20 \u2014 and always on the 28th, obviously */
+  if (rvNow.getDate() !== 28 && Math.random() >= 0.05) return;
+  var rvRuns = Math.floor((rvNow.getTime() - new Date(2016, 4, 28, 0, 0, 0, 0).getTime()) / 86400000);
+  if (rvRuns < 1) rvRuns = 1;
+  setTimeout(function(){
+    var rvDlg = rvWin('\u2699 sched_tasks.exe \u2014 HARAMBE_CHECK.BAT',
+      '<div class="rv-mono">C:\\SHRINE> harambe_check.bat</div>' +
+      '<div class="rv-mono rv-cur">scanning heaven for returns<span id="rvDots">.</span></div>',
+      'rv-tl', 0);
+    var rvN = 1;
+    var rvSpin = setInterval(function(){
+      var rvD = document.getElementById('rvDots');
+      if (!rvD){ clearInterval(rvSpin); return; }
+      rvN = (rvN % 3) + 1;
+      rvD.textContent = new Array(rvN + 1).join('.');
+    }, 400);
+    setTimeout(function(){
+      clearInterval(rvSpin);
+      if (!rvDlg.el.parentNode) return;              /* they closed it before the verdict. lucky. */
+      rvDlg.body.innerHTML =
+        '<div class="rv-mono">C:\\SHRINE> harambe_check.bat</div>' +
+        '<div class="rv-mono">scanning heaven for returns ... <b class="rv-no">[ NO ]</b></div>' +
+        '<div class="rv-sub">this task has run <b>' + rvRuns.toLocaleString() + '</b> times since 5/28/2016.<br>' +
+        'it has failed <b>' + rvRuns.toLocaleString() + '</b> times.<br>' +
+        'next run: tomorrow, 4:20 am.<br>' +
+        'this task cannot be disabled. i wrote it. i am not deleting it. \u2014 Xx_fuRPhY_xX</div>';
+      setTimeout(rvDlg.close, 17000);
+    }, 2600);
+  }, 22000);
+})();
 
 /* ================= ANIMATION WAVE 4 (behaviour) ================= */
 /* pixel sprite data URIs — double-quoted because the SVG uses single quotes inside */
