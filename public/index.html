@@ -342,6 +342,663 @@ input, textarea {
 }
 
 /* ==========================================================
+   ~*~ ANIMATION WAVE 6 — frames, depth, scroll & state ~*~
+   ========================================================== */
+
+/* ~*~ ANIMATION WAVE: sf — ACTUAL FRAMES ~*~ */
+/* every other pixel sprite on this site is ONE drawing getting shoved around by
+   a transform. these 4 r drawn 3 and 4 times over and flipped like a flip book.
+   i tweened them by hand. in notepad. at 2am. u will respect the frames.
+                                                          — Xx_fuRPhY_xX */
+
+/* ---- shared by all four sf effects. paste this bit ONCE. ---- */
+.sfPix {
+  display: inline-block; vertical-align: bottom;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+.sfRig { text-align: center; margin: 8px 0 2px; }
+.sfCap {
+  display: block; margin-top: 3px;
+  font-size: 10px; line-height: 1.3; color: #b9a9ff;
+}
+
+/* --- 1. jeff. 3 frames: exhale / inhale / blink. he is ALIVE in there --- */
+.sfJeff {
+  width: 48px; height: 48px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 12' shape-rendering='crispEdges'><rect x='4' y='1' width='4' height='1' fill='%23181412'/><rect x='3' y='2' width='1' height='1' fill='%23181412'/><rect x='4' y='2' width='4' height='2' fill='%23302926'/><rect x='8' y='2' width='1' height='1' fill='%23181412'/><rect x='2' y='3' width='1' height='4' fill='%23181412'/><rect x='3' y='3' width='1' height='1' fill='%23302926'/><rect x='8' y='3' width='1' height='1' fill='%23302926'/><rect x='9' y='3' width='1' height='4' fill='%23181412'/><rect x='3' y='4' width='6' height='1' fill='%2325201d'/><rect x='3' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='4' y='5' width='1' height='1' fill='%23382210'/><rect x='5' y='5' width='2' height='1' fill='%2325201d'/><rect x='7' y='5' width='1' height='1' fill='%23382210'/><rect x='8' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='3' y='6' width='1' height='1' fill='%234c423b'/><rect x='4' y='6' width='4' height='1' fill='%2368584c'/><rect x='8' y='6' width='1' height='1' fill='%234c423b'/><rect x='3' y='7' width='1' height='1' fill='%23181412'/><rect x='4' y='7' width='1' height='1' fill='%231a1411'/><rect x='5' y='7' width='2' height='1' fill='%2368584c'/><rect x='7' y='7' width='1' height='1' fill='%231a1411'/><rect x='8' y='7' width='1' height='1' fill='%23181412'/><rect x='1' y='8' width='1' height='1' fill='%23181412'/><rect x='2' y='8' width='3' height='1' fill='%23302926'/><rect x='5' y='8' width='2' height='2' fill='%23968a80'/><rect x='7' y='8' width='3' height='1' fill='%23302926'/><rect x='10' y='8' width='1' height='1' fill='%23181412'/><rect x='0' y='9' width='1' height='1' fill='%23181412'/><rect x='1' y='9' width='3' height='1' fill='%23302926'/><rect x='4' y='9' width='1' height='1' fill='%23968a80'/><rect x='7' y='9' width='1' height='1' fill='%23968a80'/><rect x='8' y='9' width='3' height='1' fill='%23302926'/><rect x='11' y='9' width='1' height='1' fill='%23181412'/><rect x='1' y='10' width='1' height='1' fill='%23181412'/><rect x='2' y='10' width='8' height='1' fill='%23302926'/><rect x='10' y='10' width='1' height='1' fill='%23181412'/><rect x='2' y='11' width='1' height='1' fill='%23181412'/><rect x='3' y='11' width='1' height='1' fill='%23302926'/><rect x='4' y='11' width='1' height='1' fill='%23181412'/><rect x='7' y='11' width='1' height='1' fill='%23181412'/><rect x='8' y='11' width='1' height='1' fill='%23302926'/><rect x='9' y='11' width='1' height='1' fill='%23181412'/><rect x='16' y='0' width='4' height='1' fill='%23181412'/><rect x='15' y='1' width='1' height='1' fill='%23181412'/><rect x='16' y='1' width='4' height='2' fill='%23302926'/><rect x='20' y='1' width='1' height='1' fill='%23181412'/><rect x='14' y='2' width='1' height='4' fill='%23181412'/><rect x='15' y='2' width='1' height='1' fill='%23302926'/><rect x='20' y='2' width='1' height='1' fill='%23302926'/><rect x='21' y='2' width='1' height='4' fill='%23181412'/><rect x='15' y='3' width='6' height='1' fill='%2325201d'/><rect x='15' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='16' y='4' width='1' height='1' fill='%23382210'/><rect x='17' y='4' width='2' height='1' fill='%2325201d'/><rect x='19' y='4' width='1' height='1' fill='%23382210'/><rect x='20' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='15' y='5' width='1' height='1' fill='%234c423b'/><rect x='16' y='5' width='4' height='1' fill='%2368584c'/><rect x='20' y='5' width='1' height='1' fill='%234c423b'/><rect x='15' y='6' width='1' height='1' fill='%23181412'/><rect x='16' y='6' width='1' height='1' fill='%231a1411'/><rect x='17' y='6' width='2' height='1' fill='%2368584c'/><rect x='19' y='6' width='1' height='1' fill='%231a1411'/><rect x='20' y='6' width='1' height='1' fill='%23181412'/><rect x='13' y='7' width='1' height='1' fill='%23181412'/><rect x='14' y='7' width='3' height='1' fill='%23302926'/><rect x='17' y='7' width='2' height='3' fill='%23968a80'/><rect x='19' y='7' width='3' height='1' fill='%23302926'/><rect x='22' y='7' width='1' height='1' fill='%23181412'/><rect x='12' y='8' width='1' height='2' fill='%23181412'/><rect x='13' y='8' width='3' height='2' fill='%23302926'/><rect x='16' y='8' width='1' height='2' fill='%23968a80'/><rect x='19' y='8' width='1' height='2' fill='%23968a80'/><rect x='20' y='8' width='3' height='2' fill='%23302926'/><rect x='23' y='8' width='1' height='2' fill='%23181412'/><rect x='13' y='10' width='1' height='1' fill='%23181412'/><rect x='14' y='10' width='8' height='1' fill='%23302926'/><rect x='22' y='10' width='1' height='1' fill='%23181412'/><rect x='14' y='11' width='1' height='1' fill='%23181412'/><rect x='15' y='11' width='1' height='1' fill='%23302926'/><rect x='16' y='11' width='1' height='1' fill='%23181412'/><rect x='19' y='11' width='1' height='1' fill='%23181412'/><rect x='20' y='11' width='1' height='1' fill='%23302926'/><rect x='21' y='11' width='1' height='1' fill='%23181412'/><rect x='28' y='1' width='4' height='1' fill='%23181412'/><rect x='27' y='2' width='1' height='1' fill='%23181412'/><rect x='28' y='2' width='4' height='2' fill='%23302926'/><rect x='32' y='2' width='1' height='1' fill='%23181412'/><rect x='26' y='3' width='1' height='4' fill='%23181412'/><rect x='27' y='3' width='1' height='1' fill='%23302926'/><rect x='32' y='3' width='1' height='1' fill='%23302926'/><rect x='33' y='3' width='1' height='4' fill='%23181412'/><rect x='27' y='4' width='6' height='1' fill='%2325201d'/><rect x='27' y='5' width='6' height='1' fill='%231a1411'/><rect x='27' y='6' width='1' height='1' fill='%234c423b'/><rect x='28' y='6' width='4' height='1' fill='%2368584c'/><rect x='32' y='6' width='1' height='1' fill='%234c423b'/><rect x='27' y='7' width='1' height='1' fill='%23181412'/><rect x='28' y='7' width='1' height='1' fill='%231a1411'/><rect x='29' y='7' width='2' height='1' fill='%2368584c'/><rect x='31' y='7' width='1' height='1' fill='%231a1411'/><rect x='32' y='7' width='1' height='1' fill='%23181412'/><rect x='25' y='8' width='1' height='1' fill='%23181412'/><rect x='26' y='8' width='3' height='1' fill='%23302926'/><rect x='29' y='8' width='2' height='2' fill='%23968a80'/><rect x='31' y='8' width='3' height='1' fill='%23302926'/><rect x='34' y='8' width='1' height='1' fill='%23181412'/><rect x='24' y='9' width='1' height='1' fill='%23181412'/><rect x='25' y='9' width='3' height='1' fill='%23302926'/><rect x='28' y='9' width='1' height='1' fill='%23968a80'/><rect x='31' y='9' width='1' height='1' fill='%23968a80'/><rect x='32' y='9' width='3' height='1' fill='%23302926'/><rect x='35' y='9' width='1' height='1' fill='%23181412'/><rect x='25' y='10' width='1' height='1' fill='%23181412'/><rect x='26' y='10' width='8' height='1' fill='%23302926'/><rect x='34' y='10' width='1' height='1' fill='%23181412'/><rect x='26' y='11' width='1' height='1' fill='%23181412'/><rect x='27' y='11' width='1' height='1' fill='%23302926'/><rect x='28' y='11' width='1' height='1' fill='%23181412'/><rect x='31' y='11' width='1' height='1' fill='%23181412'/><rect x='32' y='11' width='1' height='1' fill='%23302926'/><rect x='33' y='11' width='1' height='1' fill='%23181412'/></svg>");
+  background-size: 144px 48px;
+  background-position: 0 0;
+  animation: sfJeffIdle 3.6s step-end infinite;
+}
+@keyframes sfJeffIdle {
+  0%   { background-position: 0 0; }      /* rest      */
+  32%  { background-position: -48px 0; }  /* breath in */
+  64%  { background-position: 0 0; }      /* breath out*/
+  93%  { background-position: -96px 0; }  /* blink     */
+  100% { background-position: 0 0; }
+}
+/* u perceived him directly. he is holding his breath until u stop. */
+.sfJeff:hover, .sfJeff:focus { animation-play-state: paused; }
+
+/* --- 2. the webring treadmill. 4 frame walk cycle, steps(4), no sliding --- */
+.sfTread {
+  display: block; margin: 0 auto;
+  width: 56px; height: 56px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 12' shape-rendering='crispEdges'><rect x='4' y='1' width='4' height='1' fill='%23181412'/><rect x='2' y='2' width='2' height='1' fill='%23181412'/><rect x='4' y='2' width='5' height='1' fill='%23302926'/><rect x='9' y='2' width='2' height='1' fill='%23181412'/><rect x='1' y='3' width='1' height='6' fill='%23181412'/><rect x='2' y='3' width='3' height='1' fill='%23968a80'/><rect x='5' y='3' width='6' height='1' fill='%23302926'/><rect x='11' y='3' width='1' height='4' fill='%23181412'/><rect x='2' y='4' width='2' height='1' fill='%23968a80'/><rect x='4' y='4' width='3' height='4' fill='%23302926'/><rect x='7' y='4' width='1' height='3' fill='%234c423b'/><rect x='8' y='4' width='2' height='1' fill='%2325201d'/><rect x='10' y='4' width='1' height='2' fill='%2368584c'/><rect x='2' y='5' width='2' height='3' fill='%23302926'/><rect x='8' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='9' y='5' width='1' height='1' fill='%23382210'/><rect x='8' y='6' width='2' height='2' fill='%2368584c'/><rect x='10' y='6' width='1' height='1' fill='%231a1411'/><rect x='7' y='7' width='1' height='3' fill='%23302926'/><rect x='10' y='7' width='1' height='2' fill='%23181412'/><rect x='2' y='8' width='1' height='1' fill='%23302926'/><rect x='3' y='8' width='4' height='2' fill='%234c423b'/><rect x='8' y='8' width='1' height='2' fill='%23302926'/><rect x='9' y='8' width='1' height='4' fill='%23181412'/><rect x='2' y='9' width='1' height='1' fill='%23181412'/><rect x='1' y='10' width='1' height='2' fill='%23181412'/><rect x='2' y='10' width='1' height='1' fill='%234c423b'/><rect x='3' y='10' width='1' height='2' fill='%23181412'/><rect x='10' y='10' width='1' height='1' fill='%234c423b'/><rect x='11' y='10' width='1' height='2' fill='%23181412'/><rect x='2' y='11' width='1' height='1' fill='%23181412'/><rect x='10' y='11' width='1' height='1' fill='%23181412'/><rect x='16' y='0' width='4' height='1' fill='%23181412'/><rect x='14' y='1' width='2' height='1' fill='%23181412'/><rect x='16' y='1' width='5' height='1' fill='%23302926'/><rect x='21' y='1' width='2' height='1' fill='%23181412'/><rect x='13' y='2' width='1' height='6' fill='%23181412'/><rect x='14' y='2' width='3' height='1' fill='%23968a80'/><rect x='17' y='2' width='6' height='1' fill='%23302926'/><rect x='23' y='2' width='1' height='4' fill='%23181412'/><rect x='14' y='3' width='2' height='1' fill='%23968a80'/><rect x='16' y='3' width='3' height='4' fill='%23302926'/><rect x='19' y='3' width='1' height='3' fill='%234c423b'/><rect x='20' y='3' width='2' height='1' fill='%2325201d'/><rect x='22' y='3' width='1' height='2' fill='%2368584c'/><rect x='14' y='4' width='2' height='3' fill='%23302926'/><rect x='20' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='21' y='4' width='1' height='1' fill='%23382210'/><rect x='20' y='5' width='2' height='2' fill='%2368584c'/><rect x='22' y='5' width='1' height='1' fill='%231a1411'/><rect x='19' y='6' width='1' height='3' fill='%23302926'/><rect x='22' y='6' width='1' height='2' fill='%23181412'/><rect x='14' y='7' width='1' height='1' fill='%23302926'/><rect x='15' y='7' width='4' height='2' fill='%234c423b'/><rect x='20' y='7' width='1' height='2' fill='%23302926'/><rect x='21' y='7' width='1' height='2' fill='%23181412'/><rect x='14' y='8' width='1' height='4' fill='%23181412'/><rect x='15' y='9' width='1' height='2' fill='%234c423b'/><rect x='16' y='9' width='1' height='3' fill='%23181412'/><rect x='20' y='9' width='1' height='3' fill='%23181412'/><rect x='21' y='9' width='1' height='2' fill='%234c423b'/><rect x='22' y='9' width='1' height='3' fill='%23181412'/><rect x='15' y='11' width='1' height='1' fill='%23181412'/><rect x='21' y='11' width='1' height='1' fill='%23181412'/><rect x='28' y='1' width='4' height='1' fill='%23181412'/><rect x='26' y='2' width='2' height='1' fill='%23181412'/><rect x='28' y='2' width='5' height='1' fill='%23302926'/><rect x='33' y='2' width='2' height='1' fill='%23181412'/><rect x='25' y='3' width='1' height='6' fill='%23181412'/><rect x='26' y='3' width='3' height='1' fill='%23968a80'/><rect x='29' y='3' width='6' height='1' fill='%23302926'/><rect x='35' y='3' width='1' height='4' fill='%23181412'/><rect x='26' y='4' width='2' height='1' fill='%23968a80'/><rect x='28' y='4' width='3' height='4' fill='%23302926'/><rect x='31' y='4' width='1' height='3' fill='%234c423b'/><rect x='32' y='4' width='2' height='1' fill='%2325201d'/><rect x='34' y='4' width='1' height='2' fill='%2368584c'/><rect x='26' y='5' width='2' height='3' fill='%23302926'/><rect x='32' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='33' y='5' width='1' height='1' fill='%23382210'/><rect x='32' y='6' width='2' height='2' fill='%2368584c'/><rect x='34' y='6' width='1' height='1' fill='%231a1411'/><rect x='31' y='7' width='1' height='3' fill='%23302926'/><rect x='34' y='7' width='1' height='2' fill='%23181412'/><rect x='26' y='8' width='1' height='1' fill='%23302926'/><rect x='27' y='8' width='4' height='2' fill='%234c423b'/><rect x='32' y='8' width='1' height='2' fill='%23302926'/><rect x='33' y='8' width='1' height='4' fill='%23181412'/><rect x='26' y='9' width='1' height='1' fill='%23181412'/><rect x='27' y='10' width='1' height='2' fill='%23181412'/><rect x='28' y='10' width='1' height='1' fill='%234c423b'/><rect x='29' y='10' width='1' height='2' fill='%23181412'/><rect x='31' y='10' width='1' height='2' fill='%23181412'/><rect x='32' y='10' width='1' height='1' fill='%234c423b'/><rect x='28' y='11' width='1' height='1' fill='%23181412'/><rect x='32' y='11' width='1' height='1' fill='%23181412'/><rect x='40' y='0' width='4' height='1' fill='%23181412'/><rect x='38' y='1' width='2' height='1' fill='%23181412'/><rect x='40' y='1' width='5' height='1' fill='%23302926'/><rect x='45' y='1' width='2' height='1' fill='%23181412'/><rect x='37' y='2' width='1' height='6' fill='%23181412'/><rect x='38' y='2' width='3' height='1' fill='%23968a80'/><rect x='41' y='2' width='6' height='1' fill='%23302926'/><rect x='47' y='2' width='1' height='4' fill='%23181412'/><rect x='38' y='3' width='2' height='1' fill='%23968a80'/><rect x='40' y='3' width='3' height='4' fill='%23302926'/><rect x='43' y='3' width='1' height='3' fill='%234c423b'/><rect x='44' y='3' width='2' height='1' fill='%2325201d'/><rect x='46' y='3' width='1' height='2' fill='%2368584c'/><rect x='38' y='4' width='2' height='3' fill='%23302926'/><rect x='44' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='45' y='4' width='1' height='1' fill='%23382210'/><rect x='44' y='5' width='2' height='2' fill='%2368584c'/><rect x='46' y='5' width='1' height='1' fill='%231a1411'/><rect x='43' y='6' width='1' height='3' fill='%23302926'/><rect x='46' y='6' width='1' height='2' fill='%23181412'/><rect x='38' y='7' width='1' height='1' fill='%23302926'/><rect x='39' y='7' width='4' height='2' fill='%234c423b'/><rect x='44' y='7' width='1' height='2' fill='%23302926'/><rect x='45' y='7' width='1' height='2' fill='%23181412'/><rect x='38' y='8' width='1' height='4' fill='%23181412'/><rect x='39' y='9' width='1' height='2' fill='%234c423b'/><rect x='40' y='9' width='1' height='3' fill='%23181412'/><rect x='44' y='9' width='1' height='3' fill='%23181412'/><rect x='45' y='9' width='1' height='2' fill='%234c423b'/><rect x='46' y='9' width='1' height='3' fill='%23181412'/><rect x='39' y='11' width='1' height='1' fill='%23181412'/><rect x='45' y='11' width='1' height='1' fill='%23181412'/></svg>");
+  background-size: 224px 56px;
+  animation: sfTreadStep .52s steps(4) infinite;
+}
+@keyframes sfTreadStep {
+  from { background-position: 0 0; }
+  to   { background-position: -224px 0; }
+}
+.sfTread:hover { animation-duration: .26s; }
+.sfBelt {
+  display: block; width: 86px; height: 7px; margin: 1px auto 0;
+  border: 2px inset #8a8a8a;
+  background-image: repeating-linear-gradient(90deg,#4a4a4a 0 6px,#232323 6px 12px);
+  background-size: 12px 100%;
+  animation: sfBeltRoll .42s linear infinite;
+}
+@keyframes sfBeltRoll { to { background-position: -12px 0; } }
+.sfTread:hover + .sfBelt { animation-duration: .21s; }
+
+/* --- 3. chewing. 4 frames. the banana regenerates. thats heaven baby --- */
+.sfChew {
+  width: 52px; height: 52px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 12' shape-rendering='crispEdges'><rect x='2' y='0' width='4' height='1' fill='%23181412'/><rect x='1' y='1' width='1' height='1' fill='%23181412'/><rect x='2' y='1' width='4' height='2' fill='%23302926'/><rect x='6' y='1' width='1' height='1' fill='%23181412'/><rect x='0' y='2' width='1' height='6' fill='%23181412'/><rect x='1' y='2' width='1' height='1' fill='%23302926'/><rect x='6' y='2' width='1' height='1' fill='%23302926'/><rect x='7' y='2' width='1' height='6' fill='%23181412'/><rect x='1' y='3' width='6' height='1' fill='%2325201d'/><rect x='1' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='2' y='4' width='1' height='1' fill='%23382210'/><rect x='3' y='4' width='2' height='1' fill='%2325201d'/><rect x='5' y='4' width='1' height='1' fill='%23382210'/><rect x='6' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='1' y='5' width='1' height='1' fill='%234c423b'/><rect x='2' y='5' width='4' height='1' fill='%2368584c'/><rect x='6' y='5' width='1' height='1' fill='%234c423b'/><rect x='9' y='5' width='2' height='1' fill='%23181412'/><rect x='1' y='6' width='1' height='2' fill='%2368584c'/><rect x='2' y='6' width='1' height='1' fill='%231a1411'/><rect x='3' y='6' width='2' height='1' fill='%2368584c'/><rect x='5' y='6' width='1' height='1' fill='%231a1411'/><rect x='6' y='6' width='1' height='2' fill='%2368584c'/><rect x='8' y='6' width='1' height='4' fill='%23181412'/><rect x='9' y='6' width='2' height='1' fill='%23ffed00'/><rect x='11' y='6' width='1' height='4' fill='%23181412'/><rect x='2' y='7' width='1' height='2' fill='%2368584c'/><rect x='3' y='7' width='2' height='1' fill='%231a1411'/><rect x='5' y='7' width='1' height='2' fill='%2368584c'/><rect x='9' y='7' width='1' height='2' fill='%23ffed00'/><rect x='10' y='7' width='1' height='3' fill='%23ff8c00'/><rect x='1' y='8' width='1' height='2' fill='%23181412'/><rect x='3' y='8' width='2' height='1' fill='%2368584c'/><rect x='6' y='8' width='1' height='2' fill='%23181412'/><rect x='2' y='9' width='4' height='1' fill='%23302926'/><rect x='9' y='9' width='1' height='1' fill='%23ff8c00'/><rect x='0' y='10' width='1' height='1' fill='%23181412'/><rect x='1' y='10' width='2' height='1' fill='%23302926'/><rect x='3' y='10' width='2' height='2' fill='%23968a80'/><rect x='5' y='10' width='2' height='1' fill='%23302926'/><rect x='7' y='10' width='1' height='1' fill='%23181412'/><rect x='9' y='10' width='2' height='1' fill='%23181412'/><rect x='1' y='11' width='1' height='1' fill='%23181412'/><rect x='2' y='11' width='1' height='1' fill='%23968a80'/><rect x='5' y='11' width='1' height='1' fill='%23968a80'/><rect x='6' y='11' width='1' height='1' fill='%23181412'/><rect x='14' y='0' width='4' height='1' fill='%23181412'/><rect x='13' y='1' width='1' height='1' fill='%23181412'/><rect x='14' y='1' width='4' height='2' fill='%23302926'/><rect x='18' y='1' width='1' height='1' fill='%23181412'/><rect x='12' y='2' width='1' height='6' fill='%23181412'/><rect x='13' y='2' width='1' height='1' fill='%23302926'/><rect x='18' y='2' width='1' height='1' fill='%23302926'/><rect x='19' y='2' width='1' height='6' fill='%23181412'/><rect x='13' y='3' width='6' height='1' fill='%2325201d'/><rect x='13' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='14' y='4' width='1' height='1' fill='%23382210'/><rect x='15' y='4' width='2' height='1' fill='%2325201d'/><rect x='17' y='4' width='1' height='1' fill='%23382210'/><rect x='18' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='13' y='5' width='1' height='1' fill='%234c423b'/><rect x='14' y='5' width='4' height='1' fill='%2368584c'/><rect x='18' y='5' width='1' height='1' fill='%234c423b'/><rect x='13' y='6' width='1' height='2' fill='%2368584c'/><rect x='14' y='6' width='1' height='2' fill='%231a1411'/><rect x='15' y='6' width='2' height='1' fill='%2368584c'/><rect x='17' y='6' width='1' height='2' fill='%231a1411'/><rect x='18' y='6' width='1' height='2' fill='%2368584c'/><rect x='15' y='7' width='2' height='1' fill='%231a1411'/><rect x='21' y='7' width='2' height='1' fill='%23181412'/><rect x='13' y='8' width='1' height='2' fill='%23181412'/><rect x='14' y='8' width='4' height='1' fill='%2368584c'/><rect x='18' y='8' width='1' height='2' fill='%23181412'/><rect x='20' y='8' width='1' height='2' fill='%23181412'/><rect x='21' y='8' width='1' height='1' fill='%23ffed00'/><rect x='22' y='8' width='1' height='2' fill='%23ff8c00'/><rect x='23' y='8' width='1' height='2' fill='%23181412'/><rect x='14' y='9' width='4' height='1' fill='%23302926'/><rect x='21' y='9' width='1' height='1' fill='%23ff8c00'/><rect x='12' y='10' width='1' height='1' fill='%23181412'/><rect x='13' y='10' width='2' height='1' fill='%23302926'/><rect x='15' y='10' width='2' height='2' fill='%23968a80'/><rect x='17' y='10' width='2' height='1' fill='%23302926'/><rect x='19' y='10' width='1' height='1' fill='%23181412'/><rect x='21' y='10' width='2' height='1' fill='%23181412'/><rect x='13' y='11' width='1' height='1' fill='%23181412'/><rect x='14' y='11' width='1' height='1' fill='%23968a80'/><rect x='17' y='11' width='1' height='1' fill='%23968a80'/><rect x='18' y='11' width='1' height='1' fill='%23181412'/><rect x='26' y='0' width='4' height='1' fill='%23181412'/><rect x='25' y='1' width='1' height='1' fill='%23181412'/><rect x='26' y='1' width='4' height='2' fill='%23302926'/><rect x='30' y='1' width='1' height='1' fill='%23181412'/><rect x='24' y='2' width='1' height='7' fill='%23181412'/><rect x='25' y='2' width='1' height='1' fill='%23302926'/><rect x='30' y='2' width='1' height='1' fill='%23302926'/><rect x='31' y='2' width='1' height='7' fill='%23181412'/><rect x='25' y='3' width='6' height='1' fill='%2325201d'/><rect x='25' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='26' y='4' width='1' height='1' fill='%23382210'/><rect x='27' y='4' width='2' height='1' fill='%2325201d'/><rect x='29' y='4' width='1' height='1' fill='%23382210'/><rect x='30' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='25' y='5' width='1' height='1' fill='%234c423b'/><rect x='26' y='5' width='4' height='1' fill='%2368584c'/><rect x='30' y='5' width='1' height='1' fill='%234c423b'/><rect x='25' y='6' width='1' height='3' fill='%2368584c'/><rect x='26' y='6' width='1' height='1' fill='%231a1411'/><rect x='27' y='6' width='2' height='1' fill='%2368584c'/><rect x='29' y='6' width='1' height='1' fill='%231a1411'/><rect x='30' y='6' width='1' height='3' fill='%2368584c'/><rect x='26' y='7' width='1' height='2' fill='%2368584c'/><rect x='27' y='7' width='2' height='1' fill='%231a1411'/><rect x='29' y='7' width='1' height='2' fill='%2368584c'/><rect x='27' y='8' width='2' height='1' fill='%2368584c'/><rect x='25' y='9' width='1' height='1' fill='%23181412'/><rect x='26' y='9' width='4' height='1' fill='%23302926'/><rect x='30' y='9' width='1' height='1' fill='%23181412'/><rect x='33' y='9' width='2' height='1' fill='%23181412'/><rect x='24' y='10' width='1' height='1' fill='%23181412'/><rect x='25' y='10' width='2' height='1' fill='%23302926'/><rect x='27' y='10' width='2' height='2' fill='%23968a80'/><rect x='29' y='10' width='2' height='1' fill='%23302926'/><rect x='31' y='10' width='2' height='1' fill='%23181412'/><rect x='33' y='10' width='1' height='1' fill='%23ffed00'/><rect x='34' y='10' width='1' height='1' fill='%23ff8c00'/><rect x='35' y='10' width='1' height='1' fill='%23181412'/><rect x='25' y='11' width='1' height='1' fill='%23181412'/><rect x='26' y='11' width='1' height='1' fill='%23968a80'/><rect x='29' y='11' width='1' height='1' fill='%23968a80'/><rect x='30' y='11' width='1' height='1' fill='%23181412'/><rect x='33' y='11' width='2' height='1' fill='%23181412'/><rect x='38' y='0' width='4' height='1' fill='%23181412'/><rect x='37' y='1' width='1' height='1' fill='%23181412'/><rect x='38' y='1' width='4' height='2' fill='%23302926'/><rect x='42' y='1' width='1' height='1' fill='%23181412'/><rect x='36' y='2' width='1' height='7' fill='%23181412'/><rect x='37' y='2' width='1' height='1' fill='%23302926'/><rect x='42' y='2' width='1' height='1' fill='%23302926'/><rect x='43' y='2' width='1' height='7' fill='%23181412'/><rect x='37' y='3' width='6' height='1' fill='%2325201d'/><rect x='37' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='38' y='4' width='1' height='1' fill='%23382210'/><rect x='39' y='4' width='2' height='1' fill='%2325201d'/><rect x='41' y='4' width='1' height='1' fill='%23382210'/><rect x='42' y='4' width='1' height='1' fill='%23f2eee6'/><rect x='37' y='5' width='1' height='1' fill='%234c423b'/><rect x='38' y='5' width='4' height='1' fill='%2368584c'/><rect x='42' y='5' width='1' height='1' fill='%234c423b'/><rect x='37' y='6' width='1' height='3' fill='%2368584c'/><rect x='38' y='6' width='1' height='2' fill='%231a1411'/><rect x='39' y='6' width='2' height='1' fill='%2368584c'/><rect x='41' y='6' width='1' height='2' fill='%231a1411'/><rect x='42' y='6' width='1' height='3' fill='%2368584c'/><rect x='39' y='7' width='2' height='1' fill='%231a1411'/><rect x='38' y='8' width='4' height='1' fill='%2368584c'/><rect x='37' y='9' width='1' height='1' fill='%23181412'/><rect x='38' y='9' width='4' height='1' fill='%23302926'/><rect x='42' y='9' width='1' height='1' fill='%23181412'/><rect x='36' y='10' width='1' height='1' fill='%23181412'/><rect x='37' y='10' width='2' height='1' fill='%23302926'/><rect x='39' y='10' width='2' height='2' fill='%23968a80'/><rect x='41' y='10' width='2' height='1' fill='%23302926'/><rect x='43' y='10' width='1' height='1' fill='%23181412'/><rect x='37' y='11' width='1' height='1' fill='%23181412'/><rect x='38' y='11' width='1' height='1' fill='%23968a80'/><rect x='41' y='11' width='1' height='1' fill='%23968a80'/><rect x='42' y='11' width='1' height='1' fill='%23181412'/></svg>");
+  background-size: 208px 52px;
+  background-position: 0 0;
+  animation: sfChewLoop 1.9s step-end infinite;
+}
+@keyframes sfChewLoop {
+  0%   { background-position: 0 0; }      /* whole banana */
+  30%  { background-position: -52px 0; }  /* first bite   */
+  55%  { background-position: -104px 0; } /* cheeks full  */
+  80%  { background-position: -156px 0; } /* gone         */
+  100% { background-position: 0 0; }      /* .. its back  */
+}
+.sfChew.sfChewFast { animation-duration: .62s; }
+
+/* --- 4. the honor guard. 3 frames, one shot, only when a candle is lit --- */
+.sfGuard {
+  width: 34px; height: 34px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 12' shape-rendering='crispEdges'><rect x='4' y='1' width='4' height='1' fill='%23181412'/><rect x='3' y='2' width='1' height='1' fill='%23181412'/><rect x='4' y='2' width='4' height='2' fill='%23302926'/><rect x='8' y='2' width='1' height='1' fill='%23181412'/><rect x='2' y='3' width='1' height='4' fill='%23181412'/><rect x='3' y='3' width='1' height='1' fill='%23302926'/><rect x='8' y='3' width='1' height='1' fill='%23302926'/><rect x='9' y='3' width='1' height='4' fill='%23181412'/><rect x='3' y='4' width='6' height='1' fill='%2325201d'/><rect x='3' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='4' y='5' width='1' height='1' fill='%23382210'/><rect x='5' y='5' width='2' height='1' fill='%2325201d'/><rect x='7' y='5' width='1' height='1' fill='%23382210'/><rect x='8' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='3' y='6' width='1' height='1' fill='%234c423b'/><rect x='4' y='6' width='4' height='1' fill='%2368584c'/><rect x='8' y='6' width='1' height='1' fill='%234c423b'/><rect x='3' y='7' width='1' height='1' fill='%23181412'/><rect x='4' y='7' width='1' height='1' fill='%231a1411'/><rect x='5' y='7' width='2' height='1' fill='%2368584c'/><rect x='7' y='7' width='1' height='1' fill='%231a1411'/><rect x='8' y='7' width='1' height='1' fill='%23181412'/><rect x='1' y='8' width='1' height='1' fill='%23181412'/><rect x='2' y='8' width='3' height='1' fill='%23302926'/><rect x='5' y='8' width='2' height='2' fill='%23968a80'/><rect x='7' y='8' width='3' height='1' fill='%23302926'/><rect x='10' y='8' width='1' height='1' fill='%23181412'/><rect x='0' y='9' width='1' height='1' fill='%23181412'/><rect x='1' y='9' width='3' height='1' fill='%23302926'/><rect x='4' y='9' width='1' height='1' fill='%23968a80'/><rect x='7' y='9' width='1' height='1' fill='%23968a80'/><rect x='8' y='9' width='3' height='1' fill='%23302926'/><rect x='11' y='9' width='1' height='1' fill='%23181412'/><rect x='1' y='10' width='1' height='1' fill='%23181412'/><rect x='2' y='10' width='8' height='1' fill='%23302926'/><rect x='10' y='10' width='1' height='1' fill='%23181412'/><rect x='2' y='11' width='1' height='1' fill='%23181412'/><rect x='3' y='11' width='1' height='1' fill='%23302926'/><rect x='4' y='11' width='1' height='1' fill='%23181412'/><rect x='7' y='11' width='1' height='1' fill='%23181412'/><rect x='8' y='11' width='1' height='1' fill='%23302926'/><rect x='9' y='11' width='1' height='1' fill='%23181412'/><rect x='16' y='1' width='4' height='1' fill='%23181412'/><rect x='15' y='2' width='1' height='1' fill='%23181412'/><rect x='16' y='2' width='4' height='2' fill='%23302926'/><rect x='20' y='2' width='1' height='1' fill='%23181412'/><rect x='14' y='3' width='1' height='4' fill='%23181412'/><rect x='15' y='3' width='1' height='1' fill='%23302926'/><rect x='20' y='3' width='1' height='1' fill='%23302926'/><rect x='21' y='3' width='1' height='4' fill='%23181412'/><rect x='15' y='4' width='6' height='1' fill='%2325201d'/><rect x='15' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='16' y='5' width='1' height='1' fill='%23382210'/><rect x='17' y='5' width='2' height='1' fill='%2325201d'/><rect x='19' y='5' width='1' height='1' fill='%23382210'/><rect x='20' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='15' y='6' width='1' height='1' fill='%234c423b'/><rect x='16' y='6' width='4' height='1' fill='%2368584c'/><rect x='20' y='6' width='1' height='1' fill='%234c423b'/><rect x='12' y='7' width='1' height='2' fill='%23181412'/><rect x='13' y='7' width='1' height='2' fill='%234c423b'/><rect x='15' y='7' width='1' height='1' fill='%23181412'/><rect x='16' y='7' width='1' height='1' fill='%231a1411'/><rect x='17' y='7' width='2' height='1' fill='%2368584c'/><rect x='19' y='7' width='1' height='1' fill='%231a1411'/><rect x='20' y='7' width='1' height='1' fill='%23181412'/><rect x='22' y='7' width='1' height='2' fill='%234c423b'/><rect x='23' y='7' width='1' height='2' fill='%23181412'/><rect x='14' y='8' width='2' height='3' fill='%23302926'/><rect x='16' y='8' width='4' height='2' fill='%23968a80'/><rect x='20' y='8' width='2' height='3' fill='%23302926'/><rect x='13' y='9' width='1' height='2' fill='%23181412'/><rect x='22' y='9' width='1' height='2' fill='%23181412'/><rect x='16' y='10' width='4' height='1' fill='%23302926'/><rect x='14' y='11' width='1' height='1' fill='%23181412'/><rect x='15' y='11' width='1' height='1' fill='%23302926'/><rect x='16' y='11' width='1' height='1' fill='%23181412'/><rect x='19' y='11' width='1' height='1' fill='%23181412'/><rect x='20' y='11' width='1' height='1' fill='%23302926'/><rect x='21' y='11' width='1' height='1' fill='%23181412'/><rect x='24' y='0' width='1' height='9' fill='%23181412'/><rect x='25' y='0' width='1' height='9' fill='%234c423b'/><rect x='34' y='0' width='1' height='9' fill='%234c423b'/><rect x='35' y='0' width='1' height='9' fill='%23181412'/><rect x='28' y='1' width='4' height='1' fill='%23181412'/><rect x='27' y='2' width='1' height='1' fill='%23181412'/><rect x='28' y='2' width='4' height='2' fill='%23302926'/><rect x='32' y='2' width='1' height='1' fill='%23181412'/><rect x='26' y='3' width='1' height='4' fill='%23181412'/><rect x='27' y='3' width='1' height='1' fill='%23302926'/><rect x='32' y='3' width='1' height='1' fill='%23302926'/><rect x='33' y='3' width='1' height='4' fill='%23181412'/><rect x='27' y='4' width='6' height='1' fill='%2325201d'/><rect x='27' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='28' y='5' width='1' height='1' fill='%23382210'/><rect x='29' y='5' width='2' height='1' fill='%2325201d'/><rect x='31' y='5' width='1' height='1' fill='%23382210'/><rect x='32' y='5' width='1' height='1' fill='%23f2eee6'/><rect x='27' y='6' width='1' height='1' fill='%234c423b'/><rect x='28' y='6' width='4' height='1' fill='%2368584c'/><rect x='32' y='6' width='1' height='1' fill='%234c423b'/><rect x='26' y='7' width='1' height='1' fill='%234c423b'/><rect x='27' y='7' width='1' height='1' fill='%23181412'/><rect x='28' y='7' width='1' height='1' fill='%231a1411'/><rect x='29' y='7' width='2' height='1' fill='%2368584c'/><rect x='31' y='7' width='1' height='1' fill='%231a1411'/><rect x='32' y='7' width='1' height='1' fill='%23181412'/><rect x='33' y='7' width='1' height='1' fill='%234c423b'/><rect x='26' y='8' width='2' height='3' fill='%23302926'/><rect x='28' y='8' width='4' height='2' fill='%23968a80'/><rect x='32' y='8' width='2' height='3' fill='%23302926'/><rect x='25' y='9' width='1' height='2' fill='%23181412'/><rect x='34' y='9' width='1' height='2' fill='%23181412'/><rect x='28' y='10' width='4' height='1' fill='%23302926'/><rect x='26' y='11' width='1' height='1' fill='%23181412'/><rect x='27' y='11' width='1' height='1' fill='%23302926'/><rect x='28' y='11' width='1' height='1' fill='%23181412'/><rect x='31' y='11' width='1' height='1' fill='%23181412'/><rect x='32' y='11' width='1' height='1' fill='%23302926'/><rect x='33' y='11' width='1' height='1' fill='%23181412'/></svg>");
+  background-size: 102px 34px;
+  background-position: 0 0;
+}
+.sfGuardR { margin-left: 30px; transform: scaleX(-1); }
+.sfGuard.sfGuardHail { animation: sfGuardSalute 1.5s step-end 1; }
+.sfGuard.sfGuardR.sfGuardHail { animation-delay: .11s; }
+@keyframes sfGuardSalute {
+  0%   { background-position: -34px 0; }  /* hands coming up */
+  14%  { background-position: -68px 0; }  /* HANDS OUT       */
+  80%  { background-position: -34px 0; }  /* lowering        */
+  92%  { background-position: 0 0; }      /* at ease         */
+  100% { background-position: 0 0; }
+}
+
+/* ~*~ sc: DEPTH OF FIELD — the sky was flat this whole time ~*~
+   every gorilla up there was pinned to ur eyeball at the exact same distance,
+   like a diorama made by somebody in a hurry. it is now TWO planes.
+   the little ones in the margins ride past u. the giants barely move,
+   because they r not close. they r simply that big.
+
+   SAFETY: the layers carry no transform of their own. with no scroll-timeline
+   support they r inert boxes the exact size of the viewport, so every sprite
+   keeps its own left/top/z-index and its own drift + spin, and the sky renders
+   byte-for-byte the sky it had before. nothing here can hide a single pixel. */
+.sc-layer{
+  display: block;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+@keyframes sc-driftnear{ from { transform: translate3d(0,0,0); } to { transform: translate3d(0,-96px,0); } }
+@keyframes sc-driftfar { from { transform: translate3d(0,0,0); } to { transform: translate3d(0,-22px,0); } }
+
+@supports (animation-timeline: scroll()){
+  .sc-go .sc-layer{
+    animation-duration: 1s;      /* floor, in case `auto` does not parse */
+    animation-duration: auto;    /* the timeline IS the duration */
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+  }
+  .sc-go .sc-deepnear{ animation-name: sc-driftnear; }
+  .sc-go .sc-deepfar { animation-name: sc-driftfar; }
+}
+
+/* ~*~ sc: THE PROJECTOR — "showing: whenever u scroll" (taken literally) ~*~
+   the showtimes box has always said the film shows whenever u scroll. fine.
+   the reel is now geared 2 the scroll of the movie section itself: 8 frames,
+   steps(8), pinned 2 the top of ur screen 4 exactly as long as the film is
+   passing. u stop, it stops, mid-scene. u r the projector. no late seating.
+
+   SAFETY: resting state is frame 1, fully visible. sticky needs no scroll
+   events; if the timeline never resolves the strip simply never advances. */
+.sc-reelhost{ view-timeline-name: --sc-reel; }
+
+.sc-reelbar{
+  position: sticky; top: 0; z-index: 5;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 8px; margin: 0 0 8px 0; padding: 3px 6px;
+  background: #000; border: 2px inset #555;
+  font-family: "Courier New", monospace; font-size: 10px; line-height: 1.25;
+  color: #00ff66; text-align: left; text-shadow: none;
+}
+.sc-reelwin{ flex: 0 0 34px; width: 34px; height: 34px; overflow: hidden; }
+.sc-reelstrip{ display: flex; }
+.sc-reelstrip span{
+  flex: 0 0 34px; width: 34px; height: 34px;
+  line-height: 34px; font-size: 24px; text-align: center;
+}
+.sc-reeltag{ white-space: nowrap; }
+.sc-reelsub{ color: #0a8; }
+@keyframes sc-reelrun{ from { transform: translateX(0); } to { transform: translateX(-272px); } }
+
+@supports (animation-timeline: view()){
+  .sc-go .sc-reelstrip{
+    animation-duration: 1s;
+    animation-duration: auto;
+    animation-name: sc-reelrun;
+    animation-timing-function: steps(8);
+    animation-fill-mode: both;
+    animation-timeline: --sc-reel;
+  }
+}
+
+/* ~*~ sc: EXHIBIT A — the fake counter, rebuilt from memory ~*~
+   spot-a-fake #4: "their hit counter counts DOWN. i have thought about this
+   every day since i saw it." so he built one. as evidence. in a case.
+   four reels geared 80 / 8 / 0.8 / 0.08 against the page scroll, which is
+   what makes an odometer an odometer. it only moves when u scroll, because
+   he refuses 2 give the fake one traffic while nobody is looking.
+
+   SAFETY: resting state is 9999, plainly legible. no scroll = no motion,
+   never a blank window: each reel carries an 11th digit so the last step
+   still lands on a number. */
+.sc-odobox{
+  margin-top: 10px; padding: 6px 4px;
+  border: 2px dashed #ff5555; text-align: center;
+}
+.sc-odocap{ font-size: 10px; font-weight: bold; color: #ff9999; line-height: 1.3; margin-bottom: 5px; }
+.sc-odosub{ font-weight: normal; color: #cc7777; }
+.sc-odo{
+  display: inline-flex; gap: 2px; padding: 3px 5px;
+  background: #000; border: 3px inset #666;
+}
+.sc-odod{ display: block; width: 15px; height: 22px; overflow: hidden; }
+.sc-odor{ display: block; }
+.sc-odor span{
+  display: block; height: 22px; line-height: 22px; text-align: center;
+  font-family: "Courier New", monospace; font-size: 19px; font-weight: bold;
+  color: #ff3b3b; text-shadow: 0 0 5px rgba(255,0,0,.6);
+}
+.sc-odonote{ font-size: 10px; color: #cc9999; line-height: 1.4; margin-top: 5px; }
+@keyframes sc-odoroll{ from { transform: translateY(0); } to { transform: translateY(-220px); } }
+
+@supports (animation-timeline: scroll()){
+  .sc-go .sc-odor{
+    animation-duration: 1s;
+    animation-duration: auto;
+    animation-name: sc-odoroll;
+    animation-timing-function: steps(10);
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+  }
+  /* the gearing. this is the whole trick. */
+  .sc-go .sc-odo1 .sc-odor{ animation-iteration-count: 80; }   /* ones */
+  .sc-go .sc-odo2 .sc-odor{ animation-iteration-count: 8; }    /* tens */
+  .sc-go .sc-odo3 .sc-odor{ animation-iteration-count: .8; }   /* hundreds */
+  .sc-go .sc-odo4 .sc-odor{ animation-iteration-count: .08; }  /* thousands. it has not moved in ten years. */
+}
+
+/* ~*~ sc: THE RING OF ONE STILL TURNS ~*~
+   "the ring is a circle of one now. me, holding hands with myself, 4ever."
+   a webring with one member cannot send u anywhere. so it does the only
+   other thing a ring does: it turns. once. while somebody is passing.
+   at exactly the speed they r passing. then it stops and waits.
+
+   SAFETY: rotation only — there is no progress value at which this is
+   anything other than a fully visible ring. no support = a ring, sitting still. */
+.sc-ringwrap{
+  margin-top: 12px; padding-top: 8px;
+  border-top: 2px groove #555;
+  text-align: center; font-size: 11px; color: #cccccc; line-height: 1.45;
+}
+.sc-ringgem{ display: inline-block; font-size: 30px; }
+.sc-ringlbl b{ color: #00ffff; }
+@keyframes sc-ringturn{ from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@supports (animation-timeline: view()){
+  .sc-go .sc-ringgem{
+    animation-duration: 1s;
+    animation-duration: auto;
+    animation-name: sc-ringturn;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: view();
+  }
+}
+
+/* ==========================================================
+   ~*~ st: STATE-CHANGE CHOREOGRAPHY ~*~
+   nothing in here idles. every animation below is the noise a
+   thing makes at the exact moment it CHANGES, and then it stops.
+   zero new infinite animations. the page has enough of those.
+   ========================================================== */
+
+/* ~*~ THE .05s ~*~ read this before editing anything below.
+   in a frozen/never-compositing document the animation clock can sit at 0
+   forever, and an element then renders its 0% KEYFRAME, not its base style.
+   so every entry animation here that starts from invisible carries a tiny
+   animation-delay: that parks it in the `before` phase instead, where the BASE
+   style shows — and every base style below is the landed, readable one. nothing
+   here can strand content, and every removal is a js timer, never an event. */
+
+/* SHARED st STAMP BLOCK — identical in the landslide + the carving effects.
+   paste it once or paste it twice, css does not mind. */
+@keyframes st-thunk {
+  0%   { opacity: 0; transform: rotate(-26deg) scale(3.4); filter: blur(2px); }
+  55%  { opacity: 1; transform: rotate(-3deg)  scale(.92); filter: blur(0); }
+  78%  { opacity: 1; transform: rotate(-9deg)  scale(1.05); }
+  100% { opacity: 1; transform: rotate(-7deg)  scale(1); }
+}
+/* END SHARED BLOCK */
+
+/* ~*~ st: THE LANDSLIDE ~*~
+   these are CLONES of the poll buttons, made after showPoll() already hid the
+   originals. the real markup is untouched; these ghosts just finish the vote. */
+.st-ghost {
+  position: fixed; z-index: 10002; pointer-events: none; margin: 0;
+  will-change: transform, opacity;
+  --st-dx: 0px; --st-dy: 0px; --st-rot: 0deg;
+}
+.st-concede { animation: st-concede .8s cubic-bezier(.4,0,.55,1) forwards; }
+@keyframes st-concede {
+  0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+  28%  { transform: translate(0,-9px) rotate(var(--st-rot)) scale(1.02); opacity: 1; }
+  100% { transform: translate(var(--st-dx), var(--st-dy)) rotate(var(--st-rot)) scale(.22); opacity: 0; }
+}
+.st-won { animation: st-won 1.05s cubic-bezier(.3,1.35,.5,1) forwards; }
+@keyframes st-won {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  18%  { transform: translate(0,-11px) scale(1.16); opacity: 1; }
+  46%  { transform: translate(0,-6px)  scale(1.1);  opacity: 1; }
+  100% { transform: translate(var(--st-dx), var(--st-dy)) scale(.5); opacity: 0; }
+}
+.st-verdict { text-align: center; margin: 10px 0 2px; }
+.st-stamp {
+  display: inline-block;
+  border: 3px double #ffd700; color: #ffd700; background: rgba(255,255,255,.07);
+  font-weight: bold; font-size: 13px; letter-spacing: 1px; padding: 2px 10px;
+  text-shadow: 1px 1px 0 #000;
+  transform: rotate(-7deg);              /* resting pose = the landed pose */
+  animation: st-thunk .55s cubic-bezier(.2,1.5,.4,1) .05s;
+}
+.st-fineprint {
+  display: block; margin-top: 8px; font-size: 10px; color: #cc99ff; line-height: 1.4;
+}
+
+/* ~*~ st: THE SWEEP ~*~
+   one element, one pass, transform + opacity only, then it parks at opacity 0.
+   the 0% keyframe is opacity 0, so a frozen animation clock shows NOTHING
+   rather than a flag stuck across ur shrine. z-index 9996 keeps it under
+   jeff (10000) and under every dialog. */
+#st-sweep {
+  position: fixed; left: 0; top: -30vh; width: 100vw; height: 160vh;
+  z-index: 9996; pointer-events: none; user-select: none; opacity: 0;
+  display: flex; align-items: center; justify-content: center;
+  transform: translateX(-140vw) rotate(-11deg);
+  will-change: transform, opacity;
+  background: linear-gradient(90deg,
+    rgba(228,3,3,0)      0%,  rgba(228,3,3,.5)    10%,
+    rgba(255,140,0,.5)  26%,  rgba(255,237,0,.5)  42%,
+    rgba(0,128,38,.5)   58%,  rgba(36,64,142,.5)  74%,
+    rgba(115,41,130,.5) 90%,  rgba(115,41,130,0) 100%);
+}
+#st-sweepword {
+  transform: rotate(11deg);
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: clamp(20px, 5.5vw, 52px); font-weight: bold; font-style: italic;
+  color: #fff; letter-spacing: 2px; white-space: nowrap;
+  text-shadow: 3px 3px 0 #000, 0 0 18px #ff00ff;
+}
+#st-sweep.st-on  { animation: st-sweepon  1.25s cubic-bezier(.3,0,.25,1) forwards; }
+#st-sweep.st-off { animation: st-sweepoff 1.5s  cubic-bezier(.3,0,.25,1) forwards; }
+@keyframes st-sweepon {
+  0%   { opacity: 0;   transform: translateX(-140vw) rotate(-11deg); }
+  14%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { opacity: 0;   transform: translateX(140vw)  rotate(-11deg); }
+}
+@keyframes st-sweepoff {
+  0%   { opacity: 0;   transform: translateX(140vw)  rotate(-11deg); }
+  14%  { opacity: .92; }
+  86%  { opacity: .92; }
+  100% { opacity: 0;   transform: translateX(-140vw) rotate(-11deg); }
+}
+/* the flag reaches him and something lands. tripled class = (0,3,0) so it
+   outranks `svg.portrait.pixel` (0,2,1) for half a second without editing it.
+   0% is the identity pose, so a frozen clock leaves him exactly as he was. */
+.st-struck.st-struck.st-struck { animation: st-struck .6s ease-out; }
+@keyframes st-struck {
+  0%   { transform: scale(1);    filter: brightness(1); }
+  28%  { transform: scale(1.13); filter: brightness(2) saturate(1.6) drop-shadow(0 0 12px #ff00ff); }
+  100% { transform: scale(1);    filter: brightness(1); }
+}
+
+/* SHARED st STAMP BLOCK — byte-identical to the landslide effect's block.
+   if that effect is already pasted, this whole block is a no-op duplicate. */
+@keyframes st-thunk {
+  0%   { opacity: 0; transform: rotate(-26deg) scale(3.4); filter: blur(2px); }
+  55%  { opacity: 1; transform: rotate(-3deg)  scale(.92); filter: blur(0); }
+  78%  { opacity: 1; transform: rotate(-9deg)  scale(1.05); }
+  100% { opacity: 1; transform: rotate(-7deg)  scale(1); }
+}
+/* END SHARED BLOCK */
+
+/* ~*~ st: THE CARVING ~*~
+   the row is set into the wall rather than posted. the .05s delay parks the
+   animation in its `before` phase if the clock never runs, so a stalled
+   document shows a perfectly normal, fully opaque entry — and js drops the
+   class on a timer either way. ur words are never at the mercy of a frame. */
+.st-fresh { animation: st-carve .9s cubic-bezier(.2,.9,.3,1) .05s; }
+@keyframes st-carve {
+  0%   { opacity: .2; transform: translateY(14px) scale(.985); filter: blur(2px); }
+  55%  { opacity: 1;  transform: translateY(-2px) scale(1);    filter: blur(0); }
+  100% { opacity: 1;  transform: translateY(0)    scale(1);    filter: blur(0); }
+}
+/* the chisel light. ::before on .gb-entry is the hover pride bar — untouched. */
+.st-fresh::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0) 40%, rgba(255,246,176,.5) 50%, rgba(255,255,255,0) 60%);
+  background-size: 300% 100%;
+  animation: st-chisel .9s ease-out .05s;
+}
+@keyframes st-chisel { from { background-position: 160% 0; } to { background-position: -60% 0; } }
+.st-seal {
+  position: absolute; right: 2px; top: 3px; z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  pointer-events: none; user-select: none;
+  font-family: Tahoma, Verdana, sans-serif; font-size: 8px; font-weight: bold;
+  line-height: 1.15; text-align: center; letter-spacing: .5px;
+  border: 2px solid #ffd700; color: #ffd700; background: rgba(74,0,64,.6);
+  text-shadow: 1px 1px 0 #000;
+  transform: rotate(-7deg);
+  animation: st-thunk .5s cubic-bezier(.2,1.5,.4,1) .05s,
+             st-sealgo .8s ease-in 4.6s forwards;   /* js removes it at 5.7s regardless */
+}
+.st-seal b { font-size: 15px; line-height: 1.1; }
+@keyframes st-sealgo { to { opacity: 0; transform: rotate(-7deg) scale(.9); } }
+.st-ledger {
+  margin-top: 5px; font-family: "Courier New", monospace; font-size: 10px;
+  color: #ffe680; text-align: center; line-height: 1.4;
+  animation: st-ledgerin .55s ease-out .05s;
+}
+@keyframes st-ledgerin { from { opacity: 0; transform: translateY(-4px); } }
+
+/* ~*~ st: GOODS INWARD ~*~
+   dot-matrix paper. unrolls from the top, rolls back up when heaven is done
+   with u. entirely my own element and it removes itself on a timer, so none
+   of ur content is ever behind it. the .05s parks it visible if the clock
+   is frozen instead of leaving a scaleY(0) ghost in the feed box. */
+.st-receipt {
+  display: block; max-width: 310px; margin: 8px auto 0;
+  background: #f6f1e2; color: #2a2418; border: 2px dashed #b9ad8c;
+  font-family: "Courier New", Courier, monospace; font-size: 10px; line-height: 1.55;
+  text-align: left; padding: 7px 9px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.5);
+  transform-origin: 50% 0;
+  animation: st-unroll .55s cubic-bezier(.2,1.15,.4,1) .05s,
+             st-rollup .5s ease-in 8.5s forwards;   /* js removes it at 9.4s regardless */
+}
+@keyframes st-unroll {
+  0%   { opacity: 0; transform: scaleY(0)    rotate(0deg); }
+  70%  { opacity: 1; transform: scaleY(1.04) rotate(-.6deg); }
+  100% { opacity: 1; transform: scaleY(1)    rotate(-.6deg); }
+}
+@keyframes st-rollup { to { opacity: 0; transform: scaleY(0) rotate(-.6deg); } }
+.st-receipt hr { border: 0; border-top: 1px dashed #b9ad8c; margin: 4px 0; }
+.st-rhead { font-weight: bold; letter-spacing: .5px; }
+.st-rno { float: right; font-weight: normal; }
+.st-rtiny { font-size: 9px; color: #6f6553; }
+.st-rok { color: #0a6b2a; font-weight: bold; }
+/* the signature writes itself: a paper-coloured lid shrinks off it, origin right.
+   pure transform — no width, no clip-path, no repaint of the text. */
+.st-rsig { position: relative; display: inline-block; vertical-align: bottom; }
+.st-rsig i {
+  display: inline-block; white-space: nowrap; font-style: italic;
+  font-family: "Segoe Script", "Brush Script MT", "Comic Sans MS", cursive;
+  font-size: 16px; line-height: 1.1; color: #12227a;
+}
+.st-rsig i + span {
+  position: absolute; left: -1px; right: -2px; top: -2px; bottom: -2px;
+  background: #f6f1e2; transform-origin: right center;
+  transform: scaleX(0);                  /* resting = signed. the lid is the animation. */
+  animation: st-sign 1.35s cubic-bezier(.4,0,.2,1) .05s;
+}
+/* the hold lives INSIDE the keyframes, not in a long delay — a long delay
+   would need `backwards` fill, and that can strand the lid ON top of him. */
+@keyframes st-sign {
+  0%, 42% { transform: scaleX(1); }
+  100%    { transform: scaleX(0); }
+}
+
+/* ~*~ st: THE ZOOM RECT ~*~
+   win9x drew a wireframe box flying from the icon to the window. this window
+   cannot be closed and cannot be minimized, so opening is the only window
+   operation it has left, and it performs it correctly. steps() = 1998.
+   position:absolute in page coords = it stays glued to the window while the
+   browser smooth-scrolls. no scroll listener, no rAF, nothing to miss. */
+#st-zoom {
+  position: absolute; z-index: 10002; pointer-events: none;
+  border: 2px dotted #dcdcdc; box-shadow: 0 0 0 1px rgba(0,0,0,.55);
+  transform-origin: 0 0; opacity: 0;     /* resting = gone. only the run is visible. */
+  --st-zx: 0px; --st-zy: 0px; --st-zsx: .05; --st-zsy: .05;
+  animation: st-zoom .34s steps(7, end) .04s forwards;
+}
+@keyframes st-zoom {
+  from { opacity: .95; transform: translate(var(--st-zx), var(--st-zy)) scale(var(--st-zsx), var(--st-zsy)); }
+  to   { opacity: 0;   transform: none; }
+}
+
+/* ~*~ dp 1: THE ROOM ~*~
+   harambe.gay is not hosted in the cloud. it is hosted on a desk in ohio
+   and lit by one (1) clip lamp from home depot that i aimed at the monitor
+   in 2016 and have not moved since. it takes 80 seconds 2 cross the room.
+   the dust in the beam is REAL dust. it is 10 years of it. i do not clean
+   in here. mom does not come in here. the dust and me have an arrangement. */
+#dp-room {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 2; pointer-events: none; overflow: hidden;
+}
+#dp-beam {
+  position: absolute; left: 0; top: -40vh;
+  width: 44vw; height: 180vh;
+  background: linear-gradient(90deg,
+    rgba(255,241,204,0)    0%,
+    rgba(255,241,204,.035) 24%,
+    rgba(255,248,226,.10)  48%,
+    rgba(255,241,204,.05)  64%,
+    rgba(255,241,204,0)    100%);
+  animation: dp-beamcross 80s linear infinite;
+}
+/* transform-only sweep: the gradient rasterizes once, the pass is pure compositor */
+@keyframes dp-beamcross {
+  0%   { transform: rotate(9deg) translateX(-135vw); opacity: 0; }
+  9%   { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { transform: rotate(9deg) translateX(135vw);  opacity: 0; }
+}
+/* each speck is dark until the lamp finds it. js gives every one a negative
+   delay matched 2 its own x position, so they light up in a wave, in order,
+   like the beam is actually arriving. it is not. but it is. */
+.dp-mote {
+  position: absolute; border-radius: 50%; opacity: .05;
+  background: radial-gradient(circle at 50% 50%,
+              rgba(255,251,236,.95), rgba(255,251,236,0) 68%);
+  animation: dp-motedrift 34s ease-in-out infinite alternate,
+             dp-motelit   80s linear infinite;
+}
+@keyframes dp-motedrift {
+  from { transform: translate(0,0); }
+  to   { transform: translate(13px,-21px); }
+}
+@keyframes dp-motelit {
+  0%, 44%   { opacity: .05; }
+  49%       { opacity: .30; }
+  50.5%     { opacity: .72; }
+  53%       { opacity: .32; }
+  58%, 100% { opacity: .05; }
+}
+
+/* ~*~ dp 2: THE GLASS ~*~
+   u are not looking at a website. u are looking at a 15" CRT in a basement,
+   through a camcorder, at 2am. the corners r dark because THE TUBE IS CURVED.
+   the red and blue coming apart at the edges is called chromatic aberration
+   and it is free, i did not pay extra 4 it, it simply happens 2 everything
+   eventually. overlay only. pointer-events: none. it cannot touch ur clicks. */
+#dp-glass {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 10005; pointer-events: none;
+  background:
+    radial-gradient(58% 62% at 26% 16%,
+      rgba(255,255,255,.05), rgba(255,255,255,0) 62%),
+    radial-gradient(118% 148% at 50% 50%,
+      rgba(0,0,0,0) 60%, rgba(0,0,0,.10) 82%, rgba(0,0,0,.34) 100%);
+  animation: dp-glassbreath 19s ease-in-out infinite;
+}
+@keyframes dp-glassbreath { 0%,100% { opacity: .82; } 50% { opacity: 1; } }
+/* the beams converge and diverge. old monitors did this. it meant nothing.
+   it still means nothing. i find it comforting that some things mean nothing. */
+#dp-fringe {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 10005; pointer-events: none;
+  background:
+    linear-gradient(90deg,  rgba(255,40,40,.17),  rgba(255,40,40,0)  2.0%),
+    linear-gradient(270deg, rgba(40,190,255,.17), rgba(40,190,255,0) 2.0%),
+    linear-gradient(180deg, rgba(60,120,255,.11), rgba(60,120,255,0) 1.4%),
+    linear-gradient(0deg,   rgba(255,60,120,.11), rgba(255,60,120,0) 1.4%);
+  animation: dp-fringeslip 26s ease-in-out infinite;
+}
+@keyframes dp-fringeslip {
+  0%,100% { transform: translateX(0)     scaleX(1);     opacity: .75; }
+  50%     { transform: translateX(1.5px) scaleX(1.004); opacity: 1;   }
+}
+/* phones have small screens and no tube. go easy on them. */
+@media (max-width: 700px) {
+  #dp-glass {
+    background:
+      radial-gradient(58% 62% at 26% 16%,
+        rgba(255,255,255,.04), rgba(255,255,255,0) 62%),
+      radial-gradient(125% 155% at 50% 50%,
+        rgba(0,0,0,0) 68%, rgba(0,0,0,.06) 86%, rgba(0,0,0,.19) 100%);
+  }
+  #dp-fringe { opacity: .5; }
+}
+
+/* ~*~ dp 3: EVERY BOX IS A PHYSICAL OBJECT NOW ~*~
+   in 2004 every single thing on the internet had a bevel and the light came
+   from the TOP LEFT. that was not a trend. that was the LAW. i still obey it.
+   and physical objects sit ON something, so they get a contact shadow, and
+   the shadow leans away from the lamp as the lamp goes past. 80s. same clock
+   as the room. everything in here is on the same clock. that is the point. */
+.dp-bevel, .dp-cast { position: relative; }
+.dp-bevel::before {
+  content: ''; position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  border-top:    1px solid rgba(255,255,255,.22);
+  border-left:   1px solid rgba(255,255,255,.13);
+  border-right:  1px solid rgba(0,0,0,.30);
+  border-bottom: 1px solid rgba(0,0,0,.42);
+}
+.dp-cast::after {
+  content: ''; position: absolute; left: 6%; right: 6%; top: 100%; height: 11px;
+  pointer-events: none; transform-origin: 50% 0;
+  background: radial-gradient(58% 100% at 50% 0%,
+              rgba(0,0,0,.52), rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 100%);
+}
+.dp-swing::after { animation: dp-castswing 80s ease-in-out infinite; }
+@keyframes dp-castswing {
+  0%   { transform: translateX(7%)  scaleX(1.05) scaleY(1.10); opacity: 1;  }
+  86%  { transform: translateX(-7%) scaleX(.95)  scaleY(.92);  opacity: .8; }
+  100% { transform: translateX(7%)  scaleX(1.05) scaleY(1.10); opacity: 1;  }
+}
+
+/* ~*~ dp 4: THE WHOLE SITE IS A POSTER ON A WALL ~*~
+   it is taped up. it has been taped up since 2016. u can tell because it
+   casts a shadow ON the wall, and the shadow moves when the lamp moves.
+   two thin strips, gradients only, no blur, no giant layer — the page is
+   3 miles tall and i am not compositing 3 miles of blur 4 a vibe. */
+.dp-wall { position: relative; }
+.dp-wall::before, .dp-wall::after {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  top: -12px; bottom: -22px; width: 40px;
+}
+.dp-wall::before {
+  left: -40px; transform-origin: 100% 50%;
+  background: linear-gradient(270deg,
+              rgba(0,0,0,.55), rgba(0,0,0,.18) 42%, rgba(0,0,0,0) 100%);
+  animation: dp-wallleft 80s ease-in-out infinite;
+}
+.dp-wall::after {
+  right: -40px; transform-origin: 0 50%;
+  background: linear-gradient(90deg,
+              rgba(0,0,0,.55), rgba(0,0,0,.18) 42%, rgba(0,0,0,0) 100%);
+  animation: dp-wallright 80s ease-in-out infinite;
+}
+@keyframes dp-wallleft {
+  0%   { opacity: .12; transform: scaleX(.45) translateX(4px); }
+  86%  { opacity: 1;   transform: scaleX(1.2) translateX(0);   }
+  100% { opacity: .12; transform: scaleX(.45) translateX(4px); }
+}
+@keyframes dp-wallright {
+  0%   { opacity: 1;   transform: scaleX(1.2) translateX(0);    }
+  86%  { opacity: .12; transform: scaleX(.45) translateX(-4px); }
+  100% { opacity: 1;   transform: scaleX(1.2) translateX(0);    }
+}
+
+/* ~*~ dp 5: THERE R FINGERPRINTS ON THE GLASS ~*~
+   the shrine is in a display case. it is a real one. it was for a model ship.
+   the model ship is in the garage now. u cannot see the smudges most of the
+   time — u only see them when the lamp rakes across, which is how it works
+   with glass and how it works with everything. they r all in the same spot.
+   that spot is his face. mom, if u r reading this: THAT is why the glass is
+   like that, and no i do not want 2 talk about it, and yes i will windex it.
+   z-index 3 = the outermost surface. nothing is in front of the glass. */
+.dp-smudge { position: relative; }
+.dp-smudge::after {
+  content: ''; position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+  pointer-events: none; z-index: 3; opacity: .14;
+  background:
+    radial-gradient(13px 17px at 47% 21%, rgba(255,255,255,.20), rgba(255,255,255,0) 70%),
+    radial-gradient(11px 15px at 52% 24%, rgba(255,255,255,.17), rgba(255,255,255,0) 70%),
+    radial-gradient(12px 16px at 49% 27%, rgba(255,255,255,.15), rgba(255,255,255,0) 70%),
+    radial-gradient(15px 19px at 44% 25%, rgba(255,255,255,.13), rgba(255,255,255,0) 72%),
+    radial-gradient(36px 28px at 49% 23%, rgba(255,255,255,.07), rgba(255,255,255,0) 78%),
+    radial-gradient(9px  12px at 63% 60%, rgba(255,255,255,.09), rgba(255,255,255,0) 70%);
+  animation: dp-smudgelit 80s linear infinite,
+             dp-glasslean 26s ease-in-out infinite alternate;
+}
+@keyframes dp-smudgelit {
+  0%, 50%   { opacity: .14; }
+  60%       { opacity: 1;   }
+  67%       { opacity: .5;  }
+  76%, 100% { opacity: .14; }
+}
+/* the glass is a separate plane from the photo. 2px of parallax says so. */
+@keyframes dp-glasslean {
+  from { transform: translate(0,0); }
+  to   { transform: translate(2px,1px); }
+}
+
+/* ==========================================================
    ~*~ ANIMATION WAVE 5 — the fleet ~*~
    authored by six parallel designers, each in its own namespace
    ========================================================== */
@@ -2924,6 +3581,682 @@ function openFic(key){
   d.showModal();
   burst('\u{1F4D6}\u{2728}\u{1F98D}');
 }
+
+
+/* ================= ANIMATION WAVE 6 (behaviour) ================= */
+
+/* sfJeff — jeff is breathing (3-frame idle) */
+/* ================= sf — ACTUAL PIXEL FRAMES ================= */
+/* ~*~ every sprite on this site so far is ONE picture getting shoved around by
+   a transform. these 4 r drawn 3 and 4 times over and flipped like a flip
+   book. real frames. i tweened them by hand in notepad. respect them. ~*~ */
+
+/* --- sfJeff: jeff is breathing. 3 frames. do not perceive him directly --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sfBox = document.getElementById('jeffbox');
+  if (!sfBox || !sfBox.parentNode) return;
+
+  var sfRig = document.createElement('div');
+  sfRig.className = 'sfRig';
+
+  var sfGuy = document.createElement('span');
+  sfGuy.className = 'sfPix sfJeff';
+  sfGuy.setAttribute('role', 'img');
+  sfGuy.setAttribute('aria-label', 'jeff, a pixel gorilla, breathing');
+  sfGuy.title = 'do not perceive him directly';
+  sfGuy.tabIndex = 0;
+
+  var sfCap = document.createElement('span');
+  sfCap.className = 'sfCap';
+  sfCap.innerHTML = '^ jeff. 3 hand drawn frames. he is <b>BREATHING</b>.<br>' +
+                    'do NOT hover him. hovering is perceiving.<br>' +
+                    'he will hold it in until u look away.';
+
+  sfRig.appendChild(sfGuy);
+  sfRig.appendChild(sfCap);
+  /* outside the box on purpose. when jeff "escapes" that box gets rewritten and
+     he would go with it. he does not escape. he is right there. he is fine. */
+  sfBox.parentNode.insertBefore(sfRig, sfBox.nextSibling);
+})();
+
+/* sfTread — the webring treadmill (4-frame walk cycle) */
+/* --- sfTread: the webring is a treadmill. nobody has told him --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sfAnchor = document.getElementById('webring');
+  var sfBox = sfAnchor && sfAnchor.nextElementSibling;
+  if (!sfBox || String(sfBox.className).indexOf('box') === -1) return;
+
+  var sfRig = document.createElement('div');
+  sfRig.className = 'sfRig';
+
+  var sfWalker = document.createElement('span');
+  sfWalker.className = 'sfPix sfTread';
+  sfWalker.setAttribute('aria-hidden', 'true');
+
+  var sfBelt = document.createElement('span');
+  sfBelt.className = 'sfBelt';
+  sfBelt.setAttribute('aria-hidden', 'true');
+
+  var sfCap = document.createElement('span');
+  sfCap.className = 'sfCap';
+  sfCap.innerHTML = 'ring status: <b>STILL WALKING</b><br>' +
+                    'he is not sliding. thats 4 REAL frames, drawn by hand,<br>' +
+                    'at 2am, in notepad. he is WALKING. there is a difference.<br>' +
+                    'the webring died in 2009. nobody has told him.<br>' +
+                    '(hover him. he thinks ur the next site. he hurries.)';
+
+  sfRig.appendChild(sfWalker);
+  sfRig.appendChild(sfBelt);      /* must stay the next sibling — the belt speeds up off his :hover */
+  sfRig.appendChild(sfCap);
+  sfBox.appendChild(sfRig);
+})();
+
+/* sfChew — the eternal banana (4-frame chew) */
+/* --- sfChew: the banana comes back. thats the entire deal up there --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sfMsg = document.getElementById('bananamsg');
+  if (!sfMsg || !sfMsg.parentNode) return;
+
+  var sfRig = document.createElement('div');
+  sfRig.className = 'sfRig';
+
+  var sfMouth = document.createElement('span');
+  sfMouth.className = 'sfPix sfChew';
+  sfMouth.setAttribute('aria-hidden', 'true');
+
+  var sfCap = document.createElement('span');
+  sfCap.className = 'sfCap';
+  sfCap.innerHTML = '^ live feed from heaven. 4 frames. watch the banana.<br>' +
+                    'it comes back <b>every single time</b>.<br>' +
+                    'thats the whole deal up there. thats the ENTIRE deal.';
+
+  sfRig.appendChild(sfMouth);
+  sfRig.appendChild(sfCap);
+  sfMsg.parentNode.insertBefore(sfRig, sfMsg.nextSibling);
+
+  /* we never wrap feedBanana(). we just watch the door. capture phase so the
+     chewing speeds up BEFORE any alert() freezes every timer on the page. */
+  var sfSettle = null;
+  document.addEventListener('click', function(sfE){
+    var sfT = sfE.target;
+    while (sfT && sfT !== document.body && sfT.tagName !== 'BUTTON') sfT = sfT.parentNode;
+    if (!sfT || sfT.tagName !== 'BUTTON') return;
+    if (!/GIVE BANANA/i.test(sfT.textContent || '')) return;
+    sfMouth.className = 'sfPix sfChew sfChewFast';
+    clearTimeout(sfSettle);
+    sfSettle = setTimeout(function(){ sfMouth.className = 'sfPix sfChew'; }, 2600);
+  }, true);
+})();
+
+/* sfGuard — the honor guard salutes (3-frame one-shot) */
+/* --- sfGuard: the honor guard salutes every candle. 3 frames, one shot --- */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sfBtn = null, sfAll = document.querySelectorAll('.shrine button'), sfI;
+  for (sfI = 0; sfI < sfAll.length; sfI++){
+    if ((sfAll[sfI].getAttribute('onclick') || '').indexOf('lightCandle') > -1){ sfBtn = sfAll[sfI]; break; }
+  }
+  if (!sfBtn || !sfBtn.parentNode) return;
+
+  function sfMakeGuard(sfExtra){
+    var sfEl = document.createElement('span');
+    sfEl.className = 'sfPix sfGuard' + sfExtra;
+    sfEl.setAttribute('aria-hidden', 'true');
+    sfEl.title = 'they will salute u back';
+    return sfEl;
+  }
+  var sfLeft  = sfMakeGuard('');
+  var sfRight = sfMakeGuard(' sfGuardR');
+
+  var sfRig = document.createElement('div');
+  sfRig.className = 'sfRig';
+
+  var sfCap = document.createElement('span');
+  sfCap.className = 'sfCap';
+  sfCap.innerHTML = 'the honor guard. 3 frames. they salute every candle.<br>' +
+                    '<b>hands</b> up. HANDS. this is the solemn part of the shrine —<br>' +
+                    'the other salute is observed down in the footer.<br>' +
+                    '(u may also just click them. its been a slow 10 yrs.)';
+
+  sfRig.appendChild(sfLeft);
+  sfRig.appendChild(sfRight);
+  sfRig.appendChild(sfCap);
+  sfBtn.parentNode.insertBefore(sfRig, sfBtn);
+
+  function sfHail(){
+    var sfPair = [sfLeft, sfRight], sfK;
+    for (sfK = 0; sfK < sfPair.length; sfK++){
+      sfPair[sfK].classList.remove('sfGuardHail');
+      void sfPair[sfK].offsetWidth;      /* reflow, so a fast clicker gets every salute */
+      sfPair[sfK].classList.add('sfGuardHail');
+    }
+  }
+  sfLeft.addEventListener('click', sfHail);
+  sfRight.addEventListener('click', sfHail);
+  document.addEventListener('click', function(sfE){
+    var sfT = sfE.target;
+    while (sfT && sfT !== document.body && sfT.tagName !== 'BUTTON') sfT = sfT.parentNode;
+    if (sfT && sfT.tagName === 'BUTTON' && /LIGHT A CANDLE/i.test(sfT.textContent || '')) sfHail();
+  }, true);
+})();
+
+/* sc-depth — the sky is not one distance */
+/* --- sc: DEPTH OF FIELD — two planes, no scroll handler, no rAF --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var scSprites = document.querySelectorAll('.bg-gorilla');
+  if (scSprites.length < 4) return;              /* no sky, no depth. fair. */
+
+  function scPlane(scCls, scZ){
+    var scL = document.createElement('span');
+    scL.className = 'sc-layer ' + scCls;
+    scL.setAttribute('aria-hidden','true');
+    scL.style.zIndex = scZ;                      /* keeps each band painting exactly where it painted before */
+    document.body.appendChild(scL);
+    return scL;
+  }
+
+  var scNear = scPlane('sc-deepnear', '-1');     /* the margin dwellers */
+  var scFar  = scPlane('sc-deepfar',  '2');      /* the giants. his spirit. very large, very far. */
+
+  for (var scI = 0; scI < scSprites.length; scI++){
+    var scS = scSprites[scI];
+    (parseFloat(scS.style.zIndex) > 0 ? scFar : scNear).appendChild(scS);
+  }
+
+  if (document.documentElement.className.indexOf('sc-go') < 0)
+    document.documentElement.className += ' sc-go';
+})();
+
+/* sc-reel — the film only advances when u scroll */
+/* --- sc: THE PROJECTOR — the movie box drives its own film strip --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function scFindBox(scNeedle){
+    var scHs = document.querySelectorAll('.box h3');
+    for (var i = 0; i < scHs.length; i++){
+      if ((scHs[i].textContent || '').toLowerCase().indexOf(scNeedle) > -1) return scHs[i].parentNode;
+    }
+    return null;
+  }
+
+  var scBox = scFindBox('now showing');
+  if (!scBox) return;
+  scBox.className += ' sc-reelhost';
+
+  /* the 8 scenes, in order, exactly as filmed */
+  var scFrames = ['🦍','🍌','🎓','🐝','🎷','⚖️','✈️','😇','🦍'];  /* 9th = frame 1 again. it loops. he loops. */
+  var scCells = '';
+  for (var scI = 0; scI < scFrames.length; scI++) scCells += '<span>' + scFrames[scI] + '</span>';
+
+  var scBar = document.createElement('div');
+  scBar.className = 'sc-reelbar';
+  scBar.innerHTML =
+    '<span class="sc-reeltag">▶ REEL 1 OF 1</span>' +
+    '<span class="sc-reelwin" aria-hidden="true"><span class="sc-reelstrip">' + scCells + '</span></span>' +
+    '<span class="sc-reeltag">the film only advances when u scroll.<br>' +
+    '<span class="sc-reelsub">u r the projector. runtime: 10 years (u r slow).</span></span>';
+
+  var scH3 = scBox.querySelector('h3');
+  if (scH3 && scH3.nextSibling) scBox.insertBefore(scBar, scH3.nextSibling);
+  else scBox.insertBefore(scBar, scBox.firstChild);
+
+  if (document.documentElement.className.indexOf('sc-go') < 0)
+    document.documentElement.className += ' sc-go';
+})();
+
+/* sc-odo — EXHIBIT A: the fake counter, recreated from memory */
+/* --- sc: EXHIBIT A — a fake counter, entered into evidence --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function scFindBox(scNeedle){
+    var scHs = document.querySelectorAll('.box h3');
+    for (var i = 0; i < scHs.length; i++){
+      if ((scHs[i].textContent || '').toLowerCase().indexOf(scNeedle) > -1) return scHs[i].parentNode;
+    }
+    return null;
+  }
+
+  var scBox = scFindBox('impostor');
+  if (!scBox) return;
+
+  /* one reel: 9 down 2 0, plus a spare 9 so the final step is never a blank window */
+  var scReel = '';
+  for (var scD = 9; scD >= 0; scD--) scReel += '<span>' + scD + '</span>';
+  scReel += '<span>9</span>';
+
+  var scPlaces = ['sc-odo4','sc-odo3','sc-odo2','sc-odo1'];   /* thousands ... ones */
+  var scDigits = '';
+  for (var scP = 0; scP < scPlaces.length; scP++)
+    scDigits += '<span class="sc-odod ' + scPlaces[scP] + '"><span class="sc-odor">' + scReel + '</span></span>';
+
+  var scWrap = document.createElement('div');
+  scWrap.className = 'sc-odobox';
+  scWrap.innerHTML =
+    '<div class="sc-odocap">⚠ EXHIBIT A: a FAKE counter ⚠<br>' +
+    '<span class="sc-odosub">(recreated from memory. i only saw it once.)</span></div>' +
+    '<div class="sc-odo" role="img" aria-label="a fake hit counter, counting downwards">' + scDigits + '</div>' +
+    '<div class="sc-odonote">scroll. go on. watch it. it goes <b>DOWN</b>.<br>' +
+    'what is at the bottom, brenda.<br>what happens at <b>zero</b>.</div>';
+
+  scBox.appendChild(scWrap);
+
+  if (document.documentElement.className.indexOf('sc-go') < 0)
+    document.documentElement.className += ' sc-go';
+})();
+
+/* sc-ring — the ring of one still turns */
+/* --- sc: THE RING OF ONE — it turns while u pass, and only then --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function scFindBox(scNeedle){
+    var scHs = document.querySelectorAll('.box h3');
+    for (var i = 0; i < scHs.length; i++){
+      if ((scHs[i].textContent || '').toLowerCase().indexOf(scNeedle) > -1) return scHs[i].parentNode;
+    }
+    return null;
+  }
+
+  var scBox = scFindBox('webring');
+  if (!scBox) return;
+
+  var scWrap = document.createElement('div');
+  scWrap.className = 'sc-ringwrap';
+  scWrap.innerHTML =
+    '<span class="sc-ringgem" aria-hidden="true">💍</span><br>' +
+    '<span class="sc-ringlbl"><b>the ring still turns.</b><br>' +
+    'it only turns while somebody is passing it.<br>' +
+    'that is the whole job now. thank u 4 passing. 💍</span>';
+
+  scBox.appendChild(scWrap);
+
+  if (document.documentElement.className.indexOf('sc-go') < 0)
+    document.documentElement.className += ' sc-go';
+})();
+
+/* THE LANDSLIDE — the poll's losing options concede and join the winner */
+/* ~*~ st: THE LANDSLIDE — u vote, and the other 2 options concede ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stZone  = document.getElementById('pollzone');
+  var stBoard = document.getElementById('pollresults');
+  if (!stZone || !stBoard || typeof window.vote !== 'function') return;
+
+  /* a clone, not the real button — showPoll() already hid the real one.
+     className is wiped so nothing another wave put on the button rides along. */
+  function stGhost(stBtn, stR){
+    var stC = stBtn.cloneNode(true);
+    stC.className = 'st-ghost';
+    stC.removeAttribute('onclick');
+    stC.removeAttribute('id');
+    stC.setAttribute('aria-hidden', 'true');
+    stC.setAttribute('tabindex', '-1');
+    stC.style.left   = stR.left + 'px';
+    stC.style.top    = stR.top + 'px';
+    stC.style.width  = stR.width + 'px';
+    stC.style.height = stR.height + 'px';
+    document.body.appendChild(stC);
+    return stC;
+  }
+
+  function stVerdict(){
+    if (stBoard.querySelector('.st-verdict')) return;
+    var stV = document.createElement('div');
+    stV.className = 'st-verdict';
+    stV.innerHTML =
+      '<span class="st-stamp">☑ UNANIMOUS</span>' +
+      '<span class="st-fineprint">the other 2 options conceded. we checked them: they were ' +
+      'also yes. nobody has ever lost this poll. that is not a bug.</span>';
+    stBoard.appendChild(stV);
+  }
+
+  var stOldVote = window.vote;
+  window.vote = function(stPick){
+    /* measure BEFORE the original hides the zone */
+    var stBtns = stZone.getElementsByTagName('button');
+    var stShots = [], stI, stR;
+    for (stI = 0; stI < stBtns.length; stI++){
+      stR = stBtns[stI].getBoundingClientRect();
+      if (stR.width) stShots.push({ b: stBtns[stI], r: stR, mine: stI === stPick });
+    }
+
+    var stRet = stOldVote.apply(this, arguments);
+    if (!stShots.length) return stRet;      /* already voted, nothing to measure */
+
+    var stTo = stBoard.getBoundingClientRect();
+    var stWin = null;
+    for (stI = 0; stI < stShots.length; stI++) if (stShots[stI].mine) stWin = stShots[stI];
+    if (!stWin) stWin = stShots[0];
+    var stWx = stWin.r.left + stWin.r.width / 2;
+    var stWy = stWin.r.top + stWin.r.height / 2;
+
+    for (stI = 0; stI < stShots.length; stI++){
+      (function(stS, stIdx){
+        var stG  = stGhost(stS.b, stS.r);
+        var stCx = stS.r.left + stS.r.width / 2;
+        var stCy = stS.r.top + stS.r.height / 2;
+        if (stS.mine){
+          /* the winner takes a small lap and lies down on the results */
+          stG.style.setProperty('--st-dx', ((stTo.left + stTo.width / 2) - stCx) + 'px');
+          stG.style.setProperty('--st-dy', ((stTo.top + 34) - stCy) + 'px');
+          stG.className += ' st-won';
+        } else {
+          /* they do not lose. they walk over and join him. */
+          stG.style.setProperty('--st-dx', (stWx - stCx) + 'px');
+          stG.style.setProperty('--st-dy', (stWy - stCy) + 'px');
+          stG.style.setProperty('--st-rot', (stIdx % 2 ? 8 : -8) + 'deg');
+          stG.className += ' st-concede';
+          stG.style.animationDelay = (stIdx * 0.06) + 's';
+        }
+        setTimeout(function(){ if (stG.parentNode) stG.parentNode.removeChild(stG); }, 1400);
+      })(stShots[stI], stI);
+    }
+
+    setTimeout(stVerdict, 820);
+    return stRet;
+  };
+})();
+
+/* THE SWEEP — pride mode is a procession, and turning it off carries the GAY out of his name */
+/* ~*~ st: THE SWEEP — pride mode is not a checkbox, it is a PROCESSION ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof window.prideMode !== 'function') return;
+
+  var stFlag = null, stWord = null, stClear = null;
+
+  function stBuild(){
+    if (stFlag) return;
+    stFlag = document.createElement('div');
+    stFlag.id = 'st-sweep';
+    stFlag.setAttribute('aria-hidden', 'true');
+    stWord = document.createElement('span');
+    stWord.id = 'st-sweepword';
+    stFlag.appendChild(stWord);
+    document.body.appendChild(stFlag);
+  }
+
+  /* the flag crosses him partway through the pass. that is when the shades land. */
+  function stStrike(stDur, stOn){
+    var stPx = document.querySelector('svg.portrait.pixel');
+    if (!stPx) return;
+    var stR = stPx.getBoundingClientRect();
+    var stPos = (stR.left + stR.width / 2) / Math.max(window.innerWidth, 1);
+    if (!stOn) stPos = 1 - stPos;
+    setTimeout(function(){
+      stPx.classList.remove('st-struck');
+      stPx.getBoundingClientRect();          /* svg has no offsetWidth — this is the reflow */
+      stPx.classList.add('st-struck');
+      setTimeout(function(){ stPx.classList.remove('st-struck'); }, 600);
+    }, Math.round(stDur * (0.12 + 0.72 * Math.max(0, Math.min(1, stPos)))));
+  }
+
+  var stOldPride = window.prideMode;
+  window.prideMode = function(){
+    var stRet = stOldPride.apply(this, arguments);
+    var stOn  = !!window.pride;             /* the site's own flag, read after the toggle */
+    stBuild();
+    /* turning it OFF is the flag carrying the GAY back out of his name */
+    stWord.textContent = stOn ? '\u{1F3F3}\u{FE0F}‍\u{1F308} HARAMGAY \u{1F3F3}\u{FE0F}‍\u{1F308}' : '...harambe.';
+    stFlag.className = '';
+    void stFlag.offsetWidth;                /* reflow so a fast toggler gets every pass */
+    stFlag.className = stOn ? 'st-on' : 'st-off';
+    stStrike(stOn ? 1250 : 1500, stOn);
+    clearTimeout(stClear);
+    stClear = setTimeout(function(){ if (stFlag) stFlag.className = ''; }, stOn ? 1400 : 1650);
+    return stRet;
+  };
+})();
+
+/* THE CARVING — a new guestbook entry gets chiselled in and wax-sealed */
+/* ~*~ st: THE CARVING — the site says entries are carved 4ever. prove it. ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stList = document.getElementById('gbentries');
+  if (!stList || typeof window.renderGB !== 'function') return;
+
+  var stPending = 0, stLedger = null;
+
+  function stClock(){
+    var stD = new Date(), stH = stD.getHours(), stM = stD.getMinutes();
+    var stAp = stH < 12 ? 'am' : 'pm';
+    stH = stH % 12; if (!stH) stH = 12;
+    return stH + ':' + (stM < 10 ? '0' : '') + stM + stAp;
+  }
+
+  function stSeal(stRow){
+    var stOld = stRow.querySelector('.st-seal');
+    if (stOld && stOld.parentNode) stOld.parentNode.removeChild(stOld);
+    var stS = document.createElement('span');
+    stS.className = 'st-seal';
+    stS.setAttribute('aria-hidden', 'true');
+    stS.innerHTML = '<b>\u{1F98D}</b>CARVED<br>4EVER';
+    stRow.appendChild(stS);                 /* .gb-entry is already position:relative */
+    setTimeout(function(){ if (stS.parentNode) stS.parentNode.removeChild(stS); }, 5700);
+  }
+
+  function stLog(){
+    var stNote = document.getElementById('gbnote');
+    if (!stNote || !stNote.parentNode) return;
+    if (!stLedger){
+      stLedger = document.createElement('div');
+      stLedger.className = 'st-ledger';
+      stNote.parentNode.insertBefore(stLedger, stNote.nextSibling);
+    }
+    stLedger.textContent = '· logged by hand at ' + stClock() +
+      ' by Xx_fuRPhY_xX. he was awake. he is always awake. ·';
+    stLedger.style.animation = 'none';
+    void stLedger.offsetWidth;
+    stLedger.style.animation = '';
+  }
+
+  if (typeof window.signGuestbook === 'function'){
+    var stOldSign = window.signGuestbook;
+    window.signGuestbook = function(){
+      stPending = Date.now();               /* the fetch has not landed yet. we wait. */
+      return stOldSign.apply(this, arguments);
+    };
+  }
+
+  /* the real moment is not the click, it is the row appearing. renderGB is the
+     only thing that redraws the list, so that is where the chisel goes. */
+  var stOldRender = window.renderGB;
+  window.renderGB = function(){
+    var stRet = stOldRender.apply(this, arguments);
+    var stWas = stPending;
+    stPending = 0;
+    if (!stWas || Date.now() - stWas > 20000) return stRet;   /* not ur entry: page load, etc */
+    var stRow = stList.firstElementChild;   /* renderGB reverses — newest is on top */
+    if (!stRow) return stRet;
+    stRow.classList.add('st-fresh');
+    setTimeout(function(){ stRow.classList.remove('st-fresh'); }, 1000);
+    setTimeout(function(){ stSeal(stRow); }, 420);
+    setTimeout(stLog, 700);
+    return stRet;
+  };
+})();
+
+/* GOODS INWARD — heaven's produce dept files a receipt on every banana milestone */
+/* ~*~ st: GOODS INWARD — heaven's produce dept files paperwork on milestones ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stMsg = document.getElementById('bananamsg');
+  if (!stMsg || !stMsg.parentNode || typeof window.feedBanana !== 'function') return;
+
+  var stHome = stMsg.parentNode, stPaper = null, stKill = null;
+
+  function stPad(stN){
+    var stS = String(stN);
+    while (stS.length < 6) stS = '0' + stS;
+    return stS;
+  }
+
+  function stFile(stN, stNote){
+    if (stPaper && stPaper.parentNode) stPaper.parentNode.removeChild(stPaper);
+    clearTimeout(stKill);
+    stPaper = document.createElement('div');
+    stPaper.className = 'st-receipt';
+    stPaper.setAttribute('aria-hidden', 'true');
+    stPaper.innerHTML =
+      '<div class="st-rhead">HEAVEN PRODUCE DEPT.<span class="st-rno">NO.' + stPad(stN) + '</span></div>' +
+      '<hr>' +
+      'RECEIVED  : <b>' + stN + ' BANANA</b><br>' +
+      'CONDITION : ripe. suspiciously ripe.<br>' +
+      'NOTES     : <span class="st-rnote"></span><br>' +
+      'SIGNED 4  : <span class="st-rsig"><i>Harambe</i><span></span></span> ' +
+      '<span class="st-rtiny">(illegible. accepted anyway.)</span>' +
+      '<hr>' +
+      '<span class="st-rok">✓ ACCEPTED.</span> RETAIN THIS RECEIPT.<br>' +
+      '<span class="st-rtiny">he retains his. all of them. in a drawer. up there.</span>';
+    /* textContent for the notes field — it is the only part that is not mine */
+    stPaper.querySelector('.st-rnote').textContent = stNote || 'no notes. he just liked it.';
+    stHome.appendChild(stPaper);
+    stKill = setTimeout(function(){
+      if (stPaper && stPaper.parentNode) stPaper.parentNode.removeChild(stPaper);
+      stPaper = null;
+    }, 9400);
+  }
+
+  var stOldFeed = window.feedBanana;
+  window.feedBanana = function(){
+    var stRet = stOldFeed.apply(this, arguments);
+    var stN = window.bananas;
+    if (typeof stN !== 'number') return stRet;
+    var stNote = (window.MILESTONES || {})[stN];
+    if (stNote || (stN > 2016 && stN % 1000 === 0)) stFile(stN, stNote);
+    return stRet;
+  };
+})();
+
+/* THE ZOOM RECT — the win98 window still knows how to open, and nothing else */
+/* ~*~ st: THE ZOOM RECT — the only window operation this OS still performs ~*~ */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stWin = document.getElementById('moviewindow');
+  if (!stWin || typeof window.openScript !== 'function') return;
+
+  var stFromX = null, stFromY = null;
+  document.addEventListener('pointerdown', function(stE){
+    stFromX = stE.clientX; stFromY = stE.clientY;
+  }, { passive: true });
+
+  var stOldOpen = window.openScript;
+  window.openScript = function(){
+    var stRet = stOldOpen.apply(this, arguments);
+    var stR = stWin.getBoundingClientRect();
+    if (!stR.width || !stR.height) return stRet;
+
+    var stSx = (window.pageXOffset || document.documentElement.scrollLeft || 0);
+    var stSy = (window.pageYOffset || document.documentElement.scrollTop  || 0);
+    var stX  = (stFromX === null ? window.innerWidth / 2 : stFromX);
+    var stY  = (stFromY === null ? 40 : stFromY);
+
+    var stBox = document.createElement('div');
+    stBox.id = 'st-zoom';
+    stBox.setAttribute('aria-hidden', 'true');
+    stBox.style.left   = (stR.left + stSx) + 'px';
+    stBox.style.top    = (stR.top  + stSy) + 'px';
+    stBox.style.width  = stR.width  + 'px';
+    stBox.style.height = stR.height + 'px';
+    /* the wireframe starts as a 14x10 nub exactly where ur finger was */
+    stBox.style.setProperty('--st-zx',  (stX - stR.left) + 'px');
+    stBox.style.setProperty('--st-zy',  (stY - stR.top)  + 'px');
+    stBox.style.setProperty('--st-zsx', (14 / stR.width).toFixed(4));
+    stBox.style.setProperty('--st-zsy', (10 / stR.height).toFixed(4));
+    document.body.appendChild(stBox);
+    setTimeout(function(){ if (stBox.parentNode) stBox.parentNode.removeChild(stBox); }, 700);
+    return stRet;
+  };
+})();
+
+/* THE ROOM — one (1) clip lamp, and 10 years of dust */
+/* dp 1 — THE ROOM. one lamp, 80 seconds, and 10 years of dust. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var dpSmall = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+
+  var dpRoom = document.createElement('div');
+  dpRoom.id = 'dp-room';
+  dpRoom.setAttribute('aria-hidden','true');
+
+  var dpBeam = document.createElement('div');
+  dpBeam.id = 'dp-beam';
+  dpRoom.appendChild(dpBeam);
+
+  var dpCount = dpSmall ? 6 : 14;
+  for (var dpI = 0; dpI < dpCount; dpI++){
+    var dpX = Math.random();                                  /* 0..1 across the room */
+    var dpSize = (1.6 + Math.random()*2.6).toFixed(1);
+    var dpM = document.createElement('span');
+    dpM.className = 'dp-mote';
+    dpM.style.left   = (dpX*100).toFixed(2) + 'vw';
+    dpM.style.top    = (Math.random()*100).toFixed(2) + 'vh';
+    dpM.style.width  = dpSize + 'px';
+    dpM.style.height = dpSize + 'px';
+    /* [drift, flare] — the flare is phase-shifted 2 this speck's own x, so the
+       beam appears 2 actually arrive at it. the beam does not know it exists. */
+    dpM.style.animationDuration = (22 + Math.random()*26).toFixed(1) + 's, 80s';
+    dpM.style.animationDelay = (-Math.random()*30).toFixed(1) + 's, '
+                             + (dpX*40 - 20).toFixed(1) + 's';
+    dpRoom.appendChild(dpM);
+  }
+  document.body.appendChild(dpRoom);
+})();
+
+/* THE GLASS — u are looking at a curved tube, not a webpage */
+/* dp 2 — THE GLASS. curvature, vignette, and the colors coming apart. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var dpGlass = document.createElement('div');
+  dpGlass.id = 'dp-glass';
+  dpGlass.setAttribute('aria-hidden','true');
+  var dpFringe = document.createElement('div');
+  dpFringe.id = 'dp-fringe';
+  dpFringe.setAttribute('aria-hidden','true');
+  document.body.appendChild(dpGlass);
+  document.body.appendChild(dpFringe);
+})();
+
+/* EVERY BOX IS A PHYSICAL OBJECT NOW — bevel + a shadow that leans away from the lamp */
+/* dp 3 — every box is an object: bevel + a contact shadow that leans away
+   from the lamp. sidebar boxes keep a still shadow (there r ~18 of them and
+   the joke does not get 18x funnier). the main column swings. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var dpSmall = !!(window.matchMedia && window.matchMedia('(max-width:700px)').matches);
+
+  function dpMark(dpSel, dpCls){
+    var dpEls = document.querySelectorAll(dpSel);
+    for (var dpK = 0; dpK < dpEls.length; dpK++) dpEls[dpK].className += dpCls;
+  }
+  dpMark('.box, #moviewindow, #gorillamp', ' dp-bevel');
+  dpMark('.box, #moviewindow', ' dp-cast');
+  if (!dpSmall) dpMark('td.main .box, #moviewindow', ' dp-swing');
+})();
+
+/* THE WHOLE WEBSITE IS A POSTER TAPED TO A WALL */
+/* dp 4 — the entire website is a poster taped 2 a wall, and it knows it. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var dpSite = document.getElementById('site');
+  if (!dpSite) return;
+  dpSite.className += ' dp-wall';
+})();
+
+/* THERE R FINGERPRINTS ON THE GLASS AND THEY R ALL IN ONE PLACE */
+/* dp 5 — the display case has fingerprints on it and they r all in one place. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var dpCase = document.querySelector('.shrine');
+  if (!dpCase) return;
+  dpCase.className += ' dp-smudge';
+})();
 
 /* ================= ANIMATION WAVE 5 (behaviour) ================= */
 
