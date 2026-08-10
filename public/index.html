@@ -1599,6 +1599,49 @@ dialog#ficreader::backdrop { background: rgba(20,0,40,.72); }
 dialog#ficreader[open] { animation: ficopen .28s ease-out; }
 @keyframes ficopen { from { opacity: 0; transform: translateY(14px) scale(.985); } }
 
+/* the staff pick */
+.fic-excerpt {
+  border: 4px double #ffd700; background: rgba(255,215,0,.06);
+  padding: 12px 16px; margin: 10px 0;
+}
+.fic-excerpt-from { font-size: 11px; color: #ffd700; margin-bottom: 6px; }
+.fic-excerpt p {
+  font-family: Georgia, "Times New Roman", serif; font-size: 14px;
+  line-height: 1.6; color: #fff; font-style: italic; margin: 0 0 8px 0;
+}
+.fic-excerpt-note {
+  font-size: 12px; color: #ff99ff; border-top: 1px dashed #7a5a2a; padding-top: 6px;
+}
+.fic-stats {
+  border: 3px inset #7a4dbf; background: #1a0b2e;
+  padding: 10px 14px; margin: 10px 0; font-size: 12px; line-height: 1.6;
+}
+/* ~*~ the archive, promoted to headline material ~*~ */
+.fic-listing {
+  border: 3px outset #7a4dbf; background: linear-gradient(180deg,#2a1145,#1a0b2e);
+  padding: 10px 12px; margin: 10px 0; text-align: left;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.fic-listing:hover {
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 #ff00ff, 0 0 18px rgba(255,0,255,.5);
+}
+.fic-listing-title {
+  font-size: 17px; font-weight: bold; color: #00ffff; text-decoration: none;
+  display: inline-block;
+}
+.fic-listing-title:hover { text-decoration: underline; }
+.fic-listing-by { font-size: 11px; color: #cc99ff; margin: 2px 0 6px 0; }
+.fic-listing-sum { font-size: 12px; color: #fff; line-height: 1.45; margin-bottom: 6px; }
+.fic-listing-meta {
+  font-size: 10px; color: #9a7ac0; border-top: 1px dotted #5a3a8a;
+  padding-top: 4px; margin-bottom: 6px;
+}
+.fic-listing-btn {
+  font-family: "Comic Sans MS", cursive; font-size: 12px; font-weight: bold;
+  background: linear-gradient(180deg,#ff99ff,#cc00cc); border: 3px outset #ffccff;
+  color: #fff; text-shadow: 1px 1px 0 #000; padding: 3px 12px; cursor: pointer;
+}
 .tiny { font-size: 10px; color: #cc99ff; }
 .beetext {
   background: #000; color: #ffd700; padding: 0 6px; border-radius: 6px;
@@ -1691,7 +1734,7 @@ dialog#ficreader[open] { animation: ficopen .28s ease-out; }
       <a href="#guestbook">📖 guestbook 📖</a><br>
       <a href="#webring">💍 webring 💍</a><br>
       <a href="#" onclick="openScript();return false;">🐝 the script 🐝</a><br>
-      <a href="#ledger">📜 meme ledger 📜</a><br>
+      <a href="#archive">📚 the archive 📚</a><br>
       <a href="#shoppe">🛒 gift shoppe 🛒</a><br>
       <a href="#faq">❓ f.a.q. ❓</a><br>
       <a href="#" onclick="alert('u are already home. we all are. harambe IS home.');return false;">🏠 home 🏠</a>
@@ -1924,19 +1967,26 @@ even a fake click is a click.
   </div>
 
   <div class="box">
-    <h3>◈ ~ the archive ~ ◈</h3>
+    <h3>◈ the meme ledger ◈</h3>
     <div style="font-size:11px;line-height:1.4;">
-      <span class="tiny">fan fiction. every fic is a fix-it.</span><br><br>
-      <a href="#" onclick="openFic('notredame');return false;">the silverback of notre dame</a><br>
-      <span class="tiny">ch. 1 of ?? · ABANDONED</span><br><br>
-      <a href="#" onclick="openFic('justice');return false;">harambe x the concept of justice</a><br>
-      <span class="tiny">rated T (2 tender) · complete</span><br><br>
-      <a href="#" onclick="openFic('immortal');return false;">my immortal but every character is harambe</a><br>
-      <span class="tiny">666 reviews · do not read</span><br><br>
-      <a href="#" onclick="openFic('enclosure');return false;">enclosure of the heart</a><br>
-      <span class="tiny">84 chapters · updates every may</span><br><br>
-      <b class="tiny">genre: fix-it. they are ALL fix-it.<br>what else would they possibly be.</b><br><br>
-      <span class="tiny">latest review — <b style="color:#00ffff;">xXsephiroth420Xx</b>: first</span>
+      <span class="tiny">what he saw / what he was denied</span><br><br>
+      <b style="color:#00ff99;">✅ WITNESSED</b><hr style="border-color:#066;margin:3px 0;">
+      <b>damn daniel</b> <span class="tiny">(feb 2016)</span><br>
+      <span class="tiny">loved it. had no vans. barefoot king.</span><br><br>
+      <b>dat boi</b> <span class="tiny">(spring 2016)</span><br>
+      <span class="tiny">he saw dat boi arrive. he never had 2 see dat boi leave. mercy.</span><br><br>
+      <b>the bottle flip</b> <span class="tiny">(may 24, 2016)</span><br>
+      <span class="tiny">his last meme. he saw it land. then he left us.</span><br><br>
+      <b style="color:#ff6666;">❌ DENIED</b><hr style="border-color:#600;margin:3px 0;">
+      <b>pokemon go</b> <span class="tiny">(july 6, 2016)</span><br>
+      <span class="tiny">by 39 days. the zoo became a gym without its gym leader.</span><br><br>
+      <b>arthur's fist</b> <span class="tiny">(july 27, 2016)</span><br>
+      <span class="tiny">this is how we felt ABOUT missing him.</span><br><br>
+      <b>evil kermit</b> <span class="tiny">(nov 2016)</span><br>
+      <span class="tiny">he never met his dark self. he didn't have one.</span><br><br>
+      <b>the death of vine</b> <span class="tiny">(oct 27, 2016)</span><br>
+      <span class="tiny">spared by exactly 152 days. god is occasionally kind.</span><br><br>
+      <b class="tiny" style="color:#ffd700;">the greatest meme of 2016 never got 2 see the greatest meme of 2016. it was him. he never knew.</b>
     </div>
   </div>
 
@@ -2188,38 +2238,72 @@ even a fake click is a click.
     </div>
   </div>
 
-  <!-- THE LEDGER -->
-  <a id="ledger"></a>
+  <!-- THE ARCHIVE -->
+  <a id="archive"></a>
   <div class="box">
-    <h3>📜 the offical meme ledger 📜 (what he saw / what he was denied)</h3>
-    <table style="width:100%;font-size:12px;border-spacing:6px;">
-      <tr>
-        <td style="vertical-align:top;width:50%;border:3px inset #00ff99;padding:6px;">
-          <center><b style="color:#00ff99;">✅ WITNESSED</b></center><hr style="border-color:#066;">
-          <b>damn daniel</b> <span class="tiny">(feb 2016)</span><br>
-          saw it. loved it. had no vans. barefoot king.<br><br>
-          <b>dat boi</b> <span class="tiny">(spring 2016)</span><br>
-          he saw dat boi arrive. he never had 2 see dat boi leave. mercy.<br><br>
-          <b>the bottle flip</b> <span class="tiny">(may 24, 2016)</span><br>
-          his last meme. he saw it land. then he left us.
-        </td>
-        <td style="vertical-align:top;width:50%;border:3px inset #ff6666;padding:6px;">
-          <center><b style="color:#ff6666;">❌ DENIED</b></center><hr style="border-color:#600;">
-          <b>pokemon go</b> <span class="tiny">(july 6, 2016)</span><br>
-          by 39 days. the zoo became a gym without its gym leader.<br><br>
-          <b>arthur's fist</b> <span class="tiny">(july 27, 2016)</span><br>
-          this is how we felt ABOUT missing him.<br><br>
-          <b>evil kermit</b> <span class="tiny">(nov 2016)</span><br>
-          he never met his dark self. he didn't have one.<br><br>
-          <b>the death of vine</b> <span class="tiny">(announced oct 27, 2016)</span><br>
-          spared by exactly 152 days. god is occasionally kind.
-        </td>
-      </tr>
-    </table>
-    <p class="epitaph" style="text-align:center;font-size:15px;">
-      the greatest meme of 2016 never got 2 see<br>the greatest meme of 2016.<br>
-      it was him. he never knew.
-    </p>
+    <h3>📚 ~*~ THE ARCHIVE ~*~ 📚 (fan fiction. all of it fix-it.)</h3>
+    <center style="font-size:12px;">
+      <b style="color:#ffff00;">4 works · 3,441 reviews · est. 2016</b><br>
+      <span class="tiny">every fic on this shrine is a fix-it fic.<br>
+      that is not a genre preference. that is the entire point.<br>
+      what else would they possibly be.</span>
+    </center>
+    <div class="transbar"></div>
+      <div class="fic-listing">
+        <a href="#" class="fic-listing-title" onclick="openFic('notredame');return false;">the silverback of notre dame</a>
+        <div class="fic-listing-by">by <b>xX_vesperbelle_Xx</b> · <span style="color:#ff9944;">ch. 1 of ?? · ABANDONED (author disputes this)</span></div>
+        <div class="fic-listing-sum">AU. in the city of verrelis nobody has ever SEEN the bellringer of saint bellamine, but everybody has heard him. a boy who plays the organ badly on purpose. a boy who lights the lamps on the rue cendrine. and eleven years of bell ropes wrapped in wool so that nobody&#x27;s hands get hurt. HE LIVES IN THIS ONE. 12...</div>
+        <div class="fic-listing-meta">Rated: T · Drama/Romance/Angst · Cathedral AU · Updated: 6/2016 · Chapters: 2 of ?? · Words: 2,341 · Reviews: 476 · Favs: 391 · Follows: 802 · Status: In-Progress (author&#x27;s word)</div>
+        <button class="fic-listing-btn" onclick="openFic('notredame');return false;">📖 read it</button>
+      </div>
+      <div class="fic-listing">
+        <a href="#" class="fic-listing-title" onclick="openFic('justice');return false;">harambe x the concept of justice</a>
+        <div class="fic-listing-by">by <b>xXx_ashes_of_tuesday_xXx</b> · <span style="color:#00ff99;">COMPLETE · rated T (2 tender)</span></div>
+        <div class="fic-listing-sum">she has held the scales for four thousand years and nobody has ever once asked her if they were heavy. then a gorilla asks. HarambexJustice, slow burn, hand-holding ONLY, she is an abstract noun and i will not be taking questions. yes its a fix-it. what else would it be. COMPLETE.</div>
+        <div class="fic-listing-meta">Rated: T · Angst/Romance · Chapters: 3 · Words: 891 · Reviews: 2,208 · Favs: 1,116 · Follows: 903 · Published: 6/9/2016 · Updated: 8/1/2016 · Status: COMPLETE</div>
+        <button class="fic-listing-btn" onclick="openFic('justice');return false;">📖 read it</button>
+      </div>
+      <div class="fic-listing">
+        <a href="#" class="fic-listing-title" onclick="openFic('immortal');return false;">my immortal but every character is harambe</a>
+        <div class="fic-listing-by">by <b>Xx_bAnAnAfAnG_666_xX</b> · <span style="color:#ff5555;">666 reviews · do not read</span></div>
+        <div class="fic-listing-sum">harambeth ravenway nightsorrow harambé is a gawth gorilla at a school where literally EVERYONE is also harambe and no one will address this. features: bass guitar, the botanical wing, a portal behind the belt wall at hot topic, one (1) hand hold. IT IS A FIX IT. they are all fix its. dont like dont read.</div>
+        <div class="fic-listing-meta">Rated: T · Angst/Romance/Parody · Chapters: 3 · Words: 903 · Updated: 6/28/2016 · Reviews: 666 · Tags: do not read</div>
+        <button class="fic-listing-btn" onclick="openFic('immortal');return false;">📖 read it</button>
+      </div>
+      <div class="fic-listing">
+        <a href="#" class="fic-listing-title" onclick="openFic('enclosure');return false;">enclosure of the heart</a>
+        <div class="fic-listing-by">by <b>moonlit_silverback99</b> · <span style="color:#66ccff;">84 chapters · ONGOING since 2016</span></div>
+        <div class="fic-listing-sum">AU where he never left. dallas is nineteen and brand new and drops a bucket on his first shift. hector has worked here nine years and bends down to pick it up. harambe watches from the flat rock and does not look away. slow burn. and i mean VERY slow burn. it is still the afternoon of may 27th. it is going to be...</div>
+        <div class="fic-listing-meta">Rated: T · Romance/Angst/Comfort · Chapters: 84 · Words: 21,038 · In-story time elapsed: 11 minutes · Published: 5/28/2016 · Updated: 5/28/2026 · Reviews: 4,412 · Favs: 1,208 · Status: ONGOING</div>
+        <button class="fic-listing-btn" onclick="openFic('enclosure');return false;">📖 read it</button>
+      </div>
+    <div class="transbar"></div>
+    <center><b style="color:#ffff00;font-size:14px;">⭐ STAFF PICK ⭐</b><br>
+    <span class="tiny">(the staff is me. i am the staff.)</span></center>
+    <div class="fic-excerpt">
+      <div class="fic-excerpt-from">from <b>the silverback of notre dame</b>, ch. 1</div>
+      <p>He knew the ropes up in the tower were wrapped in soft grey wool, so that the hands which pulled them would never be hurt. He knew the stairs above the ninth landing had been widened by somebody with a chisel and an enormous amount of patience. He knew that on the coldest nights the tower breathed.</p>
+      <div class="fic-excerpt-note">
+        the wool. on the ropes. SO HIS HANDS DONT GET HURT.<br>
+        she put that in a paragraph and just kept walking.<br>
+        <span class="tiny">i have read this fic eleven times. — furphy</span>
+      </div>
+    </div>
+
+    <div class="fic-stats">
+      <b style="color:#ffff00;">◈ archive statistics ◈</b><br>
+      total works: <b>4</b> · total reviews: <b>3,441</b><br>
+      works completed: <b>1</b> · works abandoned: <b>1</b> <span class="tiny">(disputed)</span><br>
+      works still updating after 10 years: <b>1</b><br>
+      works u should not read: <b>1</b> <span class="tiny">(u will anyway)</span><br>
+      works tagged fix-it: <b>4 of 4</b><br>
+      <span class="tiny">longest hiatus: 3 years, 5 months (and counting) (she promised on perpetua)</span><br>
+      <span class="tiny">oldest unanswered review: "chapter 3?" — a guest, 2019</span>
+    </div>
+    <center class="tiny" style="margin-top:8px;">
+      submissions r CLOSED (they were never open) (email furphy@harambe.gay anyway)<br>
+      latest review — <b style="color:#00ffff;">xXsephiroth420Xx</b>: first
+    </center>
   </div>
 
   <!-- GIFT SHOPPE -->
