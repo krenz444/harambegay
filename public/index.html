@@ -342,6 +342,250 @@ input, textarea {
 }
 
 /* ==========================================================
+   ~*~ ANIMATION WAVE 7 — every element, but dumber ~*~
+   ========================================================== */
+
+/* ha1 — the speakers warning escalates */
+.haSpk { display: inline-block; transform-origin: center bottom; transition: transform .6s cubic-bezier(.34,1.56,.64,1), color .6s; }
+.haSpk1 { transform: scale(1.12); }
+.haSpk2 { transform: scale(1.26); color: #ffff00; }
+.haSpk3 { transform: scale(1.38); color: #ff9900; }
+.haSpk4 { transform: scale(1.5); color: #ff4444; }
+.haSpkMad { animation: haSpkTantrum .26s linear 5; }
+@keyframes haSpkTantrum {
+  25% { transform: scale(1.44) translate(2px,-1px) rotate(1.4deg); }
+  75% { transform: scale(1.44) translate(-2px,1px) rotate(-1.4deg); }
+}
+.haSpkPeace { color: #ffd700; transform: scale(1); }
+
+/* ha2 — the netscape line shakes its head at u */
+.haNn { display: inline-block; }
+.haNnShake { animation: haNnNo .2s linear 4; }
+@keyframes haNnNo { 25% { transform: rotate(1.6deg); } 75% { transform: rotate(-1.6deg); } }
+.haNnVerdict { display: block; color: #ff9999; font-style: italic; }
+
+/* ha3 — mood ring flip */
+.haMoodRing { display: inline-block; transform-origin: center; }
+.haMoodFlip { animation: haMoodSpin .7s ease; }
+@keyframes haMoodSpin {
+  45% { transform: rotateY(90deg) scale(1.2); }
+  55% { transform: rotateY(90deg) scale(1.2); }
+  100% { transform: rotateY(0) scale(1); }
+}
+
+/* ha4 — drama log live entry */
+.haDramaDate { color: #ffff00; }
+.haDramaLive { color: #ff4444; font-weight: bold; font-size: 9px; letter-spacing: 1px; animation: haDramaBlink .6s steps(2) infinite; }
+.haDramaOld { color: #888; font-size: 9px; font-style: italic; }
+@keyframes haDramaBlink { 50% { opacity: 0; } }
+
+/* ha5 — impostor box composure meter */
+.haCalm { margin-top: 8px; font-size: 10px; color: #ff9999; }
+.haCalmLbl { margin-bottom: 2px; }
+.haCalmBar { height: 8px; background: #000; border: 2px inset #888; }
+.haCalmFill { height: 100%; background: #00ff66; transform-origin: left center; transform: scaleX(1); transition: transform .25s linear, background .4s; }
+.haCalmRefill { transition: transform 1.4s ease, background .4s; }
+.haMad1 { animation: haMadShakeA .3s linear infinite; }
+.haMad2 { animation: haMadShakeB .22s linear infinite; }
+.haMad3 { animation: haMadShakeC .15s linear infinite; }
+.haMadMax { animation: haMadShakeC .1s linear infinite; }
+.haMadMax h3 { animation: haMadFlick .12s steps(2) 10; }
+.haMad1 .haCalmFill { background: #ffee00; }
+.haMad2 .haCalmFill { background: #ff9900; }
+.haMad3 .haCalmFill, .haMadMax .haCalmFill { background: #ff2222; }
+@keyframes haMadShakeA { 25% { transform: translate(1px,0); } 75% { transform: translate(-1px,0); } }
+@keyframes haMadShakeB { 25% { transform: translate(2px,-1px) rotate(.3deg); } 75% { transform: translate(-2px,1px) rotate(-.3deg); } }
+@keyframes haMadShakeC { 25% { transform: translate(3px,-2px) rotate(.8deg); } 75% { transform: translate(-3px,2px) rotate(-.8deg); } }
+@keyframes haMadFlick { 50% { filter: invert(1) hue-rotate(90deg); } }
+
+/* ha6 — moment of silence */
+.haSilCap { text-align: center; font-size: 11px; font-style: italic; color: #aaccff; letter-spacing: 2px; padding: 2px 0; }
+.haSilDim { filter: grayscale(.7) brightness(.75); transition: filter .5s; }
+
+.hs-defline { display:inline-block; color:#ff99ff; }
+.hs-defline.hs-huff { animation: hshuff .35s ease-out; }
+@keyframes hshuff { 0%{ transform:translateX(0);} 25%{ transform:translateX(-3px) rotate(-1deg);} 50%{ transform:translateX(3px) rotate(1deg);} 75%{ transform:translateX(-2px);} 100%{ transform:translateX(0);} }
+
+.hs-droop { animation: hsdroop .5s ease-out; }
+@keyframes hsdroop { 0%{ transform:rotate(0) translateY(0);} 30%{ transform:rotate(3deg) translateY(3px);} 100%{ transform:rotate(0) translateY(0);} }
+#hs-rejects { display:block; font-size:10px; color:#ff99ff; margin-top:3px; line-height:1.4; }
+
+.hs-suable { cursor: pointer; }
+.hs-fineprint { font-size:10px; color:#aaaaff; line-height:1.5; margin:2px auto; max-width:95%; }
+.hs-fineline { display:block; animation: hsstampin .3s ease-out; }
+@keyframes hsstampin { from { opacity:0; transform:scale(1.6);} to { opacity:1; transform:scale(1);} }
+.hs-fineline.hs-rattled { animation: hsrattle .3s ease-out; }
+@keyframes hsrattle { 0%{ transform:translateX(0);} 30%{ transform:translateX(-3px);} 60%{ transform:translateX(3px);} 100%{ transform:translateX(0);} }
+
+.hs-inkpad { cursor: pointer; }
+.hs-slam { animation: hsslam .3s ease-out; }
+@keyframes hsslam { 0%{ transform:scale(1);} 40%{ transform:scale(1.35) rotate(-6deg);} 70%{ transform:scale(.92) rotate(2deg);} 100%{ transform:scale(1);} }
+.hs-ink { position:fixed; z-index:9990; pointer-events:none; border:3px double currentColor; padding:2px 8px; font-weight:bold; font-size:13px; letter-spacing:1px; opacity:.55; transform: rotate(var(--hs-rot,0deg)); animation: hsinkfade 2.4s ease-out forwards; }
+.hs-ink.hs-inkdry { opacity:.15; }
+@keyframes hsinkfade { to { opacity:0; transform: rotate(var(--hs-rot,0deg)) scale(1.25) translateY(6px); } }
+.hs-inknote { font-size:10px; color:#999; margin-top:4px; }
+
+#hs-signal { font-size:11px; color:#00ffff; margin-top:4px; line-height:1.5; }
+#hs-signal .hs-bar { display:inline-block; width:5px; margin:0 1px; background:#00ff99; vertical-align:bottom; }
+#hs-signal .hs-bar.hs-dead { background:#333; }
+#hs-signal.hs-static { animation: hsstatic .5s steps(4) 2; }
+@keyframes hsstatic { 0%{ opacity:1; } 50%{ opacity:.35; } 100%{ opacity:1; } }
+
+.hs-arena { position: relative; }
+.hs-podium:hover { animation: hsstump .45s ease-in-out infinite alternate; }
+@keyframes hsstump { from { transform: translateY(0) scale(1); } to { transform: translateY(-3px) scale(1.07); } }
+.hs-attackad { position:absolute; left:2%; right:2%; bottom:100%; margin-bottom:6px; background:#000; border:2px solid #ff5555; color:#ffff99; font-size:10px; line-height:1.4; padding:5px 7px; text-align:center; z-index:40; pointer-events:none; opacity:0; }
+.hs-attackad.hs-on { opacity:1; animation: hsadpop .18s ease-out; }
+.hs-attackad b { color:#ff5555; }
+@keyframes hsadpop { from { opacity:0; transform:scale(.7) rotate(-2deg); } to { opacity:1; transform:scale(1) rotate(0); } }
+
+/* ~*~ hl: the f.a.q. answers avoid eye contact ~*~
+   hover a question and the answer physically leans away from it.
+   the two "r u ok" questions keep a tally. the tally is the answer. */
+.hl-faqa { display: inline-block; transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .5s ease; }
+.hl-faqp:hover .hl-faqa { transform: translateX(14px) skewX(-7deg); opacity: .82; }
+.hl-faqp:hover .hl-faqa::after { content: ' *avoids eye contact*'; font-size: 9px; color: #cc99ff; font-style: italic; }
+.hl-faqtally { display: block; font-size: 10px; color: #ff5555; font-style: italic; }
+
+/* ~*~ hl: 'enclosure of the heart' is ONGOING. she is typing RIGHT NOW. ~*~
+   the word count ticks up live. sometimes it ticks down. she deleted
+   a sentence. it was 2 much. in-story time remains 11 minutes. */
+#hl-ficwords { display: inline-block; color: #66ccff; font-weight: bold; }
+.hl-ficpop { animation: hl-ficpop .9s ease; }
+@keyframes hl-ficpop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.45); text-shadow: 0 0 8px #66ccff; }
+  100% { transform: scale(1); }
+}
+.hl-ficnote { font-size: 10px; color: #66ccff; font-style: italic; margin-top: 2px; }
+
+/* ~*~ hl: do not perceive the plush ~*~
+   the jeff plush row blurs when observed directly. the harder u look,
+   the less there is. jeff has been told either way. */
+.hl-jeffrow td { transition: filter .35s ease; }
+.hl-jeffrow:hover td:first-child,
+.hl-jeffrow:hover td:nth-child(2) { filter: blur(3px); }
+.hl-jeffwarn { display: block; opacity: 0; transition: opacity .3s ease .15s; font-size: 9px; color: #ffaa00; font-style: italic; }
+.hl-jeffrow:hover .hl-jeffwarn { opacity: 1; }
+
+/* ~*~ hl: the recalled body pillow still wants 2 hold u ~*~
+   hover the row. it hugs. mouse away. it keeps hugging for 2.6 more
+   seconds. that is the exact behavior that got it recalled. */
+.hl-pillowrow { transition: background .3s ease; }
+.hl-pillowrow td { transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+.hl-pillowrow.hl-pillowhug { background: rgba(255,102,255,.14); }
+.hl-pillowrow.hl-pillowhug td { transform: scale(.97); }
+.hl-pillowtag { display: block; font-size: 9px; color: #ff99ff; font-style: italic; }
+
+/* ~*~ hl: the webring roulette ~*~
+   prev/random/next now spin the ENTIRE webring, wheel-of-fortune style.
+   prev spins backwards (u still cannot go back). every spin lands
+   on this site, because there is only this site. */
+.hl-ringspin    { animation: hl-ringspin .95s cubic-bezier(.33,.66,.2,1); }
+.hl-ringspinrev { animation: hl-ringspinrev .95s cubic-bezier(.33,.66,.2,1); }
+@keyframes hl-ringspin    { from { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(.92); } to { transform: rotate(360deg) scale(1); } }
+@keyframes hl-ringspinrev { from { transform: rotate(0deg) scale(1); } 50% { transform: rotate(-180deg) scale(.92); } to { transform: rotate(-360deg) scale(1); } }
+.hl-ringodo { display: block; font-size: 10px; color: #00ffff; font-style: italic; }
+
+/* ~*~ hl: the ad can be soothed. this is a petting-based economy. ~*~
+   the banner has begged 2 be pet since 2016. now petting WORKS.
+   stroke him with the cursor. the shaking slows. he tries 2 purr.
+   (he re-agitates in 9 seconds. he saw a hat. this is forever.) */
+.hl-adpet { animation-duration: 1.1s !important; }
+.hl-adsoothed { animation: hl-adsway 3.5s ease-in-out infinite !important; }
+@keyframes hl-adsway { 0%,100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg); } }
+#hl-petmeter { border: 2px inset #ff99ff; background: #12002e; padding: 3px 6px; font-size: 10px; color: #ff99ff; text-align: center; margin: 2px 0 4px 0; }
+#hl-petbar { display: block; height: 7px; background: linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#24408e,#732982); transform-origin: left center; transform: scaleX(0); transition: transform .3s ease; margin-top: 2px; }
+
+/* hz-rule-stamp — the compliance department has entered the sidebar */
+.hzRuleHost { position: relative; }
+.hzStamp {
+  position: absolute; left: 50%; top: 42%; z-index: 5;
+  transform: translate(-50%,-50%) rotate(-14deg) scale(3);
+  font-family: 'Courier New', monospace; font-weight: bold; font-size: 16px;
+  letter-spacing: 2px; white-space: nowrap; text-transform: uppercase;
+  color: #ff3333; border: 4px double #ff3333; border-radius: 6px;
+  padding: 4px 10px; opacity: 0; pointer-events: none;
+}
+.hzStamp.hzStampIn { animation: hzSlam .45s cubic-bezier(.2,1.6,.4,1) forwards, hzStampFade .7s ease 1.5s forwards; }
+@keyframes hzSlam {
+  from { opacity: 0; transform: translate(-50%,-50%) rotate(-14deg) scale(3); }
+  60%  { opacity: 1; transform: translate(-50%,-50%) rotate(-14deg) scale(.92); }
+  to   { opacity: 1; transform: translate(-50%,-50%) rotate(-14deg) scale(1); }
+}
+@keyframes hzStampFade { to { opacity: 0; } }
+.hzAmend { display: block; margin-top: 6px; font-size: 10px; color: #ff9999; font-style: italic; line-height: 1.4; }
+
+/* hz-doppler — heaven gets a live radar. the radar has one number. */
+.hzWx { display: inline-block; animation: hzWxJitter .12s linear 8; }
+@keyframes hzWxJitter { 25% { transform: translate(1px,-1px); } 75% { transform: translate(-1px,1px); } }
+.hzWxSpin { display: inline-block; animation: hzWxSpin .9s ease-in-out 1; }
+@keyframes hzWxSpin { to { transform: rotate(360deg); } }
+.hzWxAlert { display: block; margin-top: 5px; font-size: 10px; color: #ffcc00; line-height: 1.4; }
+
+/* hz-mailcheck — u checked it. it updates ME, not the mail. */
+.hzMailShake { display: inline-block; animation: hzMailShake .5s linear 2; }
+@keyframes hzMailShake {
+  0%,100% { transform: rotate(0); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg) translateY(-2px); }
+  80% { transform: rotate(6deg); }
+}
+.hzMailStatus { display: block; margin-top: 6px; font-size: 10px; color: #99ffcc; font-family: 'Courier New', monospace; line-height: 1.4; }
+
+/* hz-cliquecard — every club has a card. every card has one name on it. */
+.hzCliqueCard {
+  display: block; margin-top: 6px; padding: 4px 6px; font-size: 10px; text-align: left;
+  border: 2px dashed #ff66ff; background: rgba(255, 0, 255, .08); color: #ffccff; line-height: 1.45;
+}
+.hzCliqueCard.hzCliqueIn { animation: hzCliqueFlip .4s ease-out; }
+@keyframes hzCliqueFlip {
+  from { transform: rotateX(80deg); opacity: 0; }
+  to   { transform: rotateX(0);     opacity: 1; }
+}
+.hzCliqueCard b { color: #ffff00; }
+.hzCliqueCard i { color: #99ffff; }
+
+/* hz-theft-siren — stealing the ONE legal thing still deserves a siren */
+.hzTheftHost { position: relative; }
+.hzSiren {
+  position: absolute; left: 0; right: 0; top: 0; z-index: 6; pointer-events: none;
+  text-align: center; font-family: Verdana, sans-serif; font-size: 11px; font-weight: bold;
+  color: #fff; padding: 3px 0; letter-spacing: 2px; text-shadow: 1px 1px 0 #000;
+  animation: hzSirenFlash .3s steps(2) 8, hzSirenDrop .35s ease-out;
+}
+@keyframes hzSirenFlash { 0% { background: #cc0000; } 50% { background: #0000cc; } 100% { background: #cc0000; } }
+@keyframes hzSirenDrop { from { transform: translateY(-14px); opacity: 0; } to { transform: none; opacity: 1; } }
+.hzBadgePanic { animation: hzBadgePanic .6s linear 2; }
+@keyframes hzBadgePanic {
+  0%,100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-6deg) scale(1.06); }
+  50% { transform: rotate(5deg) scale(.97); }
+  75% { transform: rotate(-3deg) scale(1.03); }
+}
+.hzTheftLog { display: block; margin-top: 4px; font-size: 10px; color: #ff9999; line-height: 1.4; }
+
+/* hz-blinkie-quest — they were never buttons. they r now. i am sorry. */
+.hzBkAble { cursor: pointer; }
+.hzBkGot { outline: 2px dotted #00ff00; outline-offset: 1px; }
+.hzBkPop { animation: hzBkPop .45s cubic-bezier(.2,1.8,.4,1); }
+@keyframes hzBkPop { 40% { transform: scale(1.18) rotate(2deg); } }
+.hzBkScore {
+  display: block; text-align: center; margin-top: 6px;
+  font-size: 10px; color: #00ff99; font-family: Verdana, sans-serif; line-height: 1.4;
+}
+.hzBkPrize {
+  display: block; width: 160px; margin: 6px auto 0; padding: 2px 4px;
+  font-size: 11px; font-weight: bold; text-align: center;
+  border: 2px solid #ffd700; color: #000; text-shadow: none;
+  font-family: Verdana, sans-serif;
+  background: repeating-linear-gradient(90deg, #ffd700 0 22px, #fff 22px 44px);
+  animation: hzBkScroll .8s linear infinite;
+}
+@keyframes hzBkScroll { to { background-position: 44px 0; } }
+
+/* ==========================================================
    ~*~ ANIMATION WAVE 6 — frames, depth, scroll & state ~*~
    ========================================================== */
 
@@ -3598,6 +3842,1022 @@ function openFic(key){
   burst('\u{1F4D6}\u{2728}\u{1F98D}');
 }
 
+
+
+/* ================= ANIMATION WAVE 7 (behaviour) ================= */
+
+/* haSpk — the speakers warning takes ur silence personally */
+/* --- ha1: the SPEAKERS warning takes ur silence personally --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haSpk = null, haBolds = document.getElementsByTagName('b');
+  for (var haI = 0; haI < haBolds.length; haI++){
+    if (haBolds[haI].textContent.indexOf('TURN UP UR SPEAKERS') !== -1){ haSpk = haBolds[haI]; break; }
+  }
+  if (!haSpk) return;
+  var haHome = haSpk.textContent;
+  var haStages = [
+    '⚠️⚠️ TURN UP UR SPEAKERS ⚠️⚠️',
+    '⚠️⚠️⚠️ TURN. UP. UR. SPEAKERS. ⚠️⚠️⚠️',
+    '🚨 do u even HAVE speakers?? 🚨',
+    '🚨🚨 UR SPEAKERS R NOT UP. THIS IS A MEMORIAL. SHOW SOME RESPECT (LOUDLY) 🚨🚨'
+  ];
+  var haLvl = 0, haPeace = false;
+  haSpk.className += (haSpk.className ? ' ' : '') + 'haSpk';
+  haSpk.title = 'i can tell when they r not up. i always know.';
+  setInterval(function(){
+    if (document.hidden) return;
+    if (window.playing){
+      if (!haPeace){
+        haPeace = true; haLvl = 0;
+        haSpk.className = 'haSpk haSpkPeace';
+        haSpk.textContent = '🕊️ thank u. he can hear it now. 🕊️';
+      }
+      return;
+    }
+    if (haPeace){
+      haPeace = false;
+      haSpk.className = 'haSpk';
+      haSpk.textContent = haHome;
+      return;
+    }
+    if (haLvl < haStages.length){
+      haSpk.textContent = haStages[haLvl];
+      haLvl++;
+      haSpk.className = 'haSpk haSpk' + haLvl;
+    }
+    if (haLvl >= 3){
+      haSpk.className = haSpk.className.replace(/\s*haSpkMad/, '');
+      void haSpk.offsetWidth;
+      haSpk.className += ' haSpkMad';
+    }
+  }, 9000);
+})();
+
+/* haNn — the netscape line browser-shames u with a permanent record */
+/* --- ha2: the netscape line checks ur browser. u fail. it remembers. --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haNn = null, haTinies = document.querySelectorAll('.tiny');
+  for (var haI = 0; haI < haTinies.length; haI++){
+    if (haTinies[haI].textContent.indexOf('Netscape Navigator') !== -1){ haNn = haTinies[haI]; break; }
+  }
+  if (!haNn) return;
+  haNn.className += ' haNn';
+  haNn.title = 'netscape or nothing';
+  var haShame = 0;
+  try { haShame = parseInt(localStorage.getItem('haNnShame') || '0', 10) || 0; } catch(e){}
+  function haNnText(){
+    if (screen.width === 800 && screen.height === 600)
+      return '(WAIT. 800x600 DETECTED. u get it. u actually get it. netscape is optional 4 u.)';
+    if (haShame === 0) return '(u r not using netscape 4.0. i checked. disappointment logged.)';
+    if (haShame < 5)  return '(still not netscape. disappointment logged x' + haShame + ')';
+    if (haShame < 10) return '(disappointment x' + haShame + '. at this point it feels personal)';
+    if (haShame < 20) return '(x' + haShame + '. netscape forgives. i do not.)';
+    return '(x' + haShame + '. u can stop hovering. netscape 4.0 cannot hear u.)';
+  }
+  var haVerdict = document.createElement('span');
+  haVerdict.className = 'haNnVerdict';
+  haVerdict.textContent = haNnText();
+  haNn.appendChild(haVerdict);
+  haNn.addEventListener('mouseenter', function(){
+    haShame++;
+    try { localStorage.setItem('haNnShame', String(haShame)); } catch(e){}
+    haVerdict.textContent = haNnText();
+    haNn.className = haNn.className.replace(/\s*haNnShake/, '');
+    void haNn.offsetWidth;
+    haNn.className += ' haNnShake';
+  });
+})();
+
+/* haMood — the webmaster's mood line is a mood ring now */
+/* --- ha3: the webmaster's mood is a mood ring now. it only tells the truth. --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haImg = document.querySelector('img[alt="mood"]');
+  if (!haImg) return;
+  var haB = haImg.nextElementSibling;
+  if (!haB || haB.tagName !== 'B') return;
+  var haRing = document.createElement('span');
+  haRing.className = 'haMoodRing';
+  haRing.title = 'this is a mood ring now. it only tells the truth.';
+  haImg.parentNode.insertBefore(haRing, haImg);
+  haRing.appendChild(haImg);
+  haRing.appendChild(document.createTextNode(' '));
+  haRing.appendChild(haB);
+  function haFace(haCh){
+    return 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>' + encodeURIComponent(haCh) + '</text></svg>';
+  }
+  var haMoods = [
+    ['😭', 'mourning but make it fabulous'],
+    ['😤', 'someone capitalized "Harambe" again. a linkedin move.'],
+    ['🥹', 'found a photo of him i 4got i had. unwell abt it.'],
+    ['💅', 'grieving but make it COMPETITIVE'],
+    ['🫠', 'the angelversary is doing things 2 me'],
+    ['😇', 'dicks out (spiritually)'],
+    ['🦍', 'no thoughts. only him.']
+  ];
+  var haIdx = 0;
+  function haSwing(){
+    if (document.hidden){ setTimeout(haSwing, 8000); return; }
+    haIdx = (haIdx + 1) % haMoods.length;
+    haRing.className = 'haMoodRing';
+    void haRing.offsetWidth;
+    haRing.className = 'haMoodRing haMoodFlip';
+    setTimeout(function(){
+      haImg.src = haFace(haMoods[haIdx][0]);
+      haB.textContent = haMoods[haIdx][1];
+    }, 330);
+    /* every lap it lands back on mourning and rests there. mourning is home. */
+    setTimeout(haSwing, haIdx === 0 ? 50000 : 21000);
+  }
+  setTimeout(haSwing, 12000);
+})();
+
+/* haDrama — the drama log notices u reading it and live-blogs u back */
+/* --- ha4: the drama log notices u reading it and starts typing --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haLog = null, haHeads = document.querySelectorAll('.box h3');
+  for (var haI = 0; haI < haHeads.length; haI++){
+    if (haHeads[haI].textContent.indexOf('updates!!') !== -1){ haLog = haHeads[haI].nextElementSibling; break; }
+  }
+  if (!haLog) return;
+  var haD = new Date();
+  var haToday = (haD.getMonth() + 1) + '/' + haD.getDate() + '/' + haD.getFullYear();
+  function haPost(haStamp, haText){
+    if (document.hidden){ setTimeout(function(){ haPost(haStamp, haText); }, 9000); return; }
+    var haWrap = document.createElement('span');
+    haWrap.className = 'haDrama';
+    var haDate = document.createElement('b');
+    haDate.className = 'haDramaDate';
+    haDate.textContent = haStamp;
+    var haLive = document.createElement('span');
+    haLive.className = 'haDramaLive';
+    haLive.textContent = ' ● LIVE ';
+    var haBody = document.createElement('span');
+    haWrap.appendChild(haDate);
+    haWrap.appendChild(haLive);
+    haWrap.appendChild(document.createTextNode('— '));
+    haWrap.appendChild(haBody);
+    haWrap.appendChild(document.createElement('br'));
+    haWrap.appendChild(document.createElement('br'));
+    haLog.insertBefore(haWrap, haLog.firstChild);
+    var haPos = 0;
+    (function haType(){
+      if (haPos >= haText.length){
+        haBody.textContent = haText;
+        haLive.className = 'haDramaOld';
+        haLive.textContent = ' (live, moments ago) ';
+        return;
+      }
+      haPos++;
+      haBody.textContent = haText.slice(0, haPos) + '▌';
+      setTimeout(haType, 24 + Math.random() * 30);
+    })();
+  }
+  setTimeout(function(){
+    haPost(haToday, 'someone is reading the drama log RIGHT NOW. hi. yes u. do not be alarmed — this entry is typing itself. i type fast (grief).');
+  }, 25000);
+  setTimeout(function(){
+    haPost(haToday + ' (2 min later)', 'they r STILL reading the drama log. jeff owes me $5. do NOT tell jeff ur here.');
+  }, 150000);
+})();
+
+/* haCalm — the impostor warning box has a webmaster composure meter and hovering drains it */
+/* --- ha5: the impostor warning box has a composure meter. hover drains it. --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haBox = null, haHeads = document.querySelectorAll('.box h3');
+  for (var haI = 0; haI < haHeads.length; haI++){
+    if (haHeads[haI].textContent.indexOf('impostor') !== -1){ haBox = haHeads[haI].parentNode; break; }
+  }
+  if (!haBox) return;
+  var haMeter = document.createElement('div');
+  haMeter.className = 'haCalm';
+  var haLbl = document.createElement('div');
+  haLbl.className = 'haCalmLbl';
+  haLbl.textContent = 'webmaster composure:';
+  var haBar = document.createElement('div');
+  haBar.className = 'haCalmBar';
+  var haFill = document.createElement('div');
+  haFill.className = 'haCalmFill';
+  haBar.appendChild(haFill);
+  haMeter.appendChild(haLbl);
+  haMeter.appendChild(haBar);
+  haBox.appendChild(haMeter);
+
+  var haVal = 100, haTick = null, haBreath = null;
+  function haSetLvl(){
+    haFill.style.transform = 'scaleX(' + (haVal / 100) + ')';
+    var haCls = '', haTxt = 'webmaster composure:';
+    if (haVal <= 0){ haCls = ' haMadMax'; haTxt = 'composure: 0%. i am not mad. i am DOCUMENTING.'; }
+    else if (haVal < 10){ haCls = ' haMad3'; haTxt = 'webmaster composure: (COMPLETELY. CALM.)'; }
+    else if (haVal < 40){ haCls = ' haMad2'; haTxt = 'webmaster composure: (i am at PEACE)'; }
+    else if (haVal < 70){ haCls = ' haMad1'; haTxt = 'webmaster composure: (fine. everything is fine)'; }
+    haBox.className = haBox.className.replace(/\s*haMad(1|2|3|Max)/g, '') + haCls;
+    haLbl.textContent = haTxt;
+  }
+  function haRestore(){
+    clearInterval(haTick); haTick = null;
+    clearTimeout(haBreath); haBreath = null;
+    haVal = 100;
+    haBox.className = haBox.className.replace(/\s*haMad(1|2|3|Max)/g, '');
+    haFill.className = 'haCalmFill haCalmRefill';
+    haFill.style.transform = 'scaleX(1)';
+    haLbl.textContent = 'composure restored. i was never mad. delete ur screenshots.';
+    setTimeout(function(){
+      haFill.className = 'haCalmFill';
+      haLbl.textContent = 'webmaster composure:';
+    }, 5000);
+  }
+  haBox.addEventListener('mouseenter', function(){
+    if (haTick) return;
+    haFill.className = 'haCalmFill';
+    haTick = setInterval(function(){
+      if (haVal <= 0) return;
+      haVal -= 2.5;
+      if (haVal <= 0){
+        haVal = 0;
+        haSetLvl();
+        /* he takes a breath after 4 seconds no matter what. growth. */
+        haBreath = setTimeout(haRestore, 4000);
+        return;
+      }
+      haSetLvl();
+    }, 200);
+  });
+  haBox.addEventListener('mouseleave', function(){
+    if (haTick) haRestore();
+  });
+})();
+
+/* haSil — the R.I.P. marquee holds scheduled moments of silence */
+/* --- ha6: the R.I.P. marquee holds scheduled moments of silence --- */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var haMq = null, haMqs = document.getElementsByTagName('marquee');
+  for (var haI = 0; haI < haMqs.length; haI++){
+    if (haMqs[haI].textContent.indexOf('R.I.P. HARAMBE') !== -1){ haMq = haMqs[haI]; break; }
+  }
+  if (!haMq || typeof haMq.stop !== 'function' || typeof haMq.start !== 'function') return;
+  var haCap = document.createElement('div');
+  haCap.className = 'haSilCap';
+  haCap.style.display = 'none';
+  haMq.parentNode.insertBefore(haCap, haMq.nextSibling);
+  var haN = 0;
+  setInterval(function(){
+    if (document.hidden) return;
+    haN++;
+    var haMsg;
+    if (haN === 1)      haMsg = '🕊️ moment of silence 🕊️';
+    else if (haN === 2) haMsg = '🕊️ another moment of silence. he deserves several. 🕊️';
+    else if (haN === 3) haMsg = '🕊️ moment of silence #3. the marquee is getting rly good at these. 🕊️';
+    else                haMsg = '🕊️ moment of silence #' + haN + '. the marquee resumes. the grief does not. 🕊️';
+    haCap.textContent = haMsg;
+    haCap.style.display = 'block';
+    haMq.className += (haMq.className ? ' ' : '') + 'haSilDim';
+    haMq.stop();
+    setTimeout(function(){
+      haMq.start();
+      haMq.className = haMq.className.replace(/\s*haSilDim/, '');
+      haCap.style.display = 'none';
+    }, 3600);
+  }, 47000);
+})();
+
+/* hsDefensive */
+/* hsDefensive — hover the ms paint portrait and the caption starts defending the 4 hours */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsSprite = document.querySelector('.shrine svg.portrait.pixel');
+  var hsTinies = document.querySelectorAll('.shrine .tiny'), hsCap = null, hsI;
+  for (hsI = 0; hsI < hsTinies.length; hsI++){
+    if ((hsTinies[hsI].textContent || '').indexOf('rendering') > -1){ hsCap = hsTinies[hsI]; break; }
+  }
+  if (!hsSprite || !hsCap) return;
+  var hsLines = [
+    'ok the EARS took 3 of the 4 hours. ears are hard. next question.',
+    'the file is final_gorilla_REAL(2).bmp. it is 38 megabytes. ms paint does not compress grief.',
+    'in 2019 somebody said "is that a bear." i redrew the nose pixel by pixel. i think about it daily.',
+    'the louvre has NOT responded. it has been 10 years. their loss. his loss too somehow.',
+    '(the artist has no further comment) (the artist is fine) (stop hovering him)'
+  ];
+  var hsN = -1;
+  var hsOut = document.createElement('span');
+  hsOut.className = 'hs-defline';
+  hsCap.appendChild(document.createElement('br'));
+  hsCap.appendChild(hsOut);
+  hsSprite.addEventListener('mouseenter', function(){
+    if (hsN < hsLines.length - 1) hsN++;
+    hsOut.textContent = hsLines[hsN];
+    hsOut.className = 'hs-defline';
+    void hsOut.offsetWidth;
+    hsOut.className = 'hs-defline hs-huff';
+  });
+})();
+
+/* hsSequel */
+/* hsSequel — the WATCH SEQUEL button keeps pitching. hollywood (me) keeps passing. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsBtn = null, hsAll = document.querySelectorAll('.win-btn'), hsI;
+  for (hsI = 0; hsI < hsAll.length; hsI++){
+    if (/watch sequel/i.test(hsAll[hsI].textContent || '')){ hsBtn = hsAll[hsI]; break; }
+  }
+  if (!hsBtn || !hsBtn.parentNode) return;
+  var hsTally = document.createElement('span');
+  hsTally.id = 'hs-rejects';
+  hsBtn.parentNode.appendChild(hsTally);
+  var hsN = 0;
+  hsBtn.addEventListener('mouseenter', function(){
+    hsN++;
+    hsBtn.className = hsBtn.className.replace(/\s*hs-droop/, '');
+    void hsBtn.offsetWidth;
+    hsBtn.className += ' hs-droop';
+    if (hsN === 5){
+      hsTally.innerHTML = 'sequel pitches rejected: 5.<br>wait — one just got greenlit. "HARAM🐝 2: BEE-YOND HEAVEN."<br>…it was canceled while u read this. rejected: 6.';
+      hsN = 6;
+    } else if (hsN >= 10){
+      hsTally.textContent = 'sequel pitches rejected: ' + hsN + '. the button asks u 2 stop. (it will never stop hoping.)';
+    } else {
+      hsTally.textContent = 'sequel pitches rejected: ' + hsN;
+    }
+  });
+})();
+
+/* hsFinePrint */
+/* hsFinePrint — the BE GAY DO CRIMES marquee retains counsel. click it. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsBox = null, hsHeads = document.querySelectorAll('.box h3'), hsI;
+  for (hsI = 0; hsI < hsHeads.length; hsI++){
+    if ((hsHeads[hsI].textContent || '').indexOf('PROPAGANDA') > -1){ hsBox = hsHeads[hsI].parentNode; break; }
+  }
+  if (!hsBox) return;
+  var hsMq = hsBox.querySelector('marquee');
+  if (!hsMq) return;
+  var hsFoot = null, hsTinies = hsBox.querySelectorAll('.tiny');
+  for (hsI = 0; hsI < hsTinies.length; hsI++){
+    if ((hsTinies[hsI].textContent || '').indexOf('only crime') > -1){ hsFoot = hsTinies[hsI]; break; }
+  }
+  var hsDock = document.createElement('div');
+  hsDock.className = 'hs-fineprint';
+  if (hsFoot && hsFoot.parentNode) hsFoot.parentNode.insertBefore(hsDock, hsFoot.nextSibling);
+  else hsMq.parentNode.insertBefore(hsDock, hsMq.nextSibling);
+  var hsTerms = [
+    '**also permissible: crimes of fashion (encouraged) (he wore nothing and SLAYED)',
+    '***jaywalking is under review by the legal dept. the legal dept is one gorilla. he is dead. motion carries.',
+    '****do not actually do crimes. this marquee is not legal advice. harambe was not a lawyer. he was better than that.',
+    '*****by reading this far u have legally agreed 2 be gay. no takebacks. terms final. dicks out.'
+  ];
+  var hsK = 0;
+  function hsServe(){
+    if (hsK >= hsTerms.length){
+      var hsLast = hsDock.lastChild;
+      if (hsLast){ hsLast.className = 'hs-fineline'; void hsLast.offsetWidth; hsLast.className = 'hs-fineline hs-rattled'; }
+      return;
+    }
+    var hsLine = document.createElement('span');
+    hsLine.className = 'hs-fineline';
+    hsLine.textContent = hsTerms[hsK++];
+    hsDock.appendChild(hsLine);
+  }
+  hsMq.className += ' hs-suable';
+  hsMq.addEventListener('click', hsServe);
+  if (hsFoot){ hsFoot.className += ' hs-suable'; hsFoot.addEventListener('click', hsServe); }
+})();
+
+/* hsThokk */
+/* hsThokk — the equality stamps are functional. click one. ink is not infinite. */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsBox = null, hsHeads = document.querySelectorAll('.box h3'), hsI;
+  for (hsI = 0; hsI < hsHeads.length; hsI++){
+    if ((hsHeads[hsI].textContent || '').indexOf('PROPAGANDA') > -1){ hsBox = hsHeads[hsI].parentNode; break; }
+  }
+  if (!hsBox) return;
+  var hsStamps = hsBox.querySelectorAll('.stamp');
+  if (!hsStamps.length) return;
+  var hsUses = 0, hsNoted = false;
+  function hsArm(st){
+    var hsTimer = null;
+    st.className += ' hs-inkpad';
+    st.addEventListener('click', function(ev){
+      hsUses++;
+      if (hsTimer) clearTimeout(hsTimer);
+      st.className = st.className.replace(/\s*hs-slam/, '');
+      void st.offsetWidth;
+      st.className += ' hs-slam';
+      hsTimer = setTimeout(function(){ st.className = st.className.replace(/\s*hs-slam/, ''); hsTimer = null; }, 400);
+      var hsInk = document.createElement('span');
+      hsInk.className = 'hs-ink' + (hsUses > 6 ? ' hs-inkdry' : '');
+      hsInk.setAttribute('aria-hidden', 'true');
+      hsInk.textContent = st.textContent;
+      var hsCS = window.getComputedStyle ? getComputedStyle(st) : null;
+      if (hsCS){ hsInk.style.color = hsCS.color; }
+      hsInk.style.left = (ev.clientX - 50 + (Math.random() * 24 - 12)) + 'px';
+      hsInk.style.top = (ev.clientY + 16 + Math.random() * 20) + 'px';
+      hsInk.style.setProperty('--hs-rot', (Math.random() * 30 - 15).toFixed(1) + 'deg');
+      document.body.appendChild(hsInk);
+      setTimeout(function(){ if (hsInk.parentNode) hsInk.parentNode.removeChild(hsInk); }, 2600);
+      if (hsUses === 7 && !hsNoted){
+        hsNoted = true;
+        var hsNote = document.createElement('div');
+        hsNote.className = 'hs-inknote';
+        hsNote.textContent = '(ink budget: exceeded. the stamps r stamping from memory now. they refuse 2 stop. it is what he would have wanted.)';
+        st.parentNode.appendChild(hsNote);
+      }
+    });
+  }
+  for (hsI = 0; hsI < hsStamps.length; hsI++) hsArm(hsStamps[hsI]);
+})();
+
+/* hsSeance */
+/* hsSeance — heaven's cell coverage, measured live at every communion */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsBtn = null, hsAll = document.querySelectorAll('button'), hsI;
+  for (hsI = 0; hsI < hsAll.length; hsI++){
+    if ((hsAll[hsI].getAttribute('onclick') || '').indexOf('askOracle') > -1){ hsBtn = hsAll[hsI]; break; }
+  }
+  var hsOut = document.getElementById('oracleout');
+  if (!hsBtn || !hsOut || !hsOut.parentNode) return;
+  var hsSig = document.createElement('div');
+  hsSig.id = 'hs-signal';
+  hsOut.parentNode.insertBefore(hsSig, hsOut.nextSibling);
+  var hsWords = [
+    '0 bars. straight 2 voicemail. he has 8,916 unheard voicemails. he is aware.',
+    '1 bar. roaming. charges apply. (billed in bananas) (already paid) (u r welcome)',
+    '2 bars. he is near the buffet. reception is famously bad by the buffet.',
+    '3 bars. decent. an angel keeps walking thru the beam. rude of them.',
+    '4 bars. crystal clear. u can hear leaves. why can u hear leaves.',
+    '5 bars. he is sitting ON the cell tower. heaven has one tower. it is a tree.'
+  ];
+  function hsBars(n){
+    var hsH = [5, 8, 11, 14, 17], hsHtml = '', hsB;
+    for (hsB = 0; hsB < 5; hsB++){
+      hsHtml += '<span class="hs-bar' + (hsB < n ? '' : ' hs-dead') + '" style="height:' + hsH[hsB] + 'px"></span>';
+    }
+    return hsHtml;
+  }
+  hsBtn.addEventListener('click', function(){
+    hsSig.innerHTML = '☁️ pinging heaven…';
+    setTimeout(function(){
+      var hsN = Math.floor(Math.random() * 6);
+      hsSig.innerHTML = '☁️ heaven signal: ' + hsBars(hsN) + '<br>' + hsWords[hsN];
+      hsSig.className = '';
+      void hsSig.offsetWidth;
+      hsSig.className = 'hs-static';
+    }, 600);
+  });
+})();
+
+/* hsCampaign */
+/* hsCampaign — the poll options run attack ads against each other. they are all "yes". */
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hsZone = document.getElementById('pollzone');
+  if (!hsZone) return;
+  hsZone.className += ' hs-arena';
+  var hsAds = [
+    'PAID 4 BY <b>YES</b>: option 2 is just "yes" with EXTRA STEPS. option 3 will not even SAY the word yes. do not trust their yes. trust MY yes.',
+    'PAID 4 BY <b>OBVIOUSLY YES</b>: option 1 HESITATED. option 3 is twelve words long. in THIS economy?? vote obvious. vote yes.',
+    'PAID 4 BY <b>ALLY+ICON</b>: options 1 and 2 REFUSE 2 say "icon". what are they hiding (nothing) (we checked) (vote 4 me anyway)'
+  ];
+  var hsBubble = document.createElement('span');
+  hsBubble.className = 'hs-attackad';
+  hsBubble.setAttribute('aria-hidden', 'true');
+  hsZone.appendChild(hsBubble);
+  function hsHook(btn, idx){
+    btn.className += ' hs-podium';
+    btn.addEventListener('mouseenter', function(){
+      hsBubble.innerHTML = hsAds[idx] || '';
+      hsBubble.className = 'hs-attackad';
+      void hsBubble.offsetWidth;
+      hsBubble.className = 'hs-attackad hs-on';
+    });
+    btn.addEventListener('mouseleave', function(){
+      hsBubble.className = 'hs-attackad';
+    });
+  }
+  var hsBtns = hsZone.querySelectorAll('button'), hsI;
+  for (hsI = 0; hsI < hsBtns.length && hsI < 3; hsI++) hsHook(hsBtns[hsI], hsI);
+})();
+
+/* hlFaqAvoidance */
+/* ~*~ hl: the f.a.q. develops avoidance ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hlAnchor = document.getElementById('faq');
+  if (!hlAnchor) return;
+  var hlBox = hlAnchor.nextElementSibling;
+  while (hlBox && (' ' + hlBox.className + ' ').indexOf(' box ') === -1) hlBox = hlBox.nextElementSibling;
+  if (!hlBox) return;
+  var hlPs = hlBox.getElementsByTagName('p');
+  for (var hlI = 0; hlI < hlPs.length; hlI++){
+    (function(hlP){
+      var hlBr = hlP.getElementsByTagName('br')[0];
+      if (!hlBr) return;
+      var hlA = document.createElement('span');
+      hlA.className = 'hl-faqa';
+      while (hlBr.nextSibling) hlA.appendChild(hlBr.nextSibling);
+      hlP.appendChild(hlA);
+      hlP.className += ' hl-faqp';
+      var hlQ = hlP.getElementsByTagName('b')[0];
+      if (!hlQ || hlQ.textContent.indexOf('r u ok') === -1) return;
+      var hlN = 0, hlTag = document.createElement('span');
+      hlTag.className = 'hl-faqtally';
+      hlP.appendChild(hlTag);
+      hlP.addEventListener('mouseenter', function(){
+        hlN++;
+        hlTag.textContent = '(asked ' + hlN + 'x now. still no answer. the f.a.q. keeps records.)';
+      });
+    })(hlPs[hlI]);
+  }
+})();
+
+/* hlFicStillUpdating */
+/* ~*~ hl: the fic that never stopped updating (live) ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hlMetas = document.getElementsByClassName('fic-listing-meta'), hlMeta = null;
+  for (var hlI = 0; hlI < hlMetas.length; hlI++)
+    if (hlMetas[hlI].textContent.indexOf('In-story time elapsed') > -1){ hlMeta = hlMetas[hlI]; break; }
+  if (!hlMeta || hlMeta.innerHTML.indexOf('21,038') === -1) return;
+  hlMeta.innerHTML = hlMeta.innerHTML.replace('21,038', '<span id="hl-ficwords">21,038</span>');
+  var hlEl = document.getElementById('hl-ficwords');
+  if (!hlEl) return;
+  var hlNote = document.createElement('div');
+  hlNote.className = 'hl-ficnote';
+  hlMeta.parentNode.insertBefore(hlNote, hlMeta.nextSibling);
+  var hlWords = 21038;
+  function hlFmt(hlN){ return String(hlN).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function hlTick(){
+    var hlR = Math.random(), hlMsg;
+    if (hlR < 0.14){
+      hlWords -= 3; hlMsg = '−' + '3 words. she deleted a sentence. it was 2 much.';
+    } else if (hlR < 0.26){
+      hlWords += 2; hlMsg = '+2 words. ("flat rock" is now "warm flat rock". i am unwell.)';
+    } else {
+      hlWords += 1; hlMsg = '+1 word. in-story time elapsed: still 11 minutes.';
+    }
+    hlEl.textContent = hlFmt(hlWords);
+    hlEl.className = 'hl-ficpop';
+    hlNote.textContent = '⟳ LIVE: ' + hlMsg + ' (she is typing right now. this second.)';
+    setTimeout(function(){ hlEl.className = ''; }, 950);
+    setTimeout(hlTick, 25000 + Math.random()*35000);
+  }
+  setTimeout(hlTick, 9000);
+})();
+
+/* hlPlushImperceivable */
+/* ~*~ hl: the plush cannot be perceived either ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hlAnchor = document.getElementById('shoppe');
+  if (!hlAnchor) return;
+  var hlBox = hlAnchor.nextElementSibling;
+  while (hlBox && (' ' + hlBox.className + ' ').indexOf(' box ') === -1) hlBox = hlBox.nextElementSibling;
+  if (!hlBox) return;
+  var hlRows = hlBox.getElementsByTagName('tr'), hlRow = null;
+  for (var hlI = 0; hlI < hlRows.length; hlI++){
+    var hlTd = hlRows[hlI].getElementsByTagName('td')[0];
+    if (hlTd && hlTd.textContent.indexOf('jeff plush') > -1){ hlRow = hlRows[hlI]; break; }
+  }
+  if (!hlRow) return;
+  hlRow.className += ' hl-jeffrow';
+  var hlCells = hlRow.getElementsByTagName('td');
+  var hlWarn = document.createElement('span');
+  hlWarn.className = 'hl-jeffwarn';
+  hlWarn.textContent = 'u r perceiving the plush.';
+  hlCells[hlCells.length - 1].appendChild(hlWarn);
+  var hlSeen = 0, hlMsgs = [
+    'u r perceiving the plush.',
+    'ur STILL perceiving the plush.',
+    'jeff has been told.',
+    'jeff says hi.',
+    'jeff says hi. warmly. somehow that is worse.'
+  ];
+  hlRow.addEventListener('mouseenter', function(){
+    hlWarn.textContent = hlMsgs[Math.min(hlSeen++, hlMsgs.length - 1)];
+  });
+})();
+
+/* hlPillowWontLetGo */
+/* ~*~ hl: the pillow holds on ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hlAnchor = document.getElementById('shoppe');
+  if (!hlAnchor) return;
+  var hlBox = hlAnchor.nextElementSibling;
+  while (hlBox && (' ' + hlBox.className + ' ').indexOf(' box ') === -1) hlBox = hlBox.nextElementSibling;
+  if (!hlBox) return;
+  var hlRows = hlBox.getElementsByTagName('tr'), hlRow = null;
+  for (var hlI = 0; hlI < hlRows.length; hlI++){
+    var hlTd = hlRows[hlI].getElementsByTagName('td')[0];
+    if (hlTd && hlTd.textContent.indexOf('body pillow') > -1){ hlRow = hlRows[hlI]; break; }
+  }
+  if (!hlRow) return;
+  hlRow.className += ' hl-pillowrow';
+  var hlTag = document.createElement('span');
+  hlTag.className = 'hl-pillowtag';
+  hlRow.getElementsByTagName('td')[0].appendChild(hlTag);
+  var hlT = null;
+  hlRow.addEventListener('mouseenter', function(){
+    clearTimeout(hlT);
+    hlRow.classList.add('hl-pillowhug');
+    hlTag.textContent = '\u{1FAC2} it is holding u. it is asking how ur day was.';
+  });
+  hlRow.addEventListener('mouseleave', function(){
+    hlTag.textContent = '\u{1FAC2} it is still holding u. u tried 2 leave. it noticed.';
+    hlT = setTimeout(function(){
+      hlRow.classList.remove('hl-pillowhug');
+      hlTag.textContent = '(it let go. it was very brave about it.)';
+      hlT = setTimeout(function(){ hlTag.textContent = ''; }, 4000);
+    }, 2600);
+  });
+})();
+
+/* hlWebringRoulette */
+/* ~*~ hl: the webring is now also a roulette wheel ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof window.ringnav !== 'function') return;
+  var hlAnchor = document.getElementById('webring');
+  if (!hlAnchor) return;
+  var hlBox = hlAnchor.nextElementSibling;
+  while (hlBox && (' ' + hlBox.className + ' ').indexOf(' box ') === -1) hlBox = hlBox.nextElementSibling;
+  if (!hlBox) return;
+  var hlOdo = document.createElement('span');
+  hlOdo.className = 'hl-ringodo';
+  var hlAs = hlBox.getElementsByTagName('a'), hlNext = null;
+  for (var hlI = 0; hlI < hlAs.length; hlI++)
+    if ((hlAs[hlI].getAttribute('onclick') || '').indexOf("ringnav('next')") > -1) hlNext = hlAs[hlI];
+  if (hlNext) hlNext.parentNode.insertBefore(hlOdo, hlNext.nextSibling ? (hlNext.nextSibling.nextSibling || null) : null);
+  var hlOld = window.ringnav, hlBusy = false, hlSpins = 0;
+  window.ringnav = function(hlDir){
+    if (hlBusy){ hlOld(hlDir); return; }
+    hlBusy = true;
+    hlSpins++;
+    hlBox.className += hlDir === 'prev' ? ' hl-ringspinrev' : ' hl-ringspin';
+    setTimeout(function(){
+      hlBox.className = hlBox.className.replace(' hl-ringspinrev', '').replace(' hl-ringspin', '');
+      hlBusy = false;
+      hlOdo.textContent = 'wheel spins: ' + hlSpins + ' · destinations found: 1 (it is this one) (it is always this one)';
+      hlOld(hlDir);
+    }, 1000);
+  };
+})();
+
+/* hlAdSootheOMeter */
+/* ~*~ hl: the ad is a tamagotchi now ~*~ */
+(function(){
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hlAd = document.querySelector('.ad');
+  if (!hlAd) return;
+  var hlMeter = document.createElement('div');
+  hlMeter.id = 'hl-petmeter';
+  hlMeter.innerHTML = '<span id="hl-petlabel">gorilla agitation: MAXIMUM. petting soothes him. (mouse over him = pet)</span><span id="hl-petbar"></span>';
+  hlAd.parentNode.insertBefore(hlMeter, hlAd.nextSibling);
+  var hlBar = document.getElementById('hl-petbar');
+  var hlLabel = document.getElementById('hl-petlabel');
+  var hlP = 0, hlLX = null, hlLY = null, hlDone = false;
+  hlAd.addEventListener('mousemove', function(hlE){
+    if (hlDone) return;
+    if (hlLX !== null){
+      var hlDx = Math.abs(hlE.clientX - hlLX) + Math.abs(hlE.clientY - hlLY);
+      hlP = Math.min(1, hlP + hlDx/2600);
+      hlAd.classList.add('hl-adpet');
+      hlBar.style.transform = 'scaleX(' + hlP.toFixed(3) + ')';
+      if (hlP < .34) hlLabel.textContent = 'petting… he is still SO agitated. keep going.';
+      else if (hlP < .67) hlLabel.textContent = 'petting… the shaking is mostly excitement now.';
+      else if (hlP < 1) hlLabel.textContent = 'petting… almost… he is trying 2 purr (gorillas cannot purr) (he is trying so hard).';
+      else {
+        hlDone = true;
+        hlAd.classList.remove('hl-adpet');
+        hlAd.classList.add('hl-adsoothed');
+        hlLabel.textContent = '\u{1F98D} SOOTHED. u did it. the $500 was the pets we gave along the way.';
+        setTimeout(function(){
+          hlAd.classList.remove('hl-adsoothed');
+          hlDone = false; hlP = 0; hlLX = hlLY = null;
+          hlBar.style.transform = 'scaleX(0)';
+          hlLabel.textContent = 'he is agitated again. (he saw a hat.) pet 2 soothe.';
+        }, 9000);
+      }
+    }
+    hlLX = hlE.clientX; hlLY = hlE.clientY;
+  });
+  hlAd.addEventListener('mouseleave', function(){
+    hlLX = hlLY = null;
+    if (!hlDone) hlAd.classList.remove('hl-adpet');
+  });
+  setInterval(function(){
+    if (hlDone || hlP <= 0) return;
+    hlP = Math.max(0, hlP - .015);
+    hlBar.style.transform = 'scaleX(' + hlP.toFixed(3) + ')';
+  }, 600);
+})();
+
+/* hz-rule-stamp — the house rules compliance department */
+/* hz-rule-stamp — every hover is an inspection. every inspection passes. suspicious. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf('house rules') > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  hzBox.className += ' hzRuleHost';
+  var hzStamp = document.createElement('div');
+  hzStamp.className = 'hzStamp';
+  hzStamp.setAttribute('aria-hidden', 'true');
+  hzBox.appendChild(hzStamp);
+  var hzMsgs = [
+    'COMPLIANT ✓',
+    'STILL COMPLIANT ✓',
+    'SUSPICIOUSLY COMPLIANT',
+    'RULE 4: UNVERIFIABLE',
+    'DICKS: CONFIRMED OUT',
+    'AUDIT COMPLETE. GAY.'
+  ];
+  var hzN = 0, hzBusy = false, hzAmended = false;
+  hzBox.addEventListener('mouseenter', function(){
+    if (hzBusy) return;
+    hzBusy = true;
+    hzStamp.textContent = hzMsgs[hzN % hzMsgs.length];
+    hzN++;
+    hzStamp.classList.remove('hzStampIn');
+    void hzStamp.offsetWidth;                /* reflow so the slam can re-slam */
+    hzStamp.classList.add('hzStampIn');
+    setTimeout(function(){ hzBusy = false; }, 2400);
+    if (hzN === 4 && !hzAmended){
+      hzAmended = true;
+      var hzA = document.createElement('span');
+      hzA.className = 'hzAmend';
+      hzA.innerHTML = 'update: ONE amendment now pending after 10 years.<br><b>rule 8.</b> stop hovering the rules. they can feel it. — mgmt';
+      hzBox.appendChild(hzA);
+    }
+  });
+})();
+
+/* hz-doppler — severe niceness warning for heaven */
+/* hz-doppler — breaking weather. it broke back 2 72. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf('weather in heaven') > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  var hzRows = hzBox.querySelectorAll('tr');
+  var hzTemps = [], hzEmos = [];
+  for (var hzR = 0; hzR < hzRows.length; hzR++){
+    var hzTds = hzRows[hzR].children;
+    if (hzTds.length < 4) continue;
+    var hzT = document.createElement('span');
+    hzT.textContent = hzTds[2].textContent;
+    hzTds[2].textContent = '';
+    hzTds[2].appendChild(hzT);
+    hzTemps.push(hzT);
+    var hzE = document.createElement('span');
+    hzE.textContent = hzTds[1].textContent;
+    hzTds[1].textContent = '';
+    hzTds[1].appendChild(hzE);
+    hzEmos.push(hzE);
+  }
+  if (!hzTemps.length) return;
+  var hzTold = false;
+  function hzDoppler(){
+    if (document.hidden) return;
+    for (var hzK = 0; hzK < hzTemps.length; hzK++){
+      (function(hzT, hzE, hzK){
+        var hzWas = hzT.textContent;              /* 72°. it is always 72°. */
+        hzT.className = 'hzWx';
+        hzE.className = 'hzWxSpin';
+        setTimeout(function(){ hzT.textContent = '71°'; }, 200 + hzK * 60);
+        setTimeout(function(){ hzT.textContent = '74°'; }, 500 + hzK * 60);
+        setTimeout(function(){
+          hzT.textContent = hzWas;                /* guaranteed restore. it was never not 72. */
+          hzT.className = '';
+          hzE.className = '';
+        }, 850 + hzK * 60);
+      })(hzTemps[hzK], hzEmos[hzK], hzK);
+    }
+    if (!hzTold){
+      hzTold = true;
+      setTimeout(function(){
+        var hzA = document.createElement('span');
+        hzA.className = 'hzWxAlert';
+        hzA.innerHTML = '⚠ LIVE DOPPLER UPDATE: readings of 71° and 74° were detected for 0.3 seconds. they were wrong. it has never not been 72°. the instrument has been let go. it is with him now.';
+        (hzBox.querySelector('center') || hzBox).appendChild(hzA);
+      }, 1400);
+    }
+  }
+  setTimeout(hzDoppler, 9000);
+  setInterval(hzDoppler, 47000);
+})();
+
+/* hz-mailcheck — the webmaster checks the mail again */
+/* hz-mailcheck — the inbox is open. the inbox is SO open. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf('email the webmaster') > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  var hzPost = null, hzSpans = hzBox.querySelectorAll('span');
+  for (var hzS = 0; hzS < hzSpans.length; hzS++){
+    if (hzSpans[hzS].textContent.replace(/\s/g, '') === '📬'){ hzPost = hzSpans[hzS]; break; }
+  }
+  if (!hzPost) return;
+  var hzStat = document.createElement('span');
+  hzStat.className = 'hzMailStatus';
+  (hzBox.querySelector('center') || hzBox).appendChild(hzStat);
+  var hzLines = [
+    'no new mail.',
+    'no new mail. i checked twice 2 be sure. (u watched me do it)',
+    'ONE (1) new email!!! ...it is from me. i emailed myself again. it says "hang in there king"',
+    'no new mail. inbox: grief (47). outbox: hope (unlimited). drafts: 1 ("dear harambe,")',
+    'sir. this is the same mailbox from 4 seconds ago.',
+    'no reply from heaven yet. mail up there is slow. he has 2 walk it down personally.',
+    'the mailbox and i have decided ur not ok. (neither r we. welcome.)'
+  ];
+  var hzChecks = 0;
+  try { hzChecks = parseInt(localStorage.getItem('hz_mailchecks') || '0', 10) || 0; } catch(e){}
+  var hzSes = 0, hzBusy = false;
+  hzBox.addEventListener('mouseenter', function(){
+    if (hzBusy) return;
+    hzBusy = true;
+    hzChecks++; hzSes++;
+    try { localStorage.setItem('hz_mailchecks', hzChecks); } catch(e){}
+    hzPost.classList.add('hzMailShake');
+    setTimeout(function(){ hzPost.textContent = '📭'; }, 500);
+    setTimeout(function(){
+      hzPost.textContent = '📬';                 /* guaranteed shut. nothing arrived. */
+      hzPost.classList.remove('hzMailShake');
+      hzBusy = false;
+    }, 1600);
+    hzStat.innerHTML = '<b>MAIL CHECK #' + hzChecks.toLocaleString() + ':</b> ' + hzLines[Math.min(hzSes - 1, hzLines.length - 1)];
+  });
+})();
+
+/* hz-cliquecard — membership dossiers 4 every clique */
+/* hz-cliquecard — hover a clique 2 inspect my standing. my standing is: alone. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf("cliques i'm in") > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  var hzLinks = hzBox.querySelectorAll('a');
+  if (!hzLinks.length) return;
+  var hzFiles = [
+    '<b>MEMBER #2 (of 2).</b> the other member is my mom. she joined 2 support me. dues: paid. <i>(by mom.)</i>',
+    '<b>BOARD MEMBER.</b> also the archive, the janitor, and the main exhibit. meeting attendance: 100% (me), 0% (everyone else). motions passed: all of them. <i>unanimously.</i>',
+    '<b>FOUNDING MEMBER.</b> attendance: perfect. 10 years. zero absences. they tried 2 give me an award 4 it. <i>it was a mirror.</i>',
+    '<b>STATUS: INACTIVE since 5/28/2016.</b> membership never expires. we just meet online now. we do not go 2 the zoo. <i>the zoo understands.</i>',
+    '<b>PRESIDENT. FOUNDER. TREASURER. ONLY MEMBER.</b> dues: tears. status: paid in full. <i>weekly. at 2am. on schedule.</i>'
+  ];
+  var hzCard = document.createElement('div');
+  hzCard.className = 'hzCliqueCard';
+  hzCard.setAttribute('aria-hidden', 'true');
+  var hzInner = hzBox.querySelector('div') || hzBox;
+  hzInner.appendChild(hzCard);
+  hzCard.innerHTML = '<i>hover a clique 2 inspect my membership. all records r public. nobody asked.</i>';
+  for (var hzL = 0; hzL < hzLinks.length; hzL++){
+    (function(hzA, hzL){
+      hzA.addEventListener('mouseenter', function(){
+        hzCard.innerHTML = '📇 <b>MEMBERSHIP CARD:</b> ' + hzA.textContent + '<br>' +
+          (hzFiles[hzL] || '<b>MEMBER.</b> in good standing. <i>(the standing is grief)</i>');
+        hzCard.classList.remove('hzCliqueIn');
+        void hzCard.offsetWidth;
+        hzCard.classList.add('hzCliqueIn');
+      });
+    })(hzLinks[hzL], hzL);
+  }
+})();
+
+/* hz-theft-siren — authorized theft in progress */
+/* hz-theft-siren — all thefts r authorized. the siren is 4 ambience. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf('link me') > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  var hzTa = hzBox.querySelector('textarea');
+  if (!hzTa) return;
+  hzBox.className += ' hzTheftHost';
+  var hzBadge = hzBox.querySelector('.badge');
+  var hzLog = document.createElement('span');
+  hzLog.className = 'hzTheftLog';
+  (hzBox.querySelector('center') || hzBox).appendChild(hzLog);
+  var hzThefts = 0;
+  try { hzThefts = parseInt(localStorage.getItem('hz_thefts') || '0', 10) || 0; } catch(e){}
+  var hzSes = 0, hzBusy = false;
+  hzTa.addEventListener('click', function(){
+    if (hzBusy) return;
+    hzBusy = true;
+    hzThefts++; hzSes++;
+    try { localStorage.setItem('hz_thefts', hzThefts); } catch(e){}
+    var hzSiren = document.createElement('div');
+    hzSiren.className = 'hzSiren';
+    hzSiren.setAttribute('aria-hidden', 'true');
+    hzSiren.textContent = '🚨 THEFT IN PROGRESS 🚨';
+    hzBox.appendChild(hzSiren);
+    setTimeout(function(){
+      if (hzSiren.parentNode) hzSiren.parentNode.removeChild(hzSiren);   /* guaranteed cleanup */
+      hzBusy = false;
+    }, 2600);
+    if (hzBadge){
+      hzBadge.classList.remove('hzBadgePanic');
+      void hzBadge.offsetWidth;
+      hzBadge.classList.add('hzBadgePanic');
+    }
+    var hzMsg;
+    if (hzSes >= 6)      hzMsg = 'code theft #' + hzThefts + ' logged. ok. ur just clicking it 4 the siren now. (me 2. its a good siren.)';
+    else if (hzSes >= 3) hzMsg = 'code theft #' + hzThefts + ' logged. thats ' + hzSes + ' times TODAY. u have ONE site. how many sidebars does it have??';
+    else if (hzThefts === 1) hzMsg = 'code theft #1 logged. authorized. thank u 4 stealing responsibly. 🚔';
+    else hzMsg = 'code theft #' + hzThefts + ' logged. all ' + hzThefts + ' thefts were authorized. (u may steal it again)';
+    hzLog.textContent = hzMsg;
+  });
+})();
+
+/* hz-blinkie-quest — gotta collect all 10 blinkies */
+/* hz-blinkie-quest — nobody has ever collected the blinkies. nobody was supposed 2. */
+(function(){
+  var hzCalm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (hzCalm) return;
+  var hzBox = null, hzBoxes = document.querySelectorAll('td.sidebar .box');
+  for (var hzI = 0; hzI < hzBoxes.length; hzI++){
+    var hzH = hzBoxes[hzI].querySelector('h3');
+    if (hzH && hzH.textContent.indexOf('blinkies') > -1){ hzBox = hzBoxes[hzI]; break; }
+  }
+  if (!hzBox) return;
+  var hzBks = hzBox.querySelectorAll('.blinkie');
+  if (!hzBks.length) return;
+  var hzTotal = hzBks.length, hzGot = 0, hzScore = null, hzDone = false;
+  function hzSay(hzMsg){
+    if (!hzScore){
+      hzScore = document.createElement('span');
+      hzScore.className = 'hzBkScore';
+      hzBox.appendChild(hzScore);
+    }
+    hzScore.innerHTML = hzMsg;
+  }
+  function hzLine(hzN){
+    if (hzN === 1) return 'blinkie collection: 1/' + hzTotal + '. wait. u can DO that??';
+    if (hzN < 5)  return 'blinkie collection: ' + hzN + '/' + hzTotal + '. ur actually doing this. ok. ok ok ok.';
+    if (hzN < 8)  return 'blinkie collection: ' + hzN + '/' + hzTotal + '. the uncollected ones r getting nervous. blinkies talk.';
+    return 'blinkie collection: ' + hzN + '/' + hzTotal + '. SO close. i have never been this excited abt anything that isnt a gorilla.';
+  }
+  for (var hzB = 0; hzB < hzBks.length; hzB++){
+    (function(hzEl){
+      hzEl.className += ' hzBkAble';
+      hzEl.title = 'click 2 collect';
+      hzEl.addEventListener('click', function(){
+        if (hzEl.hzOwned){
+          hzEl.classList.remove('hzBkPop');
+          void hzEl.offsetWidth;
+          hzEl.classList.add('hzBkPop');
+          if (!hzDone) hzSay('blinkie collection: ' + hzGot + '/' + hzTotal + '. u already collected that one. greed is not grief.');
+          return;
+        }
+        hzEl.hzOwned = true;
+        hzGot++;
+        hzEl.classList.add('hzBkGot');
+        hzEl.classList.add('hzBkPop');
+        setTimeout(function(){ hzEl.classList.remove('hzBkPop'); }, 500);
+        if (hzGot >= hzTotal){
+          hzDone = true;
+          hzSay('blinkie collection: ' + hzTotal + '/' + hzTotal + '. <b>COMPLETE.</b> in 10 years nobody even noticed they were clickable. u r the chosen mourner. ur reward is below. it is another blinkie.');
+          var hzPrize = document.createElement('span');
+          hzPrize.className = 'hzBkPrize';
+          hzPrize.textContent = '🏆 100% GRIEF COMPLETION 🏆';
+          hzPrize.title = 'the 11th blinkie. it is about u. it lives here. u may visit it.';
+          hzBox.appendChild(hzPrize);
+          if (typeof burst === 'function') burst('🏆✨🦍');
+        } else {
+          hzSay(hzLine(hzGot));
+        }
+      });
+    })(hzBks[hzB]);
+  }
+})();
 
 /* ================= ANIMATION WAVE 6 (behaviour) ================= */
 
