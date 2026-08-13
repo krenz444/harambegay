@@ -2470,7 +2470,7 @@ even a fake click is a click.
     <center style="font-size:12px;">
       u are visitor #<br>
       <span class="counter" id="hitcounter">0000000</span><br>
-      <span class="tiny">(this counter is REAL. u may fact check it.<br>it was seeded from the actual server logs.<br>10 years and this many of u came.)</span><br><br>
+      <span class="tiny">(this counter is REAL and it is LIVE.<br>every visit counts at the edge. even robots. robots grieve 2.<br>if it moves while u watch: that is another person, here, right now.)</span><br><br>
       last updated:<br><b>5/28/2016 (emotionally)</b><br><br>
       <span class="stamp">CERTIFIED GAY</span><br><br>
       <span class="stamp" style="color:#44ff44;border-color:#44ff44;transform:rotate(4deg);">HARAMBE APPROVED</span>
@@ -3144,31 +3144,47 @@ window.addEventListener('load', function(){
   setInterval(function(){ t = t.slice(1) + t[0]; document.title = t; }, 300);
 })();
 
-/* --- hit counter. it is real now. it was seeded from cloudflare's own
-       pageView analytics, so the number is a continuation of reality. --- */
+/* --- hit counter. it is REAL and it is LIVE.
+       the worker counts every GET of the front page at the edge — bots, curl,
+       everyone. this script only reads. it polls, so if someone else visits
+       while u are here, u watch the number move. that is other people, mourning. --- */
 (function(){
   var el = document.getElementById('hitcounter');
   if (!el) return;
-  var show = function(n){ el.textContent = String(n).padStart(7,'0'); };
-
-  /* one bump per browser session — refreshing does not inflate the shrine */
-  var counted = sessionStorage.getItem('hg_counted');
-  fetch('/api/hits', {method: counted ? 'GET' : 'POST', headers:{'accept':'application/json'}})
-    .then(function(r){ return r.ok ? r.json() : Promise.reject(0); })
-    .then(function(d){
-      if (d && typeof d.hits === 'number'){
-        sessionStorage.setItem('hg_counted','1');
-        /* roll up to the real number so it feels mechanical */
-        var target = d.hits, from = Math.max(0, target - 40), cur = from;
-        show(from);
-        var tick = setInterval(function(){
-          cur += Math.max(1, Math.ceil((target - cur) / 6));
-          if (cur >= target){ cur = target; clearInterval(tick); }
-          show(cur);
-        }, 45);
-      } else { show(0); }
-    })
-    .catch(function(){ el.textContent = '???????'; });
+  var shown = null;
+  function show(n){ el.textContent = String(n).padStart(7,'0'); }
+  function rollTo(target){
+    if (shown === null){
+      var cur = Math.max(0, target - 40);
+      show(cur);
+      var tick = setInterval(function(){
+        cur += Math.max(1, Math.ceil((target - cur) / 6));
+        if (cur >= target){ cur = target; clearInterval(tick); }
+        show(cur);
+      }, 45);
+    } else if (target > shown){
+      var c2 = shown;
+      var t2 = setInterval(function(){
+        c2 += 1;
+        if (c2 >= target){ c2 = target; clearInterval(t2); }
+        show(c2);
+      }, 120);
+      if (typeof popNum === 'function') popNum(el);
+    }
+    shown = target;
+  }
+  function pull(){
+    fetch('/api/hits', {headers:{'accept':'application/json'}})
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(0); })
+      .then(function(d){
+        if (d && typeof d.hits === 'number') rollTo(d.hits);
+        else if (shown === null) el.textContent = '???????';
+      })
+      .catch(function(){ if (shown === null) el.textContent = '???????'; });
+  }
+  pull();
+  /* live: re-check twice a minute while the tab is visible */
+  setInterval(function(){ if (!document.hidden) pull(); }, 30000);
 })();
 
 /* --- how much chaos can this device take --- */

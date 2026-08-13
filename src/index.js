@@ -117,8 +117,20 @@ async function hits(request, env) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    /* A true 2004 hit counter counts HITS — every GET of the front page, at the
+       edge, bots and curl included. No JS required. The write rides waitUntil
+       so the visitor never waits on it. */
+    if (request.method === 'GET' && url.pathname === '/') {
+      ctx.waitUntil(
+        env.GUESTBOOK.prepare(
+          `INSERT INTO counters (name, n) VALUES ('hits', 1)
+           ON CONFLICT(name) DO UPDATE SET n = n + 1`
+        ).run().catch(() => { /* the shrine loads either way */ })
+      );
+    }
 
     if (url.pathname === '/api/hits') {
       try {

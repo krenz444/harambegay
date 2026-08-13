@@ -6,7 +6,11 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // by default asset-matching paths never reach the worker; the front page
+    // must (edge hit counter), and /api/* must (once this array exists,
+    // unlisted paths terminate at the asset layer instead of falling through)
+    "run_worker_first": ["/", "/api/*"]
   },
   "d1_databases": [
     {
